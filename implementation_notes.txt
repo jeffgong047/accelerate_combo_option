@@ -1,0 +1,14 @@
+The project aims to utilize deep neural network to provide precise matching between buy and sell option orders.
+
+The architecture of the src code consists of mainly three parts.
+1) A linear program to be solved such that one can gurantee the worst case loss while maximizing the profit of transacting orders. 
+2) A neural network that performs prediction.
+3) Data pipeline and evaluation pipeline.
+
+Implementation challenges:
+1) Since we are considering at least two different approaches to perform the prediction, we might want to build the general api. The second approach aims to bound the loss in expecation, and we know that one still uses NN for that. This means that for NN module, one could consider necessary abstraction. For linear program, we do not really know what probabilitic matching is and how it might work with linear program plus that linear program is few lines of code. We therefore, does not really need to consider abstraction for now. We could refactor the linear program part later. Well for now, we just ignore refactor but only consider the approach on predicting match probability. 
+2)Establish data pipeline and evaluation pipeline that is agnostic to acceration algorithm or program for solving the match. 
+
+Algorithmic challenges:
+1)Neural network design.
+
