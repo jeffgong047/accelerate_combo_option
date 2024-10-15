@@ -5,7 +5,7 @@ from gurobipy import *
 from copy import deepcopy
 import pickle 
 input_dir = "../data/"
-output_file = "training_data.csv"
+output_file = "training_data.pkl"
 price_date = "20190123"
 opt_l = 1
 DJI = ['AAPL', 'AXP', 'BA', 'CAT', 'CSCO', 'CVX', 'DD', 'DIS', 'GS', 'HD', 'IBM', 'INTC', 'JNJ', \

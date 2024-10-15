@@ -1,40 +1,62 @@
 import torch
 import torch.nn as nn
-import torch.optim as optim
+import torch.nn.functional as F
 
-# Define the DNN with two heads
-class OptionOrderDNN(nn.Module):
-    def __init__(self, input_size, hidden_size, output_stock_size=1, output_frontier_size=1):
-        super(OptionOrderDNN, self).__init__()
-        
-        # Shared layers
-        self.fc1 = nn.Linear(input_size, hidden_size)
-        self.relu = nn.ReLU()
-        self.fc2 = nn.Linear(hidden_size, hidden_size)
-        
-        # Head 1 for stock price prediction
-        self.stock_head = nn.Linear(hidden_size, output_stock_size)
-        
-        # Head 2 for frontier set classification
-        self.frontier_head = nn.Linear(hidden_size, output_frontier_size)
-        self.sigmoid = nn.Sigmoid()
-    
+class BiAttentionClassifier(nn.Module):
+    def __init__(self, input_size, hidden_size, num_classes, bidirectional=True):
+        super(BiAttentionClassifier, self).__init__()
+
+        # Bi-directional LSTM (or GRU) to process the input features
+        self.rnn = nn.LSTM(input_size, hidden_size, bidirectional=bidirectional, batch_first=True)
+
+        # Attention layer to compute attention for each input vector
+        if bidirectional:
+            self.attention = nn.Linear(hidden_size * 2, hidden_size * 2)  # Applies attention to all input vectors
+        else:
+            self.attention = nn.Linear(hidden_size, hidden_size)
+
+        # Layer normalization
+        if bidirectional:
+            self.layer_norm = nn.LayerNorm(hidden_size * 2)
+        else:
+            self.layer_norm = nn.LayerNorm(hidden_size)
+
+        # Final classifier layer for each input vector
+        if bidirectional:
+            self.fc = nn.Linear(hidden_size * 2, 1)
+        else:
+            self.fc = nn.Linear(hidden_size, 1)
+
+    def attention_net(self, rnn_output):
+        # rnn_output: [batch_size, seq_len, hidden_size * 2] for Bi-LSTM
+
+        # Compute attention scores for each input vector
+        attn_weights = self.attention(rnn_output)  # [batch_size, seq_len, hidden_size * 2]
+
+        # Softmax across the sequence dimension to get attention weights for each input vector
+        attn_weights = torch.softmax(attn_weights, dim=1)  # [batch_size, seq_len, hidden_size * 2]
+
+        # Multiply attention weights with RNN output (element-wise multiplication for each input vector)
+        attended_output = attn_weights * rnn_output  # [batch_size, seq_len, hidden_size * 2]
+
+        return attended_output  # This is now the context representation for each input vector
+
     def forward(self, x):
-        # Shared layers
-        x = self.fc1(x)
-        x = self.relu(x)
-        x = self.fc2(x)
-        x = self.relu(x)
-        
-        # Head 1 output (stock price)
-        stock_price = self.stock_head(x)
-        
-        # Head 2 output (frontier set classification)
-        frontier_prediction = self.sigmoid(self.frontier_head(x))
-        
-        return stock_price, frontier_prediction
-    
+        # x: [batch_size, seq_len, input_size]
 
+        # Pass through Bi-LSTM
+        rnn_output, _ = self.rnn(x)  # [batch_size, seq_len, hidden_size * 2] if bidirectional
+
+        # Apply attention mechanism
+        attended_output = self.attention_net(rnn_output)  # [batch_size, seq_len, hidden_size * 2]
+
+        # Residual connection + layer normalization
+        attended_output = self.layer_norm(attended_output + rnn_output)  # Apply residual connection
+
+        # Apply the classification layer to each input vector
+        output = self.fc(attended_output)  # [batch_size, seq_len, num_classes]
+
+        return output  # Output: classification result for each input vector
 
 
 
