@@ -4,12 +4,13 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader
 from sklearn.model_selection import train_test_split
-
-
+import pandas as pd
+from match_prediction import OptionOrderDNN,train_model, validate_model, test_model
+import numpy as np
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description="Train Option Order DNN with custom hyperparameters")
-    parser.add_argument('--input_size', type=int, default=10, help='Number of input features (e.g. bid/ask prices)')
+    parser.add_argument('--input_size', type=int, default=35, help='Number of input features (e.g. bid/ask prices)')
     parser.add_argument('--hidden_size', type=int, default=64, help='Hidden layer size')
     parser.add_argument('--batch_size', type=int, default=32, help='Batch size for training')
     parser.add_argument('--learning_rate', type=float, default=0.001, help='Learning rate for the optimizer')
@@ -24,6 +25,12 @@ def main():
     # Assuming your data is loaded and preprocessed here
     # X = bid_ask_prices_features, y = frontier_targets
     # Split the data into training, validation, and test sets
+    data = pd.read_csv('training_data.csv')
+    X = data[['Stock', 'Expiration Date', 'Strike Price', 'Order Type', 'Value']]
+    y = data['Frontier Label']
+    X = pd.get_dummies(X, columns=['Stock', 'Order Type'])
+    X = X.to_numpy(dtype = np.float32)
+    y = y.to_numpy(dtype = np.float32)
     X_train_val, X_test, y_train_val, y_test = train_test_split(X, y, test_size=args.test_split)
     X_train, X_val, y_train, y_val = train_test_split(X_train_val, y_train_val, test_size=(1 - args.train_split))
 
@@ -38,10 +45,11 @@ def main():
     frontier_loss_fn = nn.BCELoss()  # Binary Cross-Entropy Loss for classification
 
     # Train the model
-    train_model(model, train_loader, optimizer, frontier_loss_fn, epochs=args.epochs)
+    for i in range(10):
+        train_model(model, train_loader, optimizer, frontier_loss_fn, epochs=args.epochs)
 
     # Validate the model
-    validate_model(model, val_loader, frontier_loss_fn)
+        validate_model(model, val_loader, frontier_loss_fn)
 
     # Test the model
     test_model(model, test_loader)
