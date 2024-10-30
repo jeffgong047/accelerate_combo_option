@@ -33,6 +33,7 @@ for st in DJI:
 	# iterate through expiration dates
 	for expiration_date in expirations:
 		st_exp = get_stock_price(stock=st, date=expiration_date)
+		breakpoint()
 		opt_df = opt_df_original[opt_df_original['Expiration Date of the Option']==expiration_date]
 		option_num = len(opt_df)
 		total_series += option_num

@@ -13,7 +13,7 @@ def train_model(model, train_loader,optimizer ,frontier_loss_fn,epochs=10):
             bid_ask_prices, frontier_targets = batch
 
             # Forward pass
-            frontier_pred = model(bid_ask_prices)
+            frontier_pred = model(bid_ask_prices).float()
             # Frontier classification loss
             frontier_loss = frontier_loss_fn(frontier_pred.view(-1,frontier_pred.size(-1)), frontier_targets.view(-1).long())
 
@@ -40,7 +40,7 @@ def validate_model(model, val_loader, frontier_loss_fn):
     with torch.no_grad():
         for batch in val_loader:
             bid_ask_prices, frontier_targets = batch
-            frontier_pred = model(bid_ask_prices)
+            frontier_pred = model(bid_ask_prices).float()
             frontier_loss = frontier_loss_fn(frontier_pred.view(-1, frontier_pred.size(-1)), frontier_targets.view(-1).long())
             total_frontier_loss += frontier_loss.item()
     print(f"Validation Loss: {total_frontier_loss}")
@@ -70,9 +70,13 @@ def test_model(model, test_loader):
     all_targets = np.concatenate(all_targets)
 
     # Compute precision, recall, f1 score
-    precision = precision_score(all_targets, all_predictions, average='binary')
-    recall = recall_score(all_targets, all_predictions, average='binary')
-    f1 = f1_score(all_targets, all_predictions, average='binary')
+
+
+# Compute precision, recall, f1 score
+    precision = precision_score(all_targets, all_predictions, average='macro')
+    recall = recall_score(all_targets, all_predictions, average='macro')
+    f1 = f1_score(all_targets, all_predictions, average='macro')
+
 
     # Confusion matrix
     conf_matrix = confusion_matrix(all_targets, all_predictions)
