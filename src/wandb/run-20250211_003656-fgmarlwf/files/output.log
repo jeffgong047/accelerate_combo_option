@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 449, in <module>
+    opt_book, stock_list = gen_synthetic_combo_options(NUM_ST=NUM_STOCK, NUM_ORDER=args.num_orders, combinations= random_select_combination,SEED=i)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combinatorial/gen_synthetic_combo_options.py", line 62, in gen_synthetic_combo_options
+    opt1_book = np.load('combinatorial/data/'+stock_list[index[0]]+'.npy')
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/numpy/lib/npyio.py", line 427, in load
+    fid = stack.enter_context(open(os_fspath(file), "rb"))
+FileNotFoundError: [Errno 2] No such file or directory: 'combinatorial/data/S.npy'
+File not found

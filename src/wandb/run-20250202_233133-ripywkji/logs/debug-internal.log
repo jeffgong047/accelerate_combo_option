@@ -1,0 +1,112 @@
+2025-02-02 23:31:33,781 INFO    StreamThr :218028 [internal.py:wandb_internal():85] W&B internal server running at pid: 218028, started at: 2025-02-02 23:31:33.780076
+2025-02-02 23:31:33,783 DEBUG   HandlerThread:218028 [handler.py:handle_request():158] handle_request: status
+2025-02-02 23:31:33,788 INFO    WriterThread:218028 [datastore.py:open_for_write():87] open: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250202_233133-ripywkji/run-ripywkji.wandb
+2025-02-02 23:31:33,790 DEBUG   SenderThread:218028 [sender.py:send():378] send: header
+2025-02-02 23:31:33,819 DEBUG   SenderThread:218028 [sender.py:send():378] send: run
+2025-02-02 23:31:33,982 INFO    SenderThread:218028 [dir_watcher.py:__init__():211] watching files in: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250202_233133-ripywkji/files
+2025-02-02 23:31:33,982 INFO    SenderThread:218028 [sender.py:_start_run_threads():1123] run started: ripywkji with start time 1738557093.782443
+2025-02-02 23:31:33,996 DEBUG   HandlerThread:218028 [handler.py:handle_request():158] handle_request: check_version
+2025-02-02 23:31:33,997 DEBUG   SenderThread:218028 [sender.py:send_request():405] send_request: check_version
+2025-02-02 23:31:34,080 DEBUG   HandlerThread:218028 [handler.py:handle_request():158] handle_request: run_start
+2025-02-02 23:31:34,110 DEBUG   HandlerThread:218028 [system_info.py:__init__():26] System info init
+2025-02-02 23:31:34,110 DEBUG   HandlerThread:218028 [system_info.py:__init__():41] System info init done
+2025-02-02 23:31:34,110 INFO    HandlerThread:218028 [system_monitor.py:start():194] Starting system monitor
+2025-02-02 23:31:34,111 INFO    SystemMonitor:218028 [system_monitor.py:_start():158] Starting system asset monitoring threads
+2025-02-02 23:31:34,111 INFO    HandlerThread:218028 [system_monitor.py:probe():214] Collecting system info
+2025-02-02 23:31:34,112 INFO    SystemMonitor:218028 [interfaces.py:start():188] Started cpu monitoring
+2025-02-02 23:31:34,113 INFO    SystemMonitor:218028 [interfaces.py:start():188] Started disk monitoring
+2025-02-02 23:31:34,114 INFO    SystemMonitor:218028 [interfaces.py:start():188] Started gpu monitoring
+2025-02-02 23:31:34,115 INFO    SystemMonitor:218028 [interfaces.py:start():188] Started memory monitoring
+2025-02-02 23:31:34,116 INFO    SystemMonitor:218028 [interfaces.py:start():188] Started network monitoring
+2025-02-02 23:31:34,220 DEBUG   HandlerThread:218028 [system_info.py:probe():150] Probing system
+2025-02-02 23:31:34,235 DEBUG   HandlerThread:218028 [system_info.py:_probe_git():135] Probing git
+2025-02-02 23:31:34,268 DEBUG   HandlerThread:218028 [system_info.py:_probe_git():143] Probing git done
+2025-02-02 23:31:34,269 DEBUG   HandlerThread:218028 [system_info.py:probe():198] Probing system done
+2025-02-02 23:31:34,269 DEBUG   HandlerThread:218028 [system_monitor.py:probe():223] {'os': 'Linux-5.15.0-130-generic-x86_64-with-glibc2.35', 'python': '3.9.7', 'heartbeatAt': '2025-02-03T04:31:34.220444', 'startedAt': '2025-02-03T04:31:33.763047', 'docker': None, 'cuda': None, 'args': ('--num_stocks=2',), 'state': 'running', 'program': '/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py', 'codePathLocal': 'combo_stock_frontier_data_preprocessor.py', 'codePath': 'src/combo_stock_frontier_data_preprocessor.py', 'git': {'remote': 'https://github.com/jeffgong047/accelerate_combo_option.git', 'commit': '3a928d6ee00b48f884fbb0d0758543edae9571ad'}, 'email': None, 'root': '/common/home/hg343/Research/accelerate_combo_option', 'host': 'ilab3.cs.rutgers.edu', 'username': 'hg343', 'executable': '/common/home/hg343/anaconda3/bin/python', 'cpu_count': 48, 'cpu_count_logical': 96, 'cpu_freq': {'current': 2.0752083333333338, 'min': 1500.0, 'max': 2300.0}, 'cpu_freq_per_core': [{'current': 2.1, 'min': 1500.0, 'max': 2300.0}, {'current': 3.042, 'min': 1500.0, 'max': 2300.0}, {'current': 1.5, 'min': 1500.0, 'max': 2300.0}, {'current': 3.044, 'min': 1500.0, 'max': 2300.0}, {'current': 1.5, 'min': 1500.0, 'max': 2300.0}, {'current': 1.5, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 2.276, 'min': 1500.0, 'max': 2300.0}, {'current': 3.042, 'min': 1500.0, 'max': 2300.0}, {'current': 1.5, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 3.039, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 3.044, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 1.5, 'min': 1500.0, 'max': 2300.0}, {'current': 3.041, 'min': 1500.0, 'max': 2300.0}, {'current': 1.5, 'min': 1500.0, 'max': 2300.0}, {'current': 3.04, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 3.039, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 3.041, 'min': 1500.0, 'max': 2300.0}, {'current': 1.5, 'min': 1500.0, 'max': 2300.0}, {'current': 3.042, 'min': 1500.0, 'max': 2300.0}, {'current': 1.5, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 3.043, 'min': 1500.0, 'max': 2300.0}, {'current': 3.043, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 3.043, 'min': 1500.0, 'max': 2300.0}, {'current': 3.04, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 3.042, 'min': 1500.0, 'max': 2300.0}, {'current': 1.5, 'min': 1500.0, 'max': 2300.0}, {'current': 1.5, 'min': 1500.0, 'max': 2300.0}, {'current': 3.042, 'min': 1500.0, 'max': 2300.0}, {'current': 3.042, 'min': 1500.0, 'max': 2300.0}, {'current': 3.042, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 1.5, 'min': 1500.0, 'max': 2300.0}, {'current': 3.044, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 2.1, 'min': 1500.0, 'max': 2300.0}, {'current': 2.1, 'min': 1500.0, 'max': 2300.0}, {'current': 3.044, 'min': 1500.0, 'max': 2300.0}, {'current': 1.5, 'min': 1500.0, 'max': 2300.0}, {'current': 1.5, 'min': 1500.0, 'max': 2300.0}, {'current': 1.5, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 3.039, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 3.04, 'min': 1500.0, 'max': 2300.0}, {'current': 1.5, 'min': 1500.0, 'max': 2300.0}, {'current': 1.5, 'min': 1500.0, 'max': 2300.0}, {'current': 1.5, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 1.5, 'min': 1500.0, 'max': 2300.0}, {'current': 1.5, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 1.5, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 3.04, 'min': 1500.0, 'max': 2300.0}, {'current': 1.5, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 1.5, 'min': 1500.0, 'max': 2300.0}, {'current': 1.5, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 1.5, 'min': 1500.0, 'max': 2300.0}, {'current': 3.042, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 1.5, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 1.5, 'min': 1500.0, 'max': 2300.0}, {'current': 1.5, 'min': 1500.0, 'max': 2300.0}, {'current': 3.043, 'min': 1500.0, 'max': 2300.0}, {'current': 3.041, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}, {'current': 2.3, 'min': 1500.0, 'max': 2300.0}], 'disk': {'/': {'total': 124.93262100219727, 'used': 49.97871780395508}}, 'memory': {'total': 1007.5375289916992}}
+2025-02-02 23:31:34,269 INFO    HandlerThread:218028 [system_monitor.py:probe():224] Finished collecting system info
+2025-02-02 23:31:34,269 INFO    HandlerThread:218028 [system_monitor.py:probe():227] Publishing system info
+2025-02-02 23:31:34,269 DEBUG   HandlerThread:218028 [system_info.py:_save_conda():207] Saving list of conda packages installed into the current environment
+2025-02-02 23:31:34,986 INFO    Thread-12 :218028 [dir_watcher.py:_on_file_created():271] file/dir created: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250202_233133-ripywkji/files/conda-environment.yaml
+2025-02-02 23:31:49,296 ERROR   HandlerThread:218028 [system_info.py:_save_conda():221] Error saving conda packages: Command '['conda', 'env', 'export']' timed out after 15 seconds
+Traceback (most recent call last):
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/wandb/sdk/internal/system/system_info.py", line 214, in _save_conda
+    subprocess.call(
+  File "/common/home/hg343/anaconda3/lib/python3.9/subprocess.py", line 351, in call
+    return p.wait(timeout=timeout)
+  File "/common/home/hg343/anaconda3/lib/python3.9/subprocess.py", line 1189, in wait
+    return self._wait(timeout=timeout)
+  File "/common/home/hg343/anaconda3/lib/python3.9/subprocess.py", line 1909, in _wait
+    raise TimeoutExpired(self.args, timeout)
+subprocess.TimeoutExpired: Command '['conda', 'env', 'export']' timed out after 15 seconds
+2025-02-02 23:31:49,299 DEBUG   HandlerThread:218028 [system_info.py:_save_conda():222] Saving conda packages done
+2025-02-02 23:31:49,302 INFO    HandlerThread:218028 [system_monitor.py:probe():229] Finished publishing system info
+2025-02-02 23:31:49,319 DEBUG   HandlerThread:218028 [handler.py:handle_request():158] handle_request: status_report
+2025-02-02 23:31:49,320 DEBUG   HandlerThread:218028 [handler.py:handle_request():158] handle_request: keepalive
+2025-02-02 23:31:49,320 DEBUG   HandlerThread:218028 [handler.py:handle_request():158] handle_request: status_report
+2025-02-02 23:31:49,320 DEBUG   HandlerThread:218028 [handler.py:handle_request():158] handle_request: keepalive
+2025-02-02 23:31:49,321 DEBUG   HandlerThread:218028 [handler.py:handle_request():158] handle_request: status_report
+2025-02-02 23:31:49,321 DEBUG   HandlerThread:218028 [handler.py:handle_request():158] handle_request: keepalive
+2025-02-02 23:31:49,321 DEBUG   SenderThread:218028 [sender.py:send():378] send: files
+2025-02-02 23:31:49,322 INFO    SenderThread:218028 [sender.py:_save_file():1389] saving file wandb-metadata.json with policy now
+2025-02-02 23:31:49,654 INFO    wandb-upload_0:218028 [upload_job.py:push():130] Uploaded file /tmp/tmpclmn37g8wandb/d0i1bi1d-wandb-metadata.json
+2025-02-02 23:31:49,968 DEBUG   HandlerThread:218028 [handler.py:handle_request():158] handle_request: python_packages
+2025-02-02 23:31:49,969 DEBUG   SenderThread:218028 [sender.py:send_request():405] send_request: python_packages
+2025-02-02 23:31:49,969 DEBUG   HandlerThread:218028 [handler.py:handle_request():158] handle_request: stop_status
+2025-02-02 23:31:49,972 DEBUG   SenderThread:218028 [sender.py:send_request():405] send_request: stop_status
+2025-02-02 23:31:49,995 INFO    Thread-12 :218028 [dir_watcher.py:_on_file_created():271] file/dir created: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250202_233133-ripywkji/files/wandb-metadata.json
+2025-02-02 23:31:49,995 INFO    Thread-12 :218028 [dir_watcher.py:_on_file_created():271] file/dir created: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250202_233133-ripywkji/files/requirements.txt
+2025-02-02 23:31:50,064 DEBUG   SenderThread:218028 [sender.py:send():378] send: telemetry
+2025-02-02 23:31:50,996 INFO    Thread-12 :218028 [dir_watcher.py:_on_file_created():271] file/dir created: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250202_233133-ripywkji/files/output.log
+2025-02-02 23:31:52,998 INFO    Thread-12 :218028 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250202_233133-ripywkji/files/output.log
+2025-02-02 23:31:54,031 DEBUG   HandlerThread:218028 [handler.py:handle_request():158] handle_request: status_report
+2025-02-02 23:31:54,999 INFO    Thread-12 :218028 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250202_233133-ripywkji/files/output.log
+2025-02-02 23:31:57,000 INFO    Thread-12 :218028 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250202_233133-ripywkji/files/output.log
+2025-02-02 23:31:59,002 INFO    Thread-12 :218028 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250202_233133-ripywkji/files/output.log
+2025-02-02 23:31:59,036 DEBUG   HandlerThread:218028 [handler.py:handle_request():158] handle_request: status_report
+2025-02-02 23:32:01,004 INFO    Thread-12 :218028 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250202_233133-ripywkji/files/output.log
+2025-02-02 23:32:03,006 INFO    Thread-12 :218028 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250202_233133-ripywkji/files/output.log
+2025-02-02 23:32:04,043 DEBUG   HandlerThread:218028 [handler.py:handle_request():158] handle_request: status_report
+2025-02-02 23:32:04,975 DEBUG   HandlerThread:218028 [handler.py:handle_request():158] handle_request: stop_status
+2025-02-02 23:32:04,976 DEBUG   SenderThread:218028 [sender.py:send_request():405] send_request: stop_status
+2025-02-02 23:32:05,007 INFO    Thread-12 :218028 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250202_233133-ripywkji/files/output.log
+2025-02-02 23:32:05,008 INFO    Thread-12 :218028 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250202_233133-ripywkji/files/config.yaml
+2025-02-02 23:32:07,009 INFO    Thread-12 :218028 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250202_233133-ripywkji/files/output.log
+2025-02-02 23:32:09,010 INFO    Thread-12 :218028 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250202_233133-ripywkji/files/output.log
+2025-02-02 23:32:09,129 DEBUG   HandlerThread:218028 [handler.py:handle_request():158] handle_request: status_report
+2025-02-02 23:32:11,012 INFO    Thread-12 :218028 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250202_233133-ripywkji/files/output.log
+2025-02-02 23:32:12,374 INFO    FileStreamThread:218028 [file_stream.py:request_with_retry():672] Filestream rate limit exceeded, retrying in 2.2 seconds. 
+2025-02-02 23:32:13,014 INFO    Thread-12 :218028 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250202_233133-ripywkji/files/output.log
+2025-02-02 23:32:14,136 DEBUG   HandlerThread:218028 [handler.py:handle_request():158] handle_request: status_report
+2025-02-02 23:32:14,631 INFO    FileStreamThread:218028 [file_stream.py:request_with_retry():672] Filestream rate limit exceeded, retrying in 4.8 seconds. 
+2025-02-02 23:32:15,015 INFO    Thread-12 :218028 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250202_233133-ripywkji/files/output.log
+2025-02-02 23:32:17,017 INFO    Thread-12 :218028 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250202_233133-ripywkji/files/output.log
+2025-02-02 23:32:19,018 INFO    Thread-12 :218028 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250202_233133-ripywkji/files/output.log
+2025-02-02 23:32:19,138 DEBUG   HandlerThread:218028 [handler.py:handle_request():158] handle_request: status_report
+2025-02-02 23:32:19,986 DEBUG   HandlerThread:218028 [handler.py:handle_request():158] handle_request: stop_status
+2025-02-02 23:32:19,987 DEBUG   SenderThread:218028 [sender.py:send_request():405] send_request: stop_status
+2025-02-02 23:32:21,020 INFO    Thread-12 :218028 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250202_233133-ripywkji/files/output.log
+2025-02-02 23:32:23,021 INFO    Thread-12 :218028 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250202_233133-ripywkji/files/output.log
+2025-02-02 23:32:24,144 DEBUG   HandlerThread:218028 [handler.py:handle_request():158] handle_request: status_report
+2025-02-02 23:32:25,023 INFO    Thread-12 :218028 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250202_233133-ripywkji/files/output.log
+2025-02-02 23:32:27,025 INFO    Thread-12 :218028 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250202_233133-ripywkji/files/output.log
+2025-02-02 23:32:28,532 INFO    FileStreamThread:218028 [file_stream.py:request_with_retry():672] Filestream rate limit exceeded, retrying in 2.5 seconds. 
+2025-02-02 23:32:29,027 INFO    Thread-12 :218028 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250202_233133-ripywkji/files/output.log
+2025-02-02 23:32:29,153 DEBUG   HandlerThread:218028 [handler.py:handle_request():158] handle_request: status_report
+2025-02-02 23:32:31,029 INFO    Thread-12 :218028 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250202_233133-ripywkji/files/output.log
+2025-02-02 23:32:33,030 INFO    Thread-12 :218028 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250202_233133-ripywkji/files/output.log
+2025-02-02 23:32:34,116 DEBUG   SystemMonitor:218028 [system_monitor.py:_start():172] Starting system metrics aggregation loop
+2025-02-02 23:32:34,119 DEBUG   SenderThread:218028 [sender.py:send():378] send: stats
+2025-02-02 23:32:34,155 DEBUG   HandlerThread:218028 [handler.py:handle_request():158] handle_request: status_report
+2025-02-02 23:32:34,988 DEBUG   HandlerThread:218028 [handler.py:handle_request():158] handle_request: stop_status
+2025-02-02 23:32:34,989 DEBUG   SenderThread:218028 [sender.py:send_request():405] send_request: stop_status
+2025-02-02 23:32:35,032 INFO    Thread-12 :218028 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250202_233133-ripywkji/files/output.log
+2025-02-02 23:32:37,034 INFO    Thread-12 :218028 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250202_233133-ripywkji/files/output.log
+2025-02-02 23:32:38,563 INFO    cpu       :218028 [interfaces.py:monitor():138] Process cpu has exited.
+2025-02-02 23:32:38,564 DEBUG   SystemMonitor:218028 [system_monitor.py:_start():179] Finished system metrics aggregation loop
+2025-02-02 23:32:38,564 DEBUG   SystemMonitor:218028 [system_monitor.py:_start():183] Publishing last batch of metrics
+2025-02-02 23:32:38,567 DEBUG   SenderThread:218028 [sender.py:send():378] send: stats
+2025-02-02 23:32:38,569 INFO    memory    :218028 [interfaces.py:monitor():138] Process proc.memory.rssMB has exited.
+2025-02-02 23:32:38,846 WARNING StreamThr :218028 [internal.py:is_dead():413] Internal process exiting, parent pid 216795 disappeared
+2025-02-02 23:32:38,847 ERROR   StreamThr :218028 [internal.py:wandb_internal():151] Internal process shutdown.
+2025-02-02 23:32:39,036 INFO    Thread-12 :218028 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250202_233133-ripywkji/files/output.log
+2025-02-02 23:32:39,060 INFO    MainThread:218028 [internal.py:handle_exit():75] Internal process exited

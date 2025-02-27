@@ -1,0 +1,16 @@
+File not found
+Set parameter Username
+Academic license - for non-commercial use only - expires 2025-11-08
+#0: The order is Buy combo option C(1.0MSFT 1.0GS, 245.0) at 58.67
+#1: The order is Buy combo option C(1.0MSFT 3.0GS, 661.5) at 37.09
+Ctrl+C received. Terminating processes...
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 448, in <module>
+    opt_book, stock_list = gen_synthetic_combo_options(NUM_ST=NUM_STOCK, NUM_ORDER=args.num_orders, combinations= random_select_combination,SEED=i)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combinatorial/gen_synthetic_combo_options.py", line 172, in gen_synthetic_combo_options
+    model.addLConstr(target_sell+opt1_sell_sum+opt2_sell_sum-opt1_buy_sum-opt2_buy_sum-L[0,0], GRB.LESS_EQUAL, 0)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 59, in signal_handler
+    sys.exit(1)
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/wandb/sdk/lib/exit_hooks.py", line 36, in exit
+    self._orig_exit(orig_code)  # type: ignore
+SystemExit: 1

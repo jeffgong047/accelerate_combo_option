@@ -1,0 +1,158 @@
+
+Generating frontier for markets:   0%|                                                      | 0/20 [00:00<?, ?it/s]
+There are 31 buy orders and 19 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_1_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 0
+Waiting for result in iteration 0
+Result type for iteration 0: <class 'numpy.ndarray'>
+Successfully completed iteration 0
+Attempting to save to: /common/home/hg343/Research/accelerate_combo_option/data/combo_2_frontier_no_offset/combo_frontier_market_index_0_book_size_50_AAPL_MSFT.pkl
+Successfully saved iteration 0
+There are 29 buy orders and 21 sell orders
+#####Generating combo_frontier_market_index_0_book_size_50_AAPL_MSFT with size 50 and noise 0.015625#####
+Starting async computation for iteration 1
+
+Generating frontier for markets:   5%|██▎                                          | 1/20 [01:40<31:54, 100.75s/it]
+Result type for iteration 1: <class 'numpy.ndarray'>
+Successfully completed iteration 1
+Attempting to save to: /common/home/hg343/Research/accelerate_combo_option/data/combo_2_frontier_no_offset/combo_frontier_market_index_1_book_size_50_AAPL_MSFT.pkl
+Successfully saved iteration 1
+There are 34 buy orders and 16 sell orders
+#####Generating combo_frontier_market_index_1_book_size_50_AAPL_MSFT with size 50 and noise 0.015625#####
+Starting async computation for iteration 2
+
+Generating frontier for markets:  10%|████▌                                         | 2/20 [02:06<16:58, 56.58s/it]
+Result type for iteration 2: <class 'numpy.ndarray'>
+Successfully completed iteration 2
+Attempting to save to: /common/home/hg343/Research/accelerate_combo_option/data/combo_2_frontier_no_offset/combo_frontier_market_index_2_book_size_50_AAPL_MSFT.pkl
+Successfully saved iteration 2
+There are 25 buy orders and 25 sell orders
+#####Generating combo_frontier_market_index_2_book_size_50_AAPL_MSFT with size 50 and noise 0.015625#####
+Starting async computation for iteration 3
+
+Generating frontier for markets:  15%|██████▉                                       | 3/20 [02:55<15:06, 53.31s/it]
+Result type for iteration 3: <class 'numpy.ndarray'>
+Successfully completed iteration 3
+Attempting to save to: /common/home/hg343/Research/accelerate_combo_option/data/combo_2_frontier_no_offset/combo_frontier_market_index_3_book_size_50_AAPL_MSFT.pkl
+Successfully saved iteration 3
+There are 31 buy orders and 19 sell orders
+#####Generating combo_frontier_market_index_3_book_size_50_AAPL_MSFT with size 50 and noise 0.015625#####
+Starting async computation for iteration 4
+
+Generating frontier for markets:  20%|█████████▏                                    | 4/20 [03:31<12:24, 46.51s/it]
+Result type for iteration 4: <class 'numpy.ndarray'>
+Successfully completed iteration 4
+Attempting to save to: /common/home/hg343/Research/accelerate_combo_option/data/combo_2_frontier_no_offset/combo_frontier_market_index_4_book_size_50_AAPL_MSFT.pkl
+Successfully saved iteration 4
+There are 36 buy orders and 14 sell orders
+#####Generating combo_frontier_market_index_4_book_size_50_AAPL_MSFT with size 50 and noise 0.015625#####
+Starting async computation for iteration 5
+
+Generating frontier for markets:  25%|███████████▌                                  | 5/20 [04:31<12:48, 51.25s/it]
+Result type for iteration 5: <class 'numpy.ndarray'>
+Successfully completed iteration 5
+Attempting to save to: /common/home/hg343/Research/accelerate_combo_option/data/combo_2_frontier_no_offset/combo_frontier_market_index_5_book_size_50_AAPL_MSFT.pkl
+Successfully saved iteration 5
+There are 35 buy orders and 15 sell orders
+#####Generating combo_frontier_market_index_5_book_size_50_AAPL_MSFT with size 50 and noise 0.015625#####
+Starting async computation for iteration 6
+
+Generating frontier for markets:  30%|█████████████▊                                | 6/20 [04:55<09:46, 41.93s/it]
+Result type for iteration 6: <class 'numpy.ndarray'>
+Successfully completed iteration 6
+Attempting to save to: /common/home/hg343/Research/accelerate_combo_option/data/combo_2_frontier_no_offset/combo_frontier_market_index_6_book_size_50_AAPL_MSFT.pkl
+Successfully saved iteration 6
+There are 41 buy orders and 9 sell orders
+#####Generating combo_frontier_market_index_6_book_size_50_AAPL_MSFT with size 50 and noise 0.015625#####
+Starting async computation for iteration 7
+
+Generating frontier for markets:  35%|████████████████                              | 7/20 [05:39<09:13, 42.57s/it]
+Result type for iteration 7: <class 'numpy.ndarray'>
+Successfully completed iteration 7
+Attempting to save to: /common/home/hg343/Research/accelerate_combo_option/data/combo_2_frontier_no_offset/combo_frontier_market_index_7_book_size_50_AAPL_MSFT.pkl
+Successfully saved iteration 7
+There are 24 buy orders and 26 sell orders
+#####Generating combo_frontier_market_index_7_book_size_50_AAPL_MSFT with size 50 and noise 0.015625#####
+Starting async computation for iteration 8
+
+Generating frontier for markets:  40%|██████████████████▍                           | 8/20 [05:57<06:56, 34.69s/it]
+Result type for iteration 8: <class 'numpy.ndarray'>
+Successfully completed iteration 8
+Attempting to save to: /common/home/hg343/Research/accelerate_combo_option/data/combo_2_frontier_no_offset/combo_frontier_market_index_8_book_size_50_AAPL_MSFT.pkl
+Successfully saved iteration 8
+There are 30 buy orders and 20 sell orders
+#####Generating combo_frontier_market_index_8_book_size_50_AAPL_MSFT with size 50 and noise 0.015625#####
+Starting async computation for iteration 9
+
+Generating frontier for markets:  45%|████████████████████▋                         | 9/20 [06:34<06:32, 35.66s/it]
+Result type for iteration 9: <class 'numpy.ndarray'>
+Successfully completed iteration 9
+Attempting to save to: /common/home/hg343/Research/accelerate_combo_option/data/combo_2_frontier_no_offset/combo_frontier_market_index_9_book_size_50_AAPL_MSFT.pkl
+Successfully saved iteration 9
+There are 32 buy orders and 18 sell orders
+#####Generating combo_frontier_market_index_9_book_size_50_AAPL_MSFT with size 50 and noise 0.015625#####
+Starting async computation for iteration 10
+
+Generating frontier for markets:  50%|██████████████████████▌                      | 10/20 [07:32<07:04, 42.46s/it]
+Iteration 10 timed out after 20 seconds
+There are 27 buy orders and 23 sell orders
+#####Generating combo_frontier_market_index_9_book_size_50_AAPL_MSFT with size 50 and noise 0.015625#####
+Starting async computation for iteration 11
+
+Generating frontier for markets:  55%|████████████████████████▏                   | 11/20 [17:32<31:57, 213.09s/it]
+Result type for iteration 11: <class 'numpy.ndarray'>
+Successfully completed iteration 11
+Attempting to save to: /common/home/hg343/Research/accelerate_combo_option/data/combo_2_frontier_no_offset/combo_frontier_market_index_11_book_size_50_AAPL_MSFT.pkl
+Successfully saved iteration 11
+There are 33 buy orders and 17 sell orders
+#####Generating combo_frontier_market_index_11_book_size_50_AAPL_MSFT with size 50 and noise 0.015625#####
+Starting async computation for iteration 12
+
+Generating frontier for markets:  60%|██████████████████████████▍                 | 12/20 [18:02<20:58, 157.33s/it]
+Result type for iteration 12: <class 'numpy.ndarray'>
+Successfully completed iteration 12
+Attempting to save to: /common/home/hg343/Research/accelerate_combo_option/data/combo_2_frontier_no_offset/combo_frontier_market_index_12_book_size_50_AAPL_MSFT.pkl
+Successfully saved iteration 12
+There are 29 buy orders and 21 sell orders
+#####Generating combo_frontier_market_index_12_book_size_50_AAPL_MSFT with size 50 and noise 0.015625#####
+Starting async computation for iteration 13
+
+Generating frontier for markets:  65%|████████████████████████████▌               | 13/20 [18:26<13:39, 117.06s/it]
+Iteration 13 timed out after 20 seconds
+There are 33 buy orders and 17 sell orders
+#####Generating combo_frontier_market_index_12_book_size_50_AAPL_MSFT with size 50 and noise 0.015625#####
+Starting async computation for iteration 14
+
+Generating frontier for markets:  70%|██████████████████████████████▊             | 14/20 [28:26<26:17, 262.93s/it]
+Iteration 14 timed out after 20 seconds
+There are 24 buy orders and 26 sell orders
+#####Generating combo_frontier_market_index_12_book_size_50_AAPL_MSFT with size 50 and noise 0.015625#####
+Starting async computation for iteration 15
+
+Generating frontier for markets:  75%|█████████████████████████████████           | 15/20 [38:26<30:22, 364.54s/it]
+Iteration 15 timed out after 20 seconds
+There are 32 buy orders and 18 sell orders
+#####Generating combo_frontier_market_index_12_book_size_50_AAPL_MSFT with size 50 and noise 0.015625#####
+Starting async computation for iteration 16
+
+Generating frontier for markets:  80%|███████████████████████████████████▏        | 16/20 [48:26<29:01, 435.41s/it]
+Iteration 16 timed out after 20 seconds
+There are 35 buy orders and 15 sell orders
+#####Generating combo_frontier_market_index_12_book_size_50_AAPL_MSFT with size 50 and noise 0.015625#####
+Starting async computation for iteration 17
+
+Generating frontier for markets:  85%|█████████████████████████████████████▍      | 17/20 [58:26<24:14, 484.90s/it]
+Iteration 17 timed out after 20 seconds
+There are 34 buy orders and 16 sell orders
+#####Generating combo_frontier_market_index_12_book_size_50_AAPL_MSFT with size 50 and noise 0.015625#####
+Starting async computation for iteration 18
+
+
+Generating frontier for markets:  95%|███████████████████████████████████████▉  | 19/20 [1:18:26<09:03, 543.67s/it]
+Iteration 18 timed out after 20 seconds
+There are 35 buy orders and 15 sell orders
+#####Generating combo_frontier_market_index_12_book_size_50_AAPL_MSFT with size 50 and noise 0.015625#####
+Starting async computation for iteration 19
+Waiting for result in iteration 19
+
+Generating frontier for markets: 100%|██████████████████████████████████████████| 20/20 [1:28:26<00:00, 265.34s/it]

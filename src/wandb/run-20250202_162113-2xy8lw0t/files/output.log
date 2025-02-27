@@ -1,0 +1,22 @@
+Generating frontier for markets:   0%|                                                                                  | 0/20 [00:00<?, ?it/s]
+Checking buy side options:   4%|███▏                                                                            | 1/25 [00:00<00:15,  1.53it/s]
+There are 25 buy orders and 25 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_2_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 0
+Set parameter Username
+
+
+
+
+
+
+
+
+
+
+Checking buy side options: 100%|███████████████████████████████████████████████████████████████████████████████| 25/25 [00:22<00:00,  1.15it/s]
+
+
+
+
+

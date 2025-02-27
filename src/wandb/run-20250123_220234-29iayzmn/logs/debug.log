@@ -1,0 +1,64 @@
+2025-01-23 22:02:34,232 INFO    MainThread:1294258 [wandb_setup.py:_flush():76] Current SDK version is 0.17.0
+2025-01-23 22:02:34,233 INFO    MainThread:1294258 [wandb_setup.py:_flush():76] Configure stats pid to 1294258
+2025-01-23 22:02:34,233 INFO    MainThread:1294258 [wandb_setup.py:_flush():76] Loading settings from /common/home/hg343/.config/wandb/settings
+2025-01-23 22:02:34,234 INFO    MainThread:1294258 [wandb_setup.py:_flush():76] Loading settings from /common/home/hg343/Research/accelerate_combo_option/src/wandb/settings
+2025-01-23 22:02:34,234 INFO    MainThread:1294258 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'api_key': '***REDACTED***'}
+2025-01-23 22:02:34,235 INFO    MainThread:1294258 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'src/single_stock_frontier_data_preprocessor.py', 'program_abspath': '/common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py', 'program': '/common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py'}
+2025-01-23 22:02:34,235 INFO    MainThread:1294258 [wandb_setup.py:_flush():76] Applying login settings: {}
+2025-01-23 22:02:34,235 INFO    MainThread:1294258 [wandb_setup.py:_flush():76] Applying login settings: {}
+2025-01-23 22:02:34,236 INFO    MainThread:1294258 [wandb_init.py:_log_setup():520] Logging user logs to /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250123_220234-29iayzmn/logs/debug.log
+2025-01-23 22:02:34,236 INFO    MainThread:1294258 [wandb_init.py:_log_setup():521] Logging internal logs to /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250123_220234-29iayzmn/logs/debug-internal.log
+2025-01-23 22:02:34,236 INFO    MainThread:1294258 [wandb_init.py:init():560] calling init triggers
+2025-01-23 22:02:34,236 INFO    MainThread:1294258 [wandb_init.py:init():567] wandb.init called with sweep_config: {}
+config: {}
+2025-01-23 22:02:34,237 INFO    MainThread:1294258 [wandb_init.py:init():610] starting backend
+2025-01-23 22:02:34,237 INFO    MainThread:1294258 [wandb_init.py:init():614] setting up manager
+2025-01-23 22:02:34,238 INFO    MainThread:1294258 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2025-01-23 22:02:34,240 INFO    MainThread:1294258 [wandb_init.py:init():622] backend started and connected
+2025-01-23 22:02:34,242 INFO    MainThread:1294258 [wandb_init.py:init():711] updated telemetry
+2025-01-23 22:02:34,259 INFO    MainThread:1294258 [wandb_init.py:init():744] communicating run to backend with 90.0 second timeout
+2025-01-23 22:02:34,488 INFO    MainThread:1294258 [wandb_run.py:_on_init():2396] communicating current version
+2025-01-23 22:02:34,528 INFO    MainThread:1294258 [wandb_run.py:_on_init():2405] got version response upgrade_message: "wandb version 0.19.4 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2025-01-23 22:02:34,529 INFO    MainThread:1294258 [wandb_init.py:init():795] starting run threads in backend
+2025-01-23 22:02:47,190 INFO    MainThread:1294258 [wandb_run.py:_console_start():2374] atexit reg
+2025-01-23 22:02:47,190 INFO    MainThread:1294258 [wandb_run.py:_redirect():2229] redirect: wrap_raw
+2025-01-23 22:02:47,191 INFO    MainThread:1294258 [wandb_run.py:_redirect():2294] Wrapping output streams.
+2025-01-23 22:02:47,191 INFO    MainThread:1294258 [wandb_run.py:_redirect():2319] Redirects installed.
+2025-01-23 22:02:47,193 INFO    MainThread:1294258 [wandb_init.py:init():838] run started, returning control to user process
+2025-01-23 22:02:51,823 INFO    MainThread:1294258 [wandb_run.py:_finish():2103] finishing run jglppk/expediating_comb_financial_market_matching/29iayzmn
+2025-01-23 22:02:51,824 INFO    MainThread:1294258 [wandb_run.py:_atexit_cleanup():2343] got exitcode: 1
+2025-01-23 22:02:51,824 INFO    MainThread:1294258 [wandb_run.py:_restore():2326] restore
+2025-01-23 22:02:51,824 INFO    MainThread:1294258 [wandb_run.py:_restore():2332] restore done
+2025-01-23 22:04:06,921 INFO    MainThread:1294258 [wandb_run.py:_restore():2326] restore
+2025-01-23 22:04:06,922 INFO    MainThread:1294258 [wandb_run.py:_restore():2332] restore done
+2025-01-23 22:04:07,925 ERROR   MainThread:1294258 [wandb_run.py:_atexit_cleanup():2352] Problem finishing run
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py", line 54, in <module>
+    'price_date': price_date,
+NameError: name 'l' is not defined
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/wandb/sdk/wandb_run.py", line 2352, in _atexit_cleanup
+    self._on_finish()
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/wandb/sdk/wandb_run.py", line 2608, in _on_finish
+    _ = exit_handle.wait(timeout=-1, on_progress=self._on_progress_exit)
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/wandb/sdk/lib/mailbox.py", line 283, in wait
+    found, abandoned = self._slot._get_and_clear(timeout=wait_timeout)
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/wandb/sdk/lib/mailbox.py", line 130, in _get_and_clear
+    if self._wait(timeout=timeout):
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/wandb/sdk/lib/mailbox.py", line 126, in _wait
+    return self._event.wait(timeout=timeout)
+  File "/common/home/hg343/anaconda3/lib/python3.9/threading.py", line 574, in wait
+    signaled = self._cond.wait(timeout)
+  File "/common/home/hg343/anaconda3/lib/python3.9/threading.py", line 319, in wait
+    return gotit
+  File "/common/home/hg343/anaconda3/lib/python3.9/threading.py", line 319, in wait
+    return gotit
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 88, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 113, in dispatch_line
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit

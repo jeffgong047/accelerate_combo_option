@@ -1,0 +1,14 @@
+1024
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(439)<module>()
+-> num_books = len(opt_book)//50
+20.48
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 439, in <module>
+    # Create artifact once before the loop
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 439, in <module>
+    # Create artifact once before the loop
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 88, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 113, in dispatch_line
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit

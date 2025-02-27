@@ -1,0 +1,17 @@
+
+Generating frontier for markets:   0%|                                                                                                                                        | 0/20 [00:00<?, ?it/s]
+There are 25 buy orders and 25 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_2_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 0
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(504)<module>()
+-> tasks.update({'filename': [market_index,async_result]})
+499  	                        async_result = pool.apply_async(run_with_timeout, (opt_buy_book, opt_sell_book, args.offset))
+500  	                        frontier_option_label = async_result.get(timeout=600)
+501  	                        with open('here.pkl', 'wb') as f:
+502  	                                    pickle.dump(frontier_option_label, f)
+503  	                        breakpoint()
+504  ->	                        tasks.update({'filename': [market_index,async_result]})
+505  	
+506  	                    for market_index, solving_result in tasks.values():
+507  	                        market_index, async_result = solving_result
+508  	                        try:

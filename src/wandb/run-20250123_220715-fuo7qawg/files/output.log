@@ -1,0 +1,134 @@
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(54)<module>()
+-> 'price_date': price_date,
+False
+True
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(55)<module>()
+-> 'total_frontier_series': frontier_series,
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(56)<module>()
+-> 'num_stocks': len(DJI),
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(57)<module>()
+-> 'stocks_processed': DJI,
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(58)<module>()
+-> 'offset': opt_l,
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(59)<module>()
+-> 'data_generation_time': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(53)<module>()
+-> metadata = {
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(61)<module>()
+-> breakpoint()
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(62)<module>()
+-> for st in DJI:
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(63)<module>()
+-> opt_stats_filename = os.path.join(input_dir, st + "_" + price_date + ".xlsx")
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(64)<module>()
+-> opt_df_original = pd.read_excel(opt_stats_filename)
+/common/home/hg343/anaconda3/lib/python3.9/site-packages/openpyxl/styles/stylesheet.py:226: UserWarning: Workbook contains no default style, apply openpyxl's default
+  warn("Workbook contains no default style, apply openpyxl's default")
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(65)<module>()
+-> expirations = sorted(list(set(opt_df_original['Expiration Date of the Option'])))
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(67)<module>()
+-> for expiration_date in expirations:
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(68)<module>()
+-> opt_df = opt_df_original[opt_df_original['Expiration Date of the Option'] == expiration_date]
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(69)<module>()
+-> option_num = len(opt_df)
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(73)<module>()
+-> opt = np.zeros((option_num, 6), dtype=object)
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(74)<module>()
+-> for i in range(option_num):
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(75)<module>()
+-> opt[i][0] = 1 if opt_df['C=Call, P=Put'].iloc[i] == 'C' else -1
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(76)<module>()
+-> opt[i][1] = opt_df['Strike Price of the Option Times 1000'].iloc[i].astype(int) / 1000
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(77)<module>()
+-> opt[i][2] = opt_df['Highest Closing Bid Across All Exchanges'].iloc[i].astype(float)
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(78)<module>()
+-> opt[i][3] = opt_df['Lowest  Closing Ask Across All Exchanges'].iloc[i].astype(float)
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(79)<module>()
+-> opt[i][4] = []  #storing whether the option belongs to frontier
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(80)<module>()
+-> opt[i][5] = {'bid':[], 'ask':[]}  #storing the options that current option being dominated by
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(74)<module>()
+-> for i in range(option_num):
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(75)<module>()
+-> opt[i][0] = 1 if opt_df['C=Call, P=Put'].iloc[i] == 'C' else -1
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(76)<module>()
+-> opt[i][1] = opt_df['Strike Price of the Option Times 1000'].iloc[i].astype(int) / 1000
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(77)<module>()
+-> opt[i][2] = opt_df['Highest Closing Bid Across All Exchanges'].iloc[i].astype(float)
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(78)<module>()
+-> opt[i][3] = opt_df['Lowest  Closing Ask Across All Exchanges'].iloc[i].astype(float)
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(79)<module>()
+-> opt[i][4] = []  #storing whether the option belongs to frontier
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(80)<module>()
+-> opt[i][5] = {'bid':[], 'ask':[]}  #storing the options that current option being dominated by
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(74)<module>()
+-> for i in range(option_num):
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(75)<module>()
+-> opt[i][0] = 1 if opt_df['C=Call, P=Put'].iloc[i] == 'C' else -1
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(76)<module>()
+-> opt[i][1] = opt_df['Strike Price of the Option Times 1000'].iloc[i].astype(int) / 1000
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(77)<module>()
+-> opt[i][2] = opt_df['Highest Closing Bid Across All Exchanges'].iloc[i].astype(float)
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(78)<module>()
+-> opt[i][3] = opt_df['Lowest  Closing Ask Across All Exchanges'].iloc[i].astype(float)
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(79)<module>()
+-> opt[i][4] = []  #storing whether the option belongs to frontier
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(80)<module>()
+-> opt[i][5] = {'bid':[], 'ask':[]}  #storing the options that current option being dominated by
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(74)<module>()
+-> for i in range(option_num):
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(75)<module>()
+-> opt[i][0] = 1 if opt_df['C=Call, P=Put'].iloc[i] == 'C' else -1
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(76)<module>()
+-> opt[i][1] = opt_df['Strike Price of the Option Times 1000'].iloc[i].astype(int) / 1000
+Set parameter Username
+Academic license - for non-commercial use only - expires 2025-11-08
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(91)<module>()
+-> if opt_l == 1:
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(94)<module>()
+-> for strike in sorted(strikes):
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(95)<module>()
+-> if opt_l == 1:
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(99)<module>()
+-> model.addLConstr(sum(gamma[0,i]*max(opt[i, 0]*(strike-opt[i, 1]), 0) for i in range(option_num) if opt[i, 2] > 0) - \
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(100)<module>()
+-> sum(delta[0, i]*max(opt[i, 0]*(strike-opt[i, 1]), 0) for i in range(option_num)), GRB.LESS_EQUAL, 0)
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(99)<module>()
+-> model.addLConstr(sum(gamma[0,i]*max(opt[i, 0]*(strike-opt[i, 1]), 0) for i in range(option_num) if opt[i, 2] > 0) - \
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(100)<module>()
+-> sum(delta[0, i]*max(opt[i, 0]*(strike-opt[i, 1]), 0) for i in range(option_num)), GRB.LESS_EQUAL, 0)
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(99)<module>()
+-> model.addLConstr(sum(gamma[0,i]*max(opt[i, 0]*(strike-opt[i, 1]), 0) for i in range(option_num) if opt[i, 2] > 0) - \
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(94)<module>()
+-> for strike in sorted(strikes):
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(95)<module>()
+-> if opt_l == 1:
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(99)<module>()
+-> model.addLConstr(sum(gamma[0,i]*max(opt[i, 0]*(strike-opt[i, 1]), 0) for i in range(option_num) if opt[i, 2] > 0) - \
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(100)<module>()
+-> sum(delta[0, i]*max(opt[i, 0]*(strike-opt[i, 1]), 0) for i in range(option_num)), GRB.LESS_EQUAL, 0)
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(99)<module>()
+-> model.addLConstr(sum(gamma[0,i]*max(opt[i, 0]*(strike-opt[i, 1]), 0) for i in range(option_num) if opt[i, 2] > 0) - \
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(100)<module>()
+-> sum(delta[0, i]*max(opt[i, 0]*(strike-opt[i, 1]), 0) for i in range(option_num)), GRB.LESS_EQUAL, 0)
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(99)<module>()
+-> model.addLConstr(sum(gamma[0,i]*max(opt[i, 0]*(strike-opt[i, 1]), 0) for i in range(option_num) if opt[i, 2] > 0) - \
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(94)<module>()
+-> for strike in sorted(strikes):
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(95)<module>()
+-> if opt_l == 1:
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(99)<module>()
+-> model.addLConstr(sum(gamma[0,i]*max(opt[i, 0]*(strike-opt[i, 1]), 0) for i in range(option_num) if opt[i, 2] > 0) - \
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(100)<module>()
+-> sum(delta[0, i]*max(opt[i, 0]*(strike-opt[i, 1]), 0) for i in range(option_num)), GRB.LESS_EQUAL, 0)
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(99)<module>()
+-> model.addLConstr(sum(gamma[0,i]*max(opt[i, 0]*(strike-opt[i, 1]), 0) for i in range(option_num) if opt[i, 2] > 0) - \
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(100)<module>()
+-> sum(delta[0, i]*max(opt[i, 0]*(strike-opt[i, 1]), 0) for i in range(option_num)), GRB.LESS_EQUAL, 0)
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(99)<module>()
+-> model.addLConstr(sum(gamma[0,i]*max(opt[i, 0]*(strike-opt[i, 1]), 0) for i in range(option_num) if opt[i, 2] > 0) - \
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py", line 99, in <module>
+    model.addLConstr(sum(gamma[0,i]*max(opt[i, 0]*(strike-opt[i, 1]), 0) for i in range(option_num) if opt[i, 2] > 0) - \
+NameError: name 'l' is not defined

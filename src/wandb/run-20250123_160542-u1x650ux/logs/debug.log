@@ -1,0 +1,28 @@
+2025-01-23 16:05:42,497 INFO    MainThread:743983 [wandb_setup.py:_flush():76] Current SDK version is 0.17.0
+2025-01-23 16:05:42,497 INFO    MainThread:743983 [wandb_setup.py:_flush():76] Configure stats pid to 743983
+2025-01-23 16:05:42,497 INFO    MainThread:743983 [wandb_setup.py:_flush():76] Loading settings from /common/home/hg343/.config/wandb/settings
+2025-01-23 16:05:42,498 INFO    MainThread:743983 [wandb_setup.py:_flush():76] Loading settings from /common/home/hg343/Research/accelerate_combo_option/src/wandb/settings
+2025-01-23 16:05:42,498 INFO    MainThread:743983 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'api_key': '***REDACTED***'}
+2025-01-23 16:05:42,498 INFO    MainThread:743983 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'src/single_stock_frontier_data_preprocessor.py', 'program_abspath': '/common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py', 'program': '/common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py'}
+2025-01-23 16:05:42,499 INFO    MainThread:743983 [wandb_setup.py:_flush():76] Applying login settings: {}
+2025-01-23 16:05:42,499 INFO    MainThread:743983 [wandb_setup.py:_flush():76] Applying login settings: {}
+2025-01-23 16:05:42,499 INFO    MainThread:743983 [wandb_init.py:_log_setup():520] Logging user logs to /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250123_160542-u1x650ux/logs/debug.log
+2025-01-23 16:05:42,499 INFO    MainThread:743983 [wandb_init.py:_log_setup():521] Logging internal logs to /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250123_160542-u1x650ux/logs/debug-internal.log
+2025-01-23 16:05:42,500 INFO    MainThread:743983 [wandb_init.py:init():560] calling init triggers
+2025-01-23 16:05:42,500 INFO    MainThread:743983 [wandb_init.py:init():567] wandb.init called with sweep_config: {}
+config: {'output_file': 'single_frontier.pkl', 'market_stream': '../data/', 'wandb_project': 'expediating_comb_financial_market_matching', 'wandb_entity': 'single_stock_frontier_data', 'offset': False}
+2025-01-23 16:05:42,500 INFO    MainThread:743983 [wandb_init.py:init():610] starting backend
+2025-01-23 16:05:42,500 INFO    MainThread:743983 [wandb_init.py:init():614] setting up manager
+2025-01-23 16:05:42,506 INFO    MainThread:743983 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2025-01-23 16:05:42,508 INFO    MainThread:743983 [wandb_init.py:init():622] backend started and connected
+2025-01-23 16:05:42,516 INFO    MainThread:743983 [wandb_init.py:init():711] updated telemetry
+2025-01-23 16:05:42,536 INFO    MainThread:743983 [wandb_init.py:init():744] communicating run to backend with 90.0 second timeout
+2025-01-23 16:05:42,634 ERROR   MainThread:743983 [wandb_init.py:init():770] encountered error: The API key you provided is either invalid or missing.  If the `WANDB_API_KEY` environment variable is set, make sure it is correct. Otherwise, to resolve this issue, you may try running the 'wandb login --relogin' command. If you are using a local server, make sure that you're using the correct hostname. If you're not sure, you can try logging in again using the 'wandb login --relogin --host [hostname]' command.(Error 401: Unauthorized)
+2025-01-23 16:05:42,635 ERROR   MainThread:743983 [wandb_init.py:init():1174] error in wandb.init()
+Traceback (most recent call last):
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/wandb/sdk/wandb_init.py", line 1164, in init
+    return wi.init()
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/wandb/sdk/wandb_init.py", line 776, in init
+    raise error
+wandb.errors.AuthenticationError: The API key you provided is either invalid or missing.  If the `WANDB_API_KEY` environment variable is set, make sure it is correct. Otherwise, to resolve this issue, you may try running the 'wandb login --relogin' command. If you are using a local server, make sure that you're using the correct hostname. If you're not sure, you can try logging in again using the 'wandb login --relogin --host [hostname]' command.(Error 401: Unauthorized)
+2025-01-23 16:05:43,672 WARNING MsgRouterThr:743983 [router.py:message_loop():77] message_loop has been closed

@@ -1,0 +1,43 @@
+
+Generating frontier for markets:   0%|                                                                                                                  | 0/100 [00:00<?, ?it/s]
+There are 25 buy orders and 25 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_1_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 0
+Set parameter Username
+Academic license - for non-commercial use only - expires 2025-11-08
+RangeIndex(start=0, stop=25, step=1) {9, 10, 20}
+RangeIndex(start=0, stop=25, step=1) {0, 6, 9, 10, 14, 16, 18, 20}
+22
+17
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(104)synthetic_combo_frontier_generation()
+-> if len(opt_buy_book_holder) == 0 or len(opt_sell_book_holder) == 0:
+ 99  	            opt_buy_book_holder = deepcopy(original_opt_buy_book.loc[opt_buy_book_filtered_index])
+100  	            opt_sell_book_holder = deepcopy(original_opt_sell_book.loc[opt_sell_book_filtered_index])
+101  	            print(len(opt_buy_book_holder))
+102  	            print(len(opt_sell_book_holder))
+103  	            breakpoint()
+104  ->	            if len(opt_buy_book_holder) == 0 or len(opt_sell_book_holder) == 0:
+105  	                return None
+106  	            _, num_iter, profit , isMatch_new, matched_stock= synthetic_combo_match_mip(opt_buy_book_holder, opt_sell_book_holder, debug=0)
+107  	        if isMatch_new:
+108  	            breakpoint()
+109  	            return None
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(106)synthetic_combo_frontier_generation()
+-> _, num_iter, profit , isMatch_new, matched_stock= synthetic_combo_match_mip(opt_buy_book_holder, opt_sell_book_holder, debug=0)
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(107)synthetic_combo_frontier_generation()
+-> if isMatch_new:
+False
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(113)synthetic_combo_frontier_generation()
+-> print("Warning: 'buy_book_index' or 'sell_book_index' not found in matched_stock.")
+108  	            breakpoint()
+109  	            return None
+110  	
+111  	
+112  	        else:
+113  ->	            print("Warning: 'buy_book_index' or 'sell_book_index' not found in matched_stock.")
+114  	
+115  	    num_buy_holder, num_sell_holder, num_stock = len(opt_buy_book_holder), len(opt_sell_book_holder), len(opt_buy_book_holder[0])-4
+116  	    # coeff up to len(stock_list); call/put; strike; buy/sell; price (bid/ask)
+117  	    opt_sell_book_frontier_labels = np.zeros(len(opt_sell_book_holder))
+118  	    opt_buy_book_frontier_labels = np.zeros(len(opt_buy_book_holder))
+*** No help for '??'

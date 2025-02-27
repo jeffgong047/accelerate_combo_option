@@ -1,0 +1,17 @@
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(444)<module>()
+-> for i in range(1,14):
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(445)<module>()
+-> filename = f'combinatorial/book/STOCK_2_SEED_{i}_book_{combinations_string}.npy'
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(446)<module>()
+-> if os.path.isfile(filename):
+'combinatorial/book/STOCK_2_SEED_1_book_A_A_P_L.npy'
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 446, in <module>
+    if os.path.isfile(filename):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 446, in <module>
+    if os.path.isfile(filename):
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 88, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 113, in dispatch_line
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit

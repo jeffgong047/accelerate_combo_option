@@ -1,0 +1,25 @@
+
+Generating frontier for markets:   0%|                                                                                  | 0/20 [00:00<?, ?it/s]
+There are 25 buy orders and 25 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_2_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 0
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(459)<module>()
+-> synthetic_combo_frontier_generation(opt_buy_book, opt_sell_book, opt_l = args.offset, debug=0)
+Set parameter Username
+Academic license - for non-commercial use only - expires 2025-11-08
+
+
+
+
+
+
+
+
+
+
+Checking buy side options: 100%|███████████████████████████████████████████████████████████████████████████████| 25/25 [00:22<00:00,  1.16it/s]
+
+
+
+
+

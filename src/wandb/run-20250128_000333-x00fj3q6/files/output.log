@@ -1,0 +1,50 @@
+
+Generating frontier for markets:   0%|                                                                                               | 0/20 [00:00<?, ?it/s]
+There are 31 buy orders and 19 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_1_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 0
+Waiting for result in iteration 0
+Result type for iteration 0: <class 'NoneType'>
+Iteration 0 returned None
+There are 29 buy orders and 21 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_1_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 1
+
+Generating frontier for markets:   5%|████▎                                                                                  | 1/20 [01:05<20:43, 65.43s/it]
+Result type for iteration 1: <class 'NoneType'>
+Iteration 1 returned None
+There are 34 buy orders and 16 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_1_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 2
+
+Generating frontier for markets:  10%|████████▋                                                                              | 2/20 [01:20<10:41, 35.62s/it]
+Result type for iteration 2: <class 'NoneType'>
+Iteration 2 returned None
+There are 25 buy orders and 25 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_1_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 3
+
+Generating frontier for markets:  15%|█████████████                                                                          | 3/20 [01:53<09:44, 34.40s/it]
+Result type for iteration 3: <class 'NoneType'>
+Iteration 3 returned None
+There are 31 buy orders and 19 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_1_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 4
+
+Generating frontier for markets:  20%|█████████████████▍                                                                     | 4/20 [02:11<07:27, 27.96s/it]
+Generating frontier for markets:  20%|█████████████████▍                                                                     | 4/20 [02:44<10:58, 41.14s/it]
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 458, in <module>
+  File "/common/home/hg343/anaconda3/lib/python3.9/multiprocessing/pool.py", line 765, in get
+    self.wait(timeout)
+  File "/common/home/hg343/anaconda3/lib/python3.9/multiprocessing/pool.py", line 762, in wait
+    self._event.wait(timeout)
+  File "/common/home/hg343/anaconda3/lib/python3.9/threading.py", line 574, in wait
+    signaled = self._cond.wait(timeout)
+  File "/common/home/hg343/anaconda3/lib/python3.9/threading.py", line 316, in wait
+    gotit = waiter.acquire(True, timeout)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 58, in signal_handler
+    sys.exit(1)
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/wandb/sdk/lib/exit_hooks.py", line 36, in exit
+    self._orig_exit(orig_code)  # type: ignore
+SystemExit: 1

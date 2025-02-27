@@ -1,0 +1,8 @@
+Generating frontier for markets:   0%|                                                                | 0/20 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 535, in <module>
+    tasks.update({'filename': [market_index,async_result]})
+NameError: name 'async_result' is not defined
+There are 25 buy orders and 25 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_2_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 0

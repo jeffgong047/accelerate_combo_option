@@ -1,0 +1,134 @@
+
+Generating frontier for markets:   0%|                                                                 | 0/20 [00:00<?, ?it/s]
+There are 31 buy orders and 19 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_1_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 0
+Waiting for result in iteration 0
+Result type for iteration 0: <class 'NoneType'>
+Iteration 0 returned None
+There are 29 buy orders and 21 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_1_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 1
+
+Generating frontier for markets:   5%|██▊                                                      | 1/20 [01:05<20:50, 65.81s/it]
+Result type for iteration 1: <class 'NoneType'>
+Iteration 1 returned None
+There are 34 buy orders and 16 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_1_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 2
+
+
+Generating frontier for markets:  15%|████████▌                                                | 3/20 [01:52<09:39, 34.07s/it]
+Result type for iteration 2: <class 'NoneType'>
+Iteration 2 returned None
+There are 25 buy orders and 25 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_1_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 3
+Waiting for result in iteration 3
+Result type for iteration 3: <class 'NoneType'>
+Iteration 3 returned None
+There are 31 buy orders and 19 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_1_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 4
+
+Generating frontier for markets:  20%|███████████▍                                             | 4/20 [02:09<07:16, 27.26s/it]
+Result type for iteration 4: <class 'NoneType'>
+Iteration 4 returned None
+There are 36 buy orders and 14 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_1_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 5
+
+Generating frontier for markets:  25%|██████████████▎                                          | 5/20 [02:46<07:43, 30.93s/it]
+Result type for iteration 5: <class 'NoneType'>
+Iteration 5 returned None
+There are 35 buy orders and 15 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_1_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 6
+
+Generating frontier for markets:  30%|█████████████████                                        | 6/20 [03:05<06:12, 26.63s/it]
+Result type for iteration 6: <class 'NoneType'>
+Iteration 6 returned None
+There are 41 buy orders and 9 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_1_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 7
+
+Generating frontier for markets:  35%|███████████████████▉                                     | 7/20 [03:35<06:02, 27.89s/it]
+Result type for iteration 7: <class 'NoneType'>
+Iteration 7 returned None
+There are 24 buy orders and 26 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_1_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 8
+
+Generating frontier for markets:  40%|██████████████████████▊                                  | 8/20 [03:51<04:49, 24.15s/it]
+Result type for iteration 8: <class 'NoneType'>
+Iteration 8 returned None
+There are 30 buy orders and 20 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_1_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 9
+
+Generating frontier for markets:  45%|█████████████████████████▋                               | 9/20 [04:09<04:02, 22.00s/it]
+Result type for iteration 9: <class 'NoneType'>
+Iteration 9 returned None
+There are 32 buy orders and 18 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_1_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 10
+
+Generating frontier for markets:  50%|████████████████████████████                            | 10/20 [04:44<04:22, 26.27s/it]
+Iteration 10 timed out after 20 seconds
+There are 27 buy orders and 23 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_1_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 11
+
+Generating frontier for markets:  55%|██████████████████████████████▎                        | 11/20 [14:44<30:16, 201.86s/it]
+Result type for iteration 11: <class 'NoneType'>
+Iteration 11 returned None
+There are 33 buy orders and 17 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_1_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 12
+
+
+Generating frontier for markets:  65%|███████████████████████████████████▊                   | 13/20 [15:18<12:25, 106.52s/it]
+Result type for iteration 12: <class 'NoneType'>
+Iteration 12 returned None
+There are 29 buy orders and 21 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_1_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 13
+Waiting for result in iteration 13
+Iteration 13 timed out after 20 seconds
+There are 33 buy orders and 17 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_1_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 14
+
+Generating frontier for markets:  70%|██████████████████████████████████████▌                | 14/20 [25:18<25:33, 255.58s/it]
+Iteration 14 timed out after 20 seconds
+There are 24 buy orders and 26 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_1_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 15
+
+Generating frontier for markets:  75%|█████████████████████████████████████████▎             | 15/20 [35:18<29:56, 359.40s/it]
+Iteration 15 timed out after 20 seconds
+There are 32 buy orders and 18 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_1_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 16
+
+Generating frontier for markets:  80%|████████████████████████████████████████████           | 16/20 [45:18<28:47, 431.82s/it]
+Iteration 16 timed out after 20 seconds
+There are 35 buy orders and 15 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_1_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 17
+
+Generating frontier for markets:  85%|██████████████████████████████████████████████▊        | 17/20 [55:18<24:07, 482.39s/it]
+Iteration 17 timed out after 20 seconds
+There are 34 buy orders and 16 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_1_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 18
+
+Generating frontier for markets:  90%|███████████████████████████████████████████████▋     | 18/20 [1:05:18<17:15, 517.73s/it]
+Iteration 18 timed out after 20 seconds
+There are 35 buy orders and 15 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_1_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 19
+
+Generating frontier for markets:  95%|██████████████████████████████████████████████████▎  | 19/20 [1:15:18<09:02, 542.44s/it]
+
+Generating frontier for markets: 100%|█████████████████████████████████████████████████████| 20/20 [1:25:18<00:00, 255.92s/it]

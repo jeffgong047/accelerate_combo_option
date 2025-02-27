@@ -1,13 +1,33 @@
 import pdb
+import sys
 import numpy as np
 import random
 import math
 import timeit
 from gurobipy import *
+import pandas as pd
+from copy import deepcopy
 
-def synthetic_combo_match_mip(opt_buy_book, opt_sell_book, s1='S1', s2='S2', debug=0):
+def synthetic_combo_match_mip(opt_buy_book : pd.DataFrame, opt_sell_book : pd.DataFrame, s1='S1', s2='S2', debug=0):
+	'''
+	opt_buy_book: pandas dataframe contains bid orders; specify whether code requires standarizing this variable
+	opt_sell_book: pandas dataframe contains ask orders;
+	s1: stock 1 name
+	s2: stock 2 name
+	order book: contains coefficients up to len(stock_list); call/put; strike; buy/sell; price (bid/ask)
+
+	debug: whether to debug
+	'''
+	buy_book_index = opt_buy_book.index
+	sell_book_index = opt_sell_book.index
+	sorted_columns_order = ['option1', 'option2','C=Call, P=Put',
+                'Strike Price of the Option Times 1000',
+                'transaction_type', 'B/A_price']
+	opt_buy_book = opt_buy_book[sorted_columns_order].to_numpy()
+	opt_sell_book = opt_sell_book[sorted_columns_order].to_numpy()
 	num_buy, num_sell, num_stock = len(opt_buy_book), len(opt_sell_book), len(opt_buy_book[0])-4
 	# add initial constraints
+
 	f_constraints = []
 	f_constraints.append(np.maximum(opt_buy_book[:, -4]*(np.concatenate(np.matmul(opt_buy_book[:, :-4], np.zeros((num_stock, 1))))-opt_buy_book[:, -3]), 0))
 	f_constraints.append(np.maximum(opt_buy_book[:, -4]*(np.concatenate(np.matmul(opt_buy_book[:, :-4], sys.maxsize*np.ones((num_stock, 1))))-opt_buy_book[:, -3]), 0))
@@ -15,8 +35,9 @@ def synthetic_combo_match_mip(opt_buy_book, opt_sell_book, s1='S1', s2='S2', deb
 	g_constraints.append(np.maximum(opt_sell_book[:, -4]*(np.concatenate(np.matmul(opt_sell_book[:, :-4], np.zeros((num_stock, 1))))-opt_sell_book[:, -3]), 0))
 	g_constraints.append(np.maximum(opt_sell_book[:, -4]*(np.concatenate(np.matmul(opt_sell_book[:, :-4], sys.maxsize*np.ones((num_stock, 1))))-opt_sell_book[:, -3]), 0))
 	sub_obj = 1
+
 	try:
-		# prime problem
+		# prime problemsys
 		model = Model("match")
 		model.setParam('OutputFlag', False)
 		gamma = model.addVars(1, num_buy, ub=1) #sell to bid orders
@@ -107,5 +128,11 @@ def synthetic_combo_match_mip(opt_buy_book, opt_sell_book, s1='S1', s2='S2', deb
 		print('Error code ' + str(e.errno) + ": " + str(e))
 	except AttributeError:
 		print('Encountered an attribute error')
-
-	return time, model.NumConstrs, model.objVal
+	
+	if model is None:
+		return time, 0, 0
+	isMatch = any(delta[0,i].x > 0 for i in range(len(delta))) or any(gamma[0,j].x > 0 for j in range(len(gamma)))
+	matched_stock = {'buy_book_index': None, 'sell_book_index': None}
+	matched_stock['buy_book_index'] = [buy_book_index[i] for i in range(len(gamma)) if gamma[0, i].x > 0]
+	matched_stock['sell_book_index'] = [sell_book_index[i] for i in range(len(delta)) if delta[0, i].x > 0]
+	return time, model.NumConstrs, model.objVal, isMatch, matched_stock

@@ -1,0 +1,32 @@
+
+Generating frontier for markets:   0%|                                                                                                                       | 0/20 [00:00<?, ?it/s]
+There are 25 buy orders and 25 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_2_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 0
+Set parameter Username
+Academic license - for non-commercial use only - expires 2025-11-08
+RangeIndex(start=0, stop=25, step=1) {2, 15}
+RangeIndex(start=0, stop=25, step=1) {4, 8, 9, 10, 15, 19, 20, 22}
+23
+17
+
+
+
+
+
+Checking buy side options: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 23/23 [00:13<00:00,  1.55it/s]
+
+
+
+
+Generating frontier for markets:   0%|                                                                                                                       | 0/20 [00:24<?, ?it/s]
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 500, in <module>
+    opt_buy_book_new = frontier_option_label_attempt_1[frontier_option_label_attempt_1[:, -2]==1]
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/pandas/core/frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/pandas/core/indexes/range.py", line 394, in get_loc
+    self._check_indexing_error(key)
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/pandas/core/indexes/base.py", line 5925, in _check_indexing_error
+    raise InvalidIndexError(key)
+pandas.errors.InvalidIndexError: (slice(None, None, None), -2)

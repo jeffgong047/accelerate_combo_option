@@ -1,0 +1,16 @@
+Generating frontier for markets:   0%|                                                                                  | 0/20 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 458, in <module>
+    synthetic_combo_frontier_generation(opt_buy_book, opt_sell_book, opt_l = args.offset, debug=0)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 65, in synthetic_combo_frontier_generation
+    _, num_iter, profit , isMatch, matched_stock= synthetic_combo_match_mip(opt_buy_book_holder, opt_sell_book_holder, debug=0)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combinatorial/synthetic_combo_mip_match.py", line 124, in synthetic_combo_match_mip
+    matched_stock['buy_book_index'] = [ buy_book_index[i] for i in range(len(gamma)) if gamma[0,i].x > 0]
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combinatorial/synthetic_combo_mip_match.py", line 124, in <listcomp>
+    matched_stock['buy_book_index'] = [ buy_book_index[i] for i in range(len(gamma)) if gamma[0,i].x > 0]
+NameError: free variable 'buy_book_index' referenced before assignment in enclosing scope
+There are 25 buy orders and 25 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_2_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 0
+Set parameter Username
+Academic license - for non-commercial use only - expires 2025-11-08

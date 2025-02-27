@@ -10,24 +10,45 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from gurobipy import *
-
-def gen_synthetic_combo_options(NUM_ST=2, NUM_ORDER=100, SEED=1):
+import itertools
+def gen_synthetic_combo_options(NUM_ST=2, NUM_ORDER=100, combinations= None,SEED=1):
 	COEFF_CAP = 10
 	random.seed(SEED)
-
-	if NUM_ST == 2:
-		stock_list = ['KO', 'MCD']
-	elif NUM_ST == 4:
-		stock_list = ['DIS', 'KO', 'MCD', 'NKE']
-	elif NUM_ST == 8:
-		stock_list = ['DIS', 'IBM', 'KO', 'MCD', 'MSFT', 'NKE', 'WMT', 'XOM']
-	elif NUM_ST == 12:
-		stock_list = ['AXP', 'DIS', 'HD', 'IBM', 'JNJ', 'KO', 'MCD', 'MSFT', 'NKE', 'VZ', 'WMT', 'XOM']
-	elif NUM_ST == 16:
-		stock_list = ['AXP', 'BA', 'DIS', 'GS', 'HD', 'IBM', 'JNJ', 'JPM', 'KO', 'MCD', 'MSFT', 'NKE', 'PG', 'VZ', 'WMT', 'XOM']
-	elif NUM_ST == 20:
-		stock_list = ['AAPL', 'AXP', 'BA', 'DIS', 'GS', 'HD', 'IBM', 'JNJ', 'JPM', 'KO', 'MCD', 'MMM', 'MSFT', 'NKE', 'PG', 'RTX', 'VZ', 'WBA', 'WMT', 'XOM']
+	DJI = ['AAPL', 'AXP', 'BA', 'DIS', 'GS', 'HD', 'IBM', 'JNJ', 'JPM', 'KO', 'MCD', 'MMM', 'MSFT', 'NKE', 'PG', 'RTX', 'VZ', 'WBA', 'WMT', 'XOM']
 	
+	if combinations:
+		stock_list = combinations
+	else:
+		if NUM_ST == 2:
+			possible_combinations = list(itertools.combinations(DJI,2))
+			stock_list = random.choice(possible_combinations)
+		elif NUM_ST == 4:
+			possible_combinations = list(itertools.combinations(DJI,4))
+			stock_list = random.choice(possible_combinations)
+		elif NUM_ST == 3:
+			possible_combinations = list(itertools.combinations(DJI,3))
+			stock_list = random.choice(possible_combinations)
+		elif NUM_ST == 5:
+			possible_combinations = list(itertools.combinations(DJI,5))
+			stock_list = random.choice(possible_combinations)
+		elif NUM_ST == 6:
+			possible_combinations = list(itertools.combinations(DJI,6))
+			stock_list = random.choice(possible_combinations)
+		elif NUM_ST == 7:
+			possible_combinations = list(itertools.combinations(DJI,7))
+			stock_list = random.choice(possible_combinations)
+		elif NUM_ST == 8:
+			possible_combinations = list(itertools.combinations(DJI,8))
+			stock_list = random.choice(possible_combinations)
+		elif NUM_ST == 12:
+			possible_combinations = list(itertools.combinations(DJI,12))
+			stock_list = random.choice(possible_combinations)
+		elif NUM_ST == 16:
+			possible_combinations = list(itertools.combinations(DJI,16))
+			stock_list = random.choice(possible_combinations)
+		elif NUM_ST == 20:
+			possible_combinations = list(itertools.combinations(DJI,20))
+			stock_list = random.choice(possible_combinations)
 	# generate synthetic combo options
 	# coeff up to len(stock_list); call/put; strike; buy/sell; price (bid/ask)
 	opt_book = np.zeros((NUM_ORDER, len(stock_list)+4))
@@ -38,15 +59,15 @@ def gen_synthetic_combo_options(NUM_ST=2, NUM_ORDER=100, SEED=1):
 		index = random.sample(range(len(stock_list)), k=2)
 		# print(stock_list[index[0]], stock_list[index[1]])
 		# generate combinatorial contracts from single security options
-		opt1_book = np.load('data/'+stock_list[index[0]]+'.npy')
-		opt2_book = np.load('data/'+stock_list[index[1]]+'.npy')
+		opt1_book = np.load('combinatorial/data/'+stock_list[index[0]]+'.npy')
+		opt2_book = np.load('combinatorial/data/'+stock_list[index[1]]+'.npy')
 		opt1 = random.choice(opt1_book)
 		opt2 = random.choice(opt2_book)
 		def coprime(a,b):
 			p, q = a, b
 			while q != 0:
-				p, q = q, p%q
-			return int(a/p), int(b/p)
+				p, q = q, p % q
+			return int(a / p), int(b / p)
 		coeff1, coeff2 = coprime(random.choice(range(1, COEFF_CAP)), random.choice(range(1, COEFF_CAP)))
 		# print(coeff1, stock_list[index[0]], opt1[0], opt1[1], opt1[2], opt1[3])
 		# print(coeff2, stock_list[index[1]], opt2[0], opt2[1], opt2[2], opt2[3])
@@ -195,4 +216,4 @@ def gen_synthetic_combo_options(NUM_ST=2, NUM_ORDER=100, SEED=1):
 			num_options = num_options+1
 		else:
 			buy_flag = 1
-	return opt_book
+	return opt_book ,stock_list

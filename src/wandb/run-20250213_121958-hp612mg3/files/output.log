@@ -1,0 +1,48 @@
+Generating frontier for markets:   0%|                                                                                                                  | 0/20 [00:00<?, ?it/s]
+Checking buy side options:   0%|                                                                                                                        | 0/23 [00:00<?, ?it/s]
+There are 25 buy orders and 25 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_2_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 0
+Set parameter Username
+Academic license - for non-commercial use only - expires 2025-11-08
+RangeIndex(start=0, stop=25, step=1) {2, 15}
+RangeIndex(start=0, stop=25, step=1) {4, 8, 9, 10, 15, 19, 20, 22}
+23
+17
+
+
+
+
+
+
+
+
+Checking buy side options: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████| 23/23 [00:17<00:00,  1.21it/s]
+
+
+
+
+
+Checking sell side options:  82%|██████████████████████████████████████████████████████████████████████████████████████████▌                   | 14/17 [00:10<00:02,  1.44it/s]
+There are 27 buy orders and 23 sell orders
+#####Generating corrected_testing_combo_frontier_market_index_0_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+
+Generating frontier for markets:   5%|█████▎                                                                                                    | 1/20 [00:31<09:54, 31.29s/it]
+RangeIndex(start=0, stop=27, step=1) {0, 11, 12, 21}
+RangeIndex(start=0, stop=23, step=1) {0, 3, 4, 7, 14, 16, 18}
+23
+16
+Warning: 'buy_book_index' or 'sell_book_index' not found in matched_stock.
+
+
+
+
+Checking buy side options: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████| 23/23 [00:09<00:00,  1.81it/s]
+
+
+Checking sell side options:  88%|████████████████████████████████████████████████████████████████████████████████████████████████▎             | 14/16 [00:05<00:00,  3.23it/s]
+There are 31 buy orders and 19 sell orders
+#####Generating corrected_testing_combo_frontier_market_index_1_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 2
+Generating frontier for markets:  10%|██████████▌                                                                                               | 2/20 [00:48<06:51, 22.84s/it]
+

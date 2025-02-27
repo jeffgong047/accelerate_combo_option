@@ -1,0 +1,38 @@
+There are 31 buy orders and 19 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_1_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 0
+Waiting for result in iteration 0
+Generating frontier for markets:   0%|                                                                                               | 0/20 [00:00<?, ?it/s]
+Result type for iteration 0: <class 'numpy.ndarray'>
+Successfully completed iteration 0
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(467)<module>()
+
+Generating frontier for markets:   5%|████▎                                                                                 | 1/20 [01:45<33:20, 105.26s/it]
+Attempting to save to: /common/home/hg343/Research/accelerate_combo_option/data/combo_2_frontier_no_offset/combo_frontier_market_index_0_book_size_50_AAPL_MSFT.pkl
+Successfully saved iteration 0
+There are 29 buy orders and 21 sell orders
+#####Generating combo_frontier_market_index_0_book_size_50_AAPL_MSFT with size 50 and noise 0.015625#####
+Starting async computation for iteration 1
+Waiting for result in iteration 1
+Generating frontier for markets:   5%|████▎                                                                                 | 1/20 [01:56<37:02, 116.99s/it]
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 467, in <module>
+    if not os.path.exists(path):
+  File "/common/home/hg343/anaconda3/lib/python3.9/multiprocessing/pool.py", line 765, in get
+    self.wait(timeout)
+  File "/common/home/hg343/anaconda3/lib/python3.9/multiprocessing/pool.py", line 762, in wait
+    self._event.wait(timeout)
+  File "/common/home/hg343/anaconda3/lib/python3.9/threading.py", line 574, in wait
+    signaled = self._cond.wait(timeout)
+  File "/common/home/hg343/anaconda3/lib/python3.9/threading.py", line 316, in wait
+    gotit = waiter.acquire(True, timeout)
+  File "/common/home/hg343/anaconda3/lib/python3.9/pdb.py", line 189, in sigint_handler
+    def sigint_handler(self, signum, frame):
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 90, in trace_dispatch
+    return self.dispatch_call(frame, arg)
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 135, in dispatch_call
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit
+--Call--
+> /common/home/hg343/anaconda3/lib/python3.9/pdb.py(189)sigint_handler()
+-> def sigint_handler(self, signum, frame):

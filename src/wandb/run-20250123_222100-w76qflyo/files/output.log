@@ -1,0 +1,8 @@
+/common/home/hg343/anaconda3/lib/python3.9/site-packages/openpyxl/styles/stylesheet.py:226: UserWarning: Workbook contains no default style, apply openpyxl's default
+  warn("Workbook contains no default style, apply openpyxl's default")
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py", line 117, in <module>
+    print('The obj is {}: profit {} now, subject to at most {} loss in the future'.format(round(model.objVal,2), round(expense,2), round(l[0,0].x,2)))
+NameError: name 'l' is not defined
+Set parameter Username
+Academic license - for non-commercial use only - expires 2025-11-08

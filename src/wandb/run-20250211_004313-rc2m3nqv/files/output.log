@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 454, in <module>
+    name=f"combo_frontier_{'_'.join(stock_list)}_size_{BOOK_SIZE}_noise_{NOISE}",
+NameError: name 'stock_list' is not defined

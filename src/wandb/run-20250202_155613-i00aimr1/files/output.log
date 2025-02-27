@@ -1,0 +1,12 @@
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(441)<module>()
+-> artifact = wandb.Artifact(
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 441, in <module>
+    name=f"combo_frontier_{'_'.join(stock_list)}_size_{BOOK_SIZE}_noise_{NOISE}",
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 441, in <module>
+    name=f"combo_frontier_{'_'.join(stock_list)}_size_{BOOK_SIZE}_noise_{NOISE}",
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 88, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 113, in dispatch_line
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit

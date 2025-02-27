@@ -18,11 +18,14 @@ from lime import lime_tabular
 from captum.attr import IntegratedGradients
 import shap
 import os 
+from sklearn.manifold import TSNE
+import plotly.express as px
+from sklearn.decomposition import PCA
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description="Train Option Order DNN with custom hyperparameters")
-    parser.add_argument('--input_size', type=int, default=4, help='Number of input features (e.g. bid/ask prices)')
-    parser.add_argument('--hidden_size', type=int, default=128, help='Hidden layer size')
+    parser.add_argument('--input_size', type=int, default=6, help='Number of input features (e.g. bid/ask prices)')
+    parser.add_argument('--hidden_size', type=int, default=512, help='Hidden layer size')
     parser.add_argument('--batch_size', type=int, default=1, help='Batch size for training')
     parser.add_argument('--learning_rate', type=float, default=0.001, help='Learning rate for the optimizer')
     parser.add_argument('--epochs', type=int, default=20, help='Number of epochs to train the model')
@@ -30,6 +33,20 @@ def parse_arguments():
     parser.add_argument('--test_split', type=float, default=0.1, help='Test set size as a percentage of the entire data')
     return parser.parse_args()
 
+
+
+
+def pca_analysis(X,y):
+    pca = PCA(n_components=2)
+    X_pca = pca.fit_transform(X)
+
+    fig = px.scatter(x=X_pca[:, 0], y=X_pca[:, 1], color=y)
+    fig.update_layout(
+        title="PCA visualization of Custom Classification dataset",
+        xaxis_title="First Principal Component",
+        yaxis_title="Second Principal Component",
+    )
+    fig.show()
 
 def attention_analysis(data_loader,model,sanity_check):
     # investigate interpretability of attention mechanism 
@@ -131,6 +148,54 @@ def attention_analysis(data_loader,model,sanity_check):
     print("Proportion of top 50% labels to total labels:", proportion_top_50)
 
 
+def t_sne_analysis(X, y):
+    n_samples = X.shape[0]
+    max_perplexity = min(50, n_samples - 1)  # Cap maximum perplexity
+    
+    # Generate perplexity range based on data size
+    perplexity_range = np.arange(5, max_perplexity, 5)
+    divergence = []
+    
+    # Calculate KL divergence for different perplexity values
+    for p in perplexity_range:
+        model = TSNE(n_components=3, init="pca", perplexity=p, random_state=42)
+        _ = model.fit_transform(X)
+        divergence.append(model.kl_divergence_)
+    
+    # Find optimal perplexity (elbow point)
+    # Using simple method: find point where increasing perplexity gives diminishing returns
+    divergence_diff = np.diff(divergence)
+    optimal_idx = np.argmin(np.abs(divergence_diff - np.mean(divergence_diff))) + 1
+    optimal_perplexity = perplexity_range[optimal_idx]
+    
+    # Plot perplexity vs divergence
+    fig_perp = px.line(x=perplexity_range, y=divergence, markers=True)
+    fig_perp.update_layout(
+        title="Perplexity vs KL Divergence",
+        xaxis_title="Perplexity Values", 
+        yaxis_title="Divergence"
+    )
+    fig_perp.update_traces(line_color="red", line_width=1)
+    fig_perp.show()
+    
+    # Perform t-SNE with optimal perplexity
+    tsne = TSNE(n_components=3, 
+                random_state=42, 
+                perplexity=optimal_perplexity,
+                init="pca")
+    X_tsne = tsne.fit_transform(X)
+    
+    # Plot t-SNE results
+    fig_tsne = px.scatter_3d(x=X_tsne[:, 0], y=X_tsne[:, 1], z=X_tsne[:, 2], color=y)
+    fig_tsne.update_layout(
+        title=f"t-SNE visualization (perplexity={optimal_perplexity:.1f})",
+        xaxis_title="First t-SNE",
+        yaxis_title="Second t-SNE",
+    )      
+    fig_tsne.show()
+    
+    return X_tsne
+
 
 def explain_predictions_integrated_gradients(model, input_data):
     model.eval()
@@ -221,9 +286,10 @@ def analyze_and_visualize_integrated_gradients(model, data_loader, feature_names
     all_attributions = []
     # Process first 3 batches to get their attributions
     for batch_idx, batch in enumerate(tqdm(data_loader, desc="Computing IG")):        
-        inputs, targets, dominated_by = batch
-        dominated_by = dominated_by[0]
-        # inputs, targets = batch 
+        # inputs, targets, dominated_by = batch
+        # dominated_by = dominated_by[0]
+        dominated_by = None 
+        inputs, targets = batch 
         current_seq_len = inputs.size(1)
         # Get attributions for each position in the sequence
         batch_attributions = []
@@ -250,7 +316,6 @@ def analyze_and_visualize_integrated_gradients(model, data_loader, feature_names
         # Create target annotations with matching shape
         option_attributions_np = option_attributions.detach().cpu().numpy()
         targets_np = targets.cpu().numpy()
-        
         # Reshape annotations to match option_attributions_np shape
         # Broadcast target indicators across all output positions using numpy tile
         target_broadcast = np.tile(targets_np.squeeze(), (option_attributions_np.squeeze(1).shape[0], 1))
@@ -262,7 +327,12 @@ def analyze_and_visualize_integrated_gradients(model, data_loader, feature_names
         
         # First plot the heatmap without annotations
         data = option_attributions_np.squeeze(1)
-        
+        transformed_x = inputs.squeeze(0).detach().cpu().numpy()
+        transformed_y = np.sum(data,axis=0)
+        print(transformed_x.shape,transformed_y.shape)
+        breakpoint()
+        t_sne_analysis(transformed_x,transformed_y)
+        pca_analysis(transformed_x,transformed_y)
         ax = sns.heatmap(data,
                         cmap='RdBu_r',
                         center=0)
@@ -296,7 +366,7 @@ def analyze_and_visualize_integrated_gradients(model, data_loader, feature_names
         plt.tight_layout()
         # plt.savefig(f'{visualization_path}/comb_2_batch_{batch_idx}_option_attributions.png',
         #             dpi=300, bbox_inches='tight')
-        plt.savefig(f'debugging.png')
+        plt.savefig(f'combo_{len(feature_names)-4}_{batch_idx}.png')
         plt.close()
 
         # For each target position, find top 2 contributing options
@@ -449,63 +519,70 @@ def main():
 
 
 
-    directory_path = '/common/home/hg343/Research/accelerate_combo_option/data/'
-    model_path = f'frontier_option_classifier_combo1_no_matched.pt'
-    file_path = '/common/home/hg343/Research/accelerate_combo_option/data/single_frontier_labels_corrected_dominant_labels.pkl' 
-    with open(file_path, 'rb') as f:
-        data = pickle.load(f)
-    # data = [] 
-    # for filename in os.listdir(directory_path):
-    #     file_path = os.path.join(directory_path, filename)
+    directory_path = '/common/home/hg343/Research/accelerate_combo_option/data/combo_2_frontier'
+    model_path = f'frontier_option_classifier_combo2_no_matched.pt'
+    # file_path = '/common/home/hg343/Research/accelerate_combo_option/data/single_frontier_labels_corrected_dominant_labels.pkl' 
+    # with open(file_path, 'rb') as f:
+    #     data = pickle.load(f)
+
+    data = [] 
+    for filename in os.listdir(directory_path):
+        file_path = os.path.join(directory_path, filename)
         
-    #     # Check if the file is a pickle file
-    #     if filename.endswith('.pkl'):  # Assuming your files are pickle files
-    #         try:
-    #             with open(file_path, 'rb') as f:
-    #                 data_point = pickle.load(f)
-                    
-    #                 # Check if data_point has the expected structure
-    #                 if len(data_point) > 0:
-    #                     df = pd.DataFrame(data_point[0], columns=['option1', 'option2', 'option3', 'option4','C=Call, P=Put', 
-    #                                                                'Strike Price of the Option Times 1000', 
-    #                                                                'transaction_type', 'B/A_price', 
-    #                                                                'belongs_to_frontier'])
-    #                     data.append(df)
-    #                 else:
-    #                     print(f"Warning: {file_path} does not contain valid data.")
-    #         except Exception as e:
-    #             print(f"Error processing {file_path}: {e}")
+        # Check if the file is a pickle file
+        if filename.endswith('.pkl'):  # Assuming your files are pickle files
+            try:
+                with open(file_path, 'rb') as f:
+                    if file_path.endswith('no_matched.pkl'):
+                        data_point = pickle.load(f)
+                    # Check if data_point has the expected structure
+                    if len(data_point) > 0:
+                        df = pd.DataFrame(data_point, columns=['option1', 'option2','C=Call, P=Put', 
+                                                                   'Strike Price of the Option Times 1000', 
+                                                                   'transaction_type', 'B/A_price', 
+                                                                   'belongs_to_frontier'])
+                        data.append(df)
+                    else:
+                        print(f"Warning: {file_path} does not contain valid data.")
+            except Exception as e:
+                print(f"Error processing {file_path}: {e}")
 
     feature_names = [
+        'option1', 
+         'option2', 
         'C=Call, P=Put',
         'Strike Price of the Option Times 1000',
         'B/A_price',
         'transaction_type'
     ]
-    X = [x[['C=Call, P=Put',
+    X = [x[['option1', 'option2', 'C=Call, P=Put',
             'Strike Price of the Option Times 1000',
             'B/A_price',
             'transaction_type']].to_numpy(dtype = np.float32) for x in data]
-    dominated_by = [x['dominated_by'].tolist() for x in data]
+    # dominated_by = [x['dominated_by'].tolist() for x in data]
     y = [x['belongs_to_frontier'].to_numpy(dtype=np.float32) for x in data]
     
-    # Verify dominating options are in frontier
-    for i, (dominated_list, frontier_labels) in enumerate(zip(dominated_by, y)):
-        for option_idx, dominating_indices in enumerate(dominated_list):
-            if len(dominating_indices) > 0:  # If this option is dominated by others
-                # Check if all dominating options are in frontier
-                all_dominators_in_frontier = all(frontier_labels[idx] == 1 for idx in dominating_indices)
-                if not all_dominators_in_frontier:
-                    print(f"Warning in sample {i}: Option {option_idx} is dominated by options {dominating_indices}")
-                    print(f"Frontier labels for dominators: {[frontier_labels[idx] for idx in dominating_indices]}")
+    # # Verify dominating options are in frontier
+    # for i, (dominated_list, frontier_labels) in enumerate(zip(dominated_by, y)):
+    #     for option_idx, dominating_indices in enumerate(dominated_list):
+    #         if len(dominating_indices) > 0:  # If this option is dominated by others
+    #             # Check if all dominating options are in frontier
+    #             all_dominators_in_frontier = all(frontier_labels[idx] == 1 for idx in dominating_indices)
+    #             if not all_dominators_in_frontier:
+    #                 print(f"Warning in sample {i}: Option {option_idx} is dominated by options {dominating_indices}")
+    #                 print(f"Frontier labels for dominators: {[frontier_labels[idx] for idx in dominating_indices]}")
 
     attention_mechanism_distribution = []
+# lets use t-sne to analyze one single example first
+# we could implement get embedding before the attention; 
+# we need attention scores; attribution scores for each embedding which we denotes annotation
+
 
     #lets check whether all the dominating options are in the frontier 
 
     #load model
-    data_loader = DataLoader(list(zip(X, y,dominated_by)), batch_size=args.batch_size, shuffle=True, collate_fn=collate_fn)
-    # data_loader = DataLoader(list(zip(X, y)), batch_size=args.batch_size, shuffle=True, collate_fn=collate_fn)
+    # data_loader = DataLoader(list(zip(X, y,dominated_by)), batch_size=args.batch_size, shuffle=True, collate_fn=collate_fn)
+    data_loader = DataLoader(list(zip(X, y)), batch_size=args.batch_size, shuffle=True, collate_fn=collate_fn)
     model = BiAttentionClassifier(input_size=args.input_size, hidden_size=args.hidden_size,  num_classes=2, bidirectional=True)
     model_state_dict = torch.load(model_path)
     #lets first try to evaluate the loaded model performance
@@ -513,6 +590,14 @@ def main():
     # breakpoint()
     model.load_state_dict(model_state_dict)
     model.eval()
+    # t_sne_analysis(X[1],y[1])
+    # for i in range(len(X)):
+    #     embedding = model.get_embedding(torch.tensor(X[i]).unsqueeze(0)).squeeze(0).detach().cpu().numpy()
+    # #  t_sne_analysis(embedding,y[1])
+    #     attention_scores = model.check_attention_score(torch.tensor(X[i]).unsqueeze(0)).squeeze(0).detach().cpu().numpy()
+    #     print(embedding.shape, attention_scores.shape)
+    #     t_sne_analysis(embedding,attention_scores.sum(axis=0))
+    #     breakpoint()
     attention_proportions = []
     attention_stock_price_ratios =[]
 

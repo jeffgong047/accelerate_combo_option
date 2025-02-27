@@ -1,0 +1,65 @@
+There are 25 buy orders and 25 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_2_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 0
+Set parameter Username
+Academic license - for non-commercial use only - expires 2025-11-08
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(79)synthetic_combo_frontier_generation()
+-> if isMatch:
+Generating frontier for markets:   0%|                                                                                                                                        | 0/20 [00:00<?, ?it/s]
+ 74  	    #first check if is match and provide frontier if not:
+ 75  	    _, num_iter, profit , isMatch, matched_stock= synthetic_combo_match_mip(deepcopy(original_opt_buy_book), deepcopy(original_opt_sell_book), debug=0)
+ 76  	    buy_book_index = original_opt_buy_book.index
+ 77  	    sell_book_index = original_opt_sell_book.index
+ 78  	    breakpoint()
+ 79  ->	    if isMatch:
+ 80  	        #remove the matched
+ 81  	        #check no match exist after removal of matched.
+ 82  	        # if 'buy_book_index' in matched_stock and 'sell_book_index' in matched_stock:
+ 83  	        #     remove_buy_book = matched_stock['buy_book_index']
+ 84  	        #     remove_sell_book = matched_stock['sell_book_index']
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(91)synthetic_combo_frontier_generation()
+-> if 'buy_book_index' in matched_stock and 'sell_book_index' in matched_stock:
+{'buy_book_index': [2, 15], 'sell_book_index': [4, 8, 9, 10, 15, 19, 20, 22]}
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(92)synthetic_combo_frontier_generation()
+-> remove_buy_book = set(matched_stock['buy_book_index'])  # Convert to set for faster lookup
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(93)synthetic_combo_frontier_generation()
+-> remove_sell_book = set(matched_stock['sell_book_index'])
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(96)synthetic_combo_frontier_generation()
+-> opt_buy_book_filtered_index = buy_book_index.difference(remove_buy_book)
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(97)synthetic_combo_frontier_generation()
+-> opt_sell_book_filtered_index = sell_book_index.difference(remove_sell_book)
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(98)synthetic_combo_frontier_generation()
+-> print(buy_book_index, remove_buy_book)
+RangeIndex(start=0, stop=25, step=1) {2, 15}
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(99)synthetic_combo_frontier_generation()
+-> print(sell_book_index, remove_sell_book)
+RangeIndex(start=0, stop=25, step=1) {4, 8, 9, 10, 15, 19, 20, 22}
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(100)synthetic_combo_frontier_generation()
+-> opt_buy_book_holder = deepcopy(original_opt_buy_book.loc[opt_buy_book_filtered_index])
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(101)synthetic_combo_frontier_generation()
+-> opt_sell_book_holder = deepcopy(original_opt_sell_book.loc[opt_sell_book_filtered_index])
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(102)synthetic_combo_frontier_generation()
+-> print(len(opt_buy_book_holder))
+23
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(103)synthetic_combo_frontier_generation()
+-> print(len(opt_sell_book_holder))
+17
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(104)synthetic_combo_frontier_generation()
+-> if len(opt_buy_book_holder) == 0 or len(opt_sell_book_holder) == 0:
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(106)synthetic_combo_frontier_generation()
+-> _, num_iter, profit , isMatch_new, matched_stock= synthetic_combo_match_mip(opt_buy_book_holder.copy(), opt_sell_book_holder.copy(), debug=0)
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(109)synthetic_combo_frontier_generation()
+-> if isMatch_new:
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(114)synthetic_combo_frontier_generation()
+-> print("Warning: 'buy_book_index' or 'sell_book_index' not found in matched_stock.")
+109  	        if isMatch_new:
+110  	            return None
+111  	
+112  	
+113  	        else:
+114  ->	            print("Warning: 'buy_book_index' or 'sell_book_index' not found in matched_stock.")
+115  	    else:
+116  	        opt_buy_book_holder = deepcopy(original_opt_buy_book)
+117  	        opt_sell_book_holder = deepcopy(original_opt_sell_book)
+118  	
+119  	    num_buy_holder, num_sell_holder, num_stock = len(opt_buy_book_holder), len(opt_sell_book_holder), len(opt_buy_book_holder.columns)-4

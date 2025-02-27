@@ -1,0 +1,12 @@
+Generating frontier for markets:   0%|                                                                                                                  | 0/100 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 495, in <module>
+    synthetic_combo_frontier_generation(opt_buy_book, opt_sell_book)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 74, in synthetic_combo_frontier_generation
+    _, num_iter, profit , isMatch, matched_stock= synthetic_combo_match_mip(deepcopy(original_opt_buy_book), deepcopy(original_opt_sell_book), debug=0)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combinatorial/synthetic_combo_mip_match.py", line 19, in synthetic_combo_match_mip
+    buy_book_index = opt_buy_book.index
+AttributeError: 'numpy.ndarray' object has no attribute 'index'
+There are 25 buy orders and 25 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_1_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 0

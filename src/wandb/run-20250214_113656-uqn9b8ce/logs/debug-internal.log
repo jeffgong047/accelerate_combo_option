@@ -1,0 +1,100 @@
+2025-02-14 11:36:56,408 INFO    StreamThr :3526936 [internal.py:wandb_internal():85] W&B internal server running at pid: 3526936, started at: 2025-02-14 11:36:56.407111
+2025-02-14 11:36:56,410 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: status
+2025-02-14 11:36:56,415 INFO    WriterThread:3526936 [datastore.py:open_for_write():87] open: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250214_113656-uqn9b8ce/run-uqn9b8ce.wandb
+2025-02-14 11:36:56,417 DEBUG   SenderThread:3526936 [sender.py:send():378] send: header
+2025-02-14 11:36:56,445 DEBUG   SenderThread:3526936 [sender.py:send():378] send: run
+2025-02-14 11:36:56,640 INFO    SenderThread:3526936 [dir_watcher.py:__init__():211] watching files in: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250214_113656-uqn9b8ce/files
+2025-02-14 11:36:56,640 INFO    SenderThread:3526936 [sender.py:_start_run_threads():1123] run started: uqn9b8ce with start time 1739551016.409806
+2025-02-14 11:36:56,657 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: check_version
+2025-02-14 11:36:56,658 DEBUG   SenderThread:3526936 [sender.py:send_request():405] send_request: check_version
+2025-02-14 11:36:56,735 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: run_start
+2025-02-14 11:36:56,765 DEBUG   HandlerThread:3526936 [system_info.py:__init__():26] System info init
+2025-02-14 11:36:56,766 DEBUG   HandlerThread:3526936 [system_info.py:__init__():41] System info init done
+2025-02-14 11:36:56,766 INFO    HandlerThread:3526936 [system_monitor.py:start():194] Starting system monitor
+2025-02-14 11:36:56,767 INFO    SystemMonitor:3526936 [system_monitor.py:_start():158] Starting system asset monitoring threads
+2025-02-14 11:36:56,767 INFO    HandlerThread:3526936 [system_monitor.py:probe():214] Collecting system info
+2025-02-14 11:36:56,768 INFO    SystemMonitor:3526936 [interfaces.py:start():188] Started cpu monitoring
+2025-02-14 11:36:56,769 INFO    SystemMonitor:3526936 [interfaces.py:start():188] Started disk monitoring
+2025-02-14 11:36:56,772 INFO    SystemMonitor:3526936 [interfaces.py:start():188] Started gpu monitoring
+2025-02-14 11:36:56,774 INFO    SystemMonitor:3526936 [interfaces.py:start():188] Started memory monitoring
+2025-02-14 11:36:56,775 INFO    SystemMonitor:3526936 [interfaces.py:start():188] Started network monitoring
+2025-02-14 11:36:56,867 DEBUG   HandlerThread:3526936 [system_info.py:probe():150] Probing system
+2025-02-14 11:36:56,879 DEBUG   HandlerThread:3526936 [system_info.py:_probe_git():135] Probing git
+2025-02-14 11:36:56,901 DEBUG   HandlerThread:3526936 [system_info.py:_probe_git():143] Probing git done
+2025-02-14 11:36:56,902 DEBUG   HandlerThread:3526936 [system_info.py:probe():198] Probing system done
+2025-02-14 11:36:56,902 DEBUG   HandlerThread:3526936 [system_monitor.py:probe():223] {'os': 'Linux-5.15.0-130-generic-x86_64-with-glibc2.35', 'python': '3.9.7', 'heartbeatAt': '2025-02-14T16:36:56.867789', 'startedAt': '2025-02-14T16:36:56.390428', 'docker': None, 'cuda': None, 'args': (), 'state': 'running', 'program': '/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py', 'codePathLocal': 'combo_stock_frontier_data_preprocessor.py', 'codePath': 'src/combo_stock_frontier_data_preprocessor.py', 'git': {'remote': 'https://github.com/jeffgong047/accelerate_combo_option.git', 'commit': '3a928d6ee00b48f884fbb0d0758543edae9571ad'}, 'email': None, 'root': '/common/home/hg343/Research/accelerate_combo_option', 'host': 'ilab1.cs.rutgers.edu', 'username': 'hg343', 'executable': '/common/home/hg343/anaconda3/bin/python', 'cpu_count': 32, 'cpu_count_logical': 64, 'cpu_freq': {'current': 2.065359375, 'min': 1500.0, 'max': 3000.0}, 'cpu_freq_per_core': [{'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 3.0, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 2.155, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 2.2, 'min': 1500.0, 'max': 3000.0}, {'current': 1.746, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 3.689, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 2.263, 'min': 1500.0, 'max': 3000.0}, {'current': 3.0, 'min': 1500.0, 'max': 3000.0}, {'current': 3.0, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 3.0, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 3.0, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 3.0, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 3.689, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 3.0, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 3.679, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 3.0, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 2.445, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 2.442, 'min': 1500.0, 'max': 3000.0}, {'current': 3.668, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 3.0, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}, {'current': 3.0, 'min': 1500.0, 'max': 3000.0}, {'current': 1.5, 'min': 1500.0, 'max': 3000.0}], 'disk': {'/': {'total': 146.5873565673828, 'used': 59.25539016723633}}, 'memory': {'total': 1007.5488700866699}}
+2025-02-14 11:36:56,903 INFO    HandlerThread:3526936 [system_monitor.py:probe():224] Finished collecting system info
+2025-02-14 11:36:56,903 INFO    HandlerThread:3526936 [system_monitor.py:probe():227] Publishing system info
+2025-02-14 11:36:56,904 DEBUG   HandlerThread:3526936 [system_info.py:_save_conda():207] Saving list of conda packages installed into the current environment
+2025-02-14 11:36:57,643 INFO    Thread-12 :3526936 [dir_watcher.py:_on_file_created():271] file/dir created: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250214_113656-uqn9b8ce/files/conda-environment.yaml
+2025-02-14 11:37:09,649 INFO    Thread-12 :3526936 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250214_113656-uqn9b8ce/files/conda-environment.yaml
+2025-02-14 11:37:09,946 DEBUG   HandlerThread:3526936 [system_info.py:_save_conda():222] Saving conda packages done
+2025-02-14 11:37:09,949 INFO    HandlerThread:3526936 [system_monitor.py:probe():229] Finished publishing system info
+2025-02-14 11:37:09,965 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: status_report
+2025-02-14 11:37:09,966 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: keepalive
+2025-02-14 11:37:09,967 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: status_report
+2025-02-14 11:37:09,967 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: keepalive
+2025-02-14 11:37:09,968 DEBUG   SenderThread:3526936 [sender.py:send():378] send: files
+2025-02-14 11:37:09,968 INFO    SenderThread:3526936 [sender.py:_save_file():1389] saving file wandb-metadata.json with policy now
+2025-02-14 11:37:10,233 INFO    wandb-upload_0:3526936 [upload_job.py:push():130] Uploaded file /tmp/tmpuzwo4e67wandb/f2vgb06s-wandb-metadata.json
+2025-02-14 11:37:10,444 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: python_packages
+2025-02-14 11:37:10,445 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: stop_status
+2025-02-14 11:37:10,446 DEBUG   SenderThread:3526936 [sender.py:send_request():405] send_request: python_packages
+2025-02-14 11:37:10,448 DEBUG   SenderThread:3526936 [sender.py:send_request():405] send_request: stop_status
+2025-02-14 11:37:10,506 DEBUG   SenderThread:3526936 [sender.py:send():378] send: telemetry
+2025-02-14 11:37:10,650 INFO    Thread-12 :3526936 [dir_watcher.py:_on_file_created():271] file/dir created: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250214_113656-uqn9b8ce/files/output.log
+2025-02-14 11:37:10,651 INFO    Thread-12 :3526936 [dir_watcher.py:_on_file_created():271] file/dir created: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250214_113656-uqn9b8ce/files/wandb-metadata.json
+2025-02-14 11:37:10,651 INFO    Thread-12 :3526936 [dir_watcher.py:_on_file_created():271] file/dir created: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250214_113656-uqn9b8ce/files/requirements.txt
+2025-02-14 11:37:12,110 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: status_report
+2025-02-14 11:37:12,651 INFO    Thread-12 :3526936 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250214_113656-uqn9b8ce/files/output.log
+2025-02-14 11:37:14,653 INFO    Thread-12 :3526936 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250214_113656-uqn9b8ce/files/output.log
+2025-02-14 11:37:18,086 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: status_report
+2025-02-14 11:37:18,656 INFO    Thread-12 :3526936 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250214_113656-uqn9b8ce/files/output.log
+2025-02-14 11:37:20,657 INFO    Thread-12 :3526936 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250214_113656-uqn9b8ce/files/output.log
+2025-02-14 11:37:22,659 INFO    Thread-12 :3526936 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250214_113656-uqn9b8ce/files/output.log
+2025-02-14 11:37:23,167 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: status_report
+2025-02-14 11:37:24,660 INFO    Thread-12 :3526936 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250214_113656-uqn9b8ce/files/output.log
+2025-02-14 11:37:25,445 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: stop_status
+2025-02-14 11:37:25,446 DEBUG   SenderThread:3526936 [sender.py:send_request():405] send_request: stop_status
+2025-02-14 11:37:28,338 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: status_report
+2025-02-14 11:37:28,663 INFO    Thread-12 :3526936 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250214_113656-uqn9b8ce/files/output.log
+2025-02-14 11:37:28,664 INFO    Thread-12 :3526936 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250214_113656-uqn9b8ce/files/config.yaml
+2025-02-14 11:37:30,664 INFO    Thread-12 :3526936 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250214_113656-uqn9b8ce/files/output.log
+2025-02-14 11:37:32,665 INFO    Thread-12 :3526936 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250214_113656-uqn9b8ce/files/output.log
+2025-02-14 11:37:33,959 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: status_report
+2025-02-14 11:37:34,666 INFO    Thread-12 :3526936 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250214_113656-uqn9b8ce/files/output.log
+2025-02-14 11:37:36,668 INFO    Thread-12 :3526936 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250214_113656-uqn9b8ce/files/output.log
+2025-02-14 11:37:38,967 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: status_report
+2025-02-14 11:37:40,446 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: stop_status
+2025-02-14 11:37:40,447 DEBUG   SenderThread:3526936 [sender.py:send_request():405] send_request: stop_status
+2025-02-14 11:37:44,409 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: status_report
+2025-02-14 11:37:44,674 INFO    Thread-12 :3526936 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250214_113656-uqn9b8ce/files/output.log
+2025-02-14 11:37:49,410 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: status_report
+2025-02-14 11:37:54,411 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: status_report
+2025-02-14 11:37:55,445 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: stop_status
+2025-02-14 11:37:55,447 DEBUG   SenderThread:3526936 [sender.py:send_request():405] send_request: stop_status
+2025-02-14 11:37:56,776 DEBUG   SystemMonitor:3526936 [system_monitor.py:_start():172] Starting system metrics aggregation loop
+2025-02-14 11:37:56,779 DEBUG   SenderThread:3526936 [sender.py:send():378] send: stats
+2025-02-14 11:37:59,781 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: status_report
+2025-02-14 11:38:04,782 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: status_report
+2025-02-14 11:38:09,783 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: status_report
+2025-02-14 11:38:10,445 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: stop_status
+2025-02-14 11:38:10,447 DEBUG   SenderThread:3526936 [sender.py:send_request():405] send_request: stop_status
+2025-02-14 11:38:15,525 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: status_report
+2025-02-14 11:38:20,527 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: status_report
+2025-02-14 11:38:25,446 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: stop_status
+2025-02-14 11:38:25,447 DEBUG   SenderThread:3526936 [sender.py:send_request():405] send_request: stop_status
+2025-02-14 11:38:25,577 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: status_report
+2025-02-14 11:38:26,780 DEBUG   SenderThread:3526936 [sender.py:send():378] send: stats
+2025-02-14 11:38:31,192 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: status_report
+2025-02-14 11:38:32,712 INFO    Thread-12 :3526936 [dir_watcher.py:_on_file_modified():288] file/dir modified: /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250214_113656-uqn9b8ce/files/output.log
+2025-02-14 11:38:36,193 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: status_report
+2025-02-14 11:38:40,446 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: stop_status
+2025-02-14 11:38:40,447 DEBUG   SenderThread:3526936 [sender.py:send_request():405] send_request: stop_status
+2025-02-14 11:38:41,502 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: status_report
+2025-02-14 11:38:46,503 DEBUG   HandlerThread:3526936 [handler.py:handle_request():158] handle_request: status_report
+2025-02-14 11:38:50,828 INFO    memory    :3526936 [interfaces.py:monitor():138] Process proc.memory.rssMB has exited.
+2025-02-14 11:38:50,831 DEBUG   SystemMonitor:3526936 [system_monitor.py:_start():179] Finished system metrics aggregation loop
+2025-02-14 11:38:50,834 DEBUG   SystemMonitor:3526936 [system_monitor.py:_start():183] Publishing last batch of metrics
+2025-02-14 11:38:50,836 DEBUG   SenderThread:3526936 [sender.py:send():378] send: stats
+2025-02-14 11:38:51,722 INFO    MainThread:3526936 [internal.py:handle_exit():75] Internal process exited

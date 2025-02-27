@@ -1,0 +1,327 @@
+Generating frontier for markets:   0%|                                                                             | 0/20 [00:00<?, ?it/s]
+Checking buy side options:   4%|███▎                                                                       | 1/23 [00:00<00:12,  1.71it/s]
+There are 25 buy orders and 25 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_2_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 0
+Set parameter Username
+Academic license - for non-commercial use only - expires 2025-11-08
+RangeIndex(start=0, stop=25, step=1) {2, 15}
+RangeIndex(start=0, stop=25, step=1) {4, 8, 9, 10, 15, 19, 20, 22}
+23
+
+
+
+
+
+Checking buy side options: 100%|██████████████████████████████████████████████████████████████████████████| 23/23 [00:12<00:00,  1.60it/s]
+
+
+
+
+Checking sell side options:  76%|███████████████████████████████████████████████████████▊                 | 13/17 [00:08<00:02,  1.94it/s]
+RangeIndex(start=0, stop=7, step=1)
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(503)<module>()
+
+Checking sell side options: 100%|█████████████████████████████████████████████████████████████████████████| 17/17 [00:10<00:00,  1.75it/s]
+pandas.errors.InvalidIndexError: (0      True
+1      True
+3      True
+4      True
+5      True
+6      True
+7      True
+8      True
+9      True
+10     True
+11     True
+12     True
+13     True
+14     True
+16     True
+17     True
+18     True
+19     True
+20     True
+21     True
+22     True
+23     True
+24     True
+0     False
+1     False
+2     False
+3     False
+5     False
+6     False
+7     False
+11    False
+12    False
+13    False
+14    False
+16    False
+17    False
+18    False
+21    False
+23    False
+24    False
+Name: transaction_type, dtype: bool, Index(['option1', 'option2', 'C=Call, P=Put',
+       'Strike Price of the Option Times 1000', 'transaction_type',
+       'B/A_price'],
+      dtype='object'))
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(503)<module>()
+-> opt_buy_book_new = frontier_option_label_attempt_1[frontier_option_label_attempt_1.loc[:, 'transaction_type']==1, frontier_option_label_attempt_1.columns[:-1]]
+498  	                        opt_sell_book = pd.DataFrame(opt_sell_book, columns = column_names)
+499  	                        frontier_option_label_attempt_1 = synthetic_combo_frontier_generation(opt_buy_book, opt_sell_book, opt_l = False, debug=0)
+500  	                        print(frontier_option_label_attempt_1.columns)
+501  	                        frontier_option_label_attempt_1.columns = [*column_names, 'belongs_to_frontier']
+502  	                        breakpoint()
+503  ->	                        opt_buy_book_new = frontier_option_label_attempt_1[frontier_option_label_attempt_1.loc[:, 'transaction_type']==1, frontier_option_label_attempt_1.columns[:-1]]
+504  	                        breakpoint()
+505  	                        opt_sell_book_new = frontier_option_label_attempt_1[frontier_option_label_attempt_1[:, -2]==0,:-1]
+506  	                        frontier_option_label_attempt_2 = synthetic_combo_frontier_generation(opt_buy_book_new, opt_sell_book_new, opt_l = False, debug=0)
+507  	                        print(frontier_option_label_attempt_1)
+508  	                        print(frontier_option_label_attempt_2)
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(560)<module>()
+
+Generating frontier for markets:   0%|                                                                             | 0/20 [00:36<?, ?it/s]
+555  	                            print(f"Iteration {market_index} timed out after 20 seconds")
+556  	                            # Pool will be automatically cleaned up when the context exits
+557  	                            continue
+558  	
+559  	                # After the loop is complete, log the artifact once with all files
+560  ->	                run.log_artifact(artifact)
+561  	
+562  	        except Exception as e:
+563  	            print(f"Error in main: {str(e)}")
+564  	            traceback.print_exc()
+565  	            raise e
+Error in main:
+Traceback (most recent call last):
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/pandas/core/indexes/base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas/_libs/index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 144, in pandas._libs.index.IndexEngine.get_loc
+TypeError: '(0      True
+1      True
+3      True
+4      True
+5      True
+6      True
+7      True
+8      True
+9      True
+10     True
+11     True
+12     True
+13     True
+14     True
+16     True
+17     True
+18     True
+19     True
+20     True
+21     True
+22     True
+23     True
+24     True
+0     False
+1     False
+2     False
+3     False
+5     False
+6     False
+7     False
+11    False
+12    False
+13    False
+14    False
+16    False
+17    False
+18    False
+21    False
+23    False
+24    False
+Name: transaction_type, dtype: bool, Index(['option1', 'option2', 'C=Call, P=Put',
+       'Strike Price of the Option Times 1000', 'transaction_type',
+       'B/A_price'],
+      dtype='object'))' is an invalid key
+During handling of the above exception, another exception occurred:
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 503, in <module>
+    opt_buy_book_new = frontier_option_label_attempt_1[frontier_option_label_attempt_1.loc[:, 'transaction_type']==1, frontier_option_label_attempt_1.columns[:-1]]
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/pandas/core/frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/pandas/core/indexes/base.py", line 3809, in get_loc
+    self._check_indexing_error(key)
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/pandas/core/indexes/base.py", line 5925, in _check_indexing_error
+    raise InvalidIndexError(key)
+pandas.errors.InvalidIndexError: (0      True
+1      True
+3      True
+4      True
+5      True
+6      True
+7      True
+8      True
+9      True
+10     True
+11     True
+12     True
+13     True
+14     True
+16     True
+17     True
+18     True
+19     True
+20     True
+21     True
+22     True
+23     True
+24     True
+0     False
+1     False
+2     False
+3     False
+5     False
+6     False
+7     False
+11    False
+12    False
+13    False
+14    False
+16    False
+17    False
+18    False
+21    False
+23    False
+24    False
+Name: transaction_type, dtype: bool, Index(['option1', 'option2', 'C=Call, P=Put',
+       'Strike Price of the Option Times 1000', 'transaction_type',
+       'B/A_price'],
+      dtype='object'))
+During handling of the above exception, another exception occurred:
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 560, in <module>
+    run.log_artifact(artifact)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 560, in <module>
+    run.log_artifact(artifact)
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 88, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 113, in dispatch_line
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit
+Traceback (most recent call last):
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/pandas/core/indexes/base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas/_libs/index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 144, in pandas._libs.index.IndexEngine.get_loc
+TypeError: '(0      True
+1      True
+3      True
+4      True
+5      True
+6      True
+7      True
+8      True
+9      True
+10     True
+11     True
+12     True
+13     True
+14     True
+16     True
+17     True
+18     True
+19     True
+20     True
+21     True
+22     True
+23     True
+24     True
+0     False
+1     False
+2     False
+3     False
+5     False
+6     False
+7     False
+11    False
+12    False
+13    False
+14    False
+16    False
+17    False
+18    False
+21    False
+23    False
+24    False
+Name: transaction_type, dtype: bool, Index(['option1', 'option2', 'C=Call, P=Put',
+       'Strike Price of the Option Times 1000', 'transaction_type',
+       'B/A_price'],
+      dtype='object'))' is an invalid key
+During handling of the above exception, another exception occurred:
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 503, in <module>
+    opt_buy_book_new = frontier_option_label_attempt_1[frontier_option_label_attempt_1.loc[:, 'transaction_type']==1, frontier_option_label_attempt_1.columns[:-1]]
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/pandas/core/frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/pandas/core/indexes/base.py", line 3809, in get_loc
+    self._check_indexing_error(key)
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/pandas/core/indexes/base.py", line 5925, in _check_indexing_error
+    raise InvalidIndexError(key)
+pandas.errors.InvalidIndexError: (0      True
+1      True
+3      True
+4      True
+5      True
+6      True
+7      True
+8      True
+9      True
+10     True
+11     True
+12     True
+13     True
+14     True
+16     True
+17     True
+18     True
+19     True
+20     True
+21     True
+22     True
+23     True
+24     True
+0     False
+1     False
+2     False
+3     False
+5     False
+6     False
+7     False
+11    False
+12    False
+13    False
+14    False
+16    False
+17    False
+18    False
+21    False
+23    False
+24    False
+Name: transaction_type, dtype: bool, Index(['option1', 'option2', 'C=Call, P=Put',
+       'Strike Price of the Option Times 1000', 'transaction_type',
+       'B/A_price'],
+      dtype='object'))
+During handling of the above exception, another exception occurred:
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 565, in <module>
+    raise e
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 560, in <module>
+    run.log_artifact(artifact)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 560, in <module>
+    run.log_artifact(artifact)
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 88, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 113, in dispatch_line
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit

@@ -1,0 +1,7 @@
+There are 31 buy orders and 19 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_1_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Generating frontier for markets:   0%|                                                                 | 0/20 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 439, in <module>
+    print(f"Starting async computation for iteration {i}")
+NameError: name 'i' is not defined

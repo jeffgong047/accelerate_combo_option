@@ -1,0 +1,23 @@
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(54)<module>()
+-> 'price_date': price_date,
+ 49  	    name = f"{output_file}",
+ 50  	) as run:
+ 51  	    breakpoint()
+ 52  	    # Create metadata dictionary to store additional info
+ 53  	    metadata = {
+ 54  ->	        'price_date': price_date,
+ 55  	        'total_frontier_series': frontier_series,
+ 56  	        'num_stocks': len(DJI),
+ 57  	        'stocks_processed': DJI,
+ 58  	        'offset': opt_l,
+ 59  	        'data_generation_time': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+/common/home/hg343/anaconda3/lib/python3.9/site-packages/openpyxl/styles/stylesheet.py:226: UserWarning: Workbook contains no default style, apply openpyxl's default
+  warn("Workbook contains no default style, apply openpyxl's default")
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py", line 54, in <module>
+    'price_date': price_date,
+NameError: name 'model' is not defined
+Set parameter Username
+Error code 10009: HostID mismatch (licensed to d38f5cf9, hostid is b253ae2a)
+Set parameter Username
+Error code 10009: HostID mismatch (licensed to d38f5cf9, hostid is b253ae2a)

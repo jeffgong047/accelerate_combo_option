@@ -1,0 +1,46 @@
+Generating frontier for markets:   0%|                                                                             | 0/20 [00:00<?, ?it/s]
+Checking buy side options:   0%|                                                                                   | 0/23 [00:00<?, ?it/s]
+There are 25 buy orders and 25 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_2_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 0
+Set parameter Username
+Academic license - for non-commercial use only - expires 2025-11-08
+RangeIndex(start=0, stop=25, step=1) {2, 15}
+RangeIndex(start=0, stop=25, step=1) {4, 8, 9, 10, 15, 19, 20, 22}
+23
+
+
+
+
+
+Checking buy side options: 100%|██████████████████████████████████████████████████████████████████████████| 23/23 [00:12<00:00,  2.02it/s]
+
+
+
+
+Checking sell side options: 100%|█████████████████████████████████████████████████████████████████████████| 17/17 [00:08<00:00,  2.09it/s]
+
+
+
+
+
+
+Checking buy side options: 100%|██████████████████████████████████████████████████████████████████████████| 23/23 [00:14<00:00,  1.38it/s]
+
+
+
+
+Checking sell side options:  94%|████████████████████████████████████████████████████████████████████▋    | 16/17 [00:07<00:00,  2.05it/s]
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(507)<module>()
+
+Checking sell side options: 100%|█████████████████████████████████████████████████████████████████████████| 17/17 [00:08<00:00,  1.96it/s]
+502  	                        opt_buy_book_new = frontier_option_label_attempt_1[frontier_option_label_attempt_1.loc[:, 'transaction_type']==1].iloc[:,:-1]
+503  	                        opt_sell_book_new = frontier_option_label_attempt_1[frontier_option_label_attempt_1.loc[:, 'transaction_type']==0].iloc[:,:-1]
+504  	                        frontier_option_label_attempt_2 = synthetic_combo_frontier_generation(opt_buy_book_new, opt_sell_book_new, opt_l = False, debug=0)
+505  	                        frontier_option_label_attempt_2.equals(frontier_option_label_attempt_1_copy)
+506  	                        breakpoint()
+507  ->	                        async_result = pool.apply_async(run_with_timeout, (opt_buy_book, opt_sell_book, args.offset))
+508  	                        frontier_option_label = async_result.get(timeout=600)
+509  	                        with open('here.pkl', 'wb') as f:
+510  	                                    pickle.dump(frontier_option_label, f)
+511  	                        breakpoint()

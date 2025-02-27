@@ -1,0 +1,10 @@
+> /common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py(54)<module>()
+-> 'price_date': price_date,
+/common/home/hg343/anaconda3/lib/python3.9/site-packages/openpyxl/styles/stylesheet.py:226: UserWarning: Workbook contains no default style, apply openpyxl's default
+  warn("Workbook contains no default style, apply openpyxl's default")
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/single_stock_frontier_data_preprocessor.py", line 54, in <module>
+    'price_date': price_date,
+NameError: name 'l' is not defined
+Set parameter Username
+Academic license - for non-commercial use only - expires 2025-11-08

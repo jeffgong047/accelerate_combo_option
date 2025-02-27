@@ -1,0 +1,49 @@
+
+Generating frontier for markets:   0%|                                                                                                                                        | 0/20 [00:00<?, ?it/s]
+There are 25 buy orders and 25 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_2_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 0
+Set parameter Username
+Academic license - for non-commercial use only - expires 2025-11-08
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(79)synthetic_combo_frontier_generation()
+-> if isMatch:
+RangeIndex(start=0, stop=25, step=1) {2, 15}
+RangeIndex(start=0, stop=25, step=1) {4, 8, 9, 10, 15, 19, 20, 22}
+23
+17
+
+
+
+
+
+Checking buy side options: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 23/23 [00:13<00:00,  1.47it/s]
+
+
+
+
+
+Checking sell side options:  94%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏       | 16/17 [00:09<00:00,  1.91it/s]
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(502)<module>()
+
+Checking sell side options: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 17/17 [00:10<00:00,  1.78it/s]
+497  	                        opt_buy_book = pd.DataFrame(opt_buy_book, columns = column_names)
+498  	                        opt_sell_book = pd.DataFrame(opt_sell_book, columns = column_names)
+499  	                        synthetic_combo_frontier_generation(opt_buy_book, opt_sell_book)
+500  	                        breakpoint()
+501  	                        async_result = pool.apply_async(run_with_timeout, (opt_buy_book, opt_sell_book, args.offset))
+502  ->	                        tasks.update({'filename': [market_index,async_result]})
+503  	                    for market_index, solving_result in tasks.values():
+504  	                        market_index, async_result = solving_result
+505  	                        try:
+506  	                            print(f"Waiting for result in iteration {market_index}")
+507  	                            frontier_option_label = async_result.get(timeout=600)
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(503)<module>()
+-> for market_index, solving_result in tasks.values():
+Ctrl+C received. Terminating processes...
+Ctrl+C received. Terminating processes...
+Ctrl+C received. Terminating processes...
+Ctrl+C received. Terminating processes...
+Ctrl+C received. Terminating processes...
+Ctrl+C received. Terminating processes...
+Ctrl+C received. Terminating processes...
+Ctrl+C received. Terminating processes...

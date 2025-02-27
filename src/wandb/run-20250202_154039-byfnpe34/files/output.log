@@ -1,0 +1,25 @@
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(441)<module>()
+-> artifact = wandb.Artifact(
+436  	                    opt_book, stock_list = gen_synthetic_combo_options(NUM_ST=NUM_STOCK, NUM_ORDER=args.num_orders, combinations= random_select_combination,SEED=i)
+437  	                    np.save(filename, opt_book)
+438  	                num_books = len(opt_book)//50
+439  	                breakpoint()
+440  	                # Create artifact once before the loop
+441  ->	                artifact = wandb.Artifact(
+442  	                    name=f"combo_frontier_{'_'.join(stock_list)}_size_{BOOK_SIZE}_noise_{NOISE}",
+443  	                    type="dataset",
+444  	                    description="Collection of frontier options training data for different markets",
+445  	                    metadata={
+446  	                        'num_stock': NUM_STOCK,
+20
+*** NameError: name 'Q' is not defined
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 441, in <module>
+    artifact = wandb.Artifact(
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 441, in <module>
+    artifact = wandb.Artifact(
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 88, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 113, in dispatch_line
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit

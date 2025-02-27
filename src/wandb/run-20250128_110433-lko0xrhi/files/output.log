@@ -1,0 +1,31 @@
+
+Generating frontier for markets:   0%|                                   | 0/20 [00:00<?, ?it/s]
+There are 31 buy orders and 19 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_1_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 0
+Waiting for result in iteration 0
+Result type for iteration 0: <class 'numpy.ndarray'>
+Successfully completed iteration 0
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(468)<module>()
+-> if not os.path.exists(path):
+463  	                        print(f"Result type for iteration {market_index}: {type(frontier_option_label)}")
+464  	                        if frontier_option_label is not None:
+465  	                            print(f"Successfully completed iteration {market_index}")
+466  	                            path = f'/common/home/hg343/Research/accelerate_combo_option/data/combo_{NUM_STOCK}_frontier_no_offset'
+467  	                            breakpoint()
+468  ->	                            if not os.path.exists(path):
+469  	                                os.makedirs(path)
+470  	
+471  	                            stock_name = '_'.join(stock_list)
+472  	                            filename = f'combo_frontier_market_index_{market_index}_book_size_{BOOK_SIZE}_{stock_name}'
+Generating frontier for markets:   0%|                                   | 0/20 [21:02<?, ?it/s]
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 468, in <module>
+    os.makedirs(path)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 468, in <module>
+    os.makedirs(path)
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 88, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 113, in dispatch_line
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit

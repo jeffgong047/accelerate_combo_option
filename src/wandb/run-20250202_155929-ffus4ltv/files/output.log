@@ -1,0 +1,801 @@
+
+Generating frontier for markets:  10%|███████                                                               | 2/20 [00:01<00:11,  1.58it/s]
+There are 25 buy orders and 25 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_2_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 0
+Waiting for result in iteration 0
+Result type for iteration 0: <class 'NoneType'>
+Iteration 0 returned None
+There are 27 buy orders and 23 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_2_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 1
+Waiting for result in iteration 1
+Result type for iteration 1: <class 'NoneType'>
+Iteration 1 returned None
+There are 31 buy orders and 19 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_2_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 2
+Waiting for result in iteration 2
+Result type for iteration 2: <class 'numpy.ndarray'>
+Successfully completed iteration 2
+Attempting to save to: /common/home/hg343/Research/accelerate_combo_option/data/combo_2_frontier_no_offset/combo_frontier_market_index_2_book_size_50_AAPL_MSFT_NOISE_0.015625.pkl
+Successfully saved iteration 2
+There are 31 buy orders and 19 sell orders
+#####Generating combo_frontier_market_index_2_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 3
+Waiting for result in iteration 3
+Result type for iteration 3: <class 'NoneType'>
+Iteration 3 returned None
+There are 32 buy orders and 18 sell orders
+#####Generating combo_frontier_market_index_2_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 4
+
+Generating frontier for markets:  20%|██████████████                                                        | 4/20 [00:33<02:27,  9.22s/it]
+Result type for iteration 4: <class 'NoneType'>
+Iteration 4 returned None
+There are 29 buy orders and 21 sell orders
+#####Generating combo_frontier_market_index_2_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 5
+Waiting for result in iteration 5
+Result type for iteration 5: <class 'NoneType'>
+Iteration 5 returned None
+There are 29 buy orders and 21 sell orders
+#####Generating combo_frontier_market_index_2_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 6
+
+Generating frontier for markets:  30%|█████████████████████                                                 | 6/20 [00:34<00:57,  4.14s/it]
+Result type for iteration 6: <class 'NoneType'>
+Iteration 6 returned None
+There are 26 buy orders and 24 sell orders
+#####Generating combo_frontier_market_index_2_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 7
+Waiting for result in iteration 7
+Result type for iteration 7: <class 'NoneType'>
+Iteration 7 returned None
+There are 32 buy orders and 18 sell orders
+#####Generating combo_frontier_market_index_2_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 8
+
+
+Generating frontier for markets:  55%|█████████████████████████████████████▉                               | 11/20 [00:39<00:12,  1.35s/it]
+Result type for iteration 8: <class 'NoneType'>
+Iteration 8 returned None
+There are 32 buy orders and 18 sell orders
+#####Generating combo_frontier_market_index_2_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 9
+Waiting for result in iteration 9
+Result type for iteration 9: <class 'NoneType'>
+Iteration 9 returned None
+There are 29 buy orders and 21 sell orders
+#####Generating combo_frontier_market_index_2_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 10
+Waiting for result in iteration 10
+Result type for iteration 10: <class 'NoneType'>
+Iteration 10 returned None
+There are 33 buy orders and 17 sell orders
+#####Generating combo_frontier_market_index_2_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 11
+
+Generating frontier for markets:  60%|█████████████████████████████████████████▍                           | 12/20 [00:40<00:09,  1.21s/it]
+Result type for iteration 11: <class 'NoneType'>
+Iteration 11 returned None
+There are 29 buy orders and 21 sell orders
+#####Generating combo_frontier_market_index_2_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 12
+
+Generating frontier for markets:  65%|████████████████████████████████████████████▊                        | 13/20 [01:09<01:07,  9.66s/it]
+Result type for iteration 12: <class 'numpy.ndarray'>
+Successfully completed iteration 12
+Attempting to save to: /common/home/hg343/Research/accelerate_combo_option/data/combo_2_frontier_no_offset/combo_frontier_market_index_12_book_size_50_AAPL_MSFT_NOISE_0.015625.pkl
+Successfully saved iteration 12
+There are 28 buy orders and 22 sell orders
+#####Generating combo_frontier_market_index_12_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 13
+
+Generating frontier for markets:  80%|███████████████████████████████████████████████████████▏             | 16/20 [01:11<00:14,  3.69s/it]
+Result type for iteration 13: <class 'NoneType'>
+Iteration 13 returned None
+There are 32 buy orders and 18 sell orders
+#####Generating combo_frontier_market_index_12_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 14
+Waiting for result in iteration 14
+Result type for iteration 14: <class 'NoneType'>
+Iteration 14 returned None
+There are 32 buy orders and 18 sell orders
+#####Generating combo_frontier_market_index_12_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 15
+Waiting for result in iteration 15
+Result type for iteration 15: <class 'NoneType'>
+Iteration 15 returned None
+There are 33 buy orders and 17 sell orders
+#####Generating combo_frontier_market_index_12_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 16
+
+Generating frontier for markets:  95%|█████████████████████████████████████████████████████████████████▌   | 19/20 [01:13<00:01,  1.69s/it]
+Result type for iteration 16: <class 'NoneType'>
+Iteration 16 returned None
+There are 32 buy orders and 18 sell orders
+#####Generating combo_frontier_market_index_12_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 17
+Waiting for result in iteration 17
+Result type for iteration 17: <class 'NoneType'>
+Iteration 17 returned None
+There are 30 buy orders and 20 sell orders
+#####Generating combo_frontier_market_index_12_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 18
+Waiting for result in iteration 18
+Result type for iteration 18: <class 'NoneType'>
+Iteration 18 returned None
+There are 29 buy orders and 21 sell orders
+#####Generating combo_frontier_market_index_12_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 19
+Generating frontier for markets: 100%|█████████████████████████████████████████████████████████████████████| 20/20 [01:13<00:00,  3.70s/it]
+Generating frontier for markets:   0%|                                                                              | 0/20 [00:00<?, ?it/s]
+Result type for iteration 19: <class 'NoneType'>
+Iteration 19 returned None
+There are 36 buy orders and 14 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_3_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 0
+Waiting for result in iteration 0
+Result type for iteration 0: <class 'numpy.ndarray'>
+Successfully completed iteration 0
+Attempting to save to: /common/home/hg343/Research/accelerate_combo_option/data/combo_2_frontier_no_offset/combo_frontier_market_index_0_book_size_50_AAPL_MSFT_NOISE_0.015625.pkl
+Successfully saved iteration 0
+There are 31 buy orders and 19 sell orders
+#####Generating combo_frontier_market_index_0_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 1
+Waiting for result in iteration 1
+Result type for iteration 1: <class 'NoneType'>
+Iteration 1 returned None
+There are 38 buy orders and 12 sell orders
+#####Generating combo_frontier_market_index_0_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 2
+
+Generating frontier for markets:  10%|███████                                                               | 2/20 [00:45<05:40, 18.92s/it]
+Result type for iteration 2: <class 'NoneType'>
+Iteration 2 returned None
+There are 25 buy orders and 25 sell orders
+#####Generating combo_frontier_market_index_0_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 3
+Waiting for result in iteration 3
+Result type for iteration 3: <class 'NoneType'>
+Iteration 3 returned None
+There are 28 buy orders and 22 sell orders
+#####Generating combo_frontier_market_index_0_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 4
+Waiting for result in iteration 4
+Result type for iteration 4: <class 'NoneType'>
+Iteration 4 returned None
+There are 29 buy orders and 21 sell orders
+#####Generating combo_frontier_market_index_0_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 5
+
+
+Generating frontier for markets:  40%|████████████████████████████                                          | 8/20 [00:49<00:21,  1.83s/it]
+Result type for iteration 5: <class 'NoneType'>
+Iteration 5 returned None
+There are 29 buy orders and 21 sell orders
+#####Generating combo_frontier_market_index_0_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 6
+Waiting for result in iteration 6
+Result type for iteration 6: <class 'NoneType'>
+Iteration 6 returned None
+There are 25 buy orders and 25 sell orders
+#####Generating combo_frontier_market_index_0_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 7
+Waiting for result in iteration 7
+Result type for iteration 7: <class 'NoneType'>
+Iteration 7 returned None
+There are 32 buy orders and 18 sell orders
+#####Generating combo_frontier_market_index_0_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 8
+
+Generating frontier for markets:  50%|██████████████████████████████████▌                                  | 10/20 [00:51<00:13,  1.38s/it]
+Result type for iteration 8: <class 'NoneType'>
+Iteration 8 returned None
+There are 33 buy orders and 17 sell orders
+#####Generating combo_frontier_market_index_0_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 9
+Waiting for result in iteration 9
+Result type for iteration 9: <class 'NoneType'>
+Iteration 9 returned None
+There are 32 buy orders and 18 sell orders
+#####Generating combo_frontier_market_index_0_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 10
+
+Generating frontier for markets:  55%|█████████████████████████████████████▉                               | 11/20 [00:52<00:10,  1.20s/it]
+Result type for iteration 10: <class 'NoneType'>
+Iteration 10 returned None
+There are 26 buy orders and 24 sell orders
+#####Generating combo_frontier_market_index_0_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 11
+
+Generating frontier for markets:  65%|████████████████████████████████████████████▊                        | 13/20 [01:17<00:42,  6.05s/it]
+Result type for iteration 11: <class 'numpy.ndarray'>
+Successfully completed iteration 11
+Attempting to save to: /common/home/hg343/Research/accelerate_combo_option/data/combo_2_frontier_no_offset/combo_frontier_market_index_11_book_size_50_AAPL_MSFT_NOISE_0.015625.pkl
+Successfully saved iteration 11
+There are 30 buy orders and 20 sell orders
+#####Generating combo_frontier_market_index_11_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 12
+Waiting for result in iteration 12
+Result type for iteration 12: <class 'NoneType'>
+Iteration 12 returned None
+There are 31 buy orders and 19 sell orders
+#####Generating combo_frontier_market_index_11_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 13
+
+Generating frontier for markets:  80%|███████████████████████████████████████████████████████▏             | 16/20 [01:19<00:10,  2.54s/it]
+Result type for iteration 13: <class 'NoneType'>
+Iteration 13 returned None
+There are 32 buy orders and 18 sell orders
+#####Generating combo_frontier_market_index_11_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 14
+Waiting for result in iteration 14
+Result type for iteration 14: <class 'NoneType'>
+Iteration 14 returned None
+There are 28 buy orders and 22 sell orders
+#####Generating combo_frontier_market_index_11_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 15
+Waiting for result in iteration 15
+Result type for iteration 15: <class 'NoneType'>
+Iteration 15 returned None
+There are 24 buy orders and 26 sell orders
+#####Generating combo_frontier_market_index_11_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 16
+Waiting for result in iteration 16
+Result type for iteration 16: <class 'NoneType'>
+Iteration 16 returned None
+There are 33 buy orders and 17 sell orders
+#####Generating combo_frontier_market_index_11_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 17
+Waiting for result in iteration 17
+Result type for iteration 17: <class 'NoneType'>
+Iteration 17 returned None
+There are 40 buy orders and 10 sell orders
+#####Generating combo_frontier_market_index_11_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 18
+
+Generating frontier for markets: 100%|█████████████████████████████████████████████████████████████████████| 20/20 [01:22<00:00,  4.13s/it]
+Generating frontier for markets:   5%|███▌                                                                  | 1/20 [00:00<00:10,  1.87it/s]
+Result type for iteration 18: <class 'NoneType'>
+Iteration 18 returned None
+There are 28 buy orders and 22 sell orders
+#####Generating combo_frontier_market_index_11_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 19
+Waiting for result in iteration 19
+Result type for iteration 19: <class 'NoneType'>
+Iteration 19 returned None
+There are 36 buy orders and 14 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_4_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 0
+Waiting for result in iteration 0
+Result type for iteration 0: <class 'NoneType'>
+Iteration 0 returned None
+There are 28 buy orders and 22 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_4_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 1
+
+Generating frontier for markets:  25%|█████████████████▌                                                    | 5/20 [00:03<00:09,  1.55it/s]
+Result type for iteration 1: <class 'NoneType'>
+Iteration 1 returned None
+There are 27 buy orders and 23 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_4_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 2
+Waiting for result in iteration 2
+Result type for iteration 2: <class 'NoneType'>
+Iteration 2 returned None
+There are 29 buy orders and 21 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_4_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 3
+Waiting for result in iteration 3
+Result type for iteration 3: <class 'NoneType'>
+Iteration 3 returned None
+There are 26 buy orders and 24 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_4_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 4
+Waiting for result in iteration 4
+Result type for iteration 4: <class 'NoneType'>
+Iteration 4 returned None
+There are 31 buy orders and 19 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_4_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 5
+
+Generating frontier for markets:  35%|████████████████████████▌                                             | 7/20 [00:04<00:09,  1.37it/s]
+Result type for iteration 5: <class 'NoneType'>
+Iteration 5 returned None
+There are 33 buy orders and 17 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_4_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 6
+Waiting for result in iteration 6
+Result type for iteration 6: <class 'NoneType'>
+Iteration 6 returned None
+There are 30 buy orders and 20 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_4_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 7
+
+Generating frontier for markets:  40%|████████████████████████████                                          | 8/20 [00:05<00:09,  1.31it/s]
+Result type for iteration 7: <class 'NoneType'>
+Iteration 7 returned None
+There are 33 buy orders and 17 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_4_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 8
+
+Generating frontier for markets:  50%|██████████████████████████████████▌                                  | 10/20 [00:08<00:09,  1.01it/s]
+Result type for iteration 8: <class 'NoneType'>
+Iteration 8 returned None
+There are 29 buy orders and 21 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_4_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 9
+Waiting for result in iteration 9
+Result type for iteration 9: <class 'NoneType'>
+Iteration 9 returned None
+There are 30 buy orders and 20 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_4_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 10
+
+Generating frontier for markets:  65%|████████████████████████████████████████████▊                        | 13/20 [00:10<00:04,  1.42it/s]
+Result type for iteration 10: <class 'NoneType'>
+Iteration 10 returned None
+There are 22 buy orders and 28 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_4_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 11
+Waiting for result in iteration 11
+Result type for iteration 11: <class 'NoneType'>
+Iteration 11 returned None
+There are 21 buy orders and 29 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_4_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 12
+Waiting for result in iteration 12
+Result type for iteration 12: <class 'NoneType'>
+Iteration 12 returned None
+There are 33 buy orders and 17 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_4_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 13
+
+Generating frontier for markets:  80%|███████████████████████████████████████████████████████▏             | 16/20 [00:37<00:17,  4.31s/it]
+Result type for iteration 13: <class 'numpy.ndarray'>
+Successfully completed iteration 13
+Attempting to save to: /common/home/hg343/Research/accelerate_combo_option/data/combo_2_frontier_no_offset/combo_frontier_market_index_13_book_size_50_AAPL_MSFT_NOISE_0.015625.pkl
+Successfully saved iteration 13
+There are 32 buy orders and 18 sell orders
+#####Generating combo_frontier_market_index_13_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 14
+Waiting for result in iteration 14
+Result type for iteration 14: <class 'NoneType'>
+Iteration 14 returned None
+There are 29 buy orders and 21 sell orders
+#####Generating combo_frontier_market_index_13_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 15
+Waiting for result in iteration 15
+Result type for iteration 15: <class 'NoneType'>
+Iteration 15 returned None
+There are 33 buy orders and 17 sell orders
+#####Generating combo_frontier_market_index_13_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 16
+
+Generating frontier for markets:  95%|█████████████████████████████████████████████████████████████████▌   | 19/20 [00:39<00:01,  1.87s/it]
+Result type for iteration 16: <class 'NoneType'>
+Iteration 16 returned None
+There are 29 buy orders and 21 sell orders
+#####Generating combo_frontier_market_index_13_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 17
+Waiting for result in iteration 17
+Result type for iteration 17: <class 'NoneType'>
+Iteration 17 returned None
+There are 32 buy orders and 18 sell orders
+#####Generating combo_frontier_market_index_13_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 18
+Waiting for result in iteration 18
+Result type for iteration 18: <class 'NoneType'>
+Iteration 18 returned None
+There are 32 buy orders and 18 sell orders
+#####Generating combo_frontier_market_index_13_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 19
+Generating frontier for markets: 100%|█████████████████████████████████████████████████████████████████████| 20/20 [00:39<00:00,  1.98s/it]
+Generating frontier for markets:  10%|███████                                                               | 2/20 [00:01<00:14,  1.23it/s]
+Result type for iteration 19: <class 'NoneType'>
+Iteration 19 returned None
+There are 33 buy orders and 17 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_5_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 0
+Waiting for result in iteration 0
+Result type for iteration 0: <class 'NoneType'>
+Iteration 0 returned None
+There are 30 buy orders and 20 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_5_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 1
+Waiting for result in iteration 1
+Result type for iteration 1: <class 'NoneType'>
+Iteration 1 returned None
+There are 29 buy orders and 21 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_5_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 2
+Waiting for result in iteration 2
+Result type for iteration 2: <class 'NoneType'>
+Iteration 2 returned None
+There are 28 buy orders and 22 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_5_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 3
+
+Generating frontier for markets:  15%|██████████▌                                                           | 3/20 [00:01<00:10,  1.65it/s]
+Result type for iteration 3: <class 'numpy.ndarray'>
+Successfully completed iteration 3
+Attempting to save to: /common/home/hg343/Research/accelerate_combo_option/data/combo_2_frontier_no_offset/combo_frontier_market_index_3_book_size_50_AAPL_MSFT_NOISE_0.015625.pkl
+Successfully saved iteration 3
+There are 32 buy orders and 18 sell orders
+#####Generating combo_frontier_market_index_3_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 4
+
+Generating frontier for markets:  20%|██████████████                                                        | 4/20 [00:55<05:45, 21.62s/it]
+Result type for iteration 4: <class 'NoneType'>
+Iteration 4 returned None
+There are 32 buy orders and 18 sell orders
+#####Generating combo_frontier_market_index_3_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 5
+
+Generating frontier for markets:  25%|█████████████████▌                                                    | 5/20 [00:56<03:29, 13.94s/it]
+Result type for iteration 5: <class 'numpy.ndarray'>
+Successfully completed iteration 5
+Attempting to save to: /common/home/hg343/Research/accelerate_combo_option/data/combo_2_frontier_no_offset/combo_frontier_market_index_5_book_size_50_AAPL_MSFT_NOISE_0.015625.pkl
+Successfully saved iteration 5
+There are 25 buy orders and 25 sell orders
+#####Generating combo_frontier_market_index_5_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 6
+
+Generating frontier for markets:  30%|█████████████████████                                                 | 6/20 [01:44<05:57, 25.54s/it]
+Result type for iteration 6: <class 'numpy.ndarray'>
+Successfully completed iteration 6
+Attempting to save to: /common/home/hg343/Research/accelerate_combo_option/data/combo_2_frontier_no_offset/combo_frontier_market_index_6_book_size_50_AAPL_MSFT_NOISE_0.015625.pkl
+Successfully saved iteration 6
+There are 33 buy orders and 17 sell orders
+#####Generating combo_frontier_market_index_6_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 7
+
+Generating frontier for markets:  35%|████████████████████████▌                                             | 7/20 [02:11<05:41, 26.25s/it]
+Result type for iteration 7: <class 'NoneType'>
+Iteration 7 returned None
+There are 32 buy orders and 18 sell orders
+#####Generating combo_frontier_market_index_6_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 8
+Waiting for result in iteration 8
+Result type for iteration 8: <class 'NoneType'>
+Iteration 8 returned None
+There are 27 buy orders and 23 sell orders
+#####Generating combo_frontier_market_index_6_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 9
+Waiting for result in iteration 9
+Result type for iteration 9: <class 'NoneType'>
+Iteration 9 returned None
+There are 27 buy orders and 23 sell orders
+#####Generating combo_frontier_market_index_6_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 10
+
+Generating frontier for markets:  50%|██████████████████████████████████▌                                  | 10/20 [02:13<01:28,  8.85s/it]
+Result type for iteration 10: <class 'NoneType'>
+Iteration 10 returned None
+There are 26 buy orders and 24 sell orders
+#####Generating combo_frontier_market_index_6_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 11
+Waiting for result in iteration 11
+Result type for iteration 11: <class 'NoneType'>
+Iteration 11 returned None
+There are 37 buy orders and 13 sell orders
+#####Generating combo_frontier_market_index_6_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 12
+Waiting for result in iteration 12
+Result type for iteration 12: <class 'NoneType'>
+Iteration 12 returned None
+There are 28 buy orders and 22 sell orders
+#####Generating combo_frontier_market_index_6_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 13
+
+Generating frontier for markets:  65%|████████████████████████████████████████████▊                        | 13/20 [02:15<00:23,  3.40s/it]
+Result type for iteration 13: <class 'NoneType'>
+Iteration 13 returned None
+There are 28 buy orders and 22 sell orders
+#####Generating combo_frontier_market_index_6_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 14
+Waiting for result in iteration 14
+Result type for iteration 14: <class 'NoneType'>
+Iteration 14 returned None
+There are 30 buy orders and 20 sell orders
+#####Generating combo_frontier_market_index_6_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 15
+Waiting for result in iteration 15
+Result type for iteration 15: <class 'NoneType'>
+Iteration 15 returned None
+There are 32 buy orders and 18 sell orders
+#####Generating combo_frontier_market_index_6_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 16
+Waiting for result in iteration 16
+Result type for iteration 16: <class 'NoneType'>
+Iteration 16 returned None
+There are 33 buy orders and 17 sell orders
+#####Generating combo_frontier_market_index_6_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 17
+
+Generating frontier for markets:  85%|██████████████████████████████████████████████████████████▋          | 17/20 [02:17<00:03,  1.20s/it]
+Result type for iteration 17: <class 'NoneType'>
+Iteration 17 returned None
+There are 31 buy orders and 19 sell orders
+#####Generating combo_frontier_market_index_6_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 18
+Waiting for result in iteration 18
+Result type for iteration 18: <class 'NoneType'>
+Iteration 18 returned None
+There are 35 buy orders and 15 sell orders
+#####Generating combo_frontier_market_index_6_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 19
+Waiting for result in iteration 19
+Result type for iteration 19: <class 'NoneType'>
+Iteration 19 returned None
+There are 30 buy orders and 20 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_6_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 0
+Waiting for result in iteration 0
+Result type for iteration 0: <class 'NoneType'>
+Iteration 0 returned None
+There are 30 buy orders and 20 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_6_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 1
+Generating frontier for markets: 100%|█████████████████████████████████████████████████████████████████████| 20/20 [02:19<00:00,  6.96s/it]
+Generating frontier for markets:   5%|███▌                                                                  | 1/20 [00:00<00:09,  2.08it/s]
+Result type for iteration 1: <class 'NoneType'>
+Iteration 1 returned None
+There are 28 buy orders and 22 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_6_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 2
+Waiting for result in iteration 2
+Result type for iteration 2: <class 'NoneType'>
+Iteration 2 returned None
+There are 30 buy orders and 20 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_6_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 3
+Waiting for result in iteration 3
+Result type for iteration 3: <class 'NoneType'>
+Iteration 3 returned None
+There are 29 buy orders and 21 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_6_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 4
+Waiting for result in iteration 4
+Result type for iteration 4: <class 'NoneType'>
+Iteration 4 returned None
+There are 31 buy orders and 19 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_6_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 5
+
+Generating frontier for markets:  25%|█████████████████▌                                                    | 5/20 [00:02<00:06,  2.36it/s]
+Result type for iteration 5: <class 'NoneType'>
+Iteration 5 returned None
+There are 27 buy orders and 23 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_6_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 6
+Waiting for result in iteration 6
+Result type for iteration 6: <class 'NoneType'>
+Iteration 6 returned None
+There are 30 buy orders and 20 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_6_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 7
+Waiting for result in iteration 7
+Result type for iteration 7: <class 'NoneType'>
+Iteration 7 returned None
+There are 30 buy orders and 20 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_6_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 8
+
+Generating frontier for markets:  40%|████████████████████████████                                          | 8/20 [00:04<00:06,  1.72it/s]
+Result type for iteration 8: <class 'NoneType'>
+Iteration 8 returned None
+There are 30 buy orders and 20 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_6_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 9
+Waiting for result in iteration 9
+Result type for iteration 9: <class 'NoneType'>
+Iteration 9 returned None
+There are 30 buy orders and 20 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_6_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 10
+Waiting for result in iteration 10
+Result type for iteration 10: <class 'NoneType'>
+Iteration 10 returned None
+There are 25 buy orders and 25 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_6_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 11
+Waiting for result in iteration 11
+Result type for iteration 11: <class 'NoneType'>
+Iteration 11 returned None
+There are 26 buy orders and 24 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_6_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 12
+Waiting for result in iteration 12
+Result type for iteration 12: <class 'NoneType'>
+Iteration 12 returned None
+There are 28 buy orders and 22 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_6_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 13
+
+
+Generating frontier for markets:  85%|██████████████████████████████████████████████████████████▋          | 17/20 [00:08<00:01,  2.31it/s]
+Result type for iteration 13: <class 'NoneType'>
+Iteration 13 returned None
+There are 31 buy orders and 19 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_6_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 14
+Waiting for result in iteration 14
+Result type for iteration 14: <class 'NoneType'>
+Iteration 14 returned None
+There are 27 buy orders and 23 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_6_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 15
+Waiting for result in iteration 15
+Result type for iteration 15: <class 'NoneType'>
+Iteration 15 returned None
+There are 21 buy orders and 29 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_6_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 16
+Waiting for result in iteration 16
+Result type for iteration 16: <class 'NoneType'>
+Iteration 16 returned None
+There are 31 buy orders and 19 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_6_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 17
+
+Generating frontier for markets:  90%|██████████████████████████████████████████████████████████████       | 18/20 [00:09<00:00,  2.04it/s]
+Result type for iteration 17: <class 'NoneType'>
+Iteration 17 returned None
+There are 29 buy orders and 21 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_6_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 18
+
+Generating frontier for markets:  95%|█████████████████████████████████████████████████████████████████▌   | 19/20 [00:32<00:07,  7.28s/it]
+Result type for iteration 18: <class 'numpy.ndarray'>
+Successfully completed iteration 18
+Attempting to save to: /common/home/hg343/Research/accelerate_combo_option/data/combo_2_frontier_no_offset/combo_frontier_market_index_18_book_size_50_AAPL_MSFT_NOISE_0.015625.pkl
+Successfully saved iteration 18
+There are 30 buy orders and 20 sell orders
+#####Generating combo_frontier_market_index_18_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 19
+Waiting for result in iteration 19
+Result type for iteration 19: <class 'numpy.ndarray'>
+Successfully completed iteration 19
+Attempting to save to: /common/home/hg343/Research/accelerate_combo_option/data/combo_2_frontier_no_offset/combo_frontier_market_index_19_book_size_50_AAPL_MSFT_NOISE_0.015625.pkl
+Successfully saved iteration 19
+There are 35 buy orders and 15 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_7_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 0
+Waiting for result in iteration 0
+Result type for iteration 0: <class 'NoneType'>
+Iteration 0 returned None
+There are 27 buy orders and 23 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_7_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 1
+Waiting for result in iteration 1
+Result type for iteration 1: <class 'NoneType'>
+Iteration 1 returned None
+There are 29 buy orders and 21 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_7_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 2
+Generating frontier for markets: 100%|█████████████████████████████████████████████████████████████████████| 20/20 [01:09<00:00,  3.47s/it]
+Generating frontier for markets:  10%|███████                                                               | 2/20 [00:01<00:12,  1.50it/s]
+Result type for iteration 2: <class 'NoneType'>
+Iteration 2 returned None
+There are 31 buy orders and 19 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_7_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 3
+Waiting for result in iteration 3
+Result type for iteration 3: <class 'NoneType'>
+Iteration 3 returned None
+There are 33 buy orders and 17 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_7_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 4
+Waiting for result in iteration 4
+Result type for iteration 4: <class 'NoneType'>
+Iteration 4 returned None
+There are 39 buy orders and 11 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_7_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 5
+
+Generating frontier for markets:  25%|█████████████████▌                                                    | 5/20 [00:03<00:09,  1.52it/s]
+Result type for iteration 5: <class 'NoneType'>
+Iteration 5 returned None
+There are 30 buy orders and 20 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_7_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 6
+Waiting for result in iteration 6
+Result type for iteration 6: <class 'NoneType'>
+Iteration 6 returned None
+There are 27 buy orders and 23 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_7_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 7
+Waiting for result in iteration 7
+Result type for iteration 7: <class 'NoneType'>
+Iteration 7 returned None
+There are 22 buy orders and 28 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_7_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 8
+Waiting for result in iteration 8
+Result type for iteration 8: <class 'NoneType'>
+Iteration 8 returned None
+There are 26 buy orders and 24 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_7_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 9
+
+Generating frontier for markets:  45%|███████████████████████████████▌                                      | 9/20 [00:05<00:05,  1.84it/s]
+Result type for iteration 9: <class 'NoneType'>
+Iteration 9 returned None
+There are 30 buy orders and 20 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_7_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 10
+Waiting for result in iteration 10
+Result type for iteration 10: <class 'NoneType'>
+Iteration 10 returned None
+There are 26 buy orders and 24 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_7_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 11
+Waiting for result in iteration 11
+Result type for iteration 11: <class 'NoneType'>
+Iteration 11 returned None
+There are 25 buy orders and 25 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_7_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 12
+
+
+Generating frontier for markets:  65%|████████████████████████████████████████████▊                        | 13/20 [00:07<00:03,  1.81it/s]
+Result type for iteration 12: <class 'NoneType'>
+Iteration 12 returned None
+There are 33 buy orders and 17 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_7_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 13
+
+Generating frontier for markets:  80%|███████████████████████████████████████████████████████▏             | 16/20 [00:41<00:21,  5.28s/it]
+Result type for iteration 13: <class 'numpy.ndarray'>
+Successfully completed iteration 13
+Attempting to save to: /common/home/hg343/Research/accelerate_combo_option/data/combo_2_frontier_no_offset/combo_frontier_market_index_13_book_size_50_AAPL_MSFT_NOISE_0.015625.pkl
+Successfully saved iteration 13
+There are 34 buy orders and 16 sell orders
+#####Generating combo_frontier_market_index_13_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 14
+Waiting for result in iteration 14
+Result type for iteration 14: <class 'NoneType'>
+Iteration 14 returned None
+There are 33 buy orders and 17 sell orders
+#####Generating combo_frontier_market_index_13_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 15
+Waiting for result in iteration 15
+Result type for iteration 15: <class 'NoneType'>
+Iteration 15 returned None
+There are 32 buy orders and 18 sell orders
+#####Generating combo_frontier_market_index_13_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 16
+
+Generating frontier for markets:  90%|██████████████████████████████████████████████████████████████       | 18/20 [00:42<00:05,  2.83s/it]
+Result type for iteration 16: <class 'NoneType'>
+Iteration 16 returned None
+There are 34 buy orders and 16 sell orders
+#####Generating combo_frontier_market_index_13_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 17
+Waiting for result in iteration 17
+Result type for iteration 17: <class 'NoneType'>
+Iteration 17 returned None
+There are 28 buy orders and 22 sell orders
+#####Generating combo_frontier_market_index_13_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 18
+Waiting for result in iteration 18
+Generating frontier for markets:  90%|██████████████████████████████████████████████████████████████       | 18/20 [01:48<00:12,  6.04s/it]
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 462, in <module>
+    frontier_option_label = async_result.get(timeout=600)
+  File "/common/home/hg343/anaconda3/lib/python3.9/multiprocessing/pool.py", line 765, in get
+    self.wait(timeout)
+  File "/common/home/hg343/anaconda3/lib/python3.9/multiprocessing/pool.py", line 762, in wait
+    self._event.wait(timeout)
+  File "/common/home/hg343/anaconda3/lib/python3.9/threading.py", line 574, in wait
+    signaled = self._cond.wait(timeout)
+  File "/common/home/hg343/anaconda3/lib/python3.9/threading.py", line 316, in wait
+    gotit = waiter.acquire(True, timeout)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 58, in signal_handler
+    sys.exit(1)
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/wandb/sdk/lib/exit_hooks.py", line 36, in exit
+    self._orig_exit(orig_code)  # type: ignore
+SystemExit: 1
