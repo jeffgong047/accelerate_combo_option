@@ -4,10 +4,9 @@ import numpy as np
 import sys
 from utils import Market 
 
-def mechanism_solver_single(market: Market, offset : bool = True, epsilon: bool = False):
+def mechanism_solver_single(market: Market, offset : bool = True):
     '''
     Solve the mechanism solver given single security orders
-	the market need to set the index of the 
     '''
     opt_l = offset # offset is 1 if offset is true, 0 if offset is false
     orders = market.get_market_data_order_format()
@@ -17,6 +16,7 @@ def mechanism_solver_single(market: Market, offset : bool = True, epsilon: bool 
     
     if len(buy_book) == 0 or len(sell_book) == 0:
         return None, None
+
     
     # Extract option data
     option_num = len(orders)
@@ -26,21 +26,40 @@ def mechanism_solver_single(market: Market, offset : bool = True, epsilon: bool 
     opt_buy_book = orders[['C=Call, P=Put', 'Strike Price of the Option Times 1000', 'B/A_price']].to_numpy()
     opt_sell_book = orders[['C=Call, P=Put', 'Strike Price of the Option Times 1000', 'B/A_price']].to_numpy()
     # Get unique strikes for constraints
-	#market will prepare unique strikes for orders in the market and 0, infinity for constraints
-    strikes = market.get_strikes() 
-    
+    #strikes used for optimization 
+    strikes = market.get_strikes()
+    strikes.append(0)
+    strikes.append(sys.maxsize)
+
     # Create optimization model
     model = Model("match")
     model.setParam('OutputFlag', False)
     
-    # Decision variables
-    if epsilon:
-        gamma = model.addVars(1, len(opt_buy_book), lb=0, ub=GRB.INFINITY)  # sell to buys
-        delta = model.addVars(1, len(opt_sell_book), lb=0, ub=GRB.INFINITY)  # buy from asks
-    else:
-        gamma = model.addVars(1, len(opt_buy_book), lb=0, ub=1)  # sell to buys
-        delta = model.addVars(1, len(opt_sell_book), lb=0, ub=1)  # buy from asks
+    # Decision variables - set upper bounds based on liquidity
+    gamma = model.addVars(1, len(opt_buy_book), lb=0)  # sell to buys
+    delta = model.addVars(1, len(opt_sell_book), lb=0)  # buy from asks
     
+    # Set upper bounds based on liquidity
+    for i in range(len(opt_buy_book)):
+        if 'liquidity' in orders.columns:
+            liquidity = orders.iloc[i]['liquidity']
+            if np.isinf(liquidity):
+                gamma[0, i].ub = GRB.INFINITY
+            else:
+                gamma[0, i].ub = liquidity
+        else:
+            gamma[0, i].ub = GRB.INFINITY
+            
+    for i in range(len(opt_sell_book)):
+        if 'liquidity' in orders.columns:
+            liquidity = orders.iloc[i]['liquidity']
+            if np.isinf(liquidity):
+                delta[0, i].ub = GRB.INFINITY
+            else:
+                delta[0, i].ub = liquidity
+        else:
+            delta[0, i].ub = GRB.INFINITY
+
     # Add arbitrage constraints for each strike price
     if opt_l == 1:
         l = model.addVars(1, 1, lb=-GRB.INFINITY, ub=GRB.INFINITY)
@@ -84,7 +103,7 @@ def mechanism_solver_single(market: Market, offset : bool = True, epsilon: bool 
 
 
 
-def mechanism_solver_combo(opt_buy_book : pd.DataFrame, opt_sell_book : pd.DataFrame, s1='S1', s2='S2', offset : bool = True, epsilon: bool = False, debug=0):
+def mechanism_solver_combo(opt_buy_book : pd.DataFrame, opt_sell_book : pd.DataFrame, s1='S1', s2='S2', offset : bool = True, debug=0):
 	'''
 	opt_buy_book: pandas dataframe contains bid orders; specify whether code requires standarizing this variable
 	opt_sell_book: pandas dataframe contains ask orders;
@@ -96,6 +115,15 @@ def mechanism_solver_combo(opt_buy_book : pd.DataFrame, opt_sell_book : pd.DataF
 	'''
 	buy_book_index = opt_buy_book.index
 	sell_book_index = opt_sell_book.index
+	
+	# Extract liquidity values before converting to numpy arrays
+	buy_liquidity = None
+	sell_liquidity = None
+	if 'liquidity' in opt_buy_book.columns:
+		buy_liquidity = opt_buy_book['liquidity'].values
+	if 'liquidity' in opt_sell_book.columns:
+		sell_liquidity = opt_sell_book['liquidity'].values
+	
 	sorted_columns_order = ['option1', 'option2','C=Call, P=Put',
                 'Strike Price of the Option Times 1000',
                 'transaction_type', 'B/A_price']
@@ -116,8 +144,34 @@ def mechanism_solver_combo(opt_buy_book : pd.DataFrame, opt_sell_book : pd.DataF
 		# prime problemsys
 		model = Model("match")
 		model.setParam('OutputFlag', False)
-		gamma = model.addVars(1, num_buy, ub=1) #sell to bid orders
-		delta = model.addVars(1, num_sell, ub=1) #buy from ask orders
+		
+		# Set upper bounds based on liquidity
+		gamma = model.addVars(1, num_buy)  # sell to bid orders
+		delta = model.addVars(1, num_sell)  # buy from ask orders
+		
+		# Check if liquidity column exists in the original dataframes before conversion to numpy
+		if buy_liquidity is not None:
+			for i in range(num_buy):
+				if np.isinf(buy_liquidity[i]):
+					gamma[0, i].ub = GRB.INFINITY
+				else:
+					gamma[0, i].ub = buy_liquidity[i]
+		else:
+			# Default upper bound of 1 if no liquidity specified
+			for i in range(num_buy):
+				gamma[0, i].ub = 1
+				
+		if sell_liquidity is not None:
+			for i in range(num_sell):
+				if np.isinf(sell_liquidity[i]):
+					delta[0, i].ub = GRB.INFINITY
+				else:
+					delta[0, i].ub = sell_liquidity[i]
+		else:
+			# Default upper bound of 1 if no liquidity specified
+			for i in range(num_sell):
+				delta[0, i].ub = 1
+		
 		L = model.addVars(1, 1, lb=-GRB.INFINITY, ub=GRB.INFINITY)
 		# constraint of 0
 		buy_sum = sum(delta[0,i]*g_constraints[0][i] for i in range(num_sell))

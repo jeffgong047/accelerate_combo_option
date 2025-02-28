@@ -3,7 +3,7 @@ import numpy as np
 import os
 import sys 
 from mechanism_solver import mechanism_solver_combo, mechanism_solver_single
-
+from copy import deepcopy
 '''
 The script provides a class financial_option_market that implements the following main functionalities:
 1. epsilon_priceQuote: generate the frontier of options with epsilon price quote
@@ -16,7 +16,7 @@ class Market:
         '''
         The initialization should ensure the object could process all the functions in the class 
         opt_df: pandas dataframe of the market data columns: 
-        columns: list of columns in the dataframe 
+        columns: security coefficients, strike price, bid price, ask price, transaction type, liquidity
         input_format: the format of the market data, either 'option_series' or 'order format'   
         mechanism_solver: the mechanism solver to compute the profit of the given market. 
         If one wants to customized mechanism solver, one just need to ensure the input to the mechanism solver takes in orders in pandas dataframe format, and returns profit as first output.
@@ -24,18 +24,18 @@ class Market:
         Strikes: market will prepare unique strikes for orders in the market and 0, infinity for constraints
         '''
         assert isinstance(opt_df, pd.DataFrame), "opt_df must be a pandas dataframe"
-        self.opt_df = opt_df 
+        self.opt_df = deepcopy(opt_df)
+        if 'liquidity' not in opt_df.columns: # by default, we assume each order has only one unit of liquidity
+            self.opt_df['liquidity'] = 1
         if input_format == 'option_series':
-            self.opt_order = self.convert_market_data_format(opt_df, format='order')
+            self.opt_order = self.convert_maket_data_format(opt_df, format='order')
         else:
             self.opt_order = self.opt_df 
         self.strikes = list(set(self.opt_order.loc[:, 'Strike Price of the Option Times 1000']))
-        self.strikes.append(0)
-        self.strikes.append(sys.maxsize)
 
         self.mechanism_solver = mechanism_solver
 
-    def apply_mechanism(self, orders : pd.DataFrame):
+    def apply_mechanism(self, orders : pd.DataFrame, offset : bool = True):
         '''
         Apply the mechanism solver to the market data
         '''
@@ -43,37 +43,61 @@ class Market:
             raise ValueError("Mechanism solver is not specified")
         elif self.mechanism_solver == mechanism_solver_combo:
             buy_orders, sell_orders = self.separate_buy_sell(orders)
-            return self.mechanism_solver(buy_orders, sell_orders)[2]
+            return self.mechanism_solver(buy_orders, sell_orders, offset=offset)[2]
         elif self.mechanism_solver == mechanism_solver_single:
-            return self.mechanism_solver(orders)[1]
+            # Create a temporary Market object with the provided orders
+            temp_market = Market(orders, self.mechanism_solver)
+            return self.mechanism_solver(temp_market, offset=offset)[1]
         else:
             return self.mechanism_solver(orders)[0]
-    
-    def priceQuote(self, order : pd.DataFrame, offset: bool = True, epsilon: bool = False):
+    def epsilon_priceQuote(self, option_to_quote : pd.DataFrame, orders_in_market : pd.DataFrame = None, offset : bool = True):
+        '''
+        quote price for option with epsilon amount,
+        we only need to modify liquidity amount of the market orders
+        '''
+        if orders_in_market is None:
+            orders_in_market = self.get_market_data_order_format()
+        option_to_quote.loc[:, 'liquidity'] = 1
+        orders_in_market.loc[:, 'liquidity'] = np.inf
+        assert option_to_quote.index not in orders_in_market.index, "option_to_quote is already in the market"
+        return self.priceQuote(option_to_quote, orders_in_market, offset)
+            
+    def priceQuote(self, option_to_quote : pd.DataFrame, orders_in_market : pd.DataFrame = None, offset: bool = True):
         '''
         Generate the price of of givne input order w.r.t orders in the market
         '''
-        market_orders = self.get_market_data_order_format()
-        if order.loc[0, 'transaction_type'] == 1:
+        if orders_in_market is None:
+            market_orders = self.get_market_data_order_format()
+        else:
+            market_orders = orders_in_market.copy()
+            
+        if option_to_quote.loc[0, 'transaction_type'] == 1:
             # quoting price for buy order, we want to quote price by adding a sell order with premium = 0 to the sell side of the market 
     
-            new_sell_order = order.copy()
+            new_sell_order = option_to_quote.copy()
             new_sell_order.loc[:, 'transaction_type'] = 0
             new_sell_order.loc[:, 'B/A_price'] = 0
-            market_orders = pd.concat([market_orders, order, new_sell_order], ignore_index=False)
-            objVal = self.apply_mechanism(market_orders, offset, epsilon)
+            # Preserve liquidity if it exists
+            if 'liquidity' in option_to_quote.columns:
+                new_sell_order.loc[:, 'liquidity'] = option_to_quote.loc[0, 'liquidity']
+            new_sell_order.index = ['']
+            market_orders = pd.concat([market_orders, option_to_quote, new_sell_order], ignore_index=False)
+            objVal = self.apply_mechanism(market_orders, offset)
             return objVal
-        elif order.loc[0, 'transaction_type'] == 0:
+        elif option_to_quote.loc[0, 'transaction_type'] == 0:
             # quoting price for sell order, we want to quote price by adding a buy order with premium = max price to the buy side of the market 
-            new_buy_order = order.copy()
+            new_buy_order = option_to_quote.copy()
             new_buy_order.loc[:, 'transaction_type'] = 1
             new_buy_order.loc[:, 'B/A_price'] = sys.maxsize
-            market_orders = pd.concat([market_orders, new_buy_order, order], ignore_index=False)
-            objVal = self.apply_mechanism(market_orders, offset, epsilon)
+            # Preserve liquidity if it exists
+            if 'liquidity' in option_to_quote.columns:
+                new_buy_order.loc[:, 'liquidity'] = option_to_quote.loc[0, 'liquidity']
+            market_orders = pd.concat([market_orders, new_buy_order, option_to_quote], ignore_index=False)
+            objVal = self.apply_mechanism(market_orders, offset)
             return sys.maxsize - objVal
         else:
             raise ValueError("Invalid transaction type")
-    def frontierGeneration(self, orders : pd.DataFrame, epsilon: bool = False):
+    def frontierGeneration(self, orders : pd.DataFrame):
         '''
         Generate the frontier of options with epsilon price quote and constraints
         '''
@@ -86,7 +110,7 @@ class Market:
             order = row_series.to_frame().T
             order.index = [original_index]
             temp_orders.drop(index, inplace=True)
-            quote_price = self.priceQuote(order, temp_orders, epsilon)
+            quote_price = self.priceQuote(order, temp_orders)
             if row_series['belongs_to_frontier'] == 1:
                 # this is bid order 
                 if quote_price > row_series['B/A_price']:
@@ -101,7 +125,9 @@ class Market:
         orders['belongs_to_frontier'] = frontier_labels
 
         return orders
-    
+
+
+
     def update_orders(self, orders : pd.DataFrame):
         '''
         Update the orders in the market
@@ -121,10 +147,12 @@ class Market:
         self.opt_df.drop(indices_to_drop, inplace=True, errors='ignore')  # Use errors='ignore' to avoid KeyError
         self.opt_order.drop(indices_to_drop, inplace=True, errors='ignore')  # Use errors='ignore' to avoid KeyError
 
-    def separate_buy_sell(self):
+    def separate_buy_sell(self, orders=None):
         '''
-        return [sell book , buy book]
+        return [buy book, sell book]
         '''
+        if orders is None:
+            orders = self.opt_df
         return self.opt_df[self.opt_df['transaction_type'] == 1], self.opt_df[self.opt_df['transaction_type'] == 0]
     def get_strikes(self):
         return self.strikes 
