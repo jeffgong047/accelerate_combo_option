@@ -2,6 +2,7 @@ from gurobipy import Model, GRB
 import pandas as pd
 import numpy as np
 import sys
+import timeit
 from utils import Market 
 
 def mechanism_solver_single(market: Market, offset : bool = True):
@@ -10,21 +11,26 @@ def mechanism_solver_single(market: Market, offset : bool = True):
     '''
     opt_l = offset # offset is 1 if offset is true, 0 if offset is false
     orders = market.get_market_data_order_format()
+    assert 'C=Call, P=Put' in orders.columns, "C=Call, P=Put column not found in orders"
+    assert 'Strike Price of the Option Times 1000' in orders.columns, "Strike Price of the Option Times 1000 column not found in orders"
+    assert 'B/A_price' in orders.columns, "B/A_price column not found in orders"
+    assert 'liquidity' in orders.columns, "liquidity column not found in orders"
     # Convert orders to numpy array for processing
-    buy_book = orders[orders.loc[:, 'transaction_type'] == 1]
-    sell_book = orders[orders.loc[:, 'transaction_type'] == 0]
+    opt_buy = orders[orders.loc[:, 'transaction_type'] == 1]
+    opt_sell = orders[orders.loc[:, 'transaction_type'] == 0]
+    opt_buy_book = opt_buy[['C=Call, P=Put', 'Strike Price of the Option Times 1000', 'B/A_price']].to_numpy()
+    opt_sell_book = opt_sell[['C=Call, P=Put', 'Strike Price of the Option Times 1000', 'B/A_price']].to_numpy()
     
-    if len(buy_book) == 0 or len(sell_book) == 0:
+    if len(opt_buy_book) == 0 or len(opt_sell_book) == 0:
         return None, None
 
     
     # Extract option data
-    option_num = len(orders)
+    option_num_buy = len(opt_buy_book)
+    option_num_sell = len(opt_sell_book)
     call_or_put = 0
     strike_price = 1
     premium = 2
-    opt_buy_book = orders[['C=Call, P=Put', 'Strike Price of the Option Times 1000', 'B/A_price']].to_numpy()
-    opt_sell_book = orders[['C=Call, P=Put', 'Strike Price of the Option Times 1000', 'B/A_price']].to_numpy()
     # Get unique strikes for constraints
     #strikes used for optimization 
     strikes = market.get_strikes()
@@ -38,28 +44,22 @@ def mechanism_solver_single(market: Market, offset : bool = True):
     # Decision variables - set upper bounds based on liquidity
     gamma = model.addVars(1, len(opt_buy_book), lb=0)  # sell to buys
     delta = model.addVars(1, len(opt_sell_book), lb=0)  # buy from asks
-    
+    breakpoint()
     # Set upper bounds based on liquidity
     for i in range(len(opt_buy_book)):
-        if 'liquidity' in orders.columns:
-            liquidity = orders.iloc[i]['liquidity']
-            if np.isinf(liquidity):
-                gamma[0, i].ub = GRB.INFINITY
-            else:
-                gamma[0, i].ub = liquidity
-        else:
+        assert 'liquidity' in opt_buy.columns, "liquidity column not found in opt_buy"
+        liquidity = opt_buy.iloc[i]['liquidity']
+        if np.isinf(liquidity):
             gamma[0, i].ub = GRB.INFINITY
-            
-    for i in range(len(opt_sell_book)):
-        if 'liquidity' in orders.columns:
-            liquidity = orders.iloc[i]['liquidity']
-            if np.isinf(liquidity):
-                delta[0, i].ub = GRB.INFINITY
-            else:
-                delta[0, i].ub = liquidity
         else:
+            gamma[0, i].ub = liquidity
+    for i in range(len(opt_sell_book)):
+        assert 'liquidity' in opt_sell.columns, "liquidity column not found in opt_sell"
+        liquidity = opt_sell.iloc[i]['liquidity']
+        if np.isinf(liquidity):
             delta[0, i].ub = GRB.INFINITY
-
+        else:
+            delta[0, i].ub = liquidity
     # Add arbitrage constraints for each strike price
     if opt_l == 1:
         l = model.addVars(1, 1, lb=-GRB.INFINITY, ub=GRB.INFINITY)
@@ -67,34 +67,34 @@ def mechanism_solver_single(market: Market, offset : bool = True):
     for strike in sorted(strikes):
         if opt_l == 1:
             model.addLConstr(
-                sum(gamma[0,i]*max(opt_buy_book[i, call_or_put]*(strike-opt_buy_book[i, strike_price]), 0) for i in range(option_num) ) - 
-                sum(delta[0,i]*max(opt_sell_book[i, call_or_put]*(strike-opt_sell_book[i, strike_price]), 0) for i in range(option_num)	) - 
+                sum(gamma[0,i]*max(opt_buy_book[i, call_or_put]*(strike-opt_buy_book[i, strike_price]), 0) for i in range(option_num_buy) ) - 
+                sum(delta[0,i]*max(opt_sell_book[i, call_or_put]*(strike-opt_sell_book[i, strike_price]), 0) for i in range(option_num_sell)	) - 
                 l[0,0], GRB.LESS_EQUAL, 0
             )
         else:
             model.addLConstr(
-                sum(gamma[0,i]*max(opt_buy_book[i, call_or_put]*(strike-opt_buy_book[i, strike_price]), 0) for i in range(option_num) ) - 
-                sum(delta[0,i]*max(opt_sell_book[i, call_or_put]*(strike-opt_sell_book[i, strike_price]), 0) for i in range(option_num)),
+                sum(gamma[0,i]*max(opt_buy_book[i, call_or_put]*(strike-opt_buy_book[i, strike_price]), 0) for i in range(option_num_buy) ) - 
+                sum(delta[0,i]*max(opt_sell_book[i, call_or_put]*(strike-opt_sell_book[i, strike_price]), 0) for i in range(option_num_sell)),
                 GRB.LESS_EQUAL, 0
             )
     
     # Set objective function to maximize profit
     if opt_l == 1:
         model.setObjective(
-            sum(gamma[0,i]*opt_buy_book[i, premium] for i in range(option_num) ) - 
-            sum(delta[0,i]*opt_sell_book[i, premium] for i in range(option_num)),
+            sum(gamma[0,i]*opt_buy_book[i, premium] for i in range(option_num_buy) ) - 
+            sum(delta[0,i]*opt_sell_book[i, premium] for i in range(option_num_sell)),
             GRB.MAXIMIZE
         )
     else:
         model.setObjective(
-            sum(gamma[0,i]*opt_buy_book[i, premium] for i in range(option_num) ) - 
-            sum(delta[0,i]*opt_sell_book[i, premium] for i in range(option_num)),
+            sum(gamma[0,i]*opt_buy_book[i, premium] for i in range(option_num_buy) ) - 
+            sum(delta[0,i]*opt_sell_book[i, premium] for i in range(option_num_sell)),
             GRB.MAXIMIZE
         )
     
     # Solve the model
     model.optimize()
-    
+    breakpoint()
     # Return results
     if model.status == GRB.OPTIMAL:
         profit = model.objVal
