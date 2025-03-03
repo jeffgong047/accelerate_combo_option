@@ -8,7 +8,7 @@ import pickle
 import argparse 
 import random
 '''
-The script provides a class financial_option_market that implements the following main functionalities:
+The script provides a class Market for financial_option_market that implements the following main functionalities:
 1. epsilon_priceQuote: generate the frontier of options with epsilon price quote
 2. epsilon_frontierGeneration: generate the frontier of options with epsilon price quote and constraints
 '''
@@ -113,38 +113,69 @@ class Market:
             return sys.maxsize - objVal
         else:
             raise ValueError("Invalid transaction type")
-    def frontierGeneration(self, orders : pd.DataFrame = None):
+    def frontierGeneration(self, orders : pd.DataFrame = None, epsilon : bool = False):
         '''
         Generate the frontier of options with epsilon price quote and constraints
         '''
         # we dont want to change the original orders, so we make a copy of it 
         if orders is None:
-            orders = self.opt_order.copy()
-        frontier_labels = pd.Series(None, index=orders.index)
-        for index, row_series in orders.iterrows():
-            temp_orders = orders.copy()
-            original_index = index 
-            order = row_series.to_frame().T
-            order.index = [original_index]
-            temp_orders.drop(index, inplace=True)
-            order.iloc[original_index, order.columns.get_loc('B/A_price')] = None
-            quote_price = self.priceQuote(order, temp_orders)
-            if row_series['belongs_to_frontier'] == 1:
-                # this is bid order 
-                if quote_price > row_series['B/A_price']:
-                    frontier_labels[original_index] = 1
-                else:
-                    frontier_labels[original_index] = 0
-            else:
-                if quote_price < row_series['B/A_price']:
-                    frontier_labels[original_index] = 1
-                else:
-                    frontier_labels[original_index] = 0
-        orders['belongs_to_frontier'] = frontier_labels
+            orders_copy = self.opt_order.copy()
+        else:
+            orders_copy = orders.copy()
+        
+        frontier_labels = pd.Series(None, index=orders_copy.index)
 
-        return orders
+        for original_index, row_series in orders_copy.iterrows():
+            try:
+                temp_orders = orders_copy.copy()
 
+                order = row_series.to_frame().T
+                order.index = ['quote']
+                # Store the original price
+                original_price = order.iloc[original_index]['B/A_price']
+                
+                # Set the price to None for priceQuote
+                temp_orders.iloc[original_index, temp_orders.columns.get_loc('B/A_price')] = None
+                temp_orders.drop(original_index, inplace=True)
+                
+                # Add error handling for price quote
+                try:
+                    quote_price = self.priceQuote(order, temp_orders)
+                except Exception as e:
+                    print(f"Error in price quote for order {original_index}: {e}")
+                    frontier_labels[original_index] = 0  # Default to not in frontier if quote fails
+                    continue
+                
+                # Compare with the original price
+                if row_series['transaction_type'] == 1:  # Buy order
+                    if quote_price > original_price:
+                        frontier_labels[original_index] = 1
+                    else:
+                        frontier_labels[original_index] = 0
+                else:  # Sell order
+                    if quote_price < original_price:
+                        frontier_labels[original_index] = 1
+                    else:
+                        frontier_labels[original_index] = 0
+            except Exception as e:
+                print(f"Error processing order {original_index}: {e}")
+                frontier_labels[original_index] = None  # Default to not in frontier if processing fails
 
+            
+        orders_copy['belongs_to_frontier'] = frontier_labels
+        return orders_copy
+
+    def epsilon_frontierGeneration(self, orders : pd.DataFrame = None):
+        '''
+        Generate the frontier of options with epsilon price quote and constraints
+        '''
+        return self.frontierGeneration(orders, epsilon = True)
+
+    def update_liquidity(self, liquidity : float):
+        '''
+        Update the liquidity of the orders in the market
+        '''
+        self.opt_order.loc[:, 'liquidity'] = liquidity
 
     def update_orders(self, orders : pd.DataFrame):
         '''
@@ -285,10 +316,10 @@ def test_single_security_epsilon_price_quote(data_file : str = None, offset : bo
                 order_to_quote.loc[:, 'B/A_price'] = None 
                 order_to_quote.index = ['quote']
 
-                frontier_orders = market.frontierGeneration()
+                frontier_orders = market.epsilon_frontierGeneration()
 
                 # Test regular priceQuote
-                regular_all_orders_quoet = market.priceQuote(order_to_quote)
+                regular_all_orders_quote = market.priceQuote(order_to_quote)
                 regular_frontier_orders_quote = market.priceQuote(order_to_quote, frontier_orders)
 
                 # Test epsilon_priceQuote
@@ -300,7 +331,7 @@ def test_single_security_epsilon_price_quote(data_file : str = None, offset : bo
                 print(f"Epsilon frontier price quote: {epsilon_frontier_orders_quote}")
 
                 #sanity check: for single security, epsilon_priceQuote with all orders in the market is the same as priceQuote with all orders in the market
-                assert epsilon_all_orders_quote == regular_all_orders_quoet, "Epsilon price quote with all orders in the market should be the same as priceQuote with all orders in the market"
+                assert epsilon_all_orders_quote == regular_all_orders_quote, "Epsilon price quote with all orders in the market should be the same as priceQuote with all orders in the market"
                 assert epsilon_frontier_orders_quote == regular_frontier_orders_quote, "Epsilon price quote with frontier orders in the market should be the same as priceQuote with frontier orders in the market"
                 return epsilon_all_orders_quote == epsilon_frontier_orders_quote
             else:
@@ -402,13 +433,16 @@ def test_combo_security_epsilon_price_quote():
                             
                             # Test with default liquidity
                             try:
-                                result1 = market.epsilon_priceQuote(order_to_quote)
-                                print(f"Epsilon price quote with default liquidity: {result1}")
-                                
-                                # Test with infinite liquidity explicitly
                                 orders_in_market = market.get_market_data_order_format()
                                 orders_in_market.loc[:, 'liquidity'] = np.inf
                                 order_to_quote.loc[:, 'liquidity'] = 1
+                                market.update_liquidity(orders_in_market.loc[:, 'liquidity'])
+                                result1 = market.epsilon_priceQuote(order_to_quote)
+                                print(f"Epsilon price quote with default liquidity: {result1}")
+                                
+
+
+
                                 result2 = market.priceQuote(order_to_quote, orders_in_market)
                                 print(f"Price quote with explicit infinite liquidity: {result2}")
                                 

@@ -44,20 +44,20 @@ def mechanism_solver_single(market: Market, offset : bool = True):
     # Decision variables - set upper bounds based on liquidity
     gamma = model.addVars(1, len(opt_buy_book), lb=0)  # sell to buys
     delta = model.addVars(1, len(opt_sell_book), lb=0)  # buy from asks
-    breakpoint()
     # Set upper bounds based on liquidity
     for i in range(len(opt_buy_book)):
         assert 'liquidity' in opt_buy.columns, "liquidity column not found in opt_buy"
         liquidity = opt_buy.iloc[i]['liquidity']
+        print('liquidity', liquidity)
         if np.isinf(liquidity):
-            gamma[0, i].ub = GRB.INFINITY
+            gamma[0, i].ub = 0.5#GRB.INFINITY
         else:
             gamma[0, i].ub = liquidity
     for i in range(len(opt_sell_book)):
         assert 'liquidity' in opt_sell.columns, "liquidity column not found in opt_sell"
         liquidity = opt_sell.iloc[i]['liquidity']
         if np.isinf(liquidity):
-            delta[0, i].ub = GRB.INFINITY
+            delta[0, i].ub = 0.5#GRB.INFINITY
         else:
             delta[0, i].ub = liquidity
     # Add arbitrage constraints for each strike price
@@ -94,14 +94,40 @@ def mechanism_solver_single(market: Market, offset : bool = True):
     
     # Solve the model
     model.optimize()
-    breakpoint()
-    # Return results
+    
+    # Print the decision variables that are non-zero with their index in the pandas dataframe and their value
     if model.status == GRB.OPTIMAL:
         profit = model.objVal
         isMatch = any(delta[0,i].x > 0 for i in range(len(delta))) or any(gamma[0,j].x > 0 for j in range(len(gamma)))
-        return isMatch , profit  # Match format from training.py
-
-
+        
+        # Print non-zero delta variables (buy decisions)
+        for i in range(len(delta)):
+            if delta[0,i].x > 1e-6:  # Use a small threshold to account for floating-point precision
+                # Check if opt_sell_book is a DataFrame or a NumPy array
+                if hasattr(opt_sell_book, 'index'):
+                    # It's a DataFrame
+                    print(f"Buy from sell_book[{i}]: {opt_sell_book.index[i]} - Amount: {delta[0,i].x:.4f}, Price: {opt_sell_book.iloc[i]['B/A_price']}")
+                else:
+                    # It's a NumPy array
+                    print(f"Buy from sell_book[{i}] - Amount: {delta[0,i].x:.4f}, Price: {opt_sell_book[i, premium]}")
+        
+        # Print non-zero gamma variables (sell decisions)
+        for j in range(len(gamma)):
+            if gamma[0,j].x > 1e-6:  # Use a small threshold to account for floating-point precision
+                # Check if opt_buy_book is a DataFrame or a NumPy array
+                if hasattr(opt_buy_book, 'index'):
+                    # It's a DataFrame
+                    print(f"Sell to buy_book[{j}]: {opt_buy_book.index[j]} - Amount: {gamma[0,j].x:.4f}, Price: {opt_buy_book.iloc[j]['B/A_price']}")
+                else:
+                    # It's a NumPy array
+                    print(f"Sell to buy_book[{j}] - Amount: {gamma[0,j].x:.4f}, Price: {opt_buy_book[j, premium]}")
+        
+        print(f"Total profit: {profit:.4f}")
+        breakpoint()
+        return isMatch, profit  # Match format from training.py
+    else:
+        print('model status is not optimal', model.status)
+        breakpoint()
 
 def mechanism_solver_combo(opt_buy_book : pd.DataFrame, opt_sell_book : pd.DataFrame, s1='S1', s2='S2', offset : bool = True, debug=0):
 	'''
