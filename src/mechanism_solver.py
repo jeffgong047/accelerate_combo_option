@@ -44,23 +44,28 @@ def mechanism_solver_single(market: Market, offset : bool = True):
     # Decision variables - set upper bounds based on liquidity
     gamma = model.addVars(1, len(opt_buy_book), lb=0)  # sell to buys
     delta = model.addVars(1, len(opt_sell_book), lb=0)  # buy from asks
+    liquidity_list = []
     # Set upper bounds based on liquidity
     for i in range(len(opt_buy_book)):
         assert 'liquidity' in opt_buy.columns, "liquidity column not found in opt_buy"
         liquidity = opt_buy.iloc[i]['liquidity']
+        liquidity_list.append(liquidity)
         print('liquidity', liquidity)
         if np.isinf(liquidity):
-            gamma[0, i].ub = 0.5#GRB.INFINITY
+            gamma[0, i].ub = 1000#GRB.INFINITY
         else:
             gamma[0, i].ub = liquidity
     for i in range(len(opt_sell_book)):
         assert 'liquidity' in opt_sell.columns, "liquidity column not found in opt_sell"
         liquidity = opt_sell.iloc[i]['liquidity']
+        liquidity_list.append(liquidity)
+        print('liquidity', liquidity)
         if np.isinf(liquidity):
-            delta[0, i].ub = 0.5#GRB.INFINITY
+            delta[0, i].ub =  1000#GRB.INFINITY
         else:
             delta[0, i].ub = liquidity
     # Add arbitrage constraints for each strike price
+    print('liquidity_list', liquidity_list)
     if opt_l == 1:
         l = model.addVars(1, 1, lb=-GRB.INFINITY, ub=GRB.INFINITY)
         
