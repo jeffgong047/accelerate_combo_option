@@ -7,6 +7,15 @@ from copy import deepcopy
 import pickle
 import argparse 
 import random
+import signal
+
+# Add this at the beginning of your script
+def signal_handler(sig, frame):
+    print('\nProgram interrupted by user. Exiting...')
+    sys.exit(0)
+
+signal.signal(signal.SIGINT, signal_handler)
+
 '''
 The script provides a class Market for financial_option_market that implements the following main functionalities:
 1. epsilon_priceQuote: generate the frontier of options with epsilon price quote
@@ -45,7 +54,6 @@ class Market:
         '''
         is_match, profit = self.apply_mechanism(orders, offset=offset)
         print('checking match', is_match, profit)
-        breakpoint()
         return is_match, profit
 
     def apply_mechanism(self, orders : pd.DataFrame, offset : bool = True):
@@ -63,7 +71,8 @@ class Market:
             return self.mechanism_solver(buy_orders, sell_orders, offset=offset)[2]
         elif self.mechanism_solver == mechanism_solver_single:
             # FIXED VERSION: Call mechanism_solver directly
-            return self.mechanism_solver(self, offset=offset)
+            market = Market(orders, input_format='order')
+            return self.mechanism_solver(market, offset=offset)
         else:
             return self.mechanism_solver(orders)[0]
 
@@ -91,16 +100,13 @@ class Market:
             market_orders = self.get_market_data_order_format()
         else:
             market_orders = orders_in_market.copy()
-        if self.check_match(market_orders)[0]:
+        if self.check_match(market_orders)[0] and np.inf in market_orders['liquidity']:
             print(f"The market is matched, cant get price quote")
             return None
         if option_to_quote.index[0] != 'quote':
             option_to_quote.index = ['quote']
         assert option_to_quote.index[0] not in market_orders.index, "option_to_quote is already in the market"
         
-        # Create a copy of the option to quote with a valid price
-        # This ensures we don't include the None price in the mechanism solver
-        option_to_price = option_to_quote.copy()
         # Use iloc to access the first row regardless of index
         if option_to_quote.iloc[0]['transaction_type'] == 1:
             # quoting price for buy order, we want to quote price by adding a sell order with premium = 0 to the sell side of the market 
@@ -110,8 +116,13 @@ class Market:
             # Preserve liquidity if it exists
             if 'liquidity' in option_to_quote.columns:
                 new_sell_order.iloc[0, new_sell_order.columns.get_loc('liquidity')] = option_to_quote.iloc[0]['liquidity']
+            else:
+                new_sell_order.iloc[0, new_sell_order.columns.get_loc('liquidity')] = 1
+            print(new_sell_order)
+            print(option_to_quote)
+            breakpoint()
             market_orders = pd.concat([market_orders, new_sell_order], ignore_index=False)
-            objVal = self.apply_mechanism(market_orders, offset)
+            is_match , objVal = self.apply_mechanism(market_orders, offset)
             return objVal
         elif option_to_quote.iloc[0]['transaction_type'] == 0:
             # quoting price for sell order, we want to quote price by adding a buy order with premium = max price to the buy side of the market 
@@ -121,9 +132,15 @@ class Market:
             # Preserve liquidity if it exists
             if 'liquidity' in option_to_quote.columns:
                 new_buy_order.iloc[0, new_buy_order.columns.get_loc('liquidity')] = option_to_quote.iloc[0]['liquidity']
+            print(new_buy_order)
+            print(option_to_quote)
+            breakpoint()
             market_orders = pd.concat([market_orders, new_buy_order, option_to_quote], ignore_index=False)
-            objVal = self.apply_mechanism(market_orders, offset)
-            return sys.maxsize - objVal
+            is_match , objVal = self.apply_mechanism(market_orders, offset)
+            if is_match:
+                return sys.maxsize - objVal
+            else:
+                return None
         else:
             raise ValueError("Invalid transaction type")
     def frontierGeneration(self, orders : pd.DataFrame = None, epsilon : bool = False):
@@ -132,53 +149,62 @@ class Market:
         '''
         # we dont want to change the original orders, so we make a copy of it 
         if orders is None:
-            orders_copy = self.opt_order.copy()
+            orders = self.opt_order.copy()
         else:
-            orders_copy = orders.copy()
+            orders = orders.copy()
         
-        frontier_labels = pd.Series(None, index=orders_copy.index)
-        for original_index, row_series in orders_copy.iterrows():
-            try:
-                temp_orders = orders_copy.copy()
-
-                order = row_series.to_frame().T
-                # Store the original price
-                original_price = order.iloc[original_index]['B/A_price']
-                order.index = ['quote']
-                order['liquidity'] = 1
-                # Set the price to None for priceQuote
-                if epsilon:
-                    #if we use epsilon quoting, we need to set the liquidity to infinity
-                    temp_orders.loc[:, 'liquidity'] = np.inf
-                temp_orders.iloc[original_index, temp_orders.columns.get_loc('B/A_price')] = None
-                temp_orders.drop(original_index, inplace=True)
-                
-                # Add error handling for price quotbe
+        frontier_labels = pd.Series(None, index=orders.index)
+        try:
+            for original_index, row_series in orders.iterrows():
                 try:
-                    quote_price = self.priceQuote(order, temp_orders)
+                    print(f"Processing order {original_index} ({orders.index.get_loc(original_index)+1}/{len(orders)})")
+                    
+                    temp_orders = orders.copy()
+                    order = row_series.to_frame().T
+                    
+                    # Store the original price - FIX: Use row_series directly
+                    original_price = row_series['B/A_price']
+                    order.index = ['quote']
+                    order['liquidity'] = 1
+                    
+                    # Set the price to None for priceQuote
+                    if epsilon:
+                        #if we use epsilon quoting, we need to set the liquidity to infinity
+                        temp_orders.loc[:, 'liquidity'] = np.inf
+                    
+                    # FIX: Use loc instead of iloc with the original_index
+                    temp_orders.loc[original_index, 'B/A_price'] = None
+                    temp_orders.drop(original_index, inplace=True)
+                    
+                    # Add error handling for price quote
+                    try:
+                        quote_price = self.priceQuote(order, temp_orders)
+                    except Exception as e:
+                        print(f"Error in price quote for order {original_index}: {e}")
+                        frontier_labels[original_index] = 0  # Default to not in frontier if quote fails
+                        continue
+                    
+                    print(f'quote_price: {quote_price}, original_price: {original_price}')
+                    
+                    # Compare with the original price
+                    if row_series['transaction_type'] == 1:  # Buy order
+                        if quote_price > original_price:
+                            frontier_labels[original_index] = 1
+                        else:
+                            frontier_labels[original_index] = 0
+                    else:  # Sell order
+                        if quote_price < original_price:
+                            frontier_labels[original_index] = 1
+                        else:
+                            frontier_labels[original_index] = 0
                 except Exception as e:
-                    print(f"Error in price quote for order {original_index}: {e}")
-                    frontier_labels[original_index] = 0  # Default to not in frontier if quote fails
-                    continue
-                
-                # Compare with the original price
-                if row_series['transaction_type'] == 1:  # Buy order
-                    if quote_price > original_price:
-                        frontier_labels[original_index] = 1
-                    else:
-                        frontier_labels[original_index] = 0
-                else:  # Sell order
-                    if quote_price < original_price:
-                        frontier_labels[original_index] = 1
-                    else:
-                        frontier_labels[original_index] = 0
-            except Exception as e:
-                print(f"Error processing order {original_index}: {e}")
-                frontier_labels[original_index] = None  # Default to not in frontier if processing fails
-
-            
-        orders_copy['belongs_to_frontier'] = frontier_labels
-        return orders_copy
+                    print(f"Error processing order {original_index}: {e}")
+                    frontier_labels[original_index] = None  # Default to not in frontier if processing fails
+        except KeyboardInterrupt:
+            print("\nProcess interrupted by user. Returning partial results...")
+        
+        orders['belongs_to_frontier'] = frontier_labels
+        return orders
 
     def epsilon_frontierGeneration(self, orders : pd.DataFrame = None):
         '''
@@ -188,7 +214,6 @@ class Market:
             orders = self.opt_order
         is_match, profit = self.check_match(orders)
         print(is_match, profit)
-        breakpoint()
         if is_match:
             print(f"The market is matched, cant get epsilon frontiers")
             return None

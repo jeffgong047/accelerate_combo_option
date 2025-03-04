@@ -9,6 +9,8 @@ def mechanism_solver_single(market: Market, offset : bool = True):
     '''
     Solve the mechanism solver given single security orders
     '''
+    pd.set_option('display.max_rows', None)
+    # pd.set_option('display.max_columns', None)
     opt_l = offset # offset is 1 if offset is true, 0 if offset is false
     orders = market.get_market_data_order_format()
     assert 'C=Call, P=Put' in orders.columns, "C=Call, P=Put column not found in orders"
@@ -20,7 +22,9 @@ def mechanism_solver_single(market: Market, offset : bool = True):
     opt_sell = orders[orders.loc[:, 'transaction_type'] == 0]
     opt_buy_book = opt_buy[['C=Call, P=Put', 'Strike Price of the Option Times 1000', 'B/A_price']].to_numpy()
     opt_sell_book = opt_sell[['C=Call, P=Put', 'Strike Price of the Option Times 1000', 'B/A_price']].to_numpy()
-    
+    print('opt_buy', opt_buy)
+    print('opt_sell', opt_sell)
+    breakpoint()
     if len(opt_buy_book) == 0 or len(opt_sell_book) == 0:
         return None, None
 
@@ -52,7 +56,7 @@ def mechanism_solver_single(market: Market, offset : bool = True):
         liquidity = opt_buy.iloc[i]['liquidity']
         liquidity_list.append(liquidity)
         if np.isinf(liquidity):
-            gamma[0, i].ub = 1000#GRB.INFINITY
+            gamma[0, i].ub = GRB.INFINITY
         else:
             gamma[0, i].ub = liquidity
     for i in range(len(opt_sell_book)):
@@ -60,12 +64,12 @@ def mechanism_solver_single(market: Market, offset : bool = True):
         liquidity = opt_sell.iloc[i]['liquidity']
         liquidity_list.append(liquidity)
         if np.isinf(liquidity):
-            delta[0, i].ub =  1000#GRB.INFINITY
+            delta[0, i].ub =  GRB.INFINITY
         else:
             delta[0, i].ub = liquidity
 
     # Add arbitrage constraints for each strike price
-    print('liquidity_list', liquidity_list)
+    # print('liquidity_list', liquidity_list)
     if opt_l == 1:
         l = model.addVars(1, 1, lb=-GRB.INFINITY, ub=GRB.INFINITY)
         
@@ -126,8 +130,6 @@ def mechanism_solver_single(market: Market, offset : bool = True):
                 else:
                     # It's a NumPy array
                     print(f"Sell to buy_book[{j}] - Amount: {gamma[0,j].x:.4f}, Price: {opt_buy_book[j, premium]}")
-        print(l[0,0].x)
-        breakpoint()
         print(f"Total profit: {profit:.4f}")
         return isMatch, profit  # Match format from training.py
     else:
