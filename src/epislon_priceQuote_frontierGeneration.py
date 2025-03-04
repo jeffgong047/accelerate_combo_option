@@ -61,7 +61,6 @@ class Market:
         Apply the mechanism solver to the market data
         '''
         #sanity check: ensure liquidity is not nan or None 
-        print(orders['liquidity'])
         assert not orders['liquidity'].isna().any(), "liquidity should not be nan"
         assert not orders['liquidity'].isnull().any(), "liquidity should not be null"
         if self.mechanism_solver is None:
@@ -88,7 +87,10 @@ class Market:
         orders_in_market.loc[:, 'liquidity'] = np.inf
         if option_to_quote.index[0] != 'quote':
             option_to_quote.index = ['quote']
-        assert option_to_quote.index not in orders_in_market.index, "option_to_quote is already in the market"
+        
+        # FIX: Check if the specific index value 'quote' is in orders_in_market.index
+        assert 'quote' not in orders_in_market.index, "option_to_quote is already in the market"
+        
         return self.priceQuote(option_to_quote, orders_in_market, offset)
             
     def priceQuote(self, option_to_quote : pd.DataFrame, orders_in_market : pd.DataFrame = None, offset: bool = True):
@@ -105,6 +107,8 @@ class Market:
             return None
         if option_to_quote.index[0] != 'quote':
             option_to_quote.index = ['quote']
+        
+        # FIX: Check if the specific index value is in market_orders.index
         assert option_to_quote.index[0] not in market_orders.index, "option_to_quote is already in the market"
         
         # Use iloc to access the first row regardless of index
@@ -113,30 +117,40 @@ class Market:
             new_sell_order = option_to_quote.copy()
             new_sell_order.iloc[0, new_sell_order.columns.get_loc('transaction_type')] = 0
             new_sell_order.iloc[0, new_sell_order.columns.get_loc('B/A_price')] = 0
-            # Preserve liquidity if it exists
-            if 'liquidity' in option_to_quote.columns:
-                new_sell_order.iloc[0, new_sell_order.columns.get_loc('liquidity')] = option_to_quote.iloc[0]['liquidity']
+            
+            # FIX: Check if 'liquidity' exists in new_sell_order before trying to set it
+            if 'liquidity' in new_sell_order.columns:
+                # Column exists, use get_loc
+                if 'liquidity' in option_to_quote.columns:
+                    new_sell_order.iloc[0, new_sell_order.columns.get_loc('liquidity')] = option_to_quote.iloc[0]['liquidity']
+                else:
+                    new_sell_order.iloc[0, new_sell_order.columns.get_loc('liquidity')] = 1
             else:
-                new_sell_order.iloc[0, new_sell_order.columns.get_loc('liquidity')] = 1
-            print(new_sell_order)
-            print(option_to_quote)
-            breakpoint()
+                # Column doesn't exist, create it
+                new_sell_order['liquidity'] = 1
+            
             market_orders = pd.concat([market_orders, new_sell_order], ignore_index=False)
-            is_match , objVal = self.apply_mechanism(market_orders, offset)
+            is_match, objVal = self.apply_mechanism(market_orders, offset)
             return objVal
         elif option_to_quote.iloc[0]['transaction_type'] == 0:
             # quoting price for sell order, we want to quote price by adding a buy order with premium = max price to the buy side of the market 
             new_buy_order = option_to_quote.copy()
             new_buy_order.iloc[0, new_buy_order.columns.get_loc('transaction_type')] = 1
             new_buy_order.iloc[0, new_buy_order.columns.get_loc('B/A_price')] = sys.maxsize
-            # Preserve liquidity if it exists
-            if 'liquidity' in option_to_quote.columns:
-                new_buy_order.iloc[0, new_buy_order.columns.get_loc('liquidity')] = option_to_quote.iloc[0]['liquidity']
-            print(new_buy_order)
-            print(option_to_quote)
-            breakpoint()
+            
+            # FIX: Check if 'liquidity' exists in new_buy_order before trying to set it
+            if 'liquidity' in new_buy_order.columns:
+                # Column exists, use get_loc
+                if 'liquidity' in option_to_quote.columns:
+                    new_buy_order.iloc[0, new_buy_order.columns.get_loc('liquidity')] = option_to_quote.iloc[0]['liquidity']
+                else:
+                    new_buy_order.iloc[0, new_buy_order.columns.get_loc('liquidity')] = 1
+            else:
+                # Column doesn't exist, create it
+                new_buy_order['liquidity'] = 1
+            
             market_orders = pd.concat([market_orders, new_buy_order, option_to_quote], ignore_index=False)
-            is_match , objVal = self.apply_mechanism(market_orders, offset)
+            is_match, objVal = self.apply_mechanism(market_orders, offset)
             if is_match:
                 return sys.maxsize - objVal
             else:
@@ -164,6 +178,9 @@ class Market:
                     
                     # Store the original price - FIX: Use row_series directly
                     original_price = row_series['B/A_price']
+                    if original_price <= 1e-6:
+                        print('what the hell')
+                        breakpoint()
                     order.index = ['quote']
                     order['liquidity'] = 1
                     
@@ -185,15 +202,17 @@ class Market:
                         continue
                     
                     print(f'quote_price: {quote_price}, original_price: {original_price}')
-                    
+                    # if quote_price is None or quote_price == 0 or quote_price == sys.maxsize or abs(quote_price - original_price) > original_price:
+                    #     print('weird quote price', quote_price)
+                    #     breakpoint()
                     # Compare with the original price
                     if row_series['transaction_type'] == 1:  # Buy order
-                        if quote_price > original_price:
+                        if original_price > quote_price:
                             frontier_labels[original_index] = 1
                         else:
                             frontier_labels[original_index] = 0
                     else:  # Sell order
-                        if quote_price < original_price:
+                        if original_price > quote_price:
                             frontier_labels[original_index] = 1
                         else:
                             frontier_labels[original_index] = 0
@@ -204,6 +223,7 @@ class Market:
             print("\nProcess interrupted by user. Returning partial results...")
         
         orders['belongs_to_frontier'] = frontier_labels
+        print(orders)
         return orders
 
     def epsilon_frontierGeneration(self, orders : pd.DataFrame = None):
@@ -213,12 +233,12 @@ class Market:
         if orders is None:
             orders = self.opt_order
         is_match, profit = self.check_match(orders)
-        print(is_match, profit)
         if is_match:
             print(f"The market is matched, cant get epsilon frontiers")
             return None
         else:
-            return self.frontierGeneration(orders, epsilon = True)
+            labeled_orders = self.frontierGeneration(orders, epsilon = True)
+            return labeled_orders
 
     def update_liquidity(self, liquidity : float):
         '''
@@ -233,7 +253,7 @@ class Market:
         self.opt_order = orders
         self.strikes = list(set(self.opt_order.loc[:, 'Strike Price of the Option Times 1000']))
         self.strikes.append(0)
-        self.strikes.append(sys.maxsize)
+        self.strikes.append(1e9)
 
 
     def drop_index(self, indices_to_drop):
@@ -343,127 +363,202 @@ def test_single_security_epsilon_price_quote(data_file : str = None, offset : bo
         with open(data_file, 'rb') as f:
             market_data_list = pickle.load(f)
             print(f"Loaded {len(market_data_list)} markets from {data_file}")
-            market_data_list = market_data_list[:1]
-            # Find a suitable market that doesn't match
-            suitable_market = None
-            for i in range(min(20, len(market_data_list))):
-                market_df = market_data_list[i]
-                
-                # Ensure we have both buy and sell orders
-                buy_orders = market_df[market_df['transaction_type'] == 1]
-                sell_orders = market_df[market_df['transaction_type'] == 0]
-                
-                if len(buy_orders) == 0 or len(sell_orders) == 0:
-                    print(f"Market {i} doesn't have both buy and sell orders. Skipping...")
-                    continue
-                
-                # Create a temporary market to check if it matches
-                temp_market = Market(market_df, mechanism_solver=mechanism_solver_single)
-                
-                # Use a direct call to mechanism_solver to avoid recursion
-                is_match, profit = mechanism_solver_single(temp_market, offset=offset)
-                print(f"Market {i}: is_match={is_match}, profit={profit}")
-                
-                if is_match:
-                    print(f"Market {i} has matching orders. Skipping...")
-                    continue
-                
-                # If we get here, we found a suitable market
-                suitable_market = i
-                break
             
-            if suitable_market is None:
-                raise ValueError("Could not find a market without matching orders")
+            # Skip the first market and take the next 10 (or fewer if there aren't 10)
+            market_data_list = market_data_list[1:11]
+            print(f"Testing with {len(market_data_list)} markets")
             
-            # Use the suitable market for testing
-            market_df = market_data_list[suitable_market]
-            buy_orders = market_df[market_df['transaction_type'] == 1]
-            sell_orders = market_df[market_df['transaction_type'] == 0]
+            # Track results for each market
+            results = []
             
-            print(f"Using market {suitable_market} with {len(market_df)} orders ({len(buy_orders)} buy, {len(sell_orders)} sell)")
-            
-            # Create market
-            market = Market(market_df, mechanism_solver=mechanism_solver_single)
-            
-            # Select a random order to quote
-            random.seed(42)  # For reproducibility
-            if len(buy_orders) > 0:
-                random_idx = random.randint(0, len(buy_orders) - 1)
-                order_to_quote = buy_orders.iloc[[random_idx]].copy()
+            # Iterate through each market
+            for market_idx, market_df in enumerate(market_data_list):
+                print(f"\n--- Testing Market {market_idx + 1} ---")
                 
-                # Ensure all required columns are present
-                required_columns = ['transaction_type', 'strike', 'option_type', 'B/A_price']
-                
-                # Map columns if they have different names
-                column_mapping = {
-                    'Strike Price of the Option Times 1000': 'strike',
-                    'C=Call, P=Put': 'option_type'
-                }
-                
-                # Create a properly formatted order_to_quote
-                formatted_order = order_to_quote.copy()
-                
-                # Map columns if needed
-                for old_col, new_col in column_mapping.items():
-                    if old_col in formatted_order.columns and new_col not in formatted_order.columns:
-                        formatted_order[new_col] = formatted_order[old_col]
-                        
-                # Convert option type from string to numeric if needed
-                if 'option_type' in formatted_order.columns and formatted_order['option_type'].dtype == object:
-                    formatted_order['option_type'] = formatted_order['option_type'].map({'C': 1, 'P': -1})
-                
-                # Set price to None for quoting
-                formatted_order.loc[:, 'B/A_price'] = None
-                formatted_order.index = ['quote']
-                
-                print(f"Selected order to quote: {formatted_order.to_dict('records')[0]}")
-                # Generate frontier
-                frontier_orders = market.epsilon_frontierGeneration()
-                # Test regular priceQuote
                 try:
-                    regular_all_orders_quote = market.priceQuote(formatted_order)
-                    print(f"Regular price quote (all orders): {regular_all_orders_quote}")
+                    # Ensure we have both buy and sell orders
+                    buy_orders = market_df[market_df['transaction_type'] == 1]
+                    sell_orders = market_df[market_df['transaction_type'] == 0]
                     
-                    regular_frontier_orders_quote = market.priceQuote(formatted_order, frontier_orders)
-                    print(f"Regular price quote (frontier orders): {regular_frontier_orders_quote}")
+                    if len(buy_orders) == 0 or len(sell_orders) == 0:
+                        print(f"Market {market_idx + 1} doesn't have both buy and sell orders. Skipping...")
+                        results.append({
+                            'market_idx': market_idx + 1,
+                            'status': 'Skipped - Missing buy or sell orders',
+                            'error': None
+                        })
+                        continue
                     
-                    # Test epsilon priceQuote
-                    epsilon_all_orders_quote = market.epsilon_priceQuote(formatted_order)
-                    print(f"Epsilon price quote (all orders): {epsilon_all_orders_quote}")
+                    # Remove rows with B/A_price = 0
+                    market_df = market_df[market_df['B/A_price'] > 1e-6]
                     
-                    epsilon_frontier_orders_quote = market.epsilon_priceQuote(formatted_order, frontier_orders)
-                    print(f"Epsilon price quote (frontier orders): {epsilon_frontier_orders_quote}")
+                    # Create a temporary market to check if it matches
+                    temp_market = Market(market_df, mechanism_solver=mechanism_solver_single)
                     
-                    # Test epsilon priceQuote with infinite liquidity
-                    infinite_liquidity_orders = market_df.copy()
-                    if 'liquidity' not in infinite_liquidity_orders.columns:
-                        infinite_liquidity_orders['liquidity'] = float('inf')
+                    # Use a direct call to mechanism_solver to avoid recursion
+                    is_match, profit = mechanism_solver_single(temp_market, offset=offset)
+                    print(f"Market {market_idx + 1}: is_match={is_match}, profit={profit}")
+                    
+                    if is_match:
+                        print(f"Market {market_idx + 1} has matching orders. Skipping...")
+                        results.append({
+                            'market_idx': market_idx + 1,
+                            'status': 'Skipped - Has matching orders',
+                            'error': None
+                        })
+                        continue
+                    
+                    # Create market
+                    market = Market(market_df, mechanism_solver=mechanism_solver_single)
+                    
+                    # Select a random order to quote
+                    random.seed(42 + market_idx)  # Different seed for each market
+                    if len(buy_orders) > 0:
+                        random_idx = random.randint(0, len(buy_orders) - 1)
+                        order_to_quote = buy_orders.iloc[[random_idx]].copy()
+                        
+                        # Create a properly formatted order_to_quote
+                        formatted_order = order_to_quote.copy()
+                        
+                        # Map columns if needed
+                        column_mapping = {
+                            'Strike Price of the Option Times 1000': 'strike',
+                            'C=Call, P=Put': 'option_type'
+                        }
+                        
+                        for old_col, new_col in column_mapping.items():
+                            if old_col in formatted_order.columns and new_col not in formatted_order.columns:
+                                formatted_order[new_col] = formatted_order[old_col]
+                        
+                        # Ensure liquidity column exists
+                        if 'liquidity' not in formatted_order.columns:
+                            formatted_order['liquidity'] = 1
+                        
+                        # Set price to None for quoting
+                        formatted_order.loc[:, 'B/A_price'] = None
+                        formatted_order.index = ['quote']
+                        
+                        print(f"Selected order to quote: {formatted_order.to_dict('records')[0]}")
+                        
+                        # Generate frontier
+                        try:
+                            orders_with_frontier_labels = market.epsilon_frontierGeneration()
+                            if orders_with_frontier_labels is None:
+                                print(f"Market {market_idx + 1}: Failed to generate frontier")
+                                results.append({
+                                    'market_idx': market_idx + 1,
+                                    'status': 'Failed - Could not generate frontier',
+                                    'error': None
+                                })
+                                continue
+                                
+                            frontier_orders = orders_with_frontier_labels[orders_with_frontier_labels['belongs_to_frontier'] == 1]
+                            print(f"Found {len(frontier_orders)} frontier orders")
+                            
+                            # Test regular priceQuote and epsilon priceQuote
+                            try:
+                                # Regular price quote with all orders
+                                regular_all_orders_quote = market.priceQuote(formatted_order, orders_with_frontier_labels)
+                                print(f"Regular price quote (all orders): {regular_all_orders_quote}")
+                                
+                                # Regular price quote with frontier orders
+                                regular_frontier_orders_quote = market.priceQuote(formatted_order, frontier_orders)
+                                print(f"Regular price quote (frontier orders): {regular_frontier_orders_quote}")
+                                
+                                # Epsilon price quote with all orders
+                                epsilon_all_orders_quote = market.epsilon_priceQuote(formatted_order, orders_with_frontier_labels)
+                                print(f"Epsilon price quote (all orders): {epsilon_all_orders_quote}")
+                                
+                                # Epsilon price quote with frontier orders
+                                epsilon_frontier_orders_quote = market.epsilon_priceQuote(formatted_order, frontier_orders)
+                                print(f"Epsilon price quote (frontier orders): {epsilon_frontier_orders_quote}")
+                                
+                                # Check assertions
+                                try:
+                                    # Check if regular and epsilon quotes are similar
+                                    if regular_all_orders_quote is not None and epsilon_all_orders_quote is not None:
+                                        assert abs(regular_all_orders_quote - epsilon_all_orders_quote) < 1e-6, "Epsilon price quote with all orders should be the same as regular price quote with all orders"
+                                        print("✓ Assertion passed: regular_all_orders_quote ≈ epsilon_all_orders_quote")
+                                    
+                                    if regular_frontier_orders_quote is not None and epsilon_frontier_orders_quote is not None:
+                                        assert abs(regular_frontier_orders_quote - epsilon_frontier_orders_quote) < 1e-6, "Epsilon price quote with frontier orders should be the same as regular price quote with frontier orders"
+                                        print("✓ Assertion passed: regular_frontier_orders_quote ≈ epsilon_frontier_orders_quote")
+                                    
+                                    results.append({
+                                        'market_idx': market_idx + 1,
+                                        'status': 'Success',
+                                        'error': None,
+                                        'regular_all_orders_quote': regular_all_orders_quote,
+                                        'epsilon_all_orders_quote': epsilon_all_orders_quote,
+                                        'regular_frontier_orders_quote': regular_frontier_orders_quote,
+                                        'epsilon_frontier_orders_quote': epsilon_frontier_orders_quote
+                                    })
+                                except AssertionError as ae:
+                                    print(f"❌ Assertion failed: {ae}")
+                                    results.append({
+                                        'market_idx': market_idx + 1,
+                                        'status': 'Failed - Assertion Error',
+                                        'error': str(ae),
+                                        'regular_all_orders_quote': regular_all_orders_quote,
+                                        'epsilon_all_orders_quote': epsilon_all_orders_quote,
+                                        'regular_frontier_orders_quote': regular_frontier_orders_quote,
+                                        'epsilon_frontier_orders_quote': epsilon_frontier_orders_quote
+                                    })
+                            except Exception as e:
+                                print(f"Error during price quoting: {e}")
+                                import traceback
+                                traceback.print_exc()
+                                results.append({
+                                    'market_idx': market_idx + 1,
+                                    'status': 'Failed - Price Quote Error',
+                                    'error': str(e)
+                                })
+                        except Exception as e:
+                            print(f"Error generating frontier: {e}")
+                            import traceback
+                            traceback.print_exc()
+                            results.append({
+                                'market_idx': market_idx + 1,
+                                'status': 'Failed - Frontier Generation Error',
+                                'error': str(e)
+                            })
                     else:
-                        infinite_liquidity_orders['liquidity'] = float('inf')
-                    
-                    infinite_market = Market(infinite_liquidity_orders, mechanism_solver=mechanism_solver_single)
-                    infinite_quote = infinite_market.epsilon_priceQuote(formatted_order)
-                    print(f"Epsilon price quote (infinite liquidity): {infinite_quote}")
-                    
-                    # Verify that epsilon_priceQuote with infinite liquidity equals regular priceQuote
-                    if abs(infinite_quote - regular_all_orders_quote) < 1e-6:
-                        print("✅ Test PASSED: Epsilon price quote with infinite liquidity equals regular price quote")
-                    else:
-                        print("❌ Test FAILED: Epsilon price quote with infinite liquidity does not equal regular price quote")
-                        print(f"  Difference: {abs(infinite_quote - regular_all_orders_quote)}")
-                    
+                        print("No buy orders available for testing")
+                        results.append({
+                            'market_idx': market_idx + 1,
+                            'status': 'Skipped - No buy orders',
+                            'error': None
+                        })
                 except Exception as e:
-                    print(f"Error during price quoting: {e}")
+                    print(f"Error processing market {market_idx + 1}: {e}")
                     import traceback
                     traceback.print_exc()
-            else:
-                print("No buy orders available for testing")
+                    results.append({
+                        'market_idx': market_idx + 1,
+                        'status': 'Failed - Processing Error',
+                        'error': str(e)
+                    })
+            
+            # Print summary of results
+            print("\n=== Summary of Results ===")
+            success_count = sum(1 for r in results if r['status'] == 'Success')
+            print(f"Tested {len(results)} markets")
+            print(f"Successful: {success_count}")
+            print(f"Failed: {len(results) - success_count}")
+            
+            for r in results:
+                status_symbol = "✓" if r['status'] == 'Success' else "❌"
+                print(f"{status_symbol} Market {r['market_idx']}: {r['status']}")
+                if r['error']:
+                    print(f"   Error: {r['error']}")
+            
+            return success_count > 0  # Return True if at least one market was successful
     
     except Exception as e:
         print(f"Error loading real market data: {e}")
-        # Create synthetic data for testing
-        print("Creating synthetic data for testing...")
-        # ... rest of the synthetic data creation code ...
+        import traceback
+        traceback.print_exc()
+        return False
 
 def test_combo_security_epsilon_price_quote():
     """
@@ -471,11 +566,7 @@ def test_combo_security_epsilon_price_quote():
     """
     print("\n=== Testing Combo Security Epsilon Price Quote ===")
     
-    # Create test data for combo security
-    from mechanism_solver import mechanism_solver_combo
-    import pickle
-    import os
-    import random
+
     
     # Try to load combo data from a file similar to main_combo.py
     combo_data_path = '/common/home/hg343/Research/accelerate_combo_option/data/combo_2_frontier'

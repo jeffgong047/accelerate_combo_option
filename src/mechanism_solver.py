@@ -5,29 +5,33 @@ import sys
 import timeit
 from utils import Market 
 
-def mechanism_solver_single(market: Market, offset : bool = True):
+def mechanism_solver_single(market: Market, offset : bool = True, max_strike : float = 1e9, large_number : float = 1e9):
     '''
     Solve the mechanism solver given single security orders
     '''
     pd.set_option('display.max_rows', None)
-    # pd.set_option('display.max_columns', None)
     opt_l = offset # offset is 1 if offset is true, 0 if offset is false
     orders = market.get_market_data_order_format()
+    
+    # Validate columns
     assert 'C=Call, P=Put' in orders.columns, "C=Call, P=Put column not found in orders"
     assert 'Strike Price of the Option Times 1000' in orders.columns, "Strike Price of the Option Times 1000 column not found in orders"
     assert 'B/A_price' in orders.columns, "B/A_price column not found in orders"
     assert 'liquidity' in orders.columns, "liquidity column not found in orders"
+    
+    # Check for NaN or None values in liquidity
+    if orders['liquidity'].isna().any() or orders['liquidity'].isnull().any():
+        print("Warning: NaN or None values found in liquidity column. Setting to 1.0")
+        orders['liquidity'] = orders['liquidity'].fillna(1.0)
+    
     # Convert orders to numpy array for processing
     opt_buy = orders[orders.loc[:, 'transaction_type'] == 1]
     opt_sell = orders[orders.loc[:, 'transaction_type'] == 0]
     opt_buy_book = opt_buy[['C=Call, P=Put', 'Strike Price of the Option Times 1000', 'B/A_price']].to_numpy()
     opt_sell_book = opt_sell[['C=Call, P=Put', 'Strike Price of the Option Times 1000', 'B/A_price']].to_numpy()
-    print('opt_buy', opt_buy)
-    print('opt_sell', opt_sell)
-    breakpoint()
+    
     if len(opt_buy_book) == 0 or len(opt_sell_book) == 0:
         return None, None
-
     
     # Extract option data
     option_num_buy = len(opt_buy_book)
@@ -35,43 +39,67 @@ def mechanism_solver_single(market: Market, offset : bool = True):
     call_or_put = 0
     strike_price = 1
     premium = 2
+    
     # Get unique strikes for constraints
-    #strikes used for optimization 
     strikes = market.get_strikes()
     strikes.append(0)
-    strikes.append(sys.maxsize)
+    # Use a large but finite value instead of sys.maxsize
+    MAX_STRIKE = max_strike
+    strikes.append(MAX_STRIKE)
 
-    # Create optimization model
+    # Create optimization model with numerical stability settings
     model = Model("match")
-    model.setParam('OutputFlag', False)
-
+    model.setParam('OutputFlag', True)  # Enable output for debugging
+    model.setParam('NumericFocus', 3)   # Maximum numeric focus
+    model.setParam('ScaleFlag', 2)      # Aggressive scaling
+    model.setParam('FeasibilityTol', 1e-6)  # Default feasibility tolerance
+    model.setParam('OptimalityTol', 1e-6)   # Default optimality tolerance
+    
     # Decision variables - set upper bounds based on liquidity
     gamma = model.addVars(1, len(opt_buy_book), lb=0)  # sell to buys
     delta = model.addVars(1, len(opt_sell_book), lb=0)  # buy from asks
     liquidity_list = []
     
-    # Set upper bounds based on liquidity
+    # Set upper bounds based on liquidity with better error handling
     for i in range(len(opt_buy_book)):
         assert 'liquidity' in opt_buy.columns, "liquidity column not found in opt_buy"
         liquidity = opt_buy.iloc[i]['liquidity']
         liquidity_list.append(liquidity)
-        if np.isinf(liquidity):
-            gamma[0, i].ub = GRB.INFINITY
+        
+        # Handle different liquidity cases
+        if pd.isna(liquidity) or liquidity is None:
+            gamma[0, i].ub = 1.0  # Default value
+        elif np.isinf(liquidity):
+            gamma[0, i].ub = large_number  # Large but finite value
         else:
-            gamma[0, i].ub = liquidity
+            try:
+                # Ensure liquidity is a valid float
+                gamma[0, i].ub = float(liquidity)
+            except (ValueError, TypeError):
+                print(f"Warning: Invalid liquidity value {liquidity}. Setting to 1.0")
+                gamma[0, i].ub = 1.0
+    
     for i in range(len(opt_sell_book)):
         assert 'liquidity' in opt_sell.columns, "liquidity column not found in opt_sell"
         liquidity = opt_sell.iloc[i]['liquidity']
         liquidity_list.append(liquidity)
-        if np.isinf(liquidity):
-            delta[0, i].ub =  GRB.INFINITY
+        
+        # Handle different liquidity cases
+        if pd.isna(liquidity) or liquidity is None:
+            delta[0, i].ub = 1.0  # Default value
+        elif np.isinf(liquidity):
+            delta[0, i].ub = 1e6  # Large but finite value
         else:
-            delta[0, i].ub = liquidity
-
+            try:
+                # Ensure liquidity is a valid float
+                delta[0, i].ub = float(liquidity)
+            except (ValueError, TypeError):
+                print(f"Warning: Invalid liquidity value {liquidity}. Setting to 1.0")
+                delta[0, i].ub = 1.0
+    
     # Add arbitrage constraints for each strike price
-    # print('liquidity_list', liquidity_list)
     if opt_l == 1:
-        l = model.addVars(1, 1, lb=-GRB.INFINITY, ub=GRB.INFINITY)
+        l = model.addVars(1, 1, lb=-1e6, ub=1e6)  # Bounded instead of infinity
         
     for strike in sorted(strikes):
         if opt_l == 1:
@@ -101,10 +129,14 @@ def mechanism_solver_single(market: Market, offset : bool = True):
             GRB.MAXIMIZE
         )
     
-    # Solve the model
-    model.optimize()
+    # Solve the model with error handling
+    try:
+        model.optimize()
+    except Exception as e:
+        print(f"Optimization error: {e}")
+        return None, None
     
-    # Print the decision variables that are non-zero with their index in the pandas dataframe and their value
+    # Handle different model statuses
     if model.status == GRB.OPTIMAL:
         profit = model.objVal
         isMatch = any(delta[0,i].x > 0 for i in range(len(delta))) or any(gamma[0,j].x > 0 for j in range(len(gamma)))
@@ -130,10 +162,16 @@ def mechanism_solver_single(market: Market, offset : bool = True):
                 else:
                     # It's a NumPy array
                     print(f"Sell to buy_book[{j}] - Amount: {gamma[0,j].x:.4f}, Price: {opt_buy_book[j, premium]}")
+        
         print(f"Total profit: {profit:.4f}")
         return isMatch, profit  # Match format from training.py
+    elif model.status == GRB.NUMERIC:
+        print("Numerical issues detected. Try adjusting model parameters.")
+        # You could try to recover by adjusting parameters and re-optimizing
+        # For now, return None to indicate failure
+        return None, None
     else:
-        print('model status is not optimal', model.status)
+        print('Model status is not optimal:', model.status)
         return None, None
 def mechanism_solver_combo(opt_buy_book : pd.DataFrame, opt_sell_book : pd.DataFrame, s1='S1', s2='S2', offset : bool = True, debug=0):
 	'''
@@ -185,7 +223,7 @@ def mechanism_solver_combo(opt_buy_book : pd.DataFrame, opt_sell_book : pd.DataF
 		if buy_liquidity is not None:
 			for i in range(num_buy):
 				if np.isinf(buy_liquidity[i]):
-					gamma[0, i].ub = GRB.INFINITY
+					gamma[0, i].ub = 1000#GRB.INFINITY
 				else:
 					gamma[0, i].ub = buy_liquidity[i]
 		else:
@@ -196,7 +234,7 @@ def mechanism_solver_combo(opt_buy_book : pd.DataFrame, opt_sell_book : pd.DataF
 		if sell_liquidity is not None:
 			for i in range(num_sell):
 				if np.isinf(sell_liquidity[i]):
-					delta[0, i].ub = GRB.INFINITY
+					delta[0, i].ub = 1000#GRB.INFINITY
 				else:
 					delta[0, i].ub = sell_liquidity[i]
 		else:
