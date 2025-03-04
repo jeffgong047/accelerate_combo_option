@@ -40,17 +40,17 @@ def mechanism_solver_single(market: Market, offset : bool = True):
     # Create optimization model
     model = Model("match")
     model.setParam('OutputFlag', False)
-    
+
     # Decision variables - set upper bounds based on liquidity
     gamma = model.addVars(1, len(opt_buy_book), lb=0)  # sell to buys
     delta = model.addVars(1, len(opt_sell_book), lb=0)  # buy from asks
     liquidity_list = []
+    
     # Set upper bounds based on liquidity
     for i in range(len(opt_buy_book)):
         assert 'liquidity' in opt_buy.columns, "liquidity column not found in opt_buy"
         liquidity = opt_buy.iloc[i]['liquidity']
         liquidity_list.append(liquidity)
-        print('liquidity', liquidity)
         if np.isinf(liquidity):
             gamma[0, i].ub = 1000#GRB.INFINITY
         else:
@@ -59,11 +59,11 @@ def mechanism_solver_single(market: Market, offset : bool = True):
         assert 'liquidity' in opt_sell.columns, "liquidity column not found in opt_sell"
         liquidity = opt_sell.iloc[i]['liquidity']
         liquidity_list.append(liquidity)
-        print('liquidity', liquidity)
         if np.isinf(liquidity):
             delta[0, i].ub =  1000#GRB.INFINITY
         else:
             delta[0, i].ub = liquidity
+
     # Add arbitrage constraints for each strike price
     print('liquidity_list', liquidity_list)
     if opt_l == 1:
@@ -73,7 +73,7 @@ def mechanism_solver_single(market: Market, offset : bool = True):
         if opt_l == 1:
             model.addLConstr(
                 sum(gamma[0,i]*max(opt_buy_book[i, call_or_put]*(strike-opt_buy_book[i, strike_price]), 0) for i in range(option_num_buy) ) - 
-                sum(delta[0,i]*max(opt_sell_book[i, call_or_put]*(strike-opt_sell_book[i, strike_price]), 0) for i in range(option_num_sell)	) - 
+                sum(delta[0,i]*max(opt_sell_book[i, call_or_put]*(strike-opt_sell_book[i, strike_price]), 0) for i in range(option_num_sell)) - 
                 l[0,0], GRB.LESS_EQUAL, 0
             )
         else:
@@ -87,7 +87,7 @@ def mechanism_solver_single(market: Market, offset : bool = True):
     if opt_l == 1:
         model.setObjective(
             sum(gamma[0,i]*opt_buy_book[i, premium] for i in range(option_num_buy) ) - 
-            sum(delta[0,i]*opt_sell_book[i, premium] for i in range(option_num_sell)),
+            sum(delta[0,i]*opt_sell_book[i, premium] for i in range(option_num_sell)) - l[0,0],
             GRB.MAXIMIZE
         )
     else:
@@ -126,14 +126,13 @@ def mechanism_solver_single(market: Market, offset : bool = True):
                 else:
                     # It's a NumPy array
                     print(f"Sell to buy_book[{j}] - Amount: {gamma[0,j].x:.4f}, Price: {opt_buy_book[j, premium]}")
-        
-        print(f"Total profit: {profit:.4f}")
+        print(l[0,0].x)
         breakpoint()
+        print(f"Total profit: {profit:.4f}")
         return isMatch, profit  # Match format from training.py
     else:
         print('model status is not optimal', model.status)
-        breakpoint()
-
+        return None, None
 def mechanism_solver_combo(opt_buy_book : pd.DataFrame, opt_sell_book : pd.DataFrame, s1='S1', s2='S2', offset : bool = True, debug=0):
 	'''
 	opt_buy_book: pandas dataframe contains bid orders; specify whether code requires standarizing this variable

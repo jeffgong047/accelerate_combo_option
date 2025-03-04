@@ -39,6 +39,15 @@ class Market:
 
         self.mechanism_solver = mechanism_solver
 
+    def check_match(self, orders: pd.DataFrame, offset : bool = True):
+        '''
+        Check if the orders are matched
+        '''
+        is_match, profit = self.apply_mechanism(orders, offset=offset)
+        print('checking match', is_match, profit)
+        breakpoint()
+        return is_match, profit
+
     def apply_mechanism(self, orders : pd.DataFrame, offset : bool = True):
         '''
         Apply the mechanism solver to the market data
@@ -53,9 +62,8 @@ class Market:
             buy_orders, sell_orders = self.separate_buy_sell(orders)
             return self.mechanism_solver(buy_orders, sell_orders, offset=offset)[2]
         elif self.mechanism_solver == mechanism_solver_single:
-            # Create a temporary Market object with the provided orders
-            temp_market = Market(orders, self.mechanism_solver)
-            return self.mechanism_solver(temp_market, offset=offset)[1]
+            # FIXED VERSION: Call mechanism_solver directly
+            return self.mechanism_solver(self, offset=offset)
         else:
             return self.mechanism_solver(orders)[0]
 
@@ -83,6 +91,9 @@ class Market:
             market_orders = self.get_market_data_order_format()
         else:
             market_orders = orders_in_market.copy()
+        if self.check_match(market_orders)[0]:
+            print(f"The market is matched, cant get price quote")
+            return None
         if option_to_quote.index[0] != 'quote':
             option_to_quote.index = ['quote']
         assert option_to_quote.index[0] not in market_orders.index, "option_to_quote is already in the market"
@@ -173,7 +184,16 @@ class Market:
         '''
         Generate the frontier of options with epsilon price quote and constraints
         '''
-        return self.frontierGeneration(orders, epsilon = True)
+        if orders is None:
+            orders = self.opt_order
+        is_match, profit = self.check_match(orders)
+        print(is_match, profit)
+        breakpoint()
+        if is_match:
+            print(f"The market is matched, cant get epsilon frontiers")
+            return None
+        else:
+            return self.frontierGeneration(orders, epsilon = True)
 
     def update_liquidity(self, liquidity : float):
         '''
@@ -298,27 +318,44 @@ def test_single_security_epsilon_price_quote(data_file : str = None, offset : bo
         with open(data_file, 'rb') as f:
             market_data_list = pickle.load(f)
             print(f"Loaded {len(market_data_list)} markets from {data_file}")
+            market_data_list = market_data_list[:1]
+            # Find a suitable market that doesn't match
+            suitable_market = None
+            for i in range(min(20, len(market_data_list))):
+                market_df = market_data_list[i]
+                
+                # Ensure we have both buy and sell orders
+                buy_orders = market_df[market_df['transaction_type'] == 1]
+                sell_orders = market_df[market_df['transaction_type'] == 0]
+                
+                if len(buy_orders) == 0 or len(sell_orders) == 0:
+                    print(f"Market {i} doesn't have both buy and sell orders. Skipping...")
+                    continue
+                
+                # Create a temporary market to check if it matches
+                temp_market = Market(market_df, mechanism_solver=mechanism_solver_single)
+                
+                # Use a direct call to mechanism_solver to avoid recursion
+                is_match, profit = mechanism_solver_single(temp_market, offset=offset)
+                print(f"Market {i}: is_match={is_match}, profit={profit}")
+                
+                if is_match:
+                    print(f"Market {i} has matching orders. Skipping...")
+                    continue
+                
+                # If we get here, we found a suitable market
+                suitable_market = i
+                break
             
-            # Use the first market for testing
-            market_df = market_data_list[0]
+            if suitable_market is None:
+                raise ValueError("Could not find a market without matching orders")
             
-            # Ensure we have both buy and sell orders
+            # Use the suitable market for testing
+            market_df = market_data_list[suitable_market]
             buy_orders = market_df[market_df['transaction_type'] == 1]
             sell_orders = market_df[market_df['transaction_type'] == 0]
             
-            if len(buy_orders) == 0 or len(sell_orders) == 0:
-                print("Market doesn't have both buy and sell orders. Trying another market...")
-                for i in range(1, min(10, len(market_data_list))):
-                    market_df = market_data_list[i]
-                    buy_orders = market_df[market_df['transaction_type'] == 1]
-                    sell_orders = market_df[market_df['transaction_type'] == 0]
-                    if len(buy_orders) > 0 and len(sell_orders) > 0:
-                        print(f"Found suitable market at index {i}")
-                        break
-                else:
-                    raise ValueError("Could not find a market with both buy and sell orders")
-            
-            print(f"Using market with {len(market_df)} orders ({len(buy_orders)} buy, {len(sell_orders)} sell)")
+            print(f"Using market {suitable_market} with {len(market_df)} orders ({len(buy_orders)} buy, {len(sell_orders)} sell)")
             
             # Create market
             market = Market(market_df, mechanism_solver=mechanism_solver_single)
@@ -355,7 +392,6 @@ def test_single_security_epsilon_price_quote(data_file : str = None, offset : bo
                 formatted_order.index = ['quote']
                 
                 print(f"Selected order to quote: {formatted_order.to_dict('records')[0]}")
-                
                 # Generate frontier
                 frontier_orders = market.epsilon_frontierGeneration()
                 # Test regular priceQuote
