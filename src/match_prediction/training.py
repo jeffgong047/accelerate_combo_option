@@ -3,8 +3,8 @@ import pandas as pd
 import torch
 from sklearn.metrics import precision_score, recall_score, f1_score, confusion_matrix
 import numpy as np
-from utils import Mechanism_solver_single, Market
-from epislon_priceQuote_frontierGeneration import financial_option_market
+from market import Market
+from mechanism_solver import mechanism_solver_single, mechanism_solver_combo
 from combinatorial.synthetic_combo_mip_match import synthetic_combo_match_mip
 from combo_stock_frontier_data_preprocessor import synthetic_combo_frontier_generation
 from copy import deepcopy
@@ -15,6 +15,8 @@ import multiprocessing as mp
 from functools import partial
 from tqdm import tqdm
 from torch import nn
+from utils import profit_with_penalty_reward, profit_minus_liability_reward, get_reward_function
+
 # Training loop without stock targets
 
 
@@ -76,15 +78,42 @@ def validate_model(model, val_loader, frontier_loss_fn):
 
 
 def run_matching_with_timeout(reward_fn, buy_book, sell_book, debug=0):
+    """
+    Run a matching algorithm with timeout handling and robust error handling
+    
+    Args:
+        reward_fn: Function to compute matching (e.g., mechanism_solver_single or mechanism_solver_combo)
+        buy_book: DataFrame of buy orders
+        sell_book: DataFrame of sell orders
+        debug: Debug level
+        
+    Returns:
+        Result from reward_fn or None if error occurs
+    """
     try:
-        return reward_fn(buy_book, sell_book, debug=debug)
+        # Call the reward function with appropriate arguments
+        result = reward_fn(buy_book, sell_book, debug=debug)
+        
+        # Sanity check result
+        if result is None:
+            print("Warning: Reward function returned None")
+            return None
+            
+        # For mechanism_solver_single, ensure return format is consistent
+        if isinstance(result, tuple) and len(result) == 2:
+            isMatch, profit = result
+            # Convert to standard format (_, _, profit, isMatch, _)
+            return None, None, profit, isMatch, None
+            
+        return result
     except Exception as e:
-        print(f"Process error: {str(e)}")
+        print(f"Process error in run_matching_with_timeout: {str(e)}")
         return None
 
 def finetune_policy_head(model, train_loader, optimizer, reward_fn, epochs=4, features=['option1', 'option2','C=Call, P=Put',
                 'Strike Price of the Option Times 1000',
-                'B/A_price','transaction_type'], reward_weight= 1, penalty_weight=100, **args):
+                'B/A_price','transaction_type'], reward_weight=1, penalty_weight=0.1, 
+                reward_type='profit_with_penalty', liability_weight=0.1, **args):
     """
     Finetune the policy head of the model to maximize profit while minimizing the number of selected orders.
     
@@ -97,9 +126,18 @@ def finetune_policy_head(model, train_loader, optimizer, reward_fn, epochs=4, fe
         features: List of feature names
         reward_weight: Weight for the reward loss
         penalty_weight: Weight for the penalty on number of selected orders
+        reward_type: Type of reward function to use ('profit_with_penalty' or 'profit_minus_liability')
+        liability_weight: Weight for the liability penalty (used with 'profit_minus_liability')
     """
     model.train()
     device = next(model.parameters()).device
+    
+    # Get the reward function
+    reward_function = get_reward_function(
+        reward_type=reward_type,
+        penalty_weight=penalty_weight,
+        liability_weight=liability_weight
+    )
     
     # Initialize metrics
     total_loss = 0
@@ -133,9 +171,13 @@ def finetune_policy_head(model, train_loader, optimizer, reward_fn, epochs=4, fe
             predicted_labels = (predicted_probs > 0.5).float()
             
             # Initialize lists to store profits and number of selected orders
+            #profits list contain profit of predicted orders which is a portion of orders as input to the mechanism solver
             profits_list = []
-            num_selected_list = []
+            #total profit list contain total profit of passing all orders in the market as input to the mechanism solver
             total_profit_list = []
+            #policy loss list cross entropy loss between predicted labels and ground truth matched labels 
+            policy_loss_list = [] 
+            num_selected_list = []
             
             # Process each market in the batch
             for i in range(bid_ask_prices.size(0)):
@@ -169,15 +211,75 @@ def finetune_policy_head(model, train_loader, optimizer, reward_fn, epochs=4, fe
                 
                 # Run matching algorithm with timeout
                 try:
-                    _, _, profit, _, _ = run_matching_with_timeout(reward_fn, buy_book, sell_book)
-                    profits_list.append(torch.tensor(profit, device=device, requires_grad=False))
+                    # Calculate profit using traditional approach
+                    run_result = run_matching_with_timeout(reward_fn, buy_book, sell_book)
+                    
+                    if run_result is None:
+                        profits_list.append(torch.tensor(0.0, device=device, requires_grad=False))
+                        total_profit_list.append(torch.tensor(0.0, device=device, requires_grad=False))
+                        continue
+                    
+                    # Handle different return formats
+                    if len(run_result) >= 5:
+                        _, _, profit, isMatch, _ = run_result
+                    elif len(run_result) == 2:
+                        isMatch, profit = run_result
+                    else:
+                        profit = run_result[2] if len(run_result) > 2 else 0
+                        isMatch = profit > 0
+                    
+                    # Calculate reward using the specified reward function
+                    reward = reward_function(buy_book, sell_book, reward_fn, full_df=df)
+                    
+                    # Use the reward instead of raw profit for optimization
+                    profits_list.append(torch.tensor(reward, device=device, requires_grad=False))
                     
                     # Calculate total possible profit (using all orders)
                     all_buy_book = df[df['transaction_type'] == 1]
                     all_sell_book = df[df['transaction_type'] == 0]
-                    _, _, total_profit, _, _ = run_matching_with_timeout(reward_fn, all_buy_book, all_sell_book)
-                    total_profit_list.append(torch.tensor(total_profit, device=device, requires_grad=False))
                     
+                    all_result = run_matching_with_timeout(reward_fn, all_buy_book, all_sell_book)
+                    
+                    if all_result is None:
+                        total_profit_list.append(torch.tensor(0.0, device=device, requires_grad=False))
+                        continue
+                    
+                    # Handle different return formats for all_result
+                    if len(all_result) >= 5:
+                        _, _, total_profit, _, matched_stock_indices = all_result
+                    elif len(all_result) == 2:
+                        isMatch_all, total_profit = all_result
+                        # Create a mock matched_stock_indices if needed
+                        matched_stock_indices = {'buy_book_index': [], 'sell_book_index': []}
+                    else:
+                        total_profit = all_result[2] if len(all_result) > 2 else 0
+                        matched_stock_indices = {'buy_book_index': [], 'sell_book_index': []}
+                    
+                    # Handle case where matched_stock_indices might be None or missing
+                    if not isinstance(matched_stock_indices, dict) or 'buy_book_index' not in matched_stock_indices:
+                        matched_stock_indices = {'buy_book_index': [], 'sell_book_index': []}
+                    
+                    # Extract selected indices
+                    selected_stock_indices = matched_stock_indices.get('buy_book_index', []) + matched_stock_indices.get('sell_book_index', [])
+                    
+                    # Create ground truth tensor
+                    ground_truth = torch.zeros(len(df), device=device)
+                    if selected_stock_indices:  # Only set to 1 if there are indices
+                        try:
+                            ground_truth[selected_stock_indices] = 1
+                        except IndexError:
+                            # If indices are out of bounds, skip setting ground truth
+                            print("Warning: Indices out of bounds when setting ground truth")
+                            
+                    # Use cross entropy loss to compute the policy loss
+                    policy_loss = nn.CrossEntropyLoss()(
+                        policy_pred.view(-1, policy_pred.size(-1)),
+                        ground_truth.view(-1).detach().long()
+                    )
+                    
+                    total_profit_list.append(torch.tensor(total_profit, device=device, requires_grad=False))
+                    policy_loss_list.append(policy_loss)
+
                 except Exception as e:
                     print(f"Error in matching: {e}")
                     profits_list.append(torch.tensor(0.0, device=device, requires_grad=False))
@@ -195,13 +297,14 @@ def finetune_policy_head(model, train_loader, optimizer, reward_fn, epochs=4, fe
             reward_loss = -reward_weight * profits.mean()
             
             # Calculate policy loss (cross entropy between predicted and actual labels)
-            policy_loss = nn.CrossEntropyLoss()(
+            self_distillation_loss = nn.CrossEntropyLoss()(
                 policy_pred.view(-1, policy_pred.size(-1)),
                 predicted_labels.view(-1).detach().long()
             )
             
+            policy_loss = torch.stack(policy_loss_list).mean() if policy_loss_list else torch.tensor(0.0, device=device)
             # Combined loss
-            total_batch_loss = reward_loss + policy_loss
+            total_batch_loss = reward_loss + policy_loss #+ self_distillation_loss
             
             # Print components for debugging
             print(f"Reward loss: {reward_loss.item():.4f}, Policy loss: {policy_loss.item():.4f}")
@@ -251,12 +354,32 @@ def finetune_policy_head(model, train_loader, optimizer, reward_fn, epochs=4, fe
     
     return model
 
-def evaluate_policy_head(model, test_loader, reward_fn, features_order, **args):
-    """Evaluate finetuned policy head on unseen test data"""
+def evaluate_policy_head(model, test_loader, reward_fn, features_order, 
+                   reward_type='profit_with_penalty', penalty_weight=0.1, 
+                   liability_weight=0.1, **args):
+    """
+    Evaluate finetuned policy head on unseen test data
+    
+    Args:
+        model: The model to evaluate
+        test_loader: DataLoader or list for test data
+        reward_fn: Function to compute reward
+        features_order: List of feature names
+        reward_type: Type of reward function to use
+        penalty_weight: Weight for the penalty on number of selected orders
+        liability_weight: Weight for the liability penalty
+    """
     model.eval()
     total_profit = 0
     total_selected = 0
     baseline_profit = 0
+    
+    # Get the reward function
+    reward_function = get_reward_function(
+        reward_type=reward_type,
+        penalty_weight=penalty_weight,
+        liability_weight=liability_weight
+    )
     
     with torch.no_grad():
         # Check if test_loader is a DataLoader or a list
@@ -317,17 +440,42 @@ def evaluate_policy_head(model, test_loader, reward_fn, features_order, **args):
                                 try:
                                     # Run filtered market matching with timeout
                                     async_result = pool.apply_async(run_matching_with_timeout, 
-                                                                  (reward_fn,filtered_buy, filtered_sell))
-                                    _, _, policy_profit, _, _ = async_result.get(timeout=60)
-                                    print('policy_profit',policy_profit)
-                                    # Run all orders matching with timeout
-                                    async_result = pool.apply_async(run_matching_with_timeout, 
-                                                                  (reward_fn,all_buy, all_sell))
-                                    _, _, all_profit, _, _ = async_result.get(timeout=60)
-                                    print('all_profit',all_profit)
-                                    total_profit += policy_profit
-                                    baseline_profit += all_profit
-                                    total_selected += selected_mask[i].sum().item()
+                                                                  (reward_fn, filtered_buy, filtered_sell))
+                                    run_result = async_result.get(timeout=60)
+                                    if run_result is not None:
+                                        # Handle different return formats
+                                        if len(run_result) >= 5:
+                                            _, _, raw_profit, isMatch, _ = run_result
+                                        elif len(run_result) == 2:
+                                            isMatch, raw_profit = run_result
+                                        else:
+                                            raw_profit = run_result[2] if len(run_result) > 2 else 0
+                                            isMatch = raw_profit > 0
+                                        
+                                        # Calculate reward using specified reward function
+                                        policy_profit = reward_function(filtered_buy, filtered_sell, reward_fn, full_df=all_orders_df)
+                                        
+                                        print(f'policy_profit: {policy_profit} (raw: {raw_profit})')
+                                        
+                                        # Run all orders matching with timeout
+                                        async_result = pool.apply_async(run_matching_with_timeout, 
+                                                                      (reward_fn, all_buy, all_sell))
+                                        all_result = async_result.get(timeout=60)
+                                        if all_result is not None:
+                                            # Handle different return formats
+                                            if len(all_result) >= 5:
+                                                _, _, all_profit, all_isMatch, _ = all_result
+                                            elif len(all_result) == 2:
+                                                all_isMatch, all_profit = all_result
+                                            else:
+                                                all_profit = all_result[2] if len(all_result) > 2 else 0
+                                                all_isMatch = all_profit > 0
+                                                
+                                            print('all_profit', all_profit)
+                                            
+                                            total_profit += policy_profit
+                                            baseline_profit += all_profit
+                                            total_selected += selected_mask[i].sum().item()
                                     
                                 except TimeoutError:
                                     print("Matching operation timed out after 60 seconds")
@@ -342,7 +490,7 @@ def evaluate_policy_head(model, test_loader, reward_fn, features_order, **args):
     avg_selected = total_selected / dataset_size if dataset_size > 0 else 0
     profit_ratio = total_profit / baseline_profit if baseline_profit != 0 else 0
     
-    print(f"Policy Evaluation Results:")
+    print(f"Policy Evaluation Results (using {reward_type}):")
     print(f"Total Profit: {total_profit:.2f} | Baseline Profit: {baseline_profit:.2f}")
     print(f"Profit Ratio: {profit_ratio:.2f} | Avg Selected: {avg_selected:.1f}")
     

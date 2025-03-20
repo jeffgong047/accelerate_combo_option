@@ -9,6 +9,7 @@ import argparse
 import random
 import signal
 import re
+from market_types import Market as MarketBase
 
 # Add this at the beginning of your script
 def signal_handler(sig, frame):
@@ -25,8 +26,8 @@ The script provides a class Market for financial_option_market that implements t
 '''
 
 
-class Market:
-    def __init__(self, opt_df: pd.DataFrame, mechanism_solver=None,input_format = None):
+class Market(MarketBase):
+    def __init__(self, opt_df: pd.DataFrame, mechanism_solver=None, input_format=None):
         '''
         The initialization should ensure the object could process all the functions in the class 
         opt_df: pandas dataframe of the market data columns: 

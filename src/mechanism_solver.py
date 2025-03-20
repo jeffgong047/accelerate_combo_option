@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import sys
 import timeit
-from utils import Market 
+from market_types import Market
 from gurobipy import *
 
 def mechanism_solver_single(market: Market, offset : bool = True, max_strike : float = 1e9, large_number : float = 1e9):

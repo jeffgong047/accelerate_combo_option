@@ -1,6 +1,9 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import numpy as np
+import random
+from collections import deque
 
 class TransformerBlock(nn.Module):
     def __init__(self, hidden_size, dropout_rate=0.2):
@@ -95,6 +98,51 @@ class BiAttentionClassifier(nn.Module):
         
         # Otherwise use the main classifier
         return self.fc(x)
+
+class DQNWithEmbeddings(nn.Module):
+    def __init__(self, input_size, hidden_size, num_actions, base_model=None):
+        super(DQNWithEmbeddings, self).__init__()
+        
+        # Base model to extract embeddings
+        self.base_model = base_model
+        
+        # Determine input dimension based on whether we're using a base model
+        self.input_dim = hidden_size if base_model else input_size
+        
+        # Q-Network layers
+        self.q_network = nn.Sequential(
+            nn.Linear(self.input_dim, hidden_size),
+            nn.ReLU(),
+            nn.Linear(hidden_size, hidden_size),
+            nn.ReLU(),
+            nn.Linear(hidden_size, num_actions)
+        )
+        
+    def forward(self, x, state=None):
+        """
+        Forward pass through the network
+        Args:
+            x: Input tensor representing market data
+            state: Current state represented as a binary vector (0/1 for each order)
+                   If None, will be derived from market data
+        """
+        # Get embeddings from base model if available
+        if self.base_model:
+            with torch.no_grad():
+                embeddings = self.base_model.get_embedding(x)
+            
+            # If we have a state vector, concatenate with embeddings
+            if state is not None:
+                # Reshape state to match embeddings
+                state_tensor = state.unsqueeze(-1).expand_as(embeddings)
+                # Combine state information with embeddings
+                combined = torch.cat([embeddings, state_tensor], dim=-1)
+                return self.q_network(combined)
+            else:
+                return self.q_network(embeddings)
+        else:
+            # Use input directly if no base model
+            return self.q_network(x)
 
 
 

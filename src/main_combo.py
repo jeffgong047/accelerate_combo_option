@@ -10,10 +10,13 @@ from match_prediction import train_model, validate_model, test_model , BiAttenti
 from combinatorial.synthetic_combo_mip_match import synthetic_combo_match_mip
 import numpy as np
 import pickle
-from utils import collate_fn
+from utils import collate_fn, profit_with_penalty_reward, profit_minus_liability_reward, get_reward_function
 import os 
 from tqdm import tqdm 
 import itertools
+from match_prediction.reinforcement_learning import train_dqn_for_market_matching, dqn_evaluate_market
+import time
+
 def parse_arguments():
     parser = argparse.ArgumentParser(description="Train Option Order DNN with custom hyperparameters")
     parser.add_argument('--input_size', type=int, default=6, help='Number of input features')
@@ -28,6 +31,13 @@ def parse_arguments():
     parser.add_argument('--market_size', type=int, default=50, help='Market size')
     parser.add_argument('--offset', type=int, default=0, help='Offset for the model')
     parser.add_argument('--tasks', type=str, nargs='+', default=['next_order_frontier_prediction'], help='List of tasks to perform (space-separated)')# 'batch_profit_evaluation', 'next_order_frontier_prediction','price_quote_evaluation'
+    parser.add_argument('--test_dqn', action='store_true', help='Whether to test DQN approach')
+    parser.add_argument('--dqn_episodes', type=int, default=20, help='Number of episodes for DQN training')
+    parser.add_argument('--reward_type', type=str, default='profit_with_penalty', 
+                      choices=['profit_with_penalty', 'profit_minus_liability'], 
+                      help='Type of reward function to use')
+    parser.add_argument('--penalty_weight', type=float, default=0.1, help='Weight for selection penalty')
+    parser.add_argument('--liability_weight', type=float, default=0.1, help='Weight for liability penalty')
     args = parser.parse_args()
     print("Parsed arguments:", vars(args))
     return args
@@ -294,6 +304,9 @@ def main():
         optimizer, 
         reward_fn=synthetic_combo_match_mip, 
         features=features_order,  # Make sure to use features=features_order
+        reward_type=args.reward_type,
+        penalty_weight=args.penalty_weight,
+        liability_weight=args.liability_weight,
         **vars(args)
     )
 
@@ -339,7 +352,158 @@ def main():
         print(f"Model input_size: {args.input_size}")
         break
 
+    if args.test_dqn:
+        dqn_metrics, baseline_metrics, dqn_agent = test_dqn_approach(
+            model=model,
+            train_loader=noisy_loader,  # Use the same loader as for finetuning
+            test_loader=eval_noisy_data,  # Use the same test data
+            reward_fn=synthetic_combo_match_mip,
+            features_order=features_order,
+            **vars(args)
+        )
+        
+        # Save the trained DQN agent for later use
+        torch.save({
+            'dqn_state_dict': dqn_agent.q_network.state_dict(),
+            'target_state_dict': dqn_agent.target_network.state_dict(),
+            'metrics': dqn_metrics,
+            'reward_type': args.reward_type
+        }, model_path.replace('.pt', f'_dqn_{args.reward_type}.pt'))
 
+def test_dqn_approach(model, train_loader, test_loader, reward_fn, features_order, **args):
+    """
+    Test the DQN approach for market order matching and compare with the original approach
+    
+    Args:
+        model: Pretrained model
+        train_loader: DataLoader for training data
+        test_loader: DataLoader for test data
+        reward_fn: Function for matching (e.g., synthetic_combo_match_mip)
+        features_order: Feature names for DataFrame conversion
+        **args: Additional arguments
+    """
+    from match_prediction.reinforcement_learning import train_dqn_for_market_matching, dqn_evaluate_market
+    import time
+    
+    print("="*80)
+    print("Testing DQN Approach for Market Order Matching")
+    print("="*80)
+    
+    # Store the original model weights to restore later
+    original_weights = {name: param.clone() for name, param in model.state_dict().items()}
+
+    # Get reward type from args
+    reward_type = args.get('reward_type', 'profit_with_penalty')
+    print(f"Using reward function: {reward_type}")
+    
+    # Additional reward function parameters
+    reward_kwargs = {}
+    if reward_type == 'profit_with_penalty':
+        reward_kwargs['penalty_weight'] = args.get('penalty_weight', 0.1)
+    elif reward_type == 'profit_minus_liability':
+        reward_kwargs['liability_weight'] = args.get('liability_weight', 0.1)
+    
+    # Initialize DQN training parameters
+    dqn_params = {
+        'num_episodes': args.get('dqn_episodes', 20), 
+        'batch_size': args.get('batch_size', 32),
+        'target_update': 10,
+        'hidden_size': args.get('hidden_size', 64),
+        'lr': args.get('learning_rate', 1e-4) * 0.1,  # Lower learning rate for DQN
+        'gamma': 0.99,
+        'epsilon_start': 1.0,
+        'epsilon_end': 0.01,
+        'epsilon_decay': 0.95,
+        'reward_type': reward_type,
+        **reward_kwargs
+    }
+    
+    # Start timing
+    start_time = time.time()
+    
+    # Train DQN agent
+    print("Training DQN agent...")
+    agent = train_dqn_for_market_matching(
+        model=model,
+        train_loader=train_loader,
+        reward_fn=reward_fn,
+        features=features_order,
+        **dqn_params
+    )
+    
+    # Calculate training time
+    train_time = time.time() - start_time
+    print(f"DQN training completed in {train_time:.2f} seconds")
+    
+    # Start timing for evaluation
+    start_time = time.time()
+    
+    # Evaluate DQN agent
+    print("\nEvaluating DQN agent...")
+    dqn_metrics = dqn_evaluate_market(
+        model=model,
+        agent=agent,
+        test_loader=test_loader,
+        reward_fn=reward_fn,
+        features=features_order
+    )
+    
+    # Calculate evaluation time
+    eval_time = time.time() - start_time
+    print(f"DQN evaluation completed in {eval_time:.2f} seconds")
+    
+    # Restore original model weights
+    model.load_state_dict(original_weights)
+    
+    # Start timing for baseline approach
+    start_time = time.time()
+    
+    # Test with original approach
+    print("\nEvaluating baseline approach...")
+    from match_prediction import evaluate_policy_head
+    baseline_metrics = evaluate_policy_head(
+        model=model,
+        test_loader=test_loader,
+        reward_fn=reward_fn,
+        features_order=features_order,
+        **args
+    )
+    
+    # Calculate baseline evaluation time
+    baseline_time = time.time() - start_time
+    print(f"Baseline evaluation completed in {baseline_time:.2f} seconds")
+    
+    # Compare metrics
+    print("\n" + "="*80)
+    print("Comparison of DQN vs Baseline Approach")
+    print("="*80)
+    print(f"{'Metric':<20} {'DQN':<15} {'Baseline':<15} {'Improvement':<15}")
+    print("-"*80)
+    
+    # Convert baseline metrics to match DQN metrics format
+    if isinstance(baseline_metrics, tuple):
+        baseline_avg_profit = baseline_metrics[0]
+        baseline_match_rate = baseline_metrics[1] 
+        baseline_selection_ratio = baseline_metrics[2]
+    else:
+        baseline_avg_profit = baseline_metrics.get('avg_profit', 0)
+        baseline_match_rate = baseline_metrics.get('match_rate', 0)
+        baseline_selection_ratio = baseline_metrics.get('selection_ratio', 0)
+    
+    # Print comparison metrics
+    profit_improvement = (dqn_metrics['avg_profit'] / baseline_avg_profit - 1) * 100 if baseline_avg_profit > 0 else float('inf')
+    print(f"{'Avg Profit':<20} {dqn_metrics['avg_profit']:<15.4f} {baseline_avg_profit:<15.4f} {profit_improvement:<15.2f}%")
+    
+    match_improvement = (dqn_metrics['match_rate'] / baseline_match_rate - 1) * 100 if baseline_match_rate > 0 else float('inf')
+    print(f"{'Match Rate':<20} {dqn_metrics['match_rate']:<15.4f} {baseline_match_rate:<15.4f} {match_improvement:<15.2f}%")
+    
+    selection_diff = (dqn_metrics['selection_ratio'] - baseline_selection_ratio) * 100
+    print(f"{'Selection Ratio':<20} {dqn_metrics['selection_ratio']:<15.4f} {baseline_selection_ratio:<15.4f} {selection_diff:<15.2f}%")
+    
+    time_diff = (baseline_time / eval_time - 1) * 100 if eval_time > 0 else float('inf')
+    print(f"{'Eval Time (s)':<20} {eval_time:<15.2f} {baseline_time:<15.2f} {time_diff:<15.2f}%")
+    
+    return dqn_metrics, baseline_metrics, agent
 
 if __name__ == '__main__':
     main()

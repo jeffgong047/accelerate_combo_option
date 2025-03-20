@@ -132,7 +132,7 @@ def synthetic_combo_match_mip(opt_buy_book : pd.DataFrame, opt_sell_book : pd.Da
 	if model is None:
 		return time, 0, 0
 	isMatch = any(delta[0,i].x > 0 for i in range(len(delta))) or any(gamma[0,j].x > 0 for j in range(len(gamma)))
-	matched_stock = {'buy_book_index': None, 'sell_book_index': None}
-	matched_stock['buy_book_index'] = [buy_book_index[i] for i in range(len(gamma)) if gamma[0, i].x > 0]
-	matched_stock['sell_book_index'] = [sell_book_index[i] for i in range(len(delta)) if delta[0, i].x > 0]
-	return time, model.NumConstrs, model.objVal, isMatch, matched_stock
+	matched_stock_indices = {'buy_book_index': None, 'sell_book_index': None}
+	matched_stock_indices['buy_book_index'] = [buy_book_index[i] for i in range(len(gamma)) if gamma[0, i].x > 0]
+	matched_stock_indices['sell_book_index'] = [sell_book_index[i] for i in range(len(delta)) if delta[0, i].x > 0]
+	return time, model.NumConstrs, model.objVal, isMatch, matched_stock_indices
