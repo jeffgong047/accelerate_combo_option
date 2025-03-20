@@ -180,110 +180,68 @@ def finetune_policy_head(model, train_loader, optimizer, reward_fn, epochs=4, fe
             num_selected_list = []
             
             # Process each market in the batch
-            for i in range(bid_ask_prices.size(0)):
-                market_data = bid_ask_prices[i]
-                selected = predicted_labels[i]
-                
-                # Count non-padding elements (actual orders)
-                mask = (market_data.sum(dim=1) != 0).float()
-                selected = selected * mask  # Zero out selections for padding
-                
-                # Count number of selected orders
-                num_selected = selected.sum().item()
-                num_selected_list.append(num_selected)
-                
-                # Skip if no orders are selected
-                if num_selected == 0:
-                    profits_list.append(torch.tensor(0.0, device=device, requires_grad=False))
-                    total_profit_list.append(torch.tensor(0.0, device=device, requires_grad=False))
-                    continue
-                
-                # Create dataframes for buy and sell books
-                df = pd.DataFrame(market_data.detach().cpu().numpy(), columns=features)
-                df['selected'] = selected.detach().cpu().numpy()
-                
-                # Filter selected orders
-                selected_df = df[df['selected'] == 1]
-                
-                # Separate buy and sell books
-                buy_book = selected_df[selected_df['transaction_type'] == 1]
-                sell_book = selected_df[selected_df['transaction_type'] == 0]
-                
-                # Run matching algorithm with timeout
-                try:
-                    # Calculate profit using traditional approach
-                    run_result = run_matching_with_timeout(reward_fn, buy_book, sell_book)
+            with pool_context(processes=1) as pool:
+                for i in range(bid_ask_prices.size(0)):
+                    market_data = bid_ask_prices[i]
+                    selected = predicted_labels[i]
                     
-                    if run_result is None:
+                    # Count non-padding elements (actual orders)
+                    mask = (market_data.sum(dim=1) != 0).float()
+                    selected = selected * mask  # Zero out selections for padding
+                    
+                    # Count number of selected orders
+                    num_selected = selected.sum().item()
+                    num_selected_list.append(num_selected)
+                    
+                    # Skip if no orders are selected
+                    if num_selected == 0:
                         profits_list.append(torch.tensor(0.0, device=device, requires_grad=False))
                         total_profit_list.append(torch.tensor(0.0, device=device, requires_grad=False))
                         continue
                     
-                    # Handle different return formats
-                    if len(run_result) >= 5:
-                        _, _, profit, isMatch, _ = run_result
-                    elif len(run_result) == 2:
-                        isMatch, profit = run_result
-                    else:
-                        profit = run_result[2] if len(run_result) > 2 else 0
-                        isMatch = profit > 0
+                    # Create dataframes for buy and sell books
+                    df = pd.DataFrame(market_data.detach().cpu().numpy(), columns=features)
+                    df['selected'] = selected.detach().cpu().numpy()
                     
-                    # Calculate reward using the specified reward function
-                    reward = reward_function(buy_book, sell_book, reward_fn, full_df=df)
+                    # Filter selected orders
+                    selected_df = df[df['selected'] == 1]
                     
-                    # Use the reward instead of raw profit for optimization
-                    profits_list.append(torch.tensor(reward, device=device, requires_grad=False))
+                    # Separate buy and sell books
+                    buy_book_predicted_frontier = selected_df[selected_df['transaction_type'] == 1]
+                    sell_book_predicted_frontier = selected_df[selected_df['transaction_type'] == 0]
                     
-                    # Calculate total possible profit (using all orders)
-                    all_buy_book = df[df['transaction_type'] == 1]
-                    all_sell_book = df[df['transaction_type'] == 0]
-                    
-                    all_result = run_matching_with_timeout(reward_fn, all_buy_book, all_sell_book)
-                    
-                    if all_result is None:
-                        total_profit_list.append(torch.tensor(0.0, device=device, requires_grad=False))
-                        continue
-                    
-                    # Handle different return formats for all_result
-                    if len(all_result) >= 5:
-                        _, _, total_profit, _, matched_stock_indices = all_result
-                    elif len(all_result) == 2:
-                        isMatch_all, total_profit = all_result
-                        # Create a mock matched_stock_indices if needed
-                        matched_stock_indices = {'buy_book_index': [], 'sell_book_index': []}
-                    else:
-                        total_profit = all_result[2] if len(all_result) > 2 else 0
-                        matched_stock_indices = {'buy_book_index': [], 'sell_book_index': []}
-                    
-                    # Handle case where matched_stock_indices might be None or missing
-                    if not isinstance(matched_stock_indices, dict) or 'buy_book_index' not in matched_stock_indices:
-                        matched_stock_indices = {'buy_book_index': [], 'sell_book_index': []}
-                    
-                    # Extract selected indices
-                    selected_stock_indices = matched_stock_indices.get('buy_book_index', []) + matched_stock_indices.get('sell_book_index', [])
-                    
-                    # Create ground truth tensor
-                    ground_truth = torch.zeros(len(df), device=device)
-                    if selected_stock_indices:  # Only set to 1 if there are indices
-                        try:
-                            ground_truth[selected_stock_indices] = 1
-                        except IndexError:
-                            # If indices are out of bounds, skip setting ground truth
-                            print("Warning: Indices out of bounds when setting ground truth")
-                            
-                    # Use cross entropy loss to compute the policy loss
-                    policy_loss = nn.CrossEntropyLoss()(
-                        policy_pred.view(-1, policy_pred.size(-1)),
-                        ground_truth.view(-1).detach().long()
-                    )
-                    
-                    total_profit_list.append(torch.tensor(total_profit, device=device, requires_grad=False))
-                    policy_loss_list.append(policy_loss)
+                    # Run matching algorithm with timeout
+                    try:
+                        # Calculate profit using traditional approach
+                        async_result_predicted_frontier = pool.apply_async(run_matching_with_timeout, (reward_fn, buy_book_predicted_frontier, sell_book_predicted_frontier))
+                        _, _, reward_predicted_frontier, _, matched_stock_indices_predicted_frontier = async_result_predicted_frontier.get(timeout=20)
+                        # Calculate reward using the specified reward function
+                        # reward = reward_function(buy_book, sell_book, reward_fn, full_df=df)
+                        
+                        # Use the reward instead of raw profit for optimization
+                        profits_list.append(torch.tensor(reward_predicted_frontier, device=device, requires_grad=False))
+                        # Calculate total possible profit (using all orders)
+                        all_buy_book = df[df['transaction_type'] == 1]
+                        all_sell_book = df[df['transaction_type'] == 0]
+                        async_result_all_orders = pool.apply_async(run_matching_with_timeout, (reward_fn, all_buy_book, all_sell_book))
+                        _, _, reward_all_orders, _, matched_stock_indices_all_orders = async_result_all_orders.get(timeout=20)
+                        selected_stock_indices_predicted_frontier = matched_stock_indices_predicted_frontier['buy_book_index'] + matched_stock_indices_predicted_frontier['sell_book_index']
+                        ground_truth = torch.zeros(len(df), device=device)
+                        ground_truth[selected_stock_indices_predicted_frontier] = 1
+                        policy_pred_this_market = policy_pred[i].squeeze(0)
+                        #use cross entropy loss to compute the policy loss
+                        policy_loss = nn.CrossEntropyLoss()(
+                            policy_pred_this_market.view(-1, policy_pred_this_market.size(-1)),
+                            ground_truth.view(-1).detach().long()
+                        )
+                        total_profit_list.append(torch.tensor(reward_all_orders, device=device, requires_grad=False))
+                        policy_loss_list.append(policy_loss)
+                        print(f'policy_loss {policy_loss}, total_profit {reward_all_orders}, profit {reward_predicted_frontier}')
 
-                except Exception as e:
-                    print(f"Error in matching: {e}")
-                    profits_list.append(torch.tensor(0.0, device=device, requires_grad=False))
-                    total_profit_list.append(torch.tensor(0.0, device=device, requires_grad=False))
+                    except Exception as e:
+                        print(f"Error in matching: {e}")
+                        profits_list.append(torch.tensor(0.0, device=device, requires_grad=False))
+                        total_profit_list.append(torch.tensor(0.0, device=device, requires_grad=False))
             
             # Convert lists to tensors
             profits = torch.stack(profits_list)
@@ -443,15 +401,7 @@ def evaluate_policy_head(model, test_loader, reward_fn, features_order,
                                                                   (reward_fn, filtered_buy, filtered_sell))
                                     run_result = async_result.get(timeout=60)
                                     if run_result is not None:
-                                        # Handle different return formats
-                                        if len(run_result) >= 5:
-                                            _, _, raw_profit, isMatch, _ = run_result
-                                        elif len(run_result) == 2:
-                                            isMatch, raw_profit = run_result
-                                        else:
-                                            raw_profit = run_result[2] if len(run_result) > 2 else 0
-                                            isMatch = raw_profit > 0
-                                        
+                                        _, _, raw_profit, isMatch, _ = run_result
                                         # Calculate reward using specified reward function
                                         policy_profit = reward_function(filtered_buy, filtered_sell, reward_fn, full_df=all_orders_df)
                                         
@@ -461,16 +411,19 @@ def evaluate_policy_head(model, test_loader, reward_fn, features_order,
                                         async_result = pool.apply_async(run_matching_with_timeout, 
                                                                       (reward_fn, all_buy, all_sell))
                                         all_result = async_result.get(timeout=60)
+
+#                                     _, _, policy_profit, _, _ = async_result.get(timeout=60)
+#                                     print('policy_profit',policy_profit)
+#                                     # Run all orders matching with timeout
+#                                     async_result = pool.apply_async(run_matching_with_timeout, 
+#                                                                   (reward_fn,all_buy, all_sell))
+#                                     _, _, all_profit, _, _ = async_result.get(timeout=60)
+#                                     print('all_profit',all_profit)
+#                                     total_profit += policy_profit
+#                                     baseline_profit += all_profit
+#                                     total_selected += selected_mask[i].sum().item()
                                         if all_result is not None:
-                                            # Handle different return formats
-                                            if len(all_result) >= 5:
-                                                _, _, all_profit, all_isMatch, _ = all_result
-                                            elif len(all_result) == 2:
-                                                all_isMatch, all_profit = all_result
-                                            else:
-                                                all_profit = all_result[2] if len(all_result) > 2 else 0
-                                                all_isMatch = all_profit > 0
-                                                
+                                            _, _, all_profit, _, _ = all_result
                                             print('all_profit', all_profit)
                                             
                                             total_profit += policy_profit

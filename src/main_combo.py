@@ -296,7 +296,8 @@ def main():
     eval_noisy_data = list(zip(eval_noisy_features, eval_noisy_labels))
 
 
-
+    breakpoint()
+    print(f'reward_type: {args.reward_type}, penalty_weight: {args.penalty_weight}, liability_weight: {args.liability_weight}')
     # Use the noisy_loader for finetuning instead of train_loader
     fintuned_model = finetune_policy_head(
         model, 
@@ -304,9 +305,6 @@ def main():
         optimizer, 
         reward_fn=synthetic_combo_match_mip, 
         features=features_order,  # Make sure to use features=features_order
-        reward_type=args.reward_type,
-        penalty_weight=args.penalty_weight,
-        liability_weight=args.liability_weight,
         **vars(args)
     )
 

@@ -332,7 +332,50 @@ def test_combo_security_epsilon_price_quote():
 
                                 # Verify that results are similar
                                 assert abs(profit_liquidity_1 - profit_liquidity_infinity) < 1e-6, "Epsilon price quote should match price quote with explicit infinite liquidity"
+                                # 
                                 print("✓ Epsilon price quote matches price quote    with explicit infinite liquidity")
+                                # similar to @test_single_security_epsilon_price_quote, i want to test whether epsilon_priceQuote with all orders in the market is the same as priceQuote with frontiers in the market
+                                orders_with_frontier_labels = market.epsilon_frontierGeneration()
+                                if orders_with_frontier_labels is None:
+                                    raise Exception("Failed to generate frontier")
+                                    continue
+                                    
+                                frontier_orders = orders_with_frontier_labels[orders_with_frontier_labels['belongs_to_frontier'] == 1]
+                                print(f"Found {len(frontier_orders)} frontier orders")
+                                
+                                # Test regular priceQuote and epsilon priceQuote
+                                try:
+                                    # Regular price quote with all orders
+                                    regular_all_orders_quote = market.priceQuote(order_to_quote, orders_with_frontier_labels)
+                                    print(f"Regular price quote (all orders): {regular_all_orders_quote}")
+                                    
+                                    # Regular price quote with frontier orders
+                                    regular_frontier_orders_quote = market.priceQuote(order_to_quote, frontier_orders)
+                                    print(f"Regular price quote (frontier orders): {regular_frontier_orders_quote}")
+                                    
+                                    # Epsilon price quote with all orders
+                                    epsilon_all_orders_quote = market.epsilon_priceQuote(order_to_quote, orders_with_frontier_labels)
+                                    print(f"Epsilon price quote (all orders): {epsilon_all_orders_quote}")
+                                    
+                                    # Epsilon price quote with frontier orders
+                                    epsilon_frontier_orders_quote = market.epsilon_priceQuote(order_to_quote, frontier_orders)
+                                    print(f"Epsilon price quote (frontier orders): {epsilon_frontier_orders_quote}")
+                                    
+                                    # Check assertions
+                                    if regular_all_orders_quote is not None and epsilon_all_orders_quote is not None:
+                                        assert abs(regular_all_orders_quote - epsilon_all_orders_quote) < 1e-6, "Epsilon price quote with all orders should be the same as regular price quote with all orders"
+                                        print("✓ Assertion passed: regular_all_orders_quote ≈ epsilon_all_orders_quote")
+                                    
+                                    if regular_frontier_orders_quote is not None and epsilon_frontier_orders_quote is not None:
+                                        assert abs(regular_frontier_orders_quote - epsilon_frontier_orders_quote) < 1e-6, "Epsilon price quote with frontier orders should be the same as regular price quote with frontier orders"
+                                        print("✓ Assertion passed: regular_frontier_orders_quote ≈ epsilon_frontier_orders_quote")
+                                except Exception as e:
+                                    print(f"Error during price quoting: {e}")
+                                    import traceback
+                                    traceback.print_exc()
+                                    
+
+
                                 breakpoint()
                                 return True
                             except Exception as e:
