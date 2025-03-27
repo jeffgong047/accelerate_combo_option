@@ -1,0 +1,1162 @@
+Generating frontier for markets:   0%|                                                                                  | 0/19 [00:00<?, ?it/s]Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Generating frontier for markets:  11%|███████▊                                                                  | 2/19 [00:00<00:00, 19.94it/s]Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Generating frontier for markets:  26%|███████████████████▍                                                      | 5/19 [00:00<00:00, 22.40it/s]Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Generating frontier for markets:  47%|███████████████████████████████████                                       | 9/19 [00:00<00:00, 28.44it/s]Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Generating frontier for markets:  68%|█████████████████████████████████████████████████▉                       | 13/19 [00:00<00:00, 32.48it/s]Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Generating frontier for markets:  95%|█████████████████████████████████████████████████████████████████████▏   | 18/19 [00:00<00:00, 35.63it/s]Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Generating frontier for markets: 100%|█████████████████████████████████████████████████████████████████████████| 19/19 [00:00<00:00, 32.32it/s]
+Generating frontier for markets:   0%|                                                                                  | 0/19 [00:00<?, ?it/s]Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Generating frontier for markets:  16%|███████████▋                                                              | 3/19 [00:00<00:00, 28.42it/s]Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Generating frontier for markets:  32%|███████████████████████▎                                                  | 6/19 [00:00<00:00, 26.20it/s]Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Generating frontier for markets:  47%|███████████████████████████████████                                       | 9/19 [00:00<00:00, 25.82it/s]Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Generating frontier for markets:  63%|██████████████████████████████████████████████                           | 12/19 [00:00<00:00, 25.65it/s]Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Generating frontier for markets:  79%|█████████████████████████████████████████████████████████▋               | 15/19 [00:00<00:00, 26.29it/s]Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Generating frontier for markets:  95%|█████████████████████████████████████████████████████████████████████▏   | 18/19 [00:00<00:00, 26.17it/s]Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Generating frontier for markets: 100%|█████████████████████████████████████████████████████████████████████████| 19/19 [00:00<00:00, 25.90it/s]
+There are 27 buy orders and 23 sell orders
+#####Generating market 1 with size 50 and noise 0.015625#####
+Starting computation for iteration 1
+Error in mechanism solver: Mechanism solver failed
+Error processing market 1: Mechanism solver failed
+There are 31 buy orders and 19 sell orders
+#####Generating market 2 with size 50 and noise 0.015625#####
+Starting computation for iteration 2
+Error in mechanism solver: Mechanism solver failed
+Error processing market 2: Mechanism solver failed
+There are 31 buy orders and 19 sell orders
+#####Generating market 3 with size 50 and noise 0.015625#####
+Starting computation for iteration 3
+Error in mechanism solver: Mechanism solver failed
+Error processing market 3: Mechanism solver failed
+There are 32 buy orders and 18 sell orders
+#####Generating market 4 with size 50 and noise 0.015625#####
+Starting computation for iteration 4
+Error in mechanism solver: Mechanism solver failed
+Error processing market 4: Mechanism solver failed
+There are 29 buy orders and 21 sell orders
+#####Generating market 5 with size 50 and noise 0.015625#####
+Starting computation for iteration 5
+Error in mechanism solver: Mechanism solver failed
+Error processing market 5: Mechanism solver failed
+There are 29 buy orders and 21 sell orders
+#####Generating market 6 with size 50 and noise 0.015625#####
+Starting computation for iteration 6
+Error in mechanism solver: Mechanism solver failed
+Error processing market 6: Mechanism solver failed
+There are 26 buy orders and 24 sell orders
+#####Generating market 7 with size 50 and noise 0.015625#####
+Starting computation for iteration 7
+Error in mechanism solver: Mechanism solver failed
+Error processing market 7: Mechanism solver failed
+There are 32 buy orders and 18 sell orders
+#####Generating market 8 with size 50 and noise 0.015625#####
+Starting computation for iteration 8
+Error in mechanism solver: Mechanism solver failed
+Error processing market 8: Mechanism solver failed
+There are 32 buy orders and 18 sell orders
+#####Generating market 9 with size 50 and noise 0.015625#####
+Starting computation for iteration 9
+Error in mechanism solver: Mechanism solver failed
+Error processing market 9: Mechanism solver failed
+There are 29 buy orders and 21 sell orders
+#####Generating market 10 with size 50 and noise 0.015625#####
+Starting computation for iteration 10
+Error in mechanism solver: Mechanism solver failed
+Error processing market 10: Mechanism solver failed
+There are 33 buy orders and 17 sell orders
+#####Generating market 11 with size 50 and noise 0.015625#####
+Starting computation for iteration 11
+Error in mechanism solver: Mechanism solver failed
+Error processing market 11: Mechanism solver failed
+There are 29 buy orders and 21 sell orders
+#####Generating market 12 with size 50 and noise 0.015625#####
+Starting computation for iteration 12
+Error in mechanism solver: Mechanism solver failed
+Error processing market 12: Mechanism solver failed
+There are 28 buy orders and 22 sell orders
+#####Generating market 13 with size 50 and noise 0.015625#####
+Starting computation for iteration 13
+Error in mechanism solver: Mechanism solver failed
+Error processing market 13: Mechanism solver failed
+There are 32 buy orders and 18 sell orders
+#####Generating market 14 with size 50 and noise 0.015625#####
+Starting computation for iteration 14
+Error in mechanism solver: Mechanism solver failed
+Error processing market 14: Mechanism solver failed
+There are 32 buy orders and 18 sell orders
+#####Generating market 15 with size 50 and noise 0.015625#####
+Starting computation for iteration 15
+Error in mechanism solver: Mechanism solver failed
+Error processing market 15: Mechanism solver failed
+There are 33 buy orders and 17 sell orders
+#####Generating market 16 with size 50 and noise 0.015625#####
+Starting computation for iteration 16
+Error in mechanism solver: Mechanism solver failed
+Error processing market 16: Mechanism solver failed
+There are 32 buy orders and 18 sell orders
+#####Generating market 17 with size 50 and noise 0.015625#####
+Starting computation for iteration 17
+Error in mechanism solver: Mechanism solver failed
+Error processing market 17: Mechanism solver failed
+There are 30 buy orders and 20 sell orders
+#####Generating market 18 with size 50 and noise 0.015625#####
+Starting computation for iteration 18
+Error in mechanism solver: Mechanism solver failed
+Error processing market 18: Mechanism solver failed
+There are 29 buy orders and 21 sell orders
+#####Generating market 19 with size 50 and noise 0.015625#####
+Starting computation for iteration 19
+Error in mechanism solver: Mechanism solver failed
+Error processing market 19: Mechanism solver failed
+There are 31 buy orders and 19 sell orders
+#####Generating market 1 with size 50 and noise 0.015625#####
+Starting computation for iteration 1
+Error in mechanism solver: Mechanism solver failed
+Error processing market 1: Mechanism solver failed
+There are 38 buy orders and 12 sell orders
+#####Generating market 2 with size 50 and noise 0.015625#####
+Starting computation for iteration 2
+Error in mechanism solver: Mechanism solver failed
+Error processing market 2: Mechanism solver failed
+There are 25 buy orders and 25 sell orders
+#####Generating market 3 with size 50 and noise 0.015625#####
+Starting computation for iteration 3
+Error in mechanism solver: Mechanism solver failed
+Error processing market 3: Mechanism solver failed
+There are 28 buy orders and 22 sell orders
+#####Generating market 4 with size 50 and noise 0.015625#####
+Starting computation for iteration 4
+Error in mechanism solver: Mechanism solver failed
+Error processing market 4: Mechanism solver failed
+There are 29 buy orders and 21 sell orders
+#####Generating market 5 with size 50 and noise 0.015625#####
+Starting computation for iteration 5
+Error in mechanism solver: Mechanism solver failed
+Error processing market 5: Mechanism solver failed
+There are 29 buy orders and 21 sell orders
+#####Generating market 6 with size 50 and noise 0.015625#####
+Starting computation for iteration 6
+Error in mechanism solver: Mechanism solver failed
+Error processing market 6: Mechanism solver failed
+There are 25 buy orders and 25 sell orders
+#####Generating market 7 with size 50 and noise 0.015625#####
+Starting computation for iteration 7
+Error in mechanism solver: Mechanism solver failed
+Error processing market 7: Mechanism solver failed
+There are 32 buy orders and 18 sell orders
+#####Generating market 8 with size 50 and noise 0.015625#####
+Starting computation for iteration 8
+Error in mechanism solver: Mechanism solver failed
+Error processing market 8: Mechanism solver failed
+There are 33 buy orders and 17 sell orders
+#####Generating market 9 with size 50 and noise 0.015625#####
+Starting computation for iteration 9
+Error in mechanism solver: Mechanism solver failed
+Error processing market 9: Mechanism solver failed
+There are 32 buy orders and 18 sell orders
+#####Generating market 10 with size 50 and noise 0.015625#####
+Starting computation for iteration 10
+Error in mechanism solver: Mechanism solver failed
+Error processing market 10: Mechanism solver failed
+There are 26 buy orders and 24 sell orders
+#####Generating market 11 with size 50 and noise 0.015625#####
+Starting computation for iteration 11
+Error in mechanism solver: Mechanism solver failed
+Error processing market 11: Mechanism solver failed
+There are 30 buy orders and 20 sell orders
+#####Generating market 12 with size 50 and noise 0.015625#####
+Starting computation for iteration 12
+Error in mechanism solver: Mechanism solver failed
+Error processing market 12: Mechanism solver failed
+There are 31 buy orders and 19 sell orders
+#####Generating market 13 with size 50 and noise 0.015625#####
+Starting computation for iteration 13
+Error in mechanism solver: Mechanism solver failed
+Error processing market 13: Mechanism solver failed
+There are 32 buy orders and 18 sell orders
+#####Generating market 14 with size 50 and noise 0.015625#####
+Starting computation for iteration 14
+Error in mechanism solver: Mechanism solver failed
+Error processing market 14: Mechanism solver failed
+There are 28 buy orders and 22 sell orders
+#####Generating market 15 with size 50 and noise 0.015625#####
+Starting computation for iteration 15
+Error in mechanism solver: Mechanism solver failed
+Error processing market 15: Mechanism solver failed
+There are 24 buy orders and 26 sell orders
+#####Generating market 16 with size 50 and noise 0.015625#####
+Starting computation for iteration 16
+Error in mechanism solver: Mechanism solver failed
+Error processing market 16: Mechanism solver failed
+There are 33 buy orders and 17 sell orders
+#####Generating market 17 with size 50 and noise 0.015625#####
+Starting computation for iteration 17
+Error in mechanism solver: Mechanism solver failed
+Error processing market 17: Mechanism solver failed
+There are 40 buy orders and 10 sell orders
+#####Generating market 18 with size 50 and noise 0.015625#####
+Starting computation for iteration 18
+Error in mechanism solver: Mechanism solver failed
+Error processing market 18: Mechanism solver failed
+There are 28 buy orders and 22 sell orders
+#####Generating market 19 with size 50 and noise 0.015625#####
+Starting computation for iteration 19
+Error in mechanism solver: Mechanism solver failed
+Error processing market 19: Mechanism solver failed
+There are 28 buy orders and 22 sell orders
+#####Generating market 1 with size 50 and noise 0.015625#####
+Starting computation for iteration 1
+Error in mechanism solver: Mechanism solver failed
+Error processing market 1: Mechanism solver failed
+There are 27 buy orders and 23 sell orders
+#####Generating market 2 with size 50 and noise 0.015625#####
+Starting computation for iteration 2
+Error in mechanism solver: Mechanism solver failed
+Error processing market 2: Mechanism solver failed
+There are 29 buy orders and 21 sell orders
+#####Generating market 3 with size 50 and noise 0.015625#####
+Starting computation for iteration 3
+Error in mechanism solver: Mechanism solver failed
+Error processing market 3: Mechanism solver failed
+There are 26 buy orders and 24 sell orders
+#####Generating market 4 with size 50 and noise 0.015625#####
+Starting computation for iteration 4
+Error in mechanism solver: Mechanism solver failed
+Error processing market 4: Mechanism solver failed
+There are 31 buy orders and 19 sell orders
+#####Generating market 5 with size 50 and noise 0.015625#####
+Starting computation for iteration 5
+Error in mechanism solver: Mechanism solver failed
+Error processing market 5: Mechanism solver failed
+There are 33 buy orders and 17 sell orders
+#####Generating market 6 with size 50 and noise 0.015625#####
+Starting computation for iteration 6
+Error in mechanism solver: Mechanism solver failed
+Error processing market 6: Mechanism solver failed
+There are 30 buy orders and 20 sell orders
+#####Generating market 7 with size 50 and noise 0.015625#####
+Starting computation for iteration 7
+Error in mechanism solver: Mechanism solver failed
+Error processing market 7: Mechanism solver failed
+There are 33 buy orders and 17 sell orders
+#####Generating market 8 with size 50 and noise 0.015625#####
+Starting computation for iteration 8
+Error in mechanism solver: Mechanism solver failed
+Error processing market 8: Mechanism solver failed
+There are 29 buy orders and 21 sell orders
+#####Generating market 9 with size 50 and noise 0.015625#####
+Starting computation for iteration 9
+Error in mechanism solver: Mechanism solver failed
+Error processing market 9: Mechanism solver failed
+There are 30 buy orders and 20 sell orders
+#####Generating market 10 with size 50 and noise 0.015625#####
+Starting computation for iteration 10
+Error in mechanism solver: Mechanism solver failed
+Error processing market 10: Mechanism solver failed
+There are 22 buy orders and 28 sell orders
+#####Generating market 11 with size 50 and noise 0.015625#####
+Starting computation for iteration 11
+Error in mechanism solver: Mechanism solver failed
+Error processing market 11: Mechanism solver failed
+There are 21 buy orders and 29 sell orders
+#####Generating market 12 with size 50 and noise 0.015625#####
+Starting computation for iteration 12
+Error in mechanism solver: Mechanism solver failed
+Error processing market 12: Mechanism solver failed
+There are 33 buy orders and 17 sell orders
+#####Generating market 13 with size 50 and noise 0.015625#####
+Starting computation for iteration 13
+Error in mechanism solver: Mechanism solver failed
+Error processing market 13: Mechanism solver failed
+There are 32 buy orders and 18 sell orders
+#####Generating market 14 with size 50 and noise 0.015625#####
+Starting computation for iteration 14
+Error in mechanism solver: Mechanism solver failed
+Error processing market 14: Mechanism solver failed
+There are 29 buy orders and 21 sell orders
+#####Generating market 15 with size 50 and noise 0.015625#####
+Starting computation for iteration 15
+Error in mechanism solver: Mechanism solver failed
+Error processing market 15: Mechanism solver failed
+There are 33 buy orders and 17 sell orders
+#####Generating market 16 with size 50 and noise 0.015625#####
+Starting computation for iteration 16
+Error in mechanism solver: Mechanism solver failed
+Error processing market 16: Mechanism solver failed
+There are 29 buy orders and 21 sell orders
+#####Generating market 17 with size 50 and noise 0.015625#####
+Starting computation for iteration 17
+Error in mechanism solver: Mechanism solver failed
+Error processing market 17: Mechanism solver failed
+There are 32 buy orders and 18 sell orders
+#####Generating market 18 with size 50 and noise 0.015625#####
+Starting computation for iteration 18
+Error in mechanism solver: Mechanism solver failed
+Error processing market 18: Mechanism solver failed
+There are 32 buy orders and 18 sell orders
+#####Generating market 19 with size 50 and noise 0.015625#####
+Starting computation for iteration 19
+Error in mechanism solver: Mechanism solver failed
+Error processing market 19: Mechanism solver failed
+There are 30 buy orders and 20 sell orders
+#####Generating market 1 with size 50 and noise 0.015625#####
+Starting computation for iteration 1
+Error in mechanism solver: Mechanism solver failed
+Error processing market 1: Mechanism solver failed
+There are 29 buy orders and 21 sell orders
+#####Generating market 2 with size 50 and noise 0.015625#####
+Starting computation for iteration 2
+Error in mechanism solver: Mechanism solver failed
+Error processing market 2: Mechanism solver failed
+There are 28 buy orders and 22 sell orders
+#####Generating market 3 with size 50 and noise 0.015625#####
+Starting computation for iteration 3
+Error in mechanism solver: Mechanism solver failed
+Error processing market 3: Mechanism solver failed
+There are 32 buy orders and 18 sell orders
+#####Generating market 4 with size 50 and noise 0.015625#####
+Starting computation for iteration 4
+Error in mechanism solver: Mechanism solver failed
+Error processing market 4: Mechanism solver failed
+There are 32 buy orders and 18 sell orders
+#####Generating market 5 with size 50 and noise 0.015625#####
+Starting computation for iteration 5
+Error in mechanism solver: Mechanism solver failed
+Error processing market 5: Mechanism solver failed
+There are 25 buy orders and 25 sell orders
+#####Generating market 6 with size 50 and noise 0.015625#####
+Starting computation for iteration 6
+Error in mechanism solver: Mechanism solver failed
+Error processing market 6: Mechanism solver failed
+There are 33 buy orders and 17 sell orders
+#####Generating market 7 with size 50 and noise 0.015625#####
+Starting computation for iteration 7
+Error in mechanism solver: Mechanism solver failed
+Error processing market 7: Mechanism solver failed
+There are 32 buy orders and 18 sell orders
+#####Generating market 8 with size 50 and noise 0.015625#####
+Starting computation for iteration 8
+Error in mechanism solver: Mechanism solver failed
+Error processing market 8: Mechanism solver failed
+There are 27 buy orders and 23 sell orders
+#####Generating market 9 with size 50 and noise 0.015625#####
+Starting computation for iteration 9
+Error in mechanism solver: Mechanism solver failed
+Error processing market 9: Mechanism solver failed
+There are 27 buy orders and 23 sell orders
+#####Generating market 10 with size 50 and noise 0.015625#####
+Starting computation for iteration 10
+Error in mechanism solver: Mechanism solver failed
+Error processing market 10: Mechanism solver failed
+There are 26 buy orders and 24 sell orders
+#####Generating market 11 with size 50 and noise 0.015625#####
+Starting computation for iteration 11
+Error in mechanism solver: Mechanism solver failed
+Error processing market 11: Mechanism solver failed
+There are 37 buy orders and 13 sell orders
+#####Generating market 12 with size 50 and noise 0.015625#####
+Starting computation for iteration 12
+Error in mechanism solver: Mechanism solver failed
+Error processing market 12: Mechanism solver failed
+There are 28 buy orders and 22 sell orders
+#####Generating market 13 with size 50 and noise 0.015625#####
+Starting computation for iteration 13
+Error in mechanism solver: Mechanism solver failed
+Error processing market 13: Mechanism solver failed
+There are 28 buy orders and 22 sell orders
+#####Generating market 14 with size 50 and noise 0.015625#####
+Starting computation for iteration 14
+Error in mechanism solver: Mechanism solver failed
+Error processing market 14: Mechanism solver failed
+There are 30 buy orders and 20 sell orders
+#####Generating market 15 with size 50 and noise 0.015625#####
+Starting computation for iteration 15
+Error in mechanism solver: Mechanism solver failed
+Error processing market 15: Mechanism solver failed
+There are 32 buy orders and 18 sell orders
+#####Generating market 16 with size 50 and noise 0.015625#####
+Starting computation for iteration 16
+Error in mechanism solver: Mechanism solver failed
+Error processing market 16: Mechanism solver failed
+There are 33 buy orders and 17 sell orders
+#####Generating market 17 with size 50 and noise 0.015625#####
+Starting computation for iteration 17
+Error in mechanism solver: Mechanism solver failed
+Error processing market 17: Mechanism solver failed
+There are 31 buy orders and 19 sell orders
+#####Generating market 18 with size 50 and noise 0.015625#####
+Starting computation for iteration 18
+Error in mechanism solver: Mechanism solver failed
+Error processing market 18: Mechanism solver failed
+There are 35 buy orders and 15 sell orders
+#####Generating market 19 with size 50 and noise 0.015625#####
+Starting computation for iteration 19
+Error in mechanism solver: Mechanism solver failed
+Error processing market 19: Mechanism solver failed
+There are 30 buy orders and 20 sell orders
+#####Generating market 1 with size 50 and noise 0.015625#####
+Starting computation for iteration 1
+Error in mechanism solver: Mechanism solver failed
+Error processing market 1: Mechanism solver failed
+There are 28 buy orders and 22 sell orders
+#####Generating market 2 with size 50 and noise 0.015625#####
+Starting computation for iteration 2
+Error in mechanism solver: Mechanism solver failed
+Error processing market 2: Mechanism solver failed
+There are 30 buy orders and 20 sell orders
+#####Generating market 3 with size 50 and noise 0.015625#####
+Starting computation for iteration 3
+Error in mechanism solver: Mechanism solver failed
+Error processing market 3: Mechanism solver failed
+There are 29 buy orders and 21 sell orders
+#####Generating market 4 with size 50 and noise 0.015625#####
+Starting computation for iteration 4
+Error in mechanism solver: Mechanism solver failed
+Error processing market 4: Mechanism solver failed
+There are 31 buy orders and 19 sell orders
+#####Generating market 5 with size 50 and noise 0.015625#####
+Starting computation for iteration 5
+Error in mechanism solver: Mechanism solver failed
+Error processing market 5: Mechanism solver failed
+There are 27 buy orders and 23 sell orders
+#####Generating market 6 with size 50 and noise 0.015625#####
+Starting computation for iteration 6
+Error in mechanism solver: Mechanism solver failed
+Error processing market 6: Mechanism solver failed
+There are 30 buy orders and 20 sell orders
+#####Generating market 7 with size 50 and noise 0.015625#####
+Starting computation for iteration 7
+Error in mechanism solver: Mechanism solver failed
+Error processing market 7: Mechanism solver failed
+There are 30 buy orders and 20 sell orders
+#####Generating market 8 with size 50 and noise 0.015625#####
+Starting computation for iteration 8
+Error in mechanism solver: Mechanism solver failed
+Error processing market 8: Mechanism solver failed
+There are 30 buy orders and 20 sell orders
+#####Generating market 9 with size 50 and noise 0.015625#####
+Starting computation for iteration 9
+Error in mechanism solver: Mechanism solver failed
+Error processing market 9: Mechanism solver failed
+There are 30 buy orders and 20 sell orders
+#####Generating market 10 with size 50 and noise 0.015625#####
+Starting computation for iteration 10
+Error in mechanism solver: Mechanism solver failed
+Error processing market 10: Mechanism solver failed
+There are 25 buy orders and 25 sell orders
+#####Generating market 11 with size 50 and noise 0.015625#####
+Starting computation for iteration 11
+Error in mechanism solver: Mechanism solver failed
+Error processing market 11: Mechanism solver failed
+There are 26 buy orders and 24 sell orders
+#####Generating market 12 with size 50 and noise 0.015625#####
+Starting computation for iteration 12
+Ctrl+C received. Terminating processes...
+Generating frontier for markets:   0%|                                                                                  | 0/19 [00:00<?, ?it/s]Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Generating frontier for markets:  21%|███████████████▌                                                          | 4/19 [00:00<00:00, 29.58it/s]Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Generating frontier for markets:  37%|███████████████████████████▎                                              | 7/19 [00:00<00:00, 25.82it/s]Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Generating frontier for markets:  53%|██████████████████████████████████████▍                                  | 10/19 [00:00<00:00, 25.66it/s]Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Generating frontier for markets:  68%|█████████████████████████████████████████████████▉                       | 13/19 [00:00<00:00, 24.05it/s]Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Generating frontier for markets:  84%|█████████████████████████████████████████████████████████████▍           | 16/19 [00:00<00:00, 23.32it/s]Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Generating frontier for markets: 100%|█████████████████████████████████████████████████████████████████████████| 19/19 [00:00<00:00, 25.78it/s]
+Generating frontier for markets:   0%|                                                                                  | 0/19 [00:00<?, ?it/s]Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Generating frontier for markets:  21%|███████████████▌                                                          | 4/19 [00:00<00:00, 32.20it/s]Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Generating frontier for markets:  42%|███████████████████████████████▏                                          | 8/19 [00:00<00:00, 29.00it/s]Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Generating frontier for markets:  58%|██████████████████████████████████████████▎                              | 11/19 [00:00<00:00, 27.28it/s]Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Generating frontier for markets:  79%|█████████████████████████████████████████████████████████▋               | 15/19 [00:00<00:00, 29.26it/s]Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Generating frontier for markets: 100%|█████████████████████████████████████████████████████████████████████████| 19/19 [00:00<00:00, 30.70it/s]
+Generating frontier for markets:   0%|                                                                                  | 0/19 [00:00<?, ?it/s]Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Generating frontier for markets:  21%|███████████████▌                                                          | 4/19 [00:00<00:00, 36.22it/s]Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Generating frontier for markets:  47%|███████████████████████████████████                                       | 9/19 [00:00<00:00, 36.15it/s]Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    raise RuntimeError("Mechanism solver failed")
+RuntimeError: Mechanism solver failed
+Generating frontier for markets:  58%|██████████████████████████████████████████▎                              | 11/19 [00:00<00:00, 33.78it/s]
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 130, in apply_mechanism
+    with Market.pool_context(processes=1) as pool:
+  File "/common/home/hg343/anaconda3/lib/python3.9/contextlib.py", line 119, in __enter__
+    return next(self.gen)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 89, in pool_context
+    pool = mp.Pool(processes=processes)
+  File "/common/home/hg343/anaconda3/lib/python3.9/multiprocessing/context.py", line 119, in Pool
+    return Pool(processes, initializer, initargs, maxtasksperchild,
+  File "/common/home/hg343/anaconda3/lib/python3.9/multiprocessing/pool.py", line 242, in __init__
+    self._task_handler.start()
+  File "/common/home/hg343/anaconda3/lib/python3.9/threading.py", line 892, in start
+    _start_new_thread(self._bootstrap, ())
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 60, in signal_handler
+    sys.exit(1)
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/wandb/sdk/lib/exit_hooks.py", line 36, in exit
+    self._orig_exit(orig_code)  # type: ignore
+SystemExit: 1

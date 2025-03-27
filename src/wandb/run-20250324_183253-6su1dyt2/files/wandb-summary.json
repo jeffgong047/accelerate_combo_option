@@ -1,0 +1,1 @@
+{"market_0/metadata": {"num_stock": 2, "stock_name": "AAPL_MSFT", "noise": 0.015625, "book_size": 50, "market_index": 0}, "_timestamp": 1742855645.9175193, "_runtime": 72.83780837059021, "_step": 0, "_wandb": {"runtime": 1506}}

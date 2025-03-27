@@ -1,0 +1,125 @@
+There are 25 buy orders and 25 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_2_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 0
+RangeIndex(start=0, stop=50, step=1) RangeIndex(start=0, stop=50, step=1)
+> /common/home/hg343/Research/accelerate_combo_option/src/mechanism_solver.py(188)mechanism_solver_combo()
+-> assert len(set(buy_book_index) & set(sell_book_index)) == 0, "buy and sell book index should not have any shared index"
+Generating frontier for markets:   0%|                                                                      | 0/20 [00:00<?, ?it/s]
+AssertionError: buy and sell book index should not have any shared index
+> /common/home/hg343/Research/accelerate_combo_option/src/mechanism_solver.py(188)mechanism_solver_combo()
+-> assert len(set(buy_book_index) & set(sell_book_index)) == 0, "buy and sell book index should not have any shared index"
+183  	    sell_orders = orders.where(orders['transaction_type'] == 0)
+184  	    buy_book_index = buy_orders.index
+185  	    sell_book_index = sell_orders.index
+186  	    print(buy_book_index, sell_book_index)
+187  	    breakpoint()
+188  ->	    assert len(set(buy_book_index) & set(sell_book_index)) == 0, "buy and sell book index should not have any shared index"
+189  	    # Extract liquidity values before converting to numpy arrays
+190  	    buy_liquidity = None
+191  	    sell_liquidity = None
+192  	    if 'liquidity' in buy_orders.columns:
+193  	        buy_liquidity = buy_orders['liquidity'].values
+RangeIndex(start=0, stop=50, step=1)
+RangeIndex(start=0, stop=50, step=1)
+RangeIndex(start=0, stop=50, step=1)
+    option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+0      -3.0      5.0           -1.0                                  150.0               1.0      68.04          1
+1       1.0      3.0            1.0                                  411.0               1.0      63.33          1
+2       5.0     -8.0           -1.0                                  372.0               1.0     460.67          1
+3       2.0     -1.0           -1.0                                  238.0               1.0      36.19          1
+4      -2.0      9.0            1.0                                  496.5               1.0     156.18          1
+5       1.0      7.0            1.0                                  715.0               1.0     186.12          1
+6       2.0     -1.0           -1.0                                  221.0               1.0      19.82          1
+7       6.0      5.0            1.0                                 1275.0               1.0     182.73          1
+8       3.0      1.0            1.0                                  461.0               1.0     107.05          1
+9       1.0      1.0            1.0                                  263.0               1.0       0.52          1
+10      4.0      1.0           -1.0                                  740.5               1.0      22.92          1
+11      3.0      2.0            1.0                                  569.0               1.0     106.16          1
+12      3.0      1.0           -1.0                                  622.5               1.0      53.02          1
+13      2.0     -1.0           -1.0                                  190.5               1.0       2.35          1
+14      1.0     -2.0           -1.0                                    6.0               1.0      65.73          1
+15      7.0      6.0            1.0                                 1348.0               1.0     371.95          1
+16      2.0      1.0           -1.0                                  347.0               1.0       0.02          1
+17      7.0      5.0           -1.0                                 1842.5               1.0     226.09          1
+18      1.0      1.0           -1.0                                  319.5               1.0      57.90          1
+19     -2.0      7.0            1.0                                  269.0               1.0     169.38          1
+20     -5.0      7.0           -1.0                                   20.5               1.0      28.41          1
+21      1.0      6.0           -1.0                                  878.0               1.0      73.64          1
+22      4.0      9.0            1.0                                 1420.0               1.0     156.52          1
+23      5.0     -3.0            1.0                                  353.0               1.0      90.72          1
+24      8.0      5.0           -1.0                                 1597.0               1.0       0.30          1
+25      2.0     -3.0           -1.0                                   38.5               0.0      53.73          1
+26      3.0      2.0           -1.0                                  821.5               0.0     149.36          1
+27      8.0     -7.0            1.0                                  612.5               0.0      11.82          1
+28      1.0     -1.0            1.0                                   83.5               0.0       1.03          1
+29      1.0      1.0           -1.0                                  217.0               0.0       0.20          1
+30      2.0     -3.0           -1.0                                    4.0               0.0      26.17          1
+31      8.0     -5.0            1.0                                  530.0               0.0     174.67          1
+32      3.0      8.0           -1.0                                 1484.0               0.0     176.88          1
+33     -1.0      8.0            1.0                                  356.5               0.0     340.83          1
+34      2.0      1.0           -1.0                                  337.0               0.0       0.21          1
+35     -1.0      7.0            1.0                                  494.0               0.0     101.33          1
+36     -4.0      7.0            1.0                                  143.0               0.0      30.24          1
+37      1.0      1.0           -1.0                                  180.5               0.0       0.03          1
+38      6.0      1.0           -1.0                                  976.5               0.0      10.59          1
+39      5.0     -1.0            1.0                                  726.5               0.0       4.05          1
+40      1.0      4.0            1.0                                  454.5               0.0     124.20          1
+41      2.0      1.0           -1.0                                  371.5               0.0       1.24          1
+42      6.0      5.0            1.0                                 1520.0               0.0      13.98          1
+43      2.0      1.0           -1.0                                  438.0               0.0      26.91          1
+44      8.0     -1.0            1.0                                  825.5               0.0     296.32          1
+45      2.0     -1.0            1.0                                  274.5               0.0       0.15          1
+46      4.0      7.0            1.0                                 1308.0               0.0      69.58          1
+47      3.0      1.0           -1.0                                  678.5               0.0     111.87          1
+48      8.0     -3.0           -1.0                                  779.5               0.0       9.87          1
+49      9.0     -2.0            1.0                                  745.0               0.0     423.79          1
+    option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+0      -3.0      5.0           -1.0                                  150.0               1.0      68.04        1.0
+1       1.0      3.0            1.0                                  411.0               1.0      63.33        1.0
+2       5.0     -8.0           -1.0                                  372.0               1.0     460.67        1.0
+3       2.0     -1.0           -1.0                                  238.0               1.0      36.19        1.0
+4      -2.0      9.0            1.0                                  496.5               1.0     156.18        1.0
+5       1.0      7.0            1.0                                  715.0               1.0     186.12        1.0
+6       2.0     -1.0           -1.0                                  221.0               1.0      19.82        1.0
+7       6.0      5.0            1.0                                 1275.0               1.0     182.73        1.0
+8       3.0      1.0            1.0                                  461.0               1.0     107.05        1.0
+9       1.0      1.0            1.0                                  263.0               1.0       0.52        1.0
+10      4.0      1.0           -1.0                                  740.5               1.0      22.92        1.0
+11      3.0      2.0            1.0                                  569.0               1.0     106.16        1.0
+12      3.0      1.0           -1.0                                  622.5               1.0      53.02        1.0
+13      2.0     -1.0           -1.0                                  190.5               1.0       2.35        1.0
+14      1.0     -2.0           -1.0                                    6.0               1.0      65.73        1.0
+15      7.0      6.0            1.0                                 1348.0               1.0     371.95        1.0
+16      2.0      1.0           -1.0                                  347.0               1.0       0.02        1.0
+17      7.0      5.0           -1.0                                 1842.5               1.0     226.09        1.0
+18      1.0      1.0           -1.0                                  319.5               1.0      57.90        1.0
+19     -2.0      7.0            1.0                                  269.0               1.0     169.38        1.0
+20     -5.0      7.0           -1.0                                   20.5               1.0      28.41        1.0
+21      1.0      6.0           -1.0                                  878.0               1.0      73.64        1.0
+22      4.0      9.0            1.0                                 1420.0               1.0     156.52        1.0
+23      5.0     -3.0            1.0                                  353.0               1.0      90.72        1.0
+24      8.0      5.0           -1.0                                 1597.0               1.0       0.30        1.0
+25      NaN      NaN            NaN                                    NaN               NaN        NaN        NaN
+26      NaN      NaN            NaN                                    NaN               NaN        NaN        NaN
+27      NaN      NaN            NaN                                    NaN               NaN        NaN        NaN
+28      NaN      NaN            NaN                                    NaN               NaN        NaN        NaN
+29      NaN      NaN            NaN                                    NaN               NaN        NaN        NaN
+30      NaN      NaN            NaN                                    NaN               NaN        NaN        NaN
+31      NaN      NaN            NaN                                    NaN               NaN        NaN        NaN
+32      NaN      NaN            NaN                                    NaN               NaN        NaN        NaN
+33      NaN      NaN            NaN                                    NaN               NaN        NaN        NaN
+34      NaN      NaN            NaN                                    NaN               NaN        NaN        NaN
+35      NaN      NaN            NaN                                    NaN               NaN        NaN        NaN
+36      NaN      NaN            NaN                                    NaN               NaN        NaN        NaN
+37      NaN      NaN            NaN                                    NaN               NaN        NaN        NaN
+38      NaN      NaN            NaN                                    NaN               NaN        NaN        NaN
+39      NaN      NaN            NaN                                    NaN               NaN        NaN        NaN
+40      NaN      NaN            NaN                                    NaN               NaN        NaN        NaN
+41      NaN      NaN            NaN                                    NaN               NaN        NaN        NaN
+42      NaN      NaN            NaN                                    NaN               NaN        NaN        NaN
+43      NaN      NaN            NaN                                    NaN               NaN        NaN        NaN
+44      NaN      NaN            NaN                                    NaN               NaN        NaN        NaN
+45      NaN      NaN            NaN                                    NaN               NaN        NaN        NaN
+46      NaN      NaN            NaN                                    NaN               NaN        NaN        NaN
+47      NaN      NaN            NaN                                    NaN               NaN        NaN        NaN
+48      NaN      NaN            NaN                                    NaN               NaN        NaN        NaN

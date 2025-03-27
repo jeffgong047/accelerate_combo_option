@@ -1,0 +1,47 @@
+
+Generating frontier for markets:   0%|                   | 0/99 [00:00<?, ?it/s]
+There are 27 buy orders and 23 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_2_book_GS_MSFT.npy with size 50 and noise 0.0625#####
+Starting async computation for iteration 1
+Set parameter Username
+Generating frontier for markets:   0%|                   | 0/99 [00:00<?, ?it/s]/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py:83: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+  quote_price = pd.Series(index=original_opt_buy_book.index)
+Checking buy side options:   5%|▊                | 1/22 [00:01<00:28,  1.34s/it]
+Int64Index([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16,
+            17, 18, 19, 20, 21, 22, 23, 24, 25, 26],
+           dtype='int64') {4, 5, 6, 12, 15}
+Int64Index([27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43,
+            44, 45, 46, 47, 48, 49],
+           dtype='int64') {34, 35, 36, 40, 42, 43, 46, 47}
+22
+15
+original bid: 4.58,quoted bid: 4.58
+original bid: 0.29,quoted bid: 0.29
+
+Checking buy side options:  18%|███              | 4/22 [00:03<00:13,  1.35it/s]
+original bid: 157.07,quoted bid: 157.0699999999546
+
+Checking buy side options:  32%|█████▍           | 7/22 [00:05<00:11,  1.34it/s]
+original bid: 31.53,quoted bid: 31.53
+
+Checking buy side options:  45%|███████▎        | 10/22 [00:07<00:07,  1.70it/s]
+original bid: 28.07,quoted bid: 28.07
+original bid: 0.21,quoted bid: 0.0726668520575656
+
+Checking buy side options:  64%|██████████▏     | 14/22 [00:09<00:04,  1.78it/s]
+
+
+
+Checking buy side options:  95%|███████████████▎| 21/22 [00:15<00:00,  1.04it/s]
+original bid: 42.71,quoted bid: 42.71
+original ask: 2.38,quoted ask: 3.633132671006024
+order to quote: option1                                    3.00
+option2                                   -2.00
+C=Call, P=Put                             -1.00
+Strike Price of the Option Times 1000    314.00
+transaction_type                           0.00
+B/A_price                                  2.38
+Name: 27, dtype: float64
+quote_price: 3.633132671006024
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(265)synthetic_combo_frontier_generation()
+Checking buy side options: 100%|████████████████| 22/22 [00:15<00:00,  1.14it/s]

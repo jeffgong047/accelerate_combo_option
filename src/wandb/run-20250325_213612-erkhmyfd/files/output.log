@@ -1,0 +1,1027 @@
+
+Generating frontier for markets:   0%|                                                                                                      | 0/8 [00:00<?, ?it/s]
+There are 61 buy orders and 39 sell orders
+#####Generating market 2 with size 100 and noise 0.015625#####
+Starting computation for iteration 2
+checking match True 10.5954
+Generating frontier for markets:   0%|                                                                                                      | 0/8 [00:00<?, ?it/s]/common/home/hg343/Research/accelerate_combo_option/src/market.py:274: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+  frontier_labels = pd.Series(None, index=orders.index)
+/common/home/hg343/Research/accelerate_combo_option/src/market.py:275: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+  quote_prices = pd.Series(None, index=orders.index)  # Create a Series to store quote prices
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote     -1.0      3.0           -1.0                                  221.0               1.0       49.0          1
+quote price: 51.03
+quote_price: 51.03, original_price: 49.0
+Processing order 1 (2/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      9.0     -8.0           -1.0                                  384.0               1.0       0.03          1
+quote price: 0.03
+quote_price: 0.03, original_price: 0.03
+Processing order 2 (3/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote     -1.0      2.0            1.0                                   23.0               1.0      36.71          1
+quote price: 36.76
+quote_price: 36.76, original_price: 36.71
+Processing order 3 (4/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      3.0      5.0            1.0                                  760.0               1.0     235.11          1
+quote price: 235.11
+quote_price: 235.11, original_price: 235.11
+Processing order 5 (5/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      7.0     -5.0           -1.0                                  687.5               1.0     140.28          1
+quote price: 141.97
+quote_price: 141.97, original_price: 140.28
+Processing order 7 (6/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      4.0      5.0           -1.0                                 1042.5               1.0       0.01          1
+quote price: 0.01
+quote_price: 0.01, original_price: 0.01
+Processing order 8 (7/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      1.0     -1.0           -1.0                                   42.0               1.0       0.21          1
+quote price: 0.21
+quote_price: 0.21, original_price: 0.21
+Processing order 9 (8/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      1.0      1.0            1.0                                  253.0               1.0       7.58          1
+quote price: 7.58
+quote_price: 7.58, original_price: 7.58
+Processing order 10 (9/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      4.0      3.0           -1.0                                  960.0               1.0       19.7          1
+quote price: 22.43
+quote_price: 22.43, original_price: 19.7
+Processing order 11 (10/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      3.0     -2.0           -1.0                                  252.0               1.0       9.64          1
+quote price: 9.64
+quote_price: 9.64, original_price: 9.64
+Processing order 12 (11/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      2.0     -1.0            1.0                                  205.0               1.0       2.25          1
+quote price: 2.25
+quote_price: 2.25, original_price: 2.25
+Processing order 13 (12/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      7.0     -5.0            1.0                                  416.0               1.0     117.57          1
+quote price: 120.43
+quote_price: 120.43, original_price: 117.57
+Processing order 14 (13/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      3.0     -2.0           -1.0                                  191.0               1.0       0.02          1
+quote price: 0.02
+quote_price: 0.02, original_price: 0.02
+Processing order 15 (14/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      5.0      7.0            1.0                                 1498.0               1.0      17.99          1
+quote price: 17.99
+quote_price: 17.99, original_price: 17.99
+Processing order 16 (15/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      2.0      1.0           -1.0                                  391.0               1.0       0.46          1
+quote price: 0.46
+quote_price: 0.46, original_price: 0.46
+Processing order 17 (16/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      7.0     -5.0            1.0                                  467.5               1.0      67.78          1
+quote price: 73.3
+quote_price: 73.3, original_price: 67.78
+Processing order 18 (17/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      6.0     -7.0           -1.0                                  262.5               1.0      86.48          1
+quote price: 86.48
+quote_price: 86.48, original_price: 86.48
+Processing order 19 (18/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      1.0      1.0           -1.0                                  296.5               1.0      34.12          1
+quote price: 34.76
+quote_price: 34.76, original_price: 34.12
+Processing order 20 (19/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      7.0      6.0            1.0                                 1544.5               1.0     171.44          1
+quote price: 171.44
+quote_price: 171.44, original_price: 171.44
+Processing order 22 (20/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      1.0      7.0            1.0                                  910.0               1.0       9.31          1
+quote price: 9.31
+quote_price: 9.31, original_price: 9.31
+Processing order 24 (21/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      5.0     -4.0            1.0                                  270.0               1.0      64.82          1
+quote price: 67.85
+quote_price: 67.85, original_price: 64.82
+Processing order 25 (22/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      4.0     -3.0            1.0                                  234.0               1.0      55.77          1
+quote price: 57.91
+quote_price: 57.91, original_price: 55.77
+Processing order 26 (23/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      1.0      7.0           -1.0                                  830.5               1.0       0.47          1
+quote price: 0.47
+quote_price: 0.47, original_price: 0.47
+Processing order 27 (24/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      1.0      4.0           -1.0                                  540.5               1.0       0.07          1
+quote price: 0.07
+quote_price: 0.07, original_price: 0.07
+Processing order 28 (25/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      1.0      5.0            1.0                                  618.5               1.0      68.77          1
+quote price: 68.77
+quote_price: 68.77, original_price: 68.77
+Processing order 29 (26/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      2.0      1.0           -1.0                                  391.5               1.0       0.48          1
+quote price: 0.48
+quote_price: 0.48, original_price: 0.48
+Processing order 30 (27/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      7.0     -4.0            1.0                                  529.0               1.0     113.68          1
+quote price: 115.46
+quote_price: 115.46, original_price: 113.68
+Processing order 31 (28/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      3.0     -4.0           -1.0                                   90.0               1.0      54.88          1
+quote price: 55.38
+quote_price: 55.38, original_price: 54.88
+Processing order 32 (29/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      3.0      2.0            1.0                                  623.0               1.0      51.83          1
+quote price: 51.83
+quote_price: 51.83, original_price: 51.83
+Processing order 33 (30/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      7.0      1.0            1.0                                 1057.0               1.0     128.55          1
+quote price: 128.55
+quote_price: 128.55, original_price: 128.55
+Processing order 34 (31/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      7.0      6.0           -1.0                                 1508.0               1.0       0.06          1
+quote price: 0.06
+quote_price: 0.06, original_price: 0.06
+Processing order 35 (32/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      7.0     -5.0            1.0                                  447.5               1.0      86.23          1
+quote price: 90.33
+quote_price: 90.33, original_price: 86.23
+Processing order 36 (33/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      8.0     -1.0            1.0                                 1015.0               1.0     112.09          1
+quote price: 112.09
+quote_price: 112.09, original_price: 112.09
+Processing order 37 (34/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      3.0     -2.0           -1.0                                  193.0               1.0       0.03          1
+quote price: 0.03
+quote_price: 0.03, original_price: 0.03
+Processing order 39 (35/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      1.0     -1.0           -1.0                                   90.5               1.0      42.52          1
+quote price: 42.87
+quote_price: 42.87, original_price: 42.52
+Processing order 40 (36/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      1.0     -1.0           -1.0                                   49.5               1.0       2.94          1
+quote price: 2.94
+quote_price: 2.94, original_price: 2.94
+Processing order 41 (37/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      8.0     -5.0           -1.0                                  860.0               1.0     160.07          1
+quote price: 160.22
+quote_price: 160.22, original_price: 160.07
+Processing order 42 (38/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      1.0      1.0           -1.0                                  279.0               1.0      16.63          1
+quote price: 17.62
+quote_price: 17.62, original_price: 16.63
+Processing order 43 (39/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      9.0      8.0            1.0                                 2097.0               1.0     140.59          1
+quote price: 140.59
+quote_price: 140.59, original_price: 140.59
+Processing order 44 (40/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      9.0      4.0           -1.0                                 1881.0               1.0      66.46          1
+quote price: 66.88
+quote_price: 66.88, original_price: 66.46
+Processing order 46 (41/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      5.0     -1.0            1.0                                  766.5               1.0       0.23          1
+quote price: 0.23
+quote_price: 0.23, original_price: 0.23
+Processing order 47 (42/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      6.0     -1.0           -1.0                                  932.0               1.0     115.41          1
+quote price: 115.41
+quote_price: 115.41, original_price: 115.41
+Processing order 49 (43/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote     -1.0      2.0           -1.0                                   69.0               1.0       6.98          1
+quote price: 8.01
+quote_price: 8.01, original_price: 6.98
+Processing order 50 (44/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote     -1.0      7.0           -1.0                                  647.0               1.0       47.7          1
+quote price: 48.07
+quote_price: 48.07, original_price: 47.7
+Processing order 51 (45/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote     -3.0      8.0           -1.0                                  312.0               1.0       0.08          1
+quote price: 0.08
+quote_price: 0.08, original_price: 0.08
+Processing order 52 (46/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote     -5.0      8.0           -1.0                                  113.5               1.0      18.27          1
+quote price: 21.69
+quote_price: 21.69, original_price: 18.27
+Processing order 53 (47/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote     -3.0      7.0            1.0                                  153.5               1.0     132.65          1
+quote price: 132.65
+quote_price: 132.65, original_price: 132.65
+Processing order 54 (48/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      2.0     -1.0           -1.0                                  212.5               1.0      12.46          1
+quote price: 12.46
+quote_price: 12.46, original_price: 12.46
+Processing order 55 (49/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      4.0     -7.0           -1.0                                   32.5               1.0     164.54          1
+quote price: 164.54
+quote_price: 164.54, original_price: 164.54
+Processing order 56 (50/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      4.0      5.0           -1.0                                 1180.0               1.0      21.86          1
+quote price: 26.78
+quote_price: 26.78, original_price: 21.86
+Processing order 57 (51/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      1.0      1.0           -1.0                                  287.5               1.0       25.2          1
+quote price: 25.96
+quote_price: 25.96, original_price: 25.2
+Processing order 58 (52/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      2.0     -1.0           -1.0                                  277.5               1.0      76.49          1
+quote price: 76.49
+quote_price: 76.49, original_price: 76.49
+Processing order 59 (53/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      1.0      3.0            1.0                                  478.5               1.0       1.27          1
+quote price: 1.27
+quote_price: 1.27, original_price: 1.27
+Processing order 60 (54/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      8.0      5.0            1.0                                 1467.5               1.0     296.29          1
+quote price: 296.29
+quote_price: 296.29, original_price: 296.29
+Processing order 61 (55/83)
+checking match False -0.0
+quote_price: 1.15, original_price: 1.15
+Processing order 62 (56/83)
+checking match False -0.0
+quote_price: 24.77, original_price: 24.77
+Processing order 63 (57/83)
+checking match False -0.0
+quote_price: 19.37, original_price: 19.37
+Processing order 64 (58/83)
+checking match False -0.0
+quote_price: 12.92, original_price: 12.92
+Processing order 65 (59/83)
+checking match False -0.0
+quote_price: 322.48, original_price: 322.48
+Processing order 66 (60/83)
+checking match False -0.0
+quote_price: 99.26, original_price: 99.26
+Processing order 68 (61/83)
+checking match False -0.0
+quote_price: 69.23, original_price: 69.23
+Processing order 69 (62/83)
+checking match False -0.0
+quote_price: 0.25, original_price: 0.25
+Processing order 70 (63/83)
+checking match False -0.0
+quote_price: 0.15, original_price: 0.15
+Processing order 71 (64/83)
+checking match False -0.0
+quote_price: 11.52, original_price: 11.52
+Processing order 74 (65/83)
+checking match False -0.0
+quote_price: 0.11, original_price: 0.11
+Processing order 75 (66/83)
+checking match False -0.0
+quote_price: 17.46, original_price: 17.46
+Processing order 76 (67/83)
+checking match False -0.0
+quote_price: 0.12, original_price: 0.12
+Processing order 77 (68/83)
+checking match False -0.0
+quote_price: 46.67, original_price: 46.67
+Processing order 78 (69/83)
+checking match False -0.0
+quote_price: 46.65, original_price: 46.65
+Processing order 79 (70/83)
+checking match False -0.0
+quote_price: 27.67, original_price: 27.67
+Processing order 80 (71/83)
+checking match False -0.0
+quote_price: 2.81, original_price: 2.81
+Processing order 82 (72/83)
+checking match False -0.0
+quote_price: 28.08, original_price: 28.08
+Processing order 83 (73/83)
+checking match False -0.0
+quote_price: 154.75, original_price: 154.75
+Processing order 84 (74/83)
+checking match False -0.0
+quote_price: 1.49, original_price: 1.49
+Processing order 85 (75/83)
+checking match False -0.0
+quote_price: 0.63, original_price: 0.63
+Processing order 87 (76/83)
+checking match False -0.0
+quote_price: 19.57, original_price: 19.57
+Processing order 88 (77/83)
+checking match False -0.0
+quote_price: 10.42, original_price: 10.42
+Processing order 89 (78/83)
+checking match False -0.0
+quote_price: 15.6, original_price: 15.6
+Processing order 91 (79/83)
+checking match False -0.0
+quote_price: 4.05, original_price: 4.05
+Processing order 93 (80/83)
+checking match False -0.0
+quote_price: 60.16, original_price: 60.16
+Processing order 95 (81/83)
+checking match False -0.0
+quote_price: 0.03, original_price: 0.03
+Processing order 98 (82/83)
+checking match False -0.0
+quote_price: 9.23, original_price: 9.23
+Processing order 99 (83/83)
+checking match False -0.0
+quote_price: 2.69, original_price: 1.72
+    option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity  belongs_to_frontier
+0      -1.0      3.0           -1.0                                  221.0               1.0      49.00          1                  0.0
+1       9.0     -8.0           -1.0                                  384.0               1.0       0.03          1                  1.0
+2      -1.0      2.0            1.0                                   23.0               1.0      36.71          1                  0.0
+3       3.0      5.0            1.0                                  760.0               1.0     235.11          1                  1.0
+5       7.0     -5.0           -1.0                                  687.5               1.0     140.28          1                  0.0
+..      ...      ...            ...                                    ...               ...        ...        ...                  ...
+91      3.0      2.0           -1.0                                  625.0               0.0       4.05          1                  1.0
+93     -1.0      8.0            1.0                                  647.0               0.0      60.16          1                  1.0
+95      2.0     -1.0            1.0                                  330.5               0.0       0.03          1                  1.0
+98      2.0     -1.0            1.0                                  205.5               0.0       9.23          1                  1.0
+99      3.0      4.0            1.0                                  970.0               0.0       1.72          1                  1.0
+[83 rows x 8 columns]
+/common/home/hg343/Research/accelerate_combo_option/src/market.py:274: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+  frontier_labels = pd.Series(None, index=orders.index)
+/common/home/hg343/Research/accelerate_combo_option/src/market.py:275: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+  quote_prices = pd.Series(None, index=orders.index)  # Create a Series to store quote prices
+checking match False -0.0
+Processing order 0 (1/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote     -1.0      3.0           -1.0                                  221.0               1.0       49.0          1
+quote price: 52.86
+quote_price: 52.86, original_price: 49.0
+Processing order 1 (2/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      9.0     -8.0           -1.0                                  384.0               1.0       0.03          1
+quote price: 0.03
+quote_price: 0.03, original_price: 0.03
+Processing order 2 (3/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote     -1.0      2.0            1.0                                   23.0               1.0      36.71          1
+quote price: 36.76
+quote_price: 36.76, original_price: 36.71
+Processing order 3 (4/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      3.0      5.0            1.0                                  760.0               1.0     235.11          1
+quote price: 235.11
+quote_price: 235.11, original_price: 235.11
+Processing order 5 (5/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      7.0     -5.0           -1.0                                  687.5               1.0     140.28          1
+quote price: 142.7
+quote_price: 142.7, original_price: 140.28
+Processing order 7 (6/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      4.0      5.0           -1.0                                 1042.5               1.0       0.01          1
+quote price: 0.01
+quote_price: 0.01, original_price: 0.01
+Processing order 8 (7/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      1.0     -1.0           -1.0                                   42.0               1.0       0.21          1
+quote price: 0.21
+quote_price: 0.21, original_price: 0.21
+Processing order 9 (8/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      1.0      1.0            1.0                                  253.0               1.0       7.58          1
+quote price: 7.58
+quote_price: 7.58, original_price: 7.58
+Processing order 10 (9/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      4.0      3.0           -1.0                                  960.0               1.0       19.7          1
+quote price: 22.74
+quote_price: 22.74, original_price: 19.7
+Processing order 11 (10/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      3.0     -2.0           -1.0                                  252.0               1.0       9.64          1
+quote price: 9.64
+quote_price: 9.64, original_price: 9.64
+Processing order 12 (11/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      2.0     -1.0            1.0                                  205.0               1.0       2.25          1
+quote price: 2.25
+quote_price: 2.25, original_price: 2.25
+Processing order 13 (12/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      7.0     -5.0            1.0                                  416.0               1.0     117.57          1
+quote price: 123.95
+quote_price: 123.95, original_price: 117.57
+Processing order 14 (13/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      3.0     -2.0           -1.0                                  191.0               1.0       0.02          1
+quote price: 0.02
+quote_price: 0.02, original_price: 0.02
+Processing order 15 (14/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      5.0      7.0            1.0                                 1498.0               1.0      17.99          1
+quote price: 17.99
+quote_price: 17.99, original_price: 17.99
+Processing order 16 (15/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      2.0      1.0           -1.0                                  391.0               1.0       0.46          1
+quote price: 0.46
+quote_price: 0.46, original_price: 0.46
+Processing order 17 (16/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      7.0     -5.0            1.0                                  467.5               1.0      67.78          1
+quote price: 74.16
+quote_price: 74.16, original_price: 67.78
+Processing order 18 (17/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      6.0     -7.0           -1.0                                  262.5               1.0      86.48          1
+quote price: 86.48
+quote_price: 86.48, original_price: 86.48
+Processing order 19 (18/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      1.0      1.0           -1.0                                  296.5               1.0      34.12          1
+quote price: 34.91
+quote_price: 34.91, original_price: 34.12
+Processing order 20 (19/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      7.0      6.0            1.0                                 1544.5               1.0     171.44          1
+quote price: 171.44
+quote_price: 171.44, original_price: 171.44
+Processing order 22 (20/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      1.0      7.0            1.0                                  910.0               1.0       9.31          1
+quote price: 9.31
+quote_price: 9.31, original_price: 9.31
+Processing order 24 (21/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      5.0     -4.0            1.0                                  270.0               1.0      64.82          1
+quote price: 69.85
+quote_price: 69.85, original_price: 64.82
+Processing order 25 (22/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      4.0     -3.0            1.0                                  234.0               1.0      55.77          1
+quote price: 59.29
+quote_price: 59.29, original_price: 55.77
+Processing order 26 (23/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      1.0      7.0           -1.0                                  830.5               1.0       0.47          1
+quote price: 0.47
+quote_price: 0.47, original_price: 0.47
+Processing order 27 (24/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      1.0      4.0           -1.0                                  540.5               1.0       0.07          1
+quote price: 0.07
+quote_price: 0.07, original_price: 0.07
+Processing order 28 (25/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      1.0      5.0            1.0                                  618.5               1.0      68.77          1
+quote price: 68.77
+quote_price: 68.77, original_price: 68.77
+Processing order 29 (26/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      2.0      1.0           -1.0                                  391.5               1.0       0.48          1
+quote price: 0.48
+quote_price: 0.48, original_price: 0.48
+Processing order 30 (27/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      7.0     -4.0            1.0                                  529.0               1.0     113.68          1
+quote price: 118.04
+quote_price: 118.04, original_price: 113.68
+Processing order 31 (28/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      3.0     -4.0           -1.0                                   90.0               1.0      54.88          1
+quote price: 55.38
+quote_price: 55.38, original_price: 54.88
+Processing order 32 (29/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      3.0      2.0            1.0                                  623.0               1.0      51.83          1
+quote price: 51.83
+quote_price: 51.83, original_price: 51.83
+Processing order 33 (30/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      7.0      1.0            1.0                                 1057.0               1.0     128.55          1
+quote price: 128.23
+quote_price: 128.23, original_price: 128.55
+Processing order 34 (31/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      7.0      6.0           -1.0                                 1508.0               1.0       0.06          1
+quote price: 0.06
+quote_price: 0.06, original_price: 0.06
+Processing order 35 (32/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      7.0     -5.0            1.0                                  447.5               1.0      86.23          1
+quote price: 92.56
+quote_price: 92.56, original_price: 86.23
+Processing order 36 (33/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      8.0     -1.0            1.0                                 1015.0               1.0     112.09          1
+quote price: 112.09
+quote_price: 112.09, original_price: 112.09
+Processing order 37 (34/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      3.0     -2.0           -1.0                                  193.0               1.0       0.03          1
+quote price: 0.03
+quote_price: 0.03, original_price: 0.03
+Processing order 39 (35/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      1.0     -1.0           -1.0                                   90.5               1.0      42.52          1
+quote price: 42.87
+quote_price: 42.87, original_price: 42.52
+Processing order 40 (36/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      1.0     -1.0           -1.0                                   49.5               1.0       2.94          1
+quote price: 2.94
+quote_price: 2.94, original_price: 2.94
+Processing order 41 (37/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      8.0     -5.0           -1.0                                  860.0               1.0     160.07          1
+quote price: 160.35
+quote_price: 160.35, original_price: 160.07
+Processing order 42 (38/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      1.0      1.0           -1.0                                  279.0               1.0      16.63          1
+quote price: 17.63
+quote_price: 17.63, original_price: 16.63
+Processing order 43 (39/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      9.0      8.0            1.0                                 2097.0               1.0     140.59          1
+quote price: 140.59
+quote_price: 140.59, original_price: 140.59
+Processing order 44 (40/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      9.0      4.0           -1.0                                 1881.0               1.0      66.46          1
+quote price: 67.79
+quote_price: 67.79, original_price: 66.46
+Processing order 46 (41/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      5.0     -1.0            1.0                                  766.5               1.0       0.23          1
+quote price: 0.23
+quote_price: 0.23, original_price: 0.23
+Processing order 47 (42/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      6.0     -1.0           -1.0                                  932.0               1.0     115.41          1
+quote price: 115.41
+quote_price: 115.41, original_price: 115.41
+Processing order 49 (43/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote     -1.0      2.0           -1.0                                   69.0               1.0       6.98          1
+quote price: 8.5
+quote_price: 8.5, original_price: 6.98
+Processing order 50 (44/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote     -1.0      7.0           -1.0                                  647.0               1.0       47.7          1
+quote price: 50.28
+quote_price: 50.28, original_price: 47.7
+Processing order 51 (45/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote     -3.0      8.0           -1.0                                  312.0               1.0       0.08          1
+quote price: 0.08
+quote_price: 0.08, original_price: 0.08
+Processing order 52 (46/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote     -5.0      8.0           -1.0                                  113.5               1.0      18.27          1
+quote price: 25.21
+quote_price: 25.21, original_price: 18.27
+Processing order 53 (47/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote     -3.0      7.0            1.0                                  153.5               1.0     132.65          1
+quote price: 132.65
+quote_price: 132.65, original_price: 132.65
+Processing order 54 (48/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      2.0     -1.0           -1.0                                  212.5               1.0      12.46          1
+quote price: 12.46
+quote_price: 12.46, original_price: 12.46
+Processing order 55 (49/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      4.0     -7.0           -1.0                                   32.5               1.0     164.54          1
+quote price: 164.54
+quote_price: 164.54, original_price: 164.54
+Processing order 56 (50/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      4.0      5.0           -1.0                                 1180.0               1.0      21.86          1
+quote price: 28.03
+quote_price: 28.03, original_price: 21.86
+Processing order 57 (51/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      1.0      1.0           -1.0                                  287.5               1.0       25.2          1
+quote price: 26.03
+quote_price: 26.03, original_price: 25.2
+Processing order 58 (52/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      2.0     -1.0           -1.0                                  277.5               1.0      76.49          1
+quote price: 76.49
+quote_price: 76.49, original_price: 76.49
+Processing order 59 (53/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      1.0      3.0            1.0                                  478.5               1.0       1.27          1
+quote price: 1.27
+quote_price: 1.27, original_price: 1.27
+Processing order 60 (54/83)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      8.0      5.0            1.0                                 1467.5               1.0     296.29          1
+quote price: 296.29
+quote_price: 296.29, original_price: 296.29
+Processing order 61 (55/83)
+checking match False -0.0
+quote_price: 1.15, original_price: 1.15
+Processing order 62 (56/83)
+checking match False -0.0
+quote_price: 24.77, original_price: 24.77
+Processing order 63 (57/83)
+checking match False -0.0
+quote_price: 19.37, original_price: 19.37
+Processing order 64 (58/83)
+checking match False -0.0
+quote_price: 12.92, original_price: 12.92
+Processing order 65 (59/83)
+checking match False -0.0
+quote_price: 322.48, original_price: 322.48
+Processing order 66 (60/83)
+checking match False -0.0
+quote_price: 99.26, original_price: 99.26
+Processing order 68 (61/83)
+checking match False -0.0
+quote_price: 69.23, original_price: 69.23
+Processing order 69 (62/83)
+checking match False -0.0
+quote_price: 0.25, original_price: 0.25
+Processing order 70 (63/83)
+checking match False -0.0
+quote_price: 0.15, original_price: 0.15
+Processing order 71 (64/83)
+checking match False -0.0
+quote_price: 11.52, original_price: 11.52
+Processing order 74 (65/83)
+checking match False -0.0
+quote_price: 0.11, original_price: 0.11
+Processing order 75 (66/83)
+checking match False -0.0
+quote_price: 17.46, original_price: 17.46
+Processing order 76 (67/83)
+checking match False -0.0
+quote_price: 0.12, original_price: 0.12
+Processing order 77 (68/83)
+checking match False -0.0
+quote_price: 46.67, original_price: 46.67
+Processing order 78 (69/83)
+checking match False -0.0
+quote_price: 46.65, original_price: 46.65
+Processing order 79 (70/83)
+checking match False -0.0
+quote_price: 27.67, original_price: 27.67
+Processing order 80 (71/83)
+checking match False -0.0
+quote_price: 2.81, original_price: 2.81
+Processing order 82 (72/83)
+checking match False -0.0
+quote_price: 28.08, original_price: 28.08
+Processing order 83 (73/83)
+checking match False -0.0
+quote_price: 154.75, original_price: 154.75
+Processing order 84 (74/83)
+checking match False -0.0
+quote_price: 1.49, original_price: 1.49
+Processing order 85 (75/83)
+checking match False -0.0
+quote_price: 0.63, original_price: 0.63
+Processing order 87 (76/83)
+checking match False -0.0
+quote_price: 19.57, original_price: 19.57
+Processing order 88 (77/83)
+checking match False -0.0
+quote_price: 10.42, original_price: 10.42
+Processing order 89 (78/83)
+checking match False -0.0
+quote_price: 15.6, original_price: 15.6
+Processing order 91 (79/83)
+checking match False -0.0
+quote_price: 4.05, original_price: 4.05
+Processing order 93 (80/83)
+checking match False -0.0
+quote_price: 60.16, original_price: 60.16
+Processing order 95 (81/83)
+checking match False -0.0
+quote_price: 0.03, original_price: 0.03
+Processing order 98 (82/83)
+checking match False -0.0
+quote_price: 9.23, original_price: 9.23
+Processing order 99 (83/83)
+checking match False -0.0
+quote_price: 1.72, original_price: 1.72
+    option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity  belongs_to_frontier
+0      -1.0      3.0           -1.0                                  221.0               1.0      49.00          1                  0.0
+1       9.0     -8.0           -1.0                                  384.0               1.0       0.03          1                  1.0
+2      -1.0      2.0            1.0                                   23.0               1.0      36.71          1                  0.0
+3       3.0      5.0            1.0                                  760.0               1.0     235.11          1                  1.0
+5       7.0     -5.0           -1.0                                  687.5               1.0     140.28          1                  0.0
+..      ...      ...            ...                                    ...               ...        ...        ...                  ...
+91      3.0      2.0           -1.0                                  625.0               0.0       4.05          1                  1.0
+93     -1.0      8.0            1.0                                  647.0               0.0      60.16          1                  1.0
+95      2.0     -1.0            1.0                                  330.5               0.0       0.03          1                  1.0
+98      2.0     -1.0            1.0                                  205.5               0.0       9.23          1                  1.0
+99      3.0      4.0            1.0                                  970.0               0.0       1.72          1                  1.0
+[83 rows x 8 columns]
+frontier_option_label_epsilon:     option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity  belongs_to_frontier
+0      -1.0      3.0           -1.0                                  221.0               1.0      49.00          1                  0.0
+1       9.0     -8.0           -1.0                                  384.0               1.0       0.03          1                  1.0
+2      -1.0      2.0            1.0                                   23.0               1.0      36.71          1                  0.0
+3       3.0      5.0            1.0                                  760.0               1.0     235.11          1                  1.0
+5       7.0     -5.0           -1.0                                  687.5               1.0     140.28          1                  0.0
+..      ...      ...            ...                                    ...               ...        ...        ...                  ...
+91      3.0      2.0           -1.0                                  625.0               0.0       4.05          1                  1.0
+93     -1.0      8.0            1.0                                  647.0               0.0      60.16          1                  1.0
+95      2.0     -1.0            1.0                                  330.5               0.0       0.03          1                  1.0
+98      2.0     -1.0            1.0                                  205.5               0.0       9.23          1                  1.0
+99      3.0      4.0            1.0                                  970.0               0.0       1.72          1                  1.0
+[83 rows x 8 columns]
+frontier_option_regular:     option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity  belongs_to_frontier
+0      -1.0      3.0           -1.0                                  221.0               1.0      49.00          1                  0.0
+1       9.0     -8.0           -1.0                                  384.0               1.0       0.03          1                  1.0
+2      -1.0      2.0            1.0                                   23.0               1.0      36.71          1                  0.0
+3       3.0      5.0            1.0                                  760.0               1.0     235.11          1                  1.0
+5       7.0     -5.0           -1.0                                  687.5               1.0     140.28          1                  0.0
+..      ...      ...            ...                                    ...               ...        ...        ...                  ...
+91      3.0      2.0           -1.0                                  625.0               0.0       4.05          1                  1.0
+93     -1.0      8.0            1.0                                  647.0               0.0      60.16          1                  1.0
+95      2.0     -1.0            1.0                                  330.5               0.0       0.03          1                  1.0
+98      2.0     -1.0            1.0                                  205.5               0.0       9.23          1                  1.0
+99      3.0      4.0            1.0                                  970.0               0.0       1.72          1                  1.0
+[83 rows x 8 columns]
+0     True
+1     True
+2     True
+3     True
+5     True
+      ...
+91    True
+93    True
+95    True
+98    True
+99    True
+Name: belongs_to_frontier, Length: 83, dtype: bool
+quote_price_regular: 0      51.03
+1       0.03
+2      36.76
+3     235.11
+5     141.97
+       ...
+91      4.05
+93     60.16
+95      0.03
+98      9.23
+99      2.69
+Length: 83, dtype: float64
+quote_price_epsilon: 0      52.86
+1       0.03
+2      36.76
+3     235.11
+5     142.70
+       ...
+91      4.05
+93     60.16
+95      0.03
+98      9.23
+99      1.72
+Length: 83, dtype: float64
+non-matching indices: [ 0  4  8 11 15 17 20 21 26 29 31 36 37 39 42 43 45 49 50 82]
+values of quote_price_regular and quote_price_epsilon at non-matching indices: 0      51.03
+5     141.97
+10     22.43
+13    120.43
+17     73.30
+19     34.76
+24     67.85
+25     57.91
+30    115.46
+33    128.55
+35     90.33
+41    160.22
+42     17.62
+44     66.88
+49      8.01
+50     48.07
+52     21.69
+56     26.78
+57     25.96
+99      2.69
+dtype: float64, 0      52.86
+5     142.70
+10     22.74
+13    123.95
+17     74.16
+19     34.91
+24     69.85
+25     59.29
+30    118.04
+33    128.23
+35     92.56
+41    160.35
+42     17.63
+44     67.79
+49      8.50
+50     50.28
+52     25.21
+56     28.03
+57     26.03
+99      1.72
+dtype: float64
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py(178)<module>()
+-> if frontier_option_label_epsilon is not None and not np.isnan(frontier_option_label_epsilon['belongs_to_frontier']).any():
+0     0.0
+1     1.0
+2     0.0
+3     1.0
+5     0.0
+     ...
+91    1.0
+93    1.0
+95    1.0
+98    1.0
+99    1.0
+Name: belongs_to_frontier, Length: 83, dtype: float64
+62.0
+0.7469879518072289
+0     False
+1     False
+2     False
+3     False
+5     False
+      ...
+91     True
+93     True
+95     True
+98     True
+99     True
+Name: transaction_type, Length: 83, dtype: bool
+61    1.0
+62    1.0
+63    1.0
+64    1.0
+65    1.0
+66    1.0
+68    1.0
+69    1.0
+70    1.0
+71    1.0
+74    1.0
+75    1.0
+76    1.0
+77    1.0
+78    1.0
+79    1.0
+80    1.0
+82    1.0
+83    1.0
+84    1.0
+85    1.0
+87    1.0
+88    1.0
+89    1.0
+91    1.0
+93    1.0
+95    1.0
+98    1.0
+99    1.0
+Name: belongs_to_frontier, dtype: float64
+33.0
+54
+0.6111111111111112

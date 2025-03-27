@@ -1,0 +1,40 @@
+
+Generating frontier for markets:   0%|                                                                                             | 0/20 [00:00<?, ?it/s]
+There are 25 buy orders and 25 sell orders
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py(151)<module>()
+-> df_buy_book = pd.DataFrame(opt_buy_book, columns=column_names)
+NameError: name 'column_names' is not defined
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py(151)<module>()
+-> df_buy_book = pd.DataFrame(opt_buy_book, columns=column_names)
+Generating frontier for markets:   0%|                                                                                             | 0/20 [00:21<?, ?it/s]
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 151, in <module>
+    column_names = ['option1', 'option2', 'C=Call, P=Put', 'Strike Price of the Option Times 1000', 'transaction_type', 'B/A_price']
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 94, in trace_dispatch
+    return self.dispatch_exception(frame, arg)
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 173, in dispatch_exception
+    self.user_exception(frame, arg)
+  File "/common/home/hg343/anaconda3/lib/python3.9/pdb.py", line 313, in user_exception
+    self.interaction(frame, exc_traceback)
+  File "/common/home/hg343/anaconda3/lib/python3.9/pdb.py", line 357, in interaction
+    self._cmdloop()
+  File "/common/home/hg343/anaconda3/lib/python3.9/pdb.py", line 322, in _cmdloop
+    self.cmdloop()
+  File "/common/home/hg343/anaconda3/lib/python3.9/cmd.py", line 126, in cmdloop
+    line = input(self.prompt)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 58, in signal_handler
+    pool.terminate()
+  File "/common/home/hg343/anaconda3/lib/python3.9/multiprocessing/pool.py", line 654, in terminate
+    self._terminate()
+  File "/common/home/hg343/anaconda3/lib/python3.9/multiprocessing/util.py", line 224, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+  File "/common/home/hg343/anaconda3/lib/python3.9/multiprocessing/pool.py", line 692, in _terminate_pool
+    cls._help_stuff_finish(inqueue, task_handler, len(pool))
+  File "/common/home/hg343/anaconda3/lib/python3.9/multiprocessing/pool.py", line 672, in _help_stuff_finish
+    inqueue._rlock.acquire()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 60, in signal_handler
+    sys.exit(1)
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/wandb/sdk/lib/exit_hooks.py", line 36, in exit
+    self._orig_exit(orig_code)  # type: ignore
+SystemExit: 1
+Ctrl+C received. Terminating processes...

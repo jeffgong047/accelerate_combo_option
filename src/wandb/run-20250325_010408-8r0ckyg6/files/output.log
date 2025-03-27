@@ -1,0 +1,55 @@
+
+Generating frontier for markets:   0%|                                                                                             | 0/20 [00:00<?, ?it/s]
+There are 25 buy orders and 25 sell orders
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py(151)<module>()
+-> frontier_option_label_compared = synthetic_combo_frontier_generation(opt_buy_book, opt_sell_book, opt_l = args.offset, debug=0)
+IndexError: only integers, slices (`:`), ellipsis (`...`), numpy.newaxis (`None`) and integer or boolean arrays are valid indices
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py(151)<module>()
+-> frontier_option_label_compared = synthetic_combo_frontier_generation(opt_buy_book, opt_sell_book, opt_l = args.offset, debug=0)
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py(201)<module>()
+Generating frontier for markets:   0%|                                                                                             | 0/20 [00:13<?, ?it/s]
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 151, in <module>
+    frontier_option_label_compared = synthetic_combo_frontier_generation(opt_buy_book, opt_sell_book, opt_l = args.offset, debug=0)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 75, in synthetic_combo_frontier_generation
+    original_opt_buy_book = original_opt_buy_book[['option1', 'option2', 'C=Call, P=Put','Strike Price of the Option Times 1000', 'transaction_type','B/A_price']]
+IndexError: only integers, slices (`:`), ellipsis (`...`), numpy.newaxis (`None`) and integer or boolean arrays are valid indices
+During handling of the above exception, another exception occurred:
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 201, in <module>
+    except TimeoutError:
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 201, in <module>
+    except TimeoutError:
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 88, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 113, in dispatch_line
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit
+Generating frontier for markets:   0%|                                                                                             | 0/20 [00:00<?, ?it/s]
+Error processing seed 2:
+There are 36 buy orders and 14 sell orders
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py(150)<module>()
+Generating frontier for markets:   0%|                                                                                             | 0/20 [00:02<?, ?it/s]
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 150, in <module>
+    breakpoint()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 150, in <module>
+    breakpoint()
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 88, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 112, in dispatch_line
+    self.user_line(frame)
+  File "/common/home/hg343/anaconda3/lib/python3.9/pdb.py", line 262, in user_line
+    self.interaction(frame, None)
+  File "/common/home/hg343/anaconda3/lib/python3.9/pdb.py", line 357, in interaction
+    self._cmdloop()
+  File "/common/home/hg343/anaconda3/lib/python3.9/pdb.py", line 322, in _cmdloop
+    self.cmdloop()
+  File "/common/home/hg343/anaconda3/lib/python3.9/cmd.py", line 126, in cmdloop
+    line = input(self.prompt)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 60, in signal_handler
+    sys.exit(1)
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/wandb/sdk/lib/exit_hooks.py", line 36, in exit
+    self._orig_exit(orig_code)  # type: ignore
+SystemExit: 1
+Ctrl+C received. Terminating processes...

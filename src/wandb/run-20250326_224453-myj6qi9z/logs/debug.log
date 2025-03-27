@@ -1,0 +1,19 @@
+2025-03-26 22:44:53,924 INFO    MainThread:939105 [wandb_setup.py:_flush():76] Current SDK version is 0.17.0
+2025-03-26 22:44:53,924 INFO    MainThread:939105 [wandb_setup.py:_flush():76] Configure stats pid to 939105
+2025-03-26 22:44:53,924 INFO    MainThread:939105 [wandb_setup.py:_flush():76] Loading settings from /common/home/hg343/.config/wandb/settings
+2025-03-26 22:44:53,924 INFO    MainThread:939105 [wandb_setup.py:_flush():76] Loading settings from /common/home/hg343/Research/accelerate_combo_option/src/wandb/settings
+2025-03-26 22:44:53,924 INFO    MainThread:939105 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'api_key': '***REDACTED***'}
+2025-03-26 22:44:53,925 INFO    MainThread:939105 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'src/combo_stock_frontier_data_preprocessor.py', 'program_abspath': '/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py', 'program': '/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py'}
+2025-03-26 22:44:53,925 INFO    MainThread:939105 [wandb_setup.py:_flush():76] Applying login settings: {}
+2025-03-26 22:44:53,925 INFO    MainThread:939105 [wandb_setup.py:_flush():76] Applying login settings: {}
+2025-03-26 22:44:53,925 INFO    MainThread:939105 [wandb_init.py:_log_setup():520] Logging user logs to /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250326_224453-myj6qi9z/logs/debug.log
+2025-03-26 22:44:53,925 INFO    MainThread:939105 [wandb_init.py:_log_setup():521] Logging internal logs to /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250326_224453-myj6qi9z/logs/debug-internal.log
+2025-03-26 22:44:53,925 INFO    MainThread:939105 [wandb_init.py:init():560] calling init triggers
+2025-03-26 22:44:53,925 INFO    MainThread:939105 [wandb_init.py:init():567] wandb.init called with sweep_config: {}
+config: {}
+2025-03-26 22:44:53,925 INFO    MainThread:939105 [wandb_init.py:init():605] wandb.init() called when a run is still active
+2025-03-26 22:47:36,499 INFO    MainThread:939105 [wandb_run.py:_finish():2103] finishing run jglppk/expediating_comb_financial_market_matching/wwrq2h0i
+2025-03-26 22:47:36,500 INFO    MainThread:939105 [wandb_run.py:_atexit_cleanup():2343] got exitcode: 1
+2025-03-26 22:47:36,501 INFO    MainThread:939105 [wandb_run.py:_restore():2326] restore
+2025-03-26 22:47:36,502 INFO    MainThread:939105 [wandb_run.py:_restore():2332] restore done
+2025-03-26 22:47:40,703 WARNING MsgRouterThr:939105 [router.py:message_loop():77] message_loop has been closed

@@ -1,0 +1,232 @@
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py(121)<module>()
+-> stock_list= list(random.choice(combinations))
+116  	            ) as run:
+117  	                #turn off random selection for now
+118  	                selection = ['AAPL', 'AXP', 'BA', 'DIS', 'GS', 'HD', 'IBM', 'JNJ', 'JPM', 'KO', 'MCD', 'MMM', 'MSFT', 'NKE', 'PG', 'RTX', 'VZ', 'WBA', 'WMT', 'XOM']
+119  	                combinations = list(itertools.combinations(selection,NUM_STOCK))
+120  	                breakpoint()
+121  ->	                stock_list= list(random.choice(combinations))
+122  	                combinations_string = '_'.join(stock_list)
+123  	                for i in range(2,14):
+124  	                    filename = f'combinatorial/book/STOCK_2_SEED_{i}_book_{combinations_string}.npy'
+125  	                    if os.path.isfile(filename):
+126  	                        opt_book = np.load(filename)
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py(122)<module>()
+-> combinations_string = '_'.join(stock_list)
+['MSFT', 'NKE']
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py(123)<module>()
+-> for i in range(2,14):
+'MSFT_NKE'
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py(124)<module>()
+-> filename = f'combinatorial/book/STOCK_2_SEED_{i}_book_{combinations_string}.npy'
+119  	                combinations = list(itertools.combinations(selection,NUM_STOCK))
+120  	                breakpoint()
+121  	                stock_list= list(random.choice(combinations))
+122  	                combinations_string = '_'.join(stock_list)
+123  	                for i in range(2,14):
+124  ->	                    filename = f'combinatorial/book/STOCK_2_SEED_{i}_book_{combinations_string}.npy'
+125  	                    if os.path.isfile(filename):
+126  	                        opt_book = np.load(filename)
+127  	                    else:
+128  	                        print('File not found')
+129  	                        opt_book, stock_list = gen_synthetic_combo_options(NUM_ST=NUM_STOCK, NUM_ORDER=args.num_orders, combinations= random_select_combination,SEED=i)
+  1  	import pdb
+  2  	import pickle
+  3  	import argparse
+  4  	import pandas as pd
+  5  	import numpy as np
+  6  	import random
+  7  	import math
+  8  	import os.path
+  9  	from combinatorial.gen_synthetic_combo_options import gen_synthetic_combo_options
+ 10  	from combinatorial.synthetic_combo_mip_match import synthetic_combo_match_mip
+ 11  	from gurobipy import *
+ 12  	import timeit
+ 13  	from copy import deepcopy
+ 14  	from tqdm import tqdm
+ 15  	# Run in a separate process with timeout
+ 16  	from multiprocessing import Process, Queue, Pool
+ 17  	import multiprocessing as mp
+ 18  	import queue
+ 19  	import traceback
+ 20  	from contextlib import contextmanager
+ 21  	import signal
+ 22  	import sys
+ 23  	from multiprocessing import Pool, TimeoutError
+ 24  	import itertools
+ 25  	import wandb
+ 26  	import os
+ 27  	from market import Market
+ 28  	
+ 29  	# Add this function to parse command line arguments
+ 30  	def parse_arguments():
+ 31  	    parser = argparse.ArgumentParser(description='Process stock options.')
+ 32  	    parser.add_argument('--num_stocks', type=int, default=2, help='Number of stocks to process (default: 3)')
+ 33  	    parser.add_argument('--market_size', type=int, default=50, help='Number of orders in the market')
+ 34  	    parser.add_argument('--offset', type=bool, default=False, help='Whether to allow offset for liability in the optimization')
+ 35  	    parser.add_argument('--wandb_project', type=str, default='expediating_comb_financial_market_matching', help='Wandb project name')
+ 36  	    parser.add_argument('--num_orders', type=int, default=5000, help='number of orders in the orderbook')
+ 37  	    parser.add_argument('--noise', type=float, default=2**-6, help='noise level in the orderbook')
+ 38  	    return parser.parse_args()
+ 39  	
+ 40  	# Move the main execution code inside if __name__ == '__main__':
+ 41  	args = parse_arguments()
+ 42  	
+ 43  	
+ 44  	
+ 45  	# Set wandb API key programmatically
+ 46  	os.environ["WANDB_API_KEY"] = "d1cb0d609d7b64218fe82a45a54e57f47e2d26da"
+ 47  	
+ 48  	try:
+ 49  	    wandb.login()  # This will now use the API key we just set
+ 50  	except wandb.errors.AuthError:
+ 51  	    print("Could not authenticate with wandb. Invalid API key")
+ 52  	    sys.exit(1)
+ 53  	
+ 54  	def signal_handler(signum, frame):
+ 55  	    print("Ctrl+C received. Terminating processes...")
+ 56  	    if 'pool' in globals():
+ 57  	        pool.terminate()
+ 58  	        pool.join()
+ 59  	    sys.exit(1)
+ 60  	
+ 61  	# Register the signal handler
+ 62  	signal.signal(signal.SIGINT, signal_handler)
+ 63  	
+ 64  	
+ 65  	
+ 66  	
+ 67  	
+ 68  	
+ 69  	def add_noise_orderbook(opt_book, NOISE=0.01):
+ 70  	    SEED = 1
+ 71  	    random.seed(SEED)
+ 72  	    # coeff up to len(stock_list); call/put; strike; buy/sell; price (bid/ask)
+ 73  	    opt_buy_book, opt_sell_book = opt_book[opt_book[:, -2]==1], opt_book[opt_book[:, -2]==0]
+ 74  	    num_buy, num_sell = len(opt_buy_book), len(opt_sell_book)
+ 75  	    # add noise
+ 76  	    buy_noise = [random.random()*NOISE+1 for i in range(num_buy)]
+ 77  	    opt_buy_book[:, -1] = np.round(buy_noise * opt_buy_book[:, -1], 2)
+ 78  	    sell_noise = [1-random.random()*NOISE for i in range(num_sell)]
+ 79  	    opt_sell_book[:, -1] = np.round(sell_noise * opt_sell_book[:, -1], 2)
+ 80  	    print('There are {} buy orders and {} sell orders'.format(num_buy, num_sell))
+ 81  	    return opt_buy_book, opt_sell_book
+ 82  	
+ 83  	
+ 84  	
+ 85  	@contextmanager
+ 86  	def pool_context(*args, **kwargs):
+ 87  	    pool = mp.Pool(*args, **kwargs)
+ 88  	    try:
+ 89  	        yield pool
+ 90  	    finally:
+ 91  	        pool.terminate()
+ 92  	        pool.join()
+ 93  	
+ 94  	# Parameter lists
+ 95  	# NUM_STOCK_LIST = [2] #, 4, 8, 12, 16, 20]  # 12, 16, 20
+ 96  	# BOOK_SIZE_LIST = [50] #,150, 200, 250, 300, 350, 400]
+ 97  	# NOISE_LIST = [2**-6]#[2**-7, 2**-6, 2**-5, 2**-4, 2**-3]
+ 98  	
+ 99  	
+100  	
+101  	if __name__ == '__main__':
+102  	    NUM_STOCK = args.num_stocks
+103  	    MARKET_SIZE = args.market_size
+104  	    NOISE = args.noise
+105  	    BOOK_SIZE = args.market_size
+106  	    NOISE = args.noise
+107  	# Create a new pool for each iteration
+108  	    tasks = {}
+109  	    # directory_path = f'/common/home/hg343/Research/accelerate_combo_option/data/combo_{NUM_STOCK}_frontier_no_offset'
+110  	    directory_path = f'/common/home/hg343/Research/accelerate_combo_option/data/combo_2_test'
+111  	    with pool_context(processes=20) as pool:
+112  	        try:
+113  	            with wandb.init(
+114  	                project=args.wandb_project,
+115  	                name = f"combo_frontier_num_stock_{NUM_STOCK}_noise_{NOISE}_market_size_{MARKET_SIZE}",
+116  	            ) as run:
+117  	                #turn off random selection for now
+118  	                selection = ['AAPL', 'AXP', 'BA', 'DIS', 'GS', 'HD', 'IBM', 'JNJ', 'JPM', 'KO', 'MCD', 'MMM', 'MSFT', 'NKE', 'PG', 'RTX', 'VZ', 'WBA', 'WMT', 'XOM']
+119  	                combinations = list(itertools.combinations(selection,NUM_STOCK))
+120  	                breakpoint()
+121  	                stock_list= list(random.choice(combinations))
+122  	                combinations_string = '_'.join(stock_list)
+123  	                for i in range(2,14):
+124  ->	                    filename = f'combinatorial/book/STOCK_2_SEED_{i}_book_{combinations_string}.npy'
+125  	                    if os.path.isfile(filename):
+126  	                        opt_book = np.load(filename)
+127  	                    else:
+128  	                        print('File not found')
+129  	                        opt_book, stock_list = gen_synthetic_combo_options(NUM_ST=NUM_STOCK, NUM_ORDER=args.num_orders, combinations= random_select_combination,SEED=i)
+130  	                        np.save(filename, opt_book)
+131  	                    num_books = len(opt_book)//50
+132  	                    # Create artifact once before the loop
+133  	                    artifact = wandb.Artifact(
+134  	                        name=f"combo_frontier_{'_'.join(stock_list)}_size_{BOOK_SIZE}_noise_{NOISE}",
+135  	                        type="dataset",
+136  	                        description="Collection of frontier options training data for different markets",
+137  	                        metadata={
+138  	                            'num_stock': NUM_STOCK,
+139  	                            'stock_name': '_'.join(stock_list),
+140  	                            'noise': NOISE,
+141  	                            'book_size': BOOK_SIZE,
+142  	                            'total_markets': num_books  # Add total number of markets
+143  	                        }
+144  	                    )
+145  	                    for market_index in tqdm(range(0,num_books), desc=f'Generating frontier for markets'):
+146  	                        stock_name = '_'.join(stock_list)
+147  	                        opt_book_1 = opt_book[market_index*MARKET_SIZE:(market_index+1)*MARKET_SIZE]
+148  	                        opt_buy_book, opt_sell_book = add_noise_orderbook(opt_book_1, NOISE)
+149  	                        print('#####Generating {} with size {} and noise {}#####'.format(filename, BOOK_SIZE, NOISE))
+150  	                                # Add debug print before async
+151  	                        print(f"Starting async computation for iteration {market_index}")
+152  	                        filename = f'corrected_testing_combo_frontier_market_index_{market_index}_book_size_{BOOK_SIZE}_{stock_name}_NOISE_{NOISE}'
+153  	                        column_names = ['option1', 'option2', 'C=Call, P=Put','Strike Price of the Option Times 1000', 'transaction_type','B/A_price']
+154  	                        opt_buy_book = pd.DataFrame(opt_buy_book, columns = column_names)
+155  	                        opt_sell_book = pd.DataFrame(opt_sell_book, columns = column_names)
+156  	                        market = Market(pd.concat([opt_buy_book, opt_sell_book], ignore_index=False), offset = args.offset)
+157  	                        #handle multi-threading
+158  	                        frontier_option_label = market.epsilon_frontierGeneration()
+159  	                        try:
+160  	                            print(f"Result type for iteration {market_index}: {type(frontier_option_label)}")
+161  	                            if frontier_option_label is not None:
+162  	                                print(f"Successfully completed iteration {market_index}")
+163  	                                if not os.path.exists(directory_path):
+164  	                                    os.makedirs(directory_path)
+165  	
+166  	                                stock_name = '_'.join(stock_list)
+167  	                                save_path = os.path.join(directory_path, filename+'.pkl')
+168  	
+169  	                                print(f"Attempting to save to: {save_path}")
+170  	                                metadata = {
+171  	                                    'num_stock': NUM_STOCK,
+172  	                                    'stock_name': stock_name,
+173  	                                    'noise': NOISE,
+174  	                                    'book_size': BOOK_SIZE,
+175  	                                    'market_index': market_index
+176  	                                }
+177  	                                with open(save_path, 'wb') as f:
+178  	                                    pickle.dump(frontier_option_label, f)
+179  	                                # Log metadata for this specific market
+180  	                                wandb.log({
+181  	                                    f'market_{market_index}/metadata': metadata
+182  	                                })
+183  	
+184  	                                # Add this market's file to the artifact
+185  	                                artifact.add_file(save_path, name=f'{filename}.pkl')
+186  	                                print(f"Successfully saved iteration {market_index}")
+187  	                            else:
+188  	                                print(f"Iteration {market_index} returned None")
+189  	
+190  	                        except TimeoutError:
+191  	                            print(f"Iteration {market_index} timed out after 20 seconds")
+192  	                            # Pool will be automatically cleaned up when the context exits
+193  	                            continue
+194  	
+195  	                # After the loop is complete, log the artifact once with all files
+196  	                run.log_artifact(artifact)
+197  	
+198  	        except Exception as e:
+199  	            print(f"Error in main: {str(e)}")
+200  	            traceback.print_exc()

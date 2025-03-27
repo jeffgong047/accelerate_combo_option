@@ -1,0 +1,58 @@
+
+Generating frontier for markets:   0%|                                                                                              | 0/19 [00:00<?, ?it/s]
+There are 27 buy orders and 23 sell orders
+#####Generating market 1 with size 50 and noise 0.015625#####
+Starting computation for iteration 1
+checking match True 3.682967171065343
+matched_order_index: {'buy_book_index': [0, 11, 12], 'sell_book_index': [27, 30, 32, 34, 36, 38, 40, 41, 45, 46]}
+> /common/home/hg343/Research/accelerate_combo_option/src/market.py(69)remove_matched_orders()
+-> buy_book_index = matched_order_index['buy_book_index']
+Processing order 1 (1/37)
+Generating frontier for markets:   0%|                                                                                              | 0/19 [00:00<?, ?it/s]/common/home/hg343/Research/accelerate_combo_option/src/market.py:271: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+  frontier_labels = pd.Series(None, index=orders.index)
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      5.0      2.0           -1.0                                  890.0               1.0       0.53          1
+quote price: -0.0
+> /common/home/hg343/Research/accelerate_combo_option/src/market.py(215)priceQuote()
+-> return objVal
+210  	                try:
+211  	                    is_match, objVal = self.apply_mechanism(market_orders, offset)
+212  	                    print(f'option_to_quote: {option_to_quote}')
+213  	                    print(f'quote price: {objVal}')
+214  	                    breakpoint()
+215  ->	                    return objVal
+216  	                except TimeoutError:
+217  	                    print("Timeout in mechanism solver for buy order quote")
+218  	                    raise
+219  	                except Exception as e:
+220  	                    print(f"Error in mechanism solver for buy order quote: {e}")
+       option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      5.0      2.0           -1.0                                  890.0               1.0       0.53          1
+Generating frontier for markets:   0%|                                                                                              | 0/19 [09:18<?, ?it/s]
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 162, in <module>
+    market.remove_matched_orders()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 296, in frontierGeneration
+    quote_price = self.priceQuote(order, temp_orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 215, in priceQuote
+    return objVal
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 215, in priceQuote
+    return objVal
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 88, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 112, in dispatch_line
+    self.user_line(frame)
+  File "/common/home/hg343/anaconda3/lib/python3.9/pdb.py", line 262, in user_line
+    self.interaction(frame, None)
+  File "/common/home/hg343/anaconda3/lib/python3.9/pdb.py", line 357, in interaction
+    self._cmdloop()
+  File "/common/home/hg343/anaconda3/lib/python3.9/pdb.py", line 322, in _cmdloop
+    self.cmdloop()
+  File "/common/home/hg343/anaconda3/lib/python3.9/cmd.py", line 126, in cmdloop
+    line = input(self.prompt)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 60, in signal_handler
+    sys.exit(1)
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/wandb/sdk/lib/exit_hooks.py", line 36, in exit
+    self._orig_exit(orig_code)  # type: ignore
+SystemExit: 1
+Ctrl+C received. Terminating processes...

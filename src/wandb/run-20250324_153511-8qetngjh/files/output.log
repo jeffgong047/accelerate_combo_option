@@ -1,0 +1,641 @@
+
+Generating frontier for markets:   0%|                                                                                                            | 0/20 [00:00<?, ?it/s]
+There are 25 buy orders and 25 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_2_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 0
+Set parameter Username
+Academic license - for non-commercial use only - expires 2025-11-08
+Generating frontier for markets:   0%|                                                                                                            | 0/20 [00:00<?, ?it/s]/common/home/hg343/Research/accelerate_combo_option/src/market.py:205: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+  frontier_labels = pd.Series(None, index=orders.index)
+checking match False -0.0
+Processing order 0 (1/37)
+checking match False -0.0
+quote_price: 69.50942087657864, original_price: 68.04
+Processing order 1 (2/37)
+checking match False -0.0
+quote_price: 62.48707286113185, original_price: 63.33
+Processing order 3 (3/37)
+checking match False -0.0
+quote_price: 34.511693024402106, original_price: 36.19
+Processing order 4 (4/37)
+checking match False -0.0
+quote_price: 154.9203211239339, original_price: 156.18
+Processing order 5 (5/37)
+checking match False -0.0
+quote_price: 182.322830549896, original_price: 186.12
+Processing order 6 (6/37)
+checking match False -0.0
+quote_price: 18.90034230810692, original_price: 19.82
+Processing order 7 (7/37)
+checking match False -0.0
+quote_price: 180.87296302568814, original_price: 182.73
+Processing order 8 (8/37)
+checking match False -0.0
+quote_price: 105.08140564471498, original_price: 107.05
+Processing order 9 (9/37)
+checking match False -0.0
+quote_price: -0.0, original_price: 0.52
+Processing order 10 (10/37)
+checking match False -0.0
+quote_price: 15.201653626839953, original_price: 22.92
+Processing order 11 (11/37)
+checking match False -0.0
+quote_price: 104.6923329186927, original_price: 106.16
+Processing order 12 (12/37)
+checking match False -0.0
+quote_price: 51.57869766513667, original_price: 53.02
+Processing order 13 (13/37)
+checking match False -0.0
+quote_price: -0.0, original_price: 2.35
+Processing order 14 (14/37)
+checking match False -0.0
+Encountered an attribute error
+quote_price: 0, original_price: 65.73
+Processing order 16 (15/37)
+checking match False -0.0
+quote_price: -0.0, original_price: 0.02
+Processing order 17 (16/37)
+checking match False -0.0
+quote_price: 222.8740224606763, original_price: 226.09
+Processing order 18 (17/37)
+checking match False -0.0
+quote_price: 55.9843771268775, original_price: 57.9
+Processing order 19 (18/37)
+checking match False -0.0
+quote_price: 169.4620698518357, original_price: 169.38
+Processing order 20 (19/37)
+checking match False -0.0
+quote_price: 32.276528696461384, original_price: 28.41
+Processing order 21 (20/37)
+checking match False -0.0
+quote_price: 77.16105947573753, original_price: 73.64
+Processing order 22 (21/37)
+checking match False -0.0
+quote_price: 155.80588433464325, original_price: 156.52
+Processing order 23 (22/37)
+checking match False -0.0
+quote_price: 89.38759856041953, original_price: 90.72
+Processing order 24 (23/37)
+checking match False -0.0
+quote_price: -0.0, original_price: 0.3
+Processing order 25 (24/37)
+checking match False -0.0
+Error in price quote for order 25: buy and sell book index should not have any shared index
+Processing order 26 (25/37)
+checking match False -0.0
+Error in price quote for order 26: buy and sell book index should not have any shared index
+Processing order 27 (26/37)
+checking match False -0.0
+Error in price quote for order 27: buy and sell book index should not have any shared index
+Processing order 28 (27/37)
+checking match False -0.0
+Error in price quote for order 28: buy and sell book index should not have any shared index
+Processing order 31 (28/37)
+checking match False -0.0
+Error in price quote for order 31: buy and sell book index should not have any shared index
+Processing order 32 (29/37)
+checking match False -0.0
+Error in price quote for order 32: buy and sell book index should not have any shared index
+Processing order 36 (30/37)
+checking match False -0.0
+Error in price quote for order 36: buy and sell book index should not have any shared index
+Processing order 38 (31/37)
+checking match False -0.0
+Error in price quote for order 38: buy and sell book index should not have any shared index
+Processing order 39 (32/37)
+checking match False -0.0
+Error in price quote for order 39: buy and sell book index should not have any shared index
+Processing order 41 (33/37)
+checking match False -0.0
+Error in price quote for order 41: buy and sell book index should not have any shared index
+Processing order 42 (34/37)
+checking match False -0.0
+Error in price quote for order 42: buy and sell book index should not have any shared index
+Processing order 43 (35/37)
+checking match False -0.0
+Error in price quote for order 43: buy and sell book index should not have any shared index
+Processing order 46 (36/37)
+checking match False -0.0
+Error in price quote for order 46: buy and sell book index should not have any shared index
+Processing order 48 (37/37)
+Generating frontier for markets:   5%|████▊                                                                                            | 1/20 [12:40<4:00:48, 760.43s/it]
+checking match False -0.0
+Error in price quote for order 48: buy and sell book index should not have any shared index
+    option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity  belongs_to_frontier
+0      -3.0      5.0           -1.0                                  150.0               1.0      68.04          1                  0.0
+1       1.0      3.0            1.0                                  411.0               1.0      63.33          1                  1.0
+3       2.0     -1.0           -1.0                                  238.0               1.0      36.19          1                  1.0
+4      -2.0      9.0            1.0                                  496.5               1.0     156.18          1                  1.0
+5       1.0      7.0            1.0                                  715.0               1.0     186.12          1                  1.0
+6       2.0     -1.0           -1.0                                  221.0               1.0      19.82          1                  1.0
+7       6.0      5.0            1.0                                 1275.0               1.0     182.73          1                  1.0
+8       3.0      1.0            1.0                                  461.0               1.0     107.05          1                  1.0
+9       1.0      1.0            1.0                                  263.0               1.0       0.52          1                  1.0
+10      4.0      1.0           -1.0                                  740.5               1.0      22.92          1                  1.0
+11      3.0      2.0            1.0                                  569.0               1.0     106.16          1                  1.0
+12      3.0      1.0           -1.0                                  622.5               1.0      53.02          1                  1.0
+13      2.0     -1.0           -1.0                                  190.5               1.0       2.35          1                  1.0
+14      1.0     -2.0           -1.0                                    6.0               1.0      65.73          1                  1.0
+16      2.0      1.0           -1.0                                  347.0               1.0       0.02          1                  1.0
+17      7.0      5.0           -1.0                                 1842.5               1.0     226.09          1                  1.0
+18      1.0      1.0           -1.0                                  319.5               1.0      57.90          1                  1.0
+19     -2.0      7.0            1.0                                  269.0               1.0     169.38          1                  0.0
+20     -5.0      7.0           -1.0                                   20.5               1.0      28.41          1                  0.0
+21      1.0      6.0           -1.0                                  878.0               1.0      73.64          1                  0.0
+22      4.0      9.0            1.0                                 1420.0               1.0     156.52          1                  1.0
+23      5.0     -3.0            1.0                                  353.0               1.0      90.72          1                  1.0
+24      8.0      5.0           -1.0                                 1597.0               1.0       0.30          1                  1.0
+25      2.0     -3.0           -1.0                                   38.5               0.0      53.73          1                  0.0
+26      3.0      2.0           -1.0                                  821.5               0.0     149.36          1                  0.0
+27      8.0     -7.0            1.0                                  612.5               0.0      11.82          1                  0.0
+28      1.0     -1.0            1.0                                   83.5               0.0       1.03          1                  0.0
+31      8.0     -5.0            1.0                                  530.0               0.0     174.67          1                  0.0
+32      3.0      8.0           -1.0                                 1484.0               0.0     176.88          1                  0.0
+36     -4.0      7.0            1.0                                  143.0               0.0      30.24          1                  0.0
+38      6.0      1.0           -1.0                                  976.5               0.0      10.59          1                  0.0
+39      5.0     -1.0            1.0                                  726.5               0.0       4.05          1                  0.0
+41      2.0      1.0           -1.0                                  371.5               0.0       1.24          1                  0.0
+42      6.0      5.0            1.0                                 1520.0               0.0      13.98          1                  0.0
+43      2.0      1.0           -1.0                                  438.0               0.0      26.91          1                  0.0
+46      4.0      7.0            1.0                                 1308.0               0.0      69.58          1                  0.0
+48      8.0     -3.0           -1.0                                  779.5               0.0       9.87          1                  0.0
+Result type for iteration 0: <class 'pandas.core.frame.DataFrame'>
+Successfully completed iteration 0
+Attempting to save to: /common/home/hg343/Research/accelerate_combo_option/data/combo_2_test/corrected_testing_combo_frontier_market_index_0_book_size_50_AAPL_MSFT_NOISE_0.015625.pkl
+Successfully saved iteration 0
+There are 27 buy orders and 23 sell orders
+#####Generating corrected_testing_combo_frontier_market_index_0_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 1
+Generating frontier for markets:   5%|████▊                                                                                            | 1/20 [12:40<4:00:48, 760.43s/it]/common/home/hg343/Research/accelerate_combo_option/src/market.py:205: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+  frontier_labels = pd.Series(None, index=orders.index)
+checking match False -0.0
+Processing order 1 (1/37)
+checking match False -0.0
+quote_price: -0.0, original_price: 0.53
+Processing order 2 (2/37)
+checking match False -0.0
+quote_price: -0.0, original_price: 0.03
+Processing order 3 (3/37)
+checking match False -0.0
+quote_price: 41.87701627381539, original_price: 45.18
+Processing order 4 (4/37)
+checking match False -0.0
+quote_price: 19.627280064401653, original_price: 20.76
+Processing order 5 (5/37)
+checking match False -0.0
+quote_price: -0.0, original_price: 0.09
+Processing order 6 (6/37)
+checking match False -0.0
+quote_price: 15.61016169525077, original_price: 13.61
+Processing order 7 (7/37)
+checking match False -0.0
+quote_price: 0.03, original_price: 0.03
+Processing order 8 (8/37)
+checking match False -0.0
+quote_price: 40.300619374815774, original_price: 41.36
+Processing order 9 (9/37)
+checking match False -0.0
+quote_price: 57.90864958972896, original_price: 58.19
+Processing order 10 (10/37)
+checking match False -0.0
+quote_price: 146.88350482347585, original_price: 147.13
+Processing order 13 (11/37)
+checking match False -0.0
+quote_price: -0.0, original_price: 0.02
+Processing order 14 (12/37)
+checking match False -0.0
+quote_price: -0.0, original_price: 0.06
+Processing order 15 (13/37)
+checking match False -0.0
+quote_price: -0.0, original_price: 0.04
+Processing order 16 (14/37)
+checking match False -0.0
+quote_price: 69.24168589892953, original_price: 63.68
+Processing order 17 (15/37)
+checking match False -0.0
+quote_price: 127.650485754893, original_price: 141.41
+Processing order 18 (16/37)
+checking match False -0.0
+quote_price: 84.4835497450423, original_price: 87.64
+Processing order 19 (17/37)
+checking match False -0.0
+quote_price: -0.0, original_price: 0.08
+Processing order 20 (18/37)
+checking match False -0.0
+quote_price: -0.0, original_price: 3.11
+Processing order 21 (19/37)
+checking match False -0.0
+quote_price: 175.13069420653088, original_price: 218.33
+Processing order 22 (20/37)
+checking match False -0.0
+quote_price: 2.892639917375713, original_price: 7.03
+Processing order 23 (21/37)
+checking match False -0.0
+quote_price: -0.0, original_price: 3.78
+Processing order 24 (22/37)
+checking match False -0.0
+quote_price: 147.18672117476743, original_price: 154.96
+Processing order 25 (23/37)
+checking match False -0.0
+quote_price: 21.54100844223451, original_price: 22.04
+Processing order 26 (24/37)
+checking match False -0.0
+quote_price: 193.1680635310617, original_price: 191.55
+Processing order 28 (25/37)
+checking match False -0.0
+Error in price quote for order 28: buy and sell book index should not have any shared index
+Processing order 29 (26/37)
+checking match False -0.0
+Error in price quote for order 29: buy and sell book index should not have any shared index
+Processing order 31 (27/37)
+checking match False -0.0
+Error in price quote for order 31: buy and sell book index should not have any shared index
+Processing order 33 (28/37)
+checking match False -0.0
+Error in price quote for order 33: buy and sell book index should not have any shared index
+Processing order 35 (29/37)
+checking match False -0.0
+Error in price quote for order 35: buy and sell book index should not have any shared index
+Processing order 37 (30/37)
+checking match False -0.0
+Error in price quote for order 37: buy and sell book index should not have any shared index
+Processing order 39 (31/37)
+checking match False -0.0
+Error in price quote for order 39: buy and sell book index should not have any shared index
+Processing order 42 (32/37)
+checking match False -0.0
+Error in price quote for order 42: buy and sell book index should not have any shared index
+Processing order 43 (33/37)
+checking match False -0.0
+Error in price quote for order 43: buy and sell book index should not have any shared index
+Processing order 44 (34/37)
+Generating frontier for markets:  10%|█████████▋                                                                                       | 2/20 [13:07<1:38:42, 329.05s/it]
+checking match False -0.0
+Error in price quote for order 44: buy and sell book index should not have any shared index
+Processing order 47 (35/37)
+checking match False -0.0
+Error in price quote for order 47: buy and sell book index should not have any shared index
+Processing order 48 (36/37)
+checking match False -0.0
+Error in price quote for order 48: buy and sell book index should not have any shared index
+Processing order 49 (37/37)
+checking match False -0.0
+Error in price quote for order 49: buy and sell book index should not have any shared index
+    option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity  belongs_to_frontier
+1       5.0      2.0           -1.0                                  890.0               1.0       0.53          1                  1.0
+2       2.0     -1.0            1.0                                  243.0               1.0       0.03          1                  1.0
+3       1.0      3.0            1.0                                  428.5               1.0      45.18          1                  1.0
+4       1.0      1.0           -1.0                                  283.0               1.0      20.76          1                  1.0
+5       8.0     -7.0            1.0                                  610.0               1.0       0.09          1                  1.0
+6      -1.0      2.0           -1.0                                   77.0               1.0      13.61          1                  0.0
+7       2.0     -1.0            1.0                                  242.0               1.0       0.03          1                  0.0
+8       3.0      7.0            1.0                                 1166.5               1.0      41.36          1                  1.0
+9       4.0      1.0            1.0                                  665.0               1.0      58.19          1                  1.0
+10      7.0      2.0            1.0                                 1145.0               1.0     147.13          1                  1.0
+13      3.0     -1.0           -1.0                                  265.0               1.0       0.02          1                  1.0
+14     -1.0      9.0           -1.0                                  620.0               1.0       0.06          1                  1.0
+15      3.0      1.0           -1.0                                  472.5               1.0       0.04          1                  1.0
+16      4.0     -5.0            1.0                                    8.0               1.0      63.68          1                  0.0
+17      9.0     -2.0           -1.0                                 1312.5               1.0     141.41          1                  1.0
+18      3.0      1.0            1.0                                  481.5               1.0      87.64          1                  1.0
+19      5.0      4.0           -1.0                                 1085.5               1.0       0.08          1                  1.0
+20      5.0      1.0            1.0                                  923.0               1.0       3.11          1                  1.0
+21      5.0     -3.0           -1.0                                  668.5               1.0     218.33          1                  1.0
+22      3.0     -4.0           -1.0                                   42.0               1.0       7.03          1                  1.0
+23      4.0     -3.0           -1.0                                  279.5               1.0       3.78          1                  1.0
+24      4.0      5.0            1.0                                  993.5               1.0     154.96          1                  1.0
+25      1.0     -1.0           -1.0                                   70.0               1.0      22.04          1                  1.0
+26      9.0     -2.0            1.0                                  976.0               1.0     191.55          1                  0.0
+28      8.0     -3.0           -1.0                                  742.5               0.0       5.00          1                  0.0
+29      9.0      2.0           -1.0                                 2030.5               0.0     433.82          1                  0.0
+31      2.0      3.0            1.0                                  631.0               0.0      14.93          1                  0.0
+33      2.0     -1.0            1.0                                  185.5               0.0      21.06          1                  0.0
+35      3.0     -1.0           -1.0                                  297.0               0.0       2.19          1                  0.0
+37      8.0      9.0           -1.0                                 1862.5               0.0       2.33          1                  0.0
+39     -1.0      3.0           -1.0                                   41.5               0.0       0.15          1                  0.0
+42      9.0      8.0            1.0                                 2188.0               0.0      90.03          1                  0.0
+43      7.0      2.0           -1.0                                 1129.0               0.0       2.41          1                  0.0
+44      9.0      7.0           -1.0                                 2140.5               0.0      62.63          1                  0.0
+47      1.0      4.0            1.0                                  544.0               0.0      40.26          1                  0.0
+48      5.0      8.0           -1.0                                 1477.0               0.0       6.37          1                  0.0
+49      7.0     -4.0            1.0                                 1100.5               0.0       0.11          1                  0.0
+Result type for iteration 1: <class 'pandas.core.frame.DataFrame'>
+Successfully completed iteration 1
+Attempting to save to: /common/home/hg343/Research/accelerate_combo_option/data/combo_2_test/corrected_testing_combo_frontier_market_index_1_book_size_50_AAPL_MSFT_NOISE_0.015625.pkl
+Successfully saved iteration 1
+There are 31 buy orders and 19 sell orders
+#####Generating corrected_testing_combo_frontier_market_index_1_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 2
+Generating frontier for markets:  10%|█████████▋                                                                                       | 2/20 [13:07<1:38:42, 329.05s/it]/common/home/hg343/Research/accelerate_combo_option/src/market.py:205: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+  frontier_labels = pd.Series(None, index=orders.index)
+checking match False -0.0
+Processing order 0 (1/50)
+checking match False -0.0
+quote_price: 328.8515836931675, original_price: 324.42
+Processing order 1 (2/50)
+checking match False -0.0
+quote_price: 14.577380577539559, original_price: 16.91
+Processing order 2 (3/50)
+checking match False -0.0
+quote_price: 0.314224557022224, original_price: 0.03
+Processing order 3 (4/50)
+checking match False -0.0
+quote_price: 11.499093511450397, original_price: 8.53
+Processing order 4 (5/50)
+checking match False -0.0
+quote_price: -0.0, original_price: 0.68
+Processing order 5 (6/50)
+checking match False -0.0
+quote_price: -0.0, original_price: 2.12
+Processing order 6 (7/50)
+checking match False -0.0
+quote_price: -0.0, original_price: 0.16
+Processing order 7 (8/50)
+checking match False -0.0
+quote_price: 3.5952433766239142, original_price: 10.04
+Processing order 8 (9/50)
+checking match False -0.0
+quote_price: 159.96504293516423, original_price: 159.83
+Processing order 9 (10/50)
+checking match False -0.0
+quote_price: 6.260743234503762, original_price: 14.67
+Processing order 10 (11/50)
+checking match False -0.0
+quote_price: 220.48537726838575, original_price: 214.11
+Processing order 11 (12/50)
+checking match False -0.0
+quote_price: 99.35887404549585, original_price: 96.46
+Processing order 12 (13/50)
+checking match False -0.0
+quote_price: 305.51804597701164, original_price: 306.41
+Processing order 13 (14/50)
+checking match False -0.0
+quote_price: -0.0, original_price: 0.01
+Processing order 14 (15/50)
+checking match False -0.0
+quote_price: 1.2802225841476793, original_price: 1.62
+Processing order 15 (16/50)
+checking match False -0.0
+quote_price: 40.7866119914165, original_price: 39.54
+Processing order 16 (17/50)
+checking match False -0.0
+quote_price: 167.40989503816792, original_price: 165.87
+Processing order 17 (18/50)
+checking match False -0.0
+quote_price: 79.72381044830468, original_price: 79.88
+Processing order 18 (19/50)
+checking match False -0.0
+quote_price: 4.060032078203731, original_price: 5.23
+Processing order 19 (20/50)
+checking match False -0.0
+quote_price: 64.32259333700873, original_price: 68.71
+Processing order 20 (21/50)
+checking match False -0.0
+quote_price: 12.577590897352925, original_price: 13.29
+Processing order 21 (22/50)
+checking match False -0.0
+quote_price: -0.0, original_price: 1.29
+Processing order 22 (23/50)
+checking match False -0.0
+quote_price: -0.0, original_price: 0.18
+Processing order 23 (24/50)
+checking match False -0.0
+quote_price: 1.9206201953051063, original_price: 2.46
+Processing order 24 (25/50)
+checking match False -0.0
+quote_price: 87.71898808262297, original_price: 97.85
+Processing order 25 (26/50)
+checking match False -0.0
+quote_price: 97.44835534670818, original_price: 82.79
+Processing order 26 (27/50)
+checking match False -0.0
+quote_price: -0.0, original_price: 0.09
+Processing order 27 (28/50)
+checking match False -0.0
+quote_price: 37.31041363002178, original_price: 47.49
+Processing order 28 (29/50)
+checking match False -0.0
+quote_price: 91.05521757313525, original_price: 96.13
+Processing order 29 (30/50)
+checking match False -0.0
+quote_price: 324.5355112722673, original_price: 328.89
+Processing order 30 (31/50)
+checking match False -0.0
+quote_price: -0.0, original_price: 0.67
+Processing order 31 (32/50)
+checking match False -0.0
+Error in price quote for order 31: buy and sell book index should not have any shared index
+Processing order 32 (33/50)
+checking match False -0.0
+Error in price quote for order 32: buy and sell book index should not have any shared index
+Processing order 33 (34/50)
+checking match False -0.0
+Error in price quote for order 33: buy and sell book index should not have any shared index
+Processing order 34 (35/50)
+checking match False -0.0
+Error in price quote for order 34: buy and sell book index should not have any shared index
+Processing order 35 (36/50)
+checking match False -0.0
+Error in price quote for order 35: buy and sell book index should not have any shared index
+Processing order 36 (37/50)
+checking match False -0.0
+Error in price quote for order 36: buy and sell book index should not have any shared index
+Processing order 37 (38/50)
+checking match False -0.0
+Error in price quote for order 37: buy and sell book index should not have any shared index
+Processing order 38 (39/50)
+checking match False -0.0
+Error in price quote for order 38: buy and sell book index should not have any shared index
+Processing order 39 (40/50)
+checking match False -0.0
+Error in price quote for order 39: buy and sell book index should not have any shared index
+Processing order 40 (41/50)
+checking match False -0.0
+Error in price quote for order 40: buy and sell book index should not have any shared index
+Processing order 41 (42/50)
+checking match False -0.0
+Error in price quote for order 41: buy and sell book index should not have any shared index
+Processing order 42 (43/50)
+checking match False -0.0
+Error in price quote for order 42: buy and sell book index should not have any shared index
+Processing order 43 (44/50)
+checking match False -0.0
+Error in price quote for order 43: buy and sell book index should not have any shared index
+Processing order 44 (45/50)
+checking match False -0.0
+Error in price quote for order 44: buy and sell book index should not have any shared index
+Processing order 45 (46/50)
+checking match False -0.0
+Error in price quote for order 45: buy and sell book index should not have any shared index
+Processing order 46 (47/50)
+checking match False -0.0
+Error in price quote for order 46: buy and sell book index should not have any shared index
+Processing order 47 (48/50)
+checking match False -0.0
+Error in price quote for order 47: buy and sell book index should not have any shared index
+Processing order 48 (49/50)
+Generating frontier for markets:  15%|██████████████▊                                                                                    | 3/20 [14:13<59:10, 208.86s/it]
+checking match False -0.0
+Error in price quote for order 48: buy and sell book index should not have any shared index
+Processing order 49 (50/50)
+checking match False -0.0
+Error in price quote for order 49: buy and sell book index should not have any shared index
+    option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity  belongs_to_frontier
+0       8.0      1.0            1.0                                 1013.0               1.0     324.42          1                  0.0
+1      -1.0      3.0            1.0                                  149.5               1.0      16.91          1                  1.0
+2       3.0      5.0           -1.0                                  953.0               1.0       0.03          1                  0.0
+3       1.0     -1.0            1.0                                   36.5               1.0       8.53          1                  0.0
+4       2.0     -1.0           -1.0                                  180.0               1.0       0.68          1                  1.0
+5       1.0      7.0           -1.0                                  852.0               1.0       2.12          1                  1.0
+6       8.0      3.0           -1.0                                 1331.5               1.0       0.16          1                  1.0
+7       7.0     -4.0           -1.0                                  624.0               1.0      10.04          1                  1.0
+8       3.0      4.0            1.0                                  728.0               1.0     159.83          1                  0.0
+9       7.0      3.0           -1.0                                 1392.0               1.0      14.67          1                  1.0
+10      9.0     -8.0           -1.0                                  750.0               1.0     214.11          1                  0.0
+11      6.0     -1.0            1.0                                  720.0               1.0      96.46          1                  0.0
+12      7.0      6.0            1.0                                 1413.0               1.0     306.41          1                  1.0
+13      8.0     -7.0            1.0                                  653.0               1.0       0.01          1                  1.0
+14      1.0     -1.0           -1.0                                   47.0               1.0       1.62          1                  1.0
+15      1.0      1.0           -1.0                                  301.5               1.0      39.54          1                  0.0
+16      4.0      3.0            1.0                                  769.5               1.0     165.87          1                  0.0
+17      4.0      1.0            1.0                                  643.5               1.0      79.88          1                  1.0
+18      3.0      5.0            1.0                                  990.0               1.0       5.23          1                  1.0
+19      8.0      1.0           -1.0                                 1402.0               1.0      68.71          1                  1.0
+20     -1.0      2.0            1.0                                   46.0               1.0      13.29          1                  1.0
+21      5.0      2.0            1.0                                 1032.5               1.0       1.29          1                  1.0
+22      7.0      4.0            1.0                                 1591.0               1.0       0.18          1                  1.0
+23      7.0      6.0           -1.0                                 1696.0               1.0       2.46          1                  1.0
+24      5.0      9.0            1.0                                 1630.5               1.0      97.85          1                  1.0
+25     -1.0      6.0           -1.0                                  580.0               1.0      82.79          1                  0.0
+26      2.0      9.0           -1.0                                 1155.0               1.0       0.09          1                  1.0
+27      6.0      1.0            1.0                                  992.0               1.0      47.49          1                  1.0
+28      2.0     -3.0           -1.0                                   83.5               1.0      96.13          1                  1.0
+29      5.0      7.0            1.0                                 1188.5               1.0     328.89          1                  1.0
+30      1.0      4.0            1.0                                  596.0               1.0       0.67          1                  1.0
+31      9.0      8.0           -1.0                                 2043.0               0.0       9.67          1                  0.0
+32      9.0      1.0            1.0                                 1685.5               0.0       1.21          1                  0.0
+33      2.0      9.0           -1.0                                 1156.0               0.0       4.92          1                  0.0
+34     -1.0      5.0            1.0                                  210.0               0.0     169.08          1                  0.0
+35      1.0     -1.0           -1.0                                   25.0               0.0       2.39          1                  0.0
+36      1.0     -1.0            1.0                                   40.0               0.0      11.34          1                  0.0
+37      1.0      9.0           -1.0                                 1100.0               0.0      22.49          1                  0.0
+38      3.0      7.0            1.0                                 1032.0               0.0     175.75          1                  0.0
+39      9.0      8.0            1.0                                 2378.0               0.0      12.21          1                  0.0
+40      3.0      4.0           -1.0                                  802.5               0.0       2.97          1                  0.0
+41      1.0      1.0           -1.0                                  236.0               0.0       0.95          1                  0.0
+42      9.0     -4.0            1.0                                  972.0               0.0      43.23          1                  0.0
+43      2.0      1.0           -1.0                                  446.0               0.0      34.63          1                  0.0
+44      3.0     -4.0           -1.0                                   28.0               0.0      20.39          1                  0.0
+45      1.0      1.0           -1.0                                  247.5               0.0       2.59          1                  0.0
+46      3.0     -2.0            1.0                                  353.5               0.0       0.40          1                  0.0
+47      1.0      2.0           -1.0                                  336.0               0.0       1.59          1                  0.0
+48      2.0     -1.0            1.0                                  220.5               0.0       3.95          1                  0.0
+49      1.0      1.0            1.0                                  248.0               0.0      15.07          1                  0.0
+Result type for iteration 2: <class 'pandas.core.frame.DataFrame'>
+Successfully completed iteration 2
+Attempting to save to: /common/home/hg343/Research/accelerate_combo_option/data/combo_2_test/corrected_testing_combo_frontier_market_index_2_book_size_50_AAPL_MSFT_NOISE_0.015625.pkl
+Successfully saved iteration 2
+There are 31 buy orders and 19 sell orders
+#####Generating corrected_testing_combo_frontier_market_index_2_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 3
+
+Generating frontier for markets:  20%|███████████████████▊                                                                               | 4/20 [14:16<34:03, 127.72s/it]
+checking match True 1.6183553688781558
+The market is matched, cant get epsilon frontiers
+Result type for iteration 3: <class 'NoneType'>
+Iteration 3 returned None
+There are 32 buy orders and 18 sell orders
+#####Generating corrected_testing_combo_frontier_market_index_3_book_size_50_AAPL_MSFT_NOISE_0.015625 with size 50 and noise 0.015625#####
+Starting async computation for iteration 4
+checking match True 2.2699999999998983
+checking match False -0.0
+Generating frontier for markets:  20%|███████████████████▊                                                                               | 4/20 [14:16<34:03, 127.72s/it]/common/home/hg343/Research/accelerate_combo_option/src/market.py:205: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+  frontier_labels = pd.Series(None, index=orders.index)
+checking match False -0.0
+quote_price: 48.45583177939751, original_price: 49.0
+Processing order 1 (2/43)
+checking match False -0.0
+quote_price: -0.0, original_price: 0.03
+Processing order 2 (3/43)
+checking match False -0.0
+quote_price: 34.657116513001085, original_price: 36.71
+Processing order 5 (4/43)
+checking match False -0.0
+quote_price: 137.32183035652264, original_price: 140.28
+Processing order 6 (5/43)
+checking match False -0.0
+quote_price: -0.0, original_price: 0.02
+Processing order 7 (6/43)
+checking match False -0.0
+quote_price: -0.0, original_price: 0.01
+Processing order 8 (7/43)
+checking match False -0.0
+quote_price: 0.003640459562964631, original_price: 0.21
+Processing order 9 (8/43)
+checking match False -0.0
+quote_price: 6.57603536474513, original_price: 7.58
+Processing order 10 (9/43)
+checking match False -0.0
+quote_price: 17.725028122878303, original_price: 19.7
+Processing order 11 (10/43)
+checking match False -0.0
+quote_price: 1.3496813725490355, original_price: 9.64
+Processing order 12 (11/43)
+checking match False -0.0
+quote_price: -0.0, original_price: 2.25
+Processing order 13 (12/43)
+checking match False -0.0
+quote_price: 115.708199330362, original_price: 117.57
+Processing order 14 (13/43)
+checking match False -0.0
+quote_price: 0.009904628983484532, original_price: 0.02
+Processing order 15 (14/43)
+checking match False -0.0
+quote_price: 10.501302015269637, original_price: 17.99
+Processing order 16 (15/43)
+checking match False -0.0
+quote_price: 0.1460900296934154, original_price: 0.46
+Processing order 17 (16/43)
+checking match False -0.0
+quote_price: 67.0905509238969, original_price: 67.78
+Processing order 18 (17/43)
+checking match False -0.0
+quote_price: 84.3236708860759, original_price: 86.48
+Processing order 19 (18/43)
+checking match False -0.0
+quote_price: 32.652754610664616, original_price: 34.12
+Processing order 20 (19/43)
+checking match False -0.0
+quote_price: 153.91921481481472, original_price: 171.44
+Processing order 21 (20/43)
+checking match False -0.0
+quote_price: 134.9092572463767, original_price: 137.51
+Processing order 22 (21/43)
+checking match False -0.0
+quote_price: -0.0, original_price: 9.31
+Processing order 23 (22/43)
+checking match False -0.0
+quote_price: 386.06169265034004, original_price: 388.12
+Processing order 24 (23/43)
+checking match False -0.0
+quote_price: 65.5268640350786, original_price: 64.82
+Processing order 25 (24/43)
+checking match False -0.0
+quote_price: 56.01052631578956, original_price: 55.77
+Processing order 26 (25/43)
+checking match False -0.0
+quote_price: -0.0, original_price: 0.47
+Processing order 27 (26/43)
+checking match False -0.0
+quote_price: -0.0, original_price: 0.07
+Processing order 28 (27/43)
+checking match False -0.0
+quote_price: 65.11588235294077, original_price: 68.77
+Processing order 29 (28/43)
+checking match False -0.0
+quote_price: 0.46088800990497886, original_price: 0.48
+Processing order 30 (29/43)
+checking match False -0.0
+quote_price: 107.90139779164811, original_price: 113.68
+Processing order 31 (30/43)
+checking match False -0.0

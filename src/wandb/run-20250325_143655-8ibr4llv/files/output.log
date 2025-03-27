@@ -1,0 +1,28 @@
+
+Generating frontier for markets:   0%|                                                            | 0/19 [00:00<?, ?it/s]
+There are 27 buy orders and 23 sell orders
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py(151)<module>()
+Generating frontier for markets:   0%|                                                            | 0/19 [00:05<?, ?it/s]
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 151, in <module>
+    column_names = ['option1', 'option2', 'C=Call, P=Put', 'Strike Price of the Option Times 1000', 'transaction_type', 'B/A_price']
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 151, in <module>
+    column_names = ['option1', 'option2', 'C=Call, P=Put', 'Strike Price of the Option Times 1000', 'transaction_type', 'B/A_price']
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 88, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 112, in dispatch_line
+    self.user_line(frame)
+  File "/common/home/hg343/anaconda3/lib/python3.9/pdb.py", line 262, in user_line
+    self.interaction(frame, None)
+  File "/common/home/hg343/anaconda3/lib/python3.9/pdb.py", line 357, in interaction
+    self._cmdloop()
+  File "/common/home/hg343/anaconda3/lib/python3.9/pdb.py", line 322, in _cmdloop
+    self.cmdloop()
+  File "/common/home/hg343/anaconda3/lib/python3.9/cmd.py", line 126, in cmdloop
+    line = input(self.prompt)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 60, in signal_handler
+    sys.exit(1)
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/wandb/sdk/lib/exit_hooks.py", line 36, in exit
+    self._orig_exit(orig_code)  # type: ignore
+SystemExit: 1
+Ctrl+C received. Terminating processes...

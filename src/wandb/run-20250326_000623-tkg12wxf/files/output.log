@@ -1,0 +1,688 @@
+
+Generating frontier for markets:   0%|                                                            | 0/99 [00:00<?, ?it/s]
+There are 27 buy orders and 23 sell orders
+#####Generating market 1 with size 50 and noise 0.015625#####
+Starting computation for iteration 1
+Generating frontier for markets:   0%|                                                            | 0/99 [00:00<?, ?it/s]/common/home/hg343/Research/accelerate_combo_option/src/market.py:274: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+  frontier_labels = pd.Series(None, index=orders.index)
+/common/home/hg343/Research/accelerate_combo_option/src/market.py:275: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+  quote_prices = pd.Series(None, index=orders.index)  # Create a Series to store quote prices
+Processing order 0 (1/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      4.0     -3.0            1.0                                  319.0               1.0     143.92          1
+quote price: 148.67
+quote_price: 148.67, original_price: 143.92
+Processing order 1 (2/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote     -1.0      2.0            1.0                                   12.0               1.0       4.41          1
+quote price: 3.81
+quote_price: 3.81, original_price: 4.41
+Processing order 2 (3/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      8.0     -3.0           -1.0                                 1119.5               1.0       0.28          1
+quote price: -0.0
+quote_price: -0.0, original_price: 0.28
+Processing order 4 (4/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      7.0      2.0            1.0                                 1358.5               1.0      236.1          1
+quote price: 203.64
+quote_price: 203.64, original_price: 236.1
+Processing order 6 (5/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      7.0      3.0            1.0                                 1218.5               1.0     485.77          1
+quote price: 451.0
+quote_price: 451.0, original_price: 485.77
+Processing order 7 (6/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      3.0     -1.0            1.0                                  333.0               1.0     151.53          1
+quote price: 151.98
+quote_price: 151.98, original_price: 151.53
+Processing order 8 (7/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote     -1.0      9.0           -1.0                                  585.0               1.0       0.12          1
+quote price: -0.0
+quote_price: -0.0, original_price: 0.12
+Processing order 9 (8/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      4.0     -5.0            1.0                                  130.0               1.0      114.9          1
+quote price: 123.56
+quote_price: 123.56, original_price: 114.9
+Processing order 10 (9/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      5.0     -8.0            1.0                                   49.0               1.0      67.98          1
+quote price: 79.67
+quote_price: 79.67, original_price: 67.98
+Processing order 11 (10/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      5.0     -8.0           -1.0                                  164.5               1.0      30.91          1
+quote price: 8.78
+quote_price: 8.78, original_price: 30.91
+Processing order 13 (11/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      2.0      1.0           -1.0                                  485.5               1.0       0.51          1
+quote price: -0.0
+quote_price: -0.0, original_price: 0.51
+Processing order 14 (12/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      5.0     -2.0            1.0                                  744.5               1.0       27.5          1
+quote price: 3.46
+quote_price: 3.46, original_price: 27.5
+Processing order 16 (13/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote     -1.0      4.0           -1.0                                  189.0               1.0       0.21          1
+quote price: 0.05
+quote_price: 0.05, original_price: 0.21
+Processing order 17 (14/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      3.0     -7.0           -1.0                                   22.0               1.0     178.67          1
+quote price: 147.6
+quote_price: 147.6, original_price: 178.67
+Processing order 18 (15/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      1.0     -1.0            1.0                                   28.0               1.0       61.2          1
+quote price: 62.45
+quote_price: 62.45, original_price: 61.2
+Processing order 19 (16/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      5.0      4.0           -1.0                                 1421.0               1.0       3.15          1
+quote price: 5.17
+quote_price: 5.17, original_price: 3.15
+Processing order 20 (17/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      4.0     -3.0           -1.0                                  618.0               1.0     146.11          1
+quote price: 148.53
+quote_price: 148.53, original_price: 146.11
+Processing order 21 (18/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote     -1.0      3.0            1.0                                  115.5               1.0       8.93          1
+quote price: 0.97
+quote_price: 0.97, original_price: 8.93
+Processing order 22 (19/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      9.0      7.0           -1.0                                 2594.0               1.0      59.72          1
+quote price: 64.82
+quote_price: 64.82, original_price: 59.72
+Processing order 23 (20/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      1.0     -1.0            1.0                                   37.0               1.0      51.66          1
+quote price: 53.33
+quote_price: 53.33, original_price: 51.66
+Processing order 24 (21/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      8.0     -9.0            1.0                                  603.5               1.0       4.66          1
+quote price: 5.04
+quote_price: 5.04, original_price: 4.66
+Processing order 25 (22/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      5.0     -7.0           -1.0                                  489.5               1.0     250.55          1
+quote price: 240.42
+quote_price: 240.42, original_price: 250.55
+Processing order 26 (23/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      7.0     -1.0           -1.0                                 1309.5               1.0      42.65          1
+quote price: 33.67
+quote_price: 33.67, original_price: 42.65
+Processing order 27 (24/38)
+checking match False -0.0
+quote_price: 3.22, original_price: 2.4
+Processing order 28 (25/38)
+checking match False -0.0
+quote_price: 1.78, original_price: 0.5
+Processing order 29 (26/38)
+checking match False -0.0
+quote_price: 1.0, original_price: 0.04
+Processing order 30 (27/38)
+checking match False -0.0
+quote_price: 1.34, original_price: 1.16
+Processing order 31 (28/38)
+checking match False -0.0
+quote_price: 4.2, original_price: 0.04
+Processing order 32 (29/38)
+checking match False -0.0
+quote_price: 77.39, original_price: 44.16
+Processing order 33 (30/38)
+checking match False -0.0
+quote_price: 278401.63, original_price: 119.92
+Processing order 35 (31/38)
+checking match False -0.0
+quote_price: 307043.36, original_price: 8.3
+Processing order 38 (32/38)
+checking match False -0.0
+quote_price: 1.04, original_price: 0.98
+Processing order 39 (33/38)
+checking match False -0.0
+quote_price: 0.77, original_price: 0.13
+Processing order 40 (34/38)
+checking match False -0.0
+No valid quote price for order 40
+Processing order 41 (35/38)
+checking match False -0.0
+quote_price: 2.45, original_price: 0.77
+Processing order 44 (36/38)
+checking match False -0.0
+quote_price: 1.01, original_price: 1.64
+Processing order 48 (37/38)
+checking match False -0.0
+quote_price: 52.29, original_price: 8.72
+Processing order 49 (38/38)
+checking match False -0.0
+/common/home/hg343/Research/accelerate_combo_option/src/market.py:274: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+  frontier_labels = pd.Series(None, index=orders.index)
+/common/home/hg343/Research/accelerate_combo_option/src/market.py:275: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+  quote_prices = pd.Series(None, index=orders.index)  # Create a Series to store quote prices
+quote_price: 142891.03, original_price: 4.5
+    option1  option2  C=Call, P=Put  ...  B/A_price  liquidity  belongs_to_frontier
+0       4.0     -3.0            1.0  ...     143.92          1                  0.0
+1      -1.0      2.0            1.0  ...       4.41          1                  1.0
+2       8.0     -3.0           -1.0  ...       0.28          1                  1.0
+4       7.0      2.0            1.0  ...     236.10          1                  1.0
+6       7.0      3.0            1.0  ...     485.77          1                  1.0
+7       3.0     -1.0            1.0  ...     151.53          1                  0.0
+8      -1.0      9.0           -1.0  ...       0.12          1                  1.0
+9       4.0     -5.0            1.0  ...     114.90          1                  0.0
+10      5.0     -8.0            1.0  ...      67.98          1                  0.0
+11      5.0     -8.0           -1.0  ...      30.91          1                  1.0
+13      2.0      1.0           -1.0  ...       0.51          1                  1.0
+14      5.0     -2.0            1.0  ...      27.50          1                  1.0
+16     -1.0      4.0           -1.0  ...       0.21          1                  1.0
+17      3.0     -7.0           -1.0  ...     178.67          1                  1.0
+18      1.0     -1.0            1.0  ...      61.20          1                  0.0
+19      5.0      4.0           -1.0  ...       3.15          1                  0.0
+20      4.0     -3.0           -1.0  ...     146.11          1                  0.0
+21     -1.0      3.0            1.0  ...       8.93          1                  1.0
+22      9.0      7.0           -1.0  ...      59.72          1                  0.0
+23      1.0     -1.0            1.0  ...      51.66          1                  0.0
+24      8.0     -9.0            1.0  ...       4.66          1                  0.0
+25      5.0     -7.0           -1.0  ...     250.55          1                  1.0
+26      7.0     -1.0           -1.0  ...      42.65          1                  1.0
+27      3.0     -2.0           -1.0  ...       2.40          1                  1.0
+28      3.0     -1.0           -1.0  ...       0.50          1                  1.0
+29      1.0     -1.0           -1.0  ...       0.04          1                  1.0
+30      8.0      9.0           -1.0  ...       1.16          1                  1.0
+31      1.0      3.0           -1.0  ...       0.04          1                  1.0
+32     -1.0      4.0            1.0  ...      44.16          1                  1.0
+33      3.0      7.0            1.0  ...     119.92          1                  1.0
+35      3.0      2.0           -1.0  ...       8.30          1                  1.0
+38      7.0      8.0           -1.0  ...       0.98          1                  1.0
+39      8.0      7.0           -1.0  ...       0.13          1                  1.0
+40      9.0      1.0            1.0  ...     111.58          1                  NaN
+41      3.0      2.0           -1.0  ...       0.77          1                  1.0
+44      1.0     -1.0           -1.0  ...       1.64          1                  0.0
+48      5.0     -8.0           -1.0  ...       8.72          1                  1.0
+49      2.0      3.0           -1.0  ...       4.50          1                  1.0
+[38 rows x 8 columns]
+checking match False -0.0
+Processing order 0 (1/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      4.0     -3.0            1.0                                  319.0               1.0     143.92          1
+quote price: 148.67
+quote_price: 148.67, original_price: 143.92
+Processing order 1 (2/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote     -1.0      2.0            1.0                                   12.0               1.0       4.41          1
+quote price: 3.81
+quote_price: 3.81, original_price: 4.41
+Processing order 2 (3/38)
+checking match False -0.0
+No valid quote price for order 2
+Processing order 4 (4/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      7.0      2.0            1.0                                 1358.5               1.0      236.1          1
+quote price: 205.39
+quote_price: 205.39, original_price: 236.1
+Processing order 6 (5/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      7.0      3.0            1.0                                 1218.5               1.0     485.77          1
+quote price: 477.23
+quote_price: 477.23, original_price: 485.77
+Processing order 7 (6/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      3.0     -1.0            1.0                                  333.0               1.0     151.53          1
+quote price: 151.98
+quote_price: 151.98, original_price: 151.53
+Processing order 8 (7/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote     -1.0      9.0           -1.0                                  585.0               1.0       0.12          1
+quote price: -0.0
+quote_price: -0.0, original_price: 0.12
+Processing order 9 (8/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      4.0     -5.0            1.0                                  130.0               1.0      114.9          1
+quote price: 123.56
+quote_price: 123.56, original_price: 114.9
+Processing order 10 (9/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      5.0     -8.0            1.0                                   49.0               1.0      67.98          1
+quote price: 79.67
+quote_price: 79.67, original_price: 67.98
+Processing order 11 (10/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      5.0     -8.0           -1.0                                  164.5               1.0      30.91          1
+quote price: 13.8
+quote_price: 13.8, original_price: 30.91
+Processing order 13 (11/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      2.0      1.0           -1.0                                  485.5               1.0       0.51          1
+quote price: -0.0
+quote_price: -0.0, original_price: 0.51
+Processing order 14 (12/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      5.0     -2.0            1.0                                  744.5               1.0       27.5          1
+quote price: 3.5
+quote_price: 3.5, original_price: 27.5
+Processing order 16 (13/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote     -1.0      4.0           -1.0                                  189.0               1.0       0.21          1
+quote price: 0.05
+quote_price: 0.05, original_price: 0.21
+Processing order 17 (14/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      3.0     -7.0           -1.0                                   22.0               1.0     178.67          1
+quote price: 147.6
+quote_price: 147.6, original_price: 178.67
+Processing order 18 (15/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      1.0     -1.0            1.0                                   28.0               1.0       61.2          1
+quote price: 62.45
+quote_price: 62.45, original_price: 61.2
+Processing order 19 (16/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      5.0      4.0           -1.0                                 1421.0               1.0       3.15          1
+quote price: 5.31
+quote_price: 5.31, original_price: 3.15
+Processing order 20 (17/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      4.0     -3.0           -1.0                                  618.0               1.0     146.11          1
+quote price: 148.53
+quote_price: 148.53, original_price: 146.11
+Processing order 21 (18/38)
+checking match False -0.0
+No valid quote price for order 21
+Processing order 22 (19/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      9.0      7.0           -1.0                                 2594.0               1.0      59.72          1
+quote price: 65.7
+quote_price: 65.7, original_price: 59.72
+Processing order 23 (20/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      1.0     -1.0            1.0                                   37.0               1.0      51.66          1
+quote price: 53.33
+quote_price: 53.33, original_price: 51.66
+Processing order 24 (21/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      8.0     -9.0            1.0                                  603.5               1.0       4.66          1
+quote price: 6.0
+quote_price: 6.0, original_price: 4.66
+Processing order 25 (22/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      5.0     -7.0           -1.0                                  489.5               1.0     250.55          1
+quote price: 249.75
+quote_price: 249.75, original_price: 250.55
+Processing order 26 (23/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      7.0     -1.0           -1.0                                 1309.5               1.0      42.65          1
+quote price: 33.67
+quote_price: 33.67, original_price: 42.65
+Processing order 27 (24/38)
+checking match False -0.0
+quote_price: 3.22, original_price: 2.4
+Processing order 28 (25/38)
+checking match False -0.0
+quote_price: 1.78, original_price: 0.5
+Processing order 29 (26/38)
+checking match False -0.0
+quote_price: 1.0, original_price: 0.04
+Processing order 30 (27/38)
+checking match False -0.0
+quote_price: 1.19, original_price: 1.16
+Processing order 31 (28/38)
+checking match False -0.0
+quote_price: 4.2, original_price: 0.04
+Processing order 32 (29/38)
+checking match False -0.0
+quote_price: 77.39, original_price: 44.16
+Processing order 33 (30/38)
+checking match False -0.0
+quote_price: 125.31, original_price: 119.92
+Processing order 35 (31/38)
+checking match False -0.0
+quote_price: 37.25, original_price: 8.3
+Processing order 38 (32/38)
+checking match False -0.0
+quote_price: 1.04, original_price: 0.98
+Processing order 39 (33/38)
+checking match False -0.0
+quote_price: 0.58, original_price: 0.13
+Processing order 40 (34/38)
+checking match False -0.0
+No valid quote price for order 40
+Processing order 41 (35/38)
+checking match False -0.0
+quote_price: 2.45, original_price: 0.77
+Processing order 44 (36/38)
+checking match False -0.0
+quote_price: 1.01, original_price: 1.64
+Processing order 48 (37/38)
+checking match False -0.0
+quote_price: 40.17, original_price: 8.72
+Processing order 49 (38/38)
+checking match False -0.0
+quote_price: 28.11, original_price: 4.5
+    option1  option2  C=Call, P=Put  ...  B/A_price  liquidity  belongs_to_frontier
+0       4.0     -3.0            1.0  ...     143.92          1                  0.0
+1      -1.0      2.0            1.0  ...       4.41          1                  1.0
+2       8.0     -3.0           -1.0  ...       0.28          1                  NaN
+4       7.0      2.0            1.0  ...     236.10          1                  1.0
+6       7.0      3.0            1.0  ...     485.77          1                  1.0
+7       3.0     -1.0            1.0  ...     151.53          1                  0.0
+8      -1.0      9.0           -1.0  ...       0.12          1                  1.0
+9       4.0     -5.0            1.0  ...     114.90          1                  0.0
+10      5.0     -8.0            1.0  ...      67.98          1                  0.0
+11      5.0     -8.0           -1.0  ...      30.91          1                  1.0
+13      2.0      1.0           -1.0  ...       0.51          1                  1.0
+14      5.0     -2.0            1.0  ...      27.50          1                  1.0
+16     -1.0      4.0           -1.0  ...       0.21          1                  1.0
+17      3.0     -7.0           -1.0  ...     178.67          1                  1.0
+18      1.0     -1.0            1.0  ...      61.20          1                  0.0
+19      5.0      4.0           -1.0  ...       3.15          1                  0.0
+20      4.0     -3.0           -1.0  ...     146.11          1                  0.0
+21     -1.0      3.0            1.0  ...       8.93          1                  NaN
+22      9.0      7.0           -1.0  ...      59.72          1                  0.0
+23      1.0     -1.0            1.0  ...      51.66          1                  0.0
+24      8.0     -9.0            1.0  ...       4.66          1                  0.0
+25      5.0     -7.0           -1.0  ...     250.55          1                  1.0
+26      7.0     -1.0           -1.0  ...      42.65          1                  1.0
+27      3.0     -2.0           -1.0  ...       2.40          1                  1.0
+28      3.0     -1.0           -1.0  ...       0.50          1                  1.0
+29      1.0     -1.0           -1.0  ...       0.04          1                  1.0
+30      8.0      9.0           -1.0  ...       1.16          1                  1.0
+31      1.0      3.0           -1.0  ...       0.04          1                  1.0
+32     -1.0      4.0            1.0  ...      44.16          1                  1.0
+33      3.0      7.0            1.0  ...     119.92          1                  1.0
+35      3.0      2.0           -1.0  ...       8.30          1                  1.0
+38      7.0      8.0           -1.0  ...       0.98          1                  1.0
+39      8.0      7.0           -1.0  ...       0.13          1                  1.0
+40      9.0      1.0            1.0  ...     111.58          1                  NaN
+41      3.0      2.0           -1.0  ...       0.77          1                  1.0
+44      1.0     -1.0           -1.0  ...       1.64          1                  0.0
+48      5.0     -8.0           -1.0  ...       8.72          1                  1.0
+49      2.0      3.0           -1.0  ...       4.50          1                  1.0
+[38 rows x 8 columns]
+frontier_option_label_epsilon:     option1  option2  C=Call, P=Put  ...  B/A_price  liquidity  belongs_to_frontier
+0       4.0     -3.0            1.0  ...     143.92          1                  0.0
+1      -1.0      2.0            1.0  ...       4.41          1                  1.0
+2       8.0     -3.0           -1.0  ...       0.28          1                  NaN
+4       7.0      2.0            1.0  ...     236.10          1                  1.0
+6       7.0      3.0            1.0  ...     485.77          1                  1.0
+7       3.0     -1.0            1.0  ...     151.53          1                  0.0
+8      -1.0      9.0           -1.0  ...       0.12          1                  1.0
+9       4.0     -5.0            1.0  ...     114.90          1                  0.0
+10      5.0     -8.0            1.0  ...      67.98          1                  0.0
+11      5.0     -8.0           -1.0  ...      30.91          1                  1.0
+13      2.0      1.0           -1.0  ...       0.51          1                  1.0
+14      5.0     -2.0            1.0  ...      27.50          1                  1.0
+16     -1.0      4.0           -1.0  ...       0.21          1                  1.0
+17      3.0     -7.0           -1.0  ...     178.67          1                  1.0
+18      1.0     -1.0            1.0  ...      61.20          1                  0.0
+19      5.0      4.0           -1.0  ...       3.15          1                  0.0
+20      4.0     -3.0           -1.0  ...     146.11          1                  0.0
+21     -1.0      3.0            1.0  ...       8.93          1                  NaN
+22      9.0      7.0           -1.0  ...      59.72          1                  0.0
+23      1.0     -1.0            1.0  ...      51.66          1                  0.0
+24      8.0     -9.0            1.0  ...       4.66          1                  0.0
+25      5.0     -7.0           -1.0  ...     250.55          1                  1.0
+26      7.0     -1.0           -1.0  ...      42.65          1                  1.0
+27      3.0     -2.0           -1.0  ...       2.40          1                  1.0
+28      3.0     -1.0           -1.0  ...       0.50          1                  1.0
+29      1.0     -1.0           -1.0  ...       0.04          1                  1.0
+30      8.0      9.0           -1.0  ...       1.16          1                  1.0
+31      1.0      3.0           -1.0  ...       0.04          1                  1.0
+32     -1.0      4.0            1.0  ...      44.16          1                  1.0
+33      3.0      7.0            1.0  ...     119.92          1                  1.0
+35      3.0      2.0           -1.0  ...       8.30          1                  1.0
+38      7.0      8.0           -1.0  ...       0.98          1                  1.0
+39      8.0      7.0           -1.0  ...       0.13          1                  1.0
+40      9.0      1.0            1.0  ...     111.58          1                  NaN
+41      3.0      2.0           -1.0  ...       0.77          1                  1.0
+44      1.0     -1.0           -1.0  ...       1.64          1                  0.0
+48      5.0     -8.0           -1.0  ...       8.72          1                  1.0
+49      2.0      3.0           -1.0  ...       4.50          1                  1.0
+[38 rows x 8 columns]
+frontier_option_regular:     option1  option2  C=Call, P=Put  ...  B/A_price  liquidity  belongs_to_frontier
+0       4.0     -3.0            1.0  ...     143.92          1                  0.0
+1      -1.0      2.0            1.0  ...       4.41          1                  1.0
+2       8.0     -3.0           -1.0  ...       0.28          1                  1.0
+4       7.0      2.0            1.0  ...     236.10          1                  1.0
+6       7.0      3.0            1.0  ...     485.77          1                  1.0
+7       3.0     -1.0            1.0  ...     151.53          1                  0.0
+8      -1.0      9.0           -1.0  ...       0.12          1                  1.0
+9       4.0     -5.0            1.0  ...     114.90          1                  0.0
+10      5.0     -8.0            1.0  ...      67.98          1                  0.0
+11      5.0     -8.0           -1.0  ...      30.91          1                  1.0
+13      2.0      1.0           -1.0  ...       0.51          1                  1.0
+14      5.0     -2.0            1.0  ...      27.50          1                  1.0
+16     -1.0      4.0           -1.0  ...       0.21          1                  1.0
+17      3.0     -7.0           -1.0  ...     178.67          1                  1.0
+18      1.0     -1.0            1.0  ...      61.20          1                  0.0
+19      5.0      4.0           -1.0  ...       3.15          1                  0.0
+20      4.0     -3.0           -1.0  ...     146.11          1                  0.0
+21     -1.0      3.0            1.0  ...       8.93          1                  1.0
+22      9.0      7.0           -1.0  ...      59.72          1                  0.0
+23      1.0     -1.0            1.0  ...      51.66          1                  0.0
+24      8.0     -9.0            1.0  ...       4.66          1                  0.0
+25      5.0     -7.0           -1.0  ...     250.55          1                  1.0
+26      7.0     -1.0           -1.0  ...      42.65          1                  1.0
+27      3.0     -2.0           -1.0  ...       2.40          1                  1.0
+28      3.0     -1.0           -1.0  ...       0.50          1                  1.0
+29      1.0     -1.0           -1.0  ...       0.04          1                  1.0
+30      8.0      9.0           -1.0  ...       1.16          1                  1.0
+31      1.0      3.0           -1.0  ...       0.04          1                  1.0
+32     -1.0      4.0            1.0  ...      44.16          1                  1.0
+33      3.0      7.0            1.0  ...     119.92          1                  1.0
+35      3.0      2.0           -1.0  ...       8.30          1                  1.0
+38      7.0      8.0           -1.0  ...       0.98          1                  1.0
+39      8.0      7.0           -1.0  ...       0.13          1                  1.0
+40      9.0      1.0            1.0  ...     111.58          1                  NaN
+41      3.0      2.0           -1.0  ...       0.77          1                  1.0
+44      1.0     -1.0           -1.0  ...       1.64          1                  0.0
+48      5.0     -8.0           -1.0  ...       8.72          1                  1.0
+49      2.0      3.0           -1.0  ...       4.50          1                  1.0
+[38 rows x 8 columns]
+0      True
+1      True
+2     False
+4      True
+6      True
+7      True
+8      True
+9      True
+10     True
+11     True
+13     True
+14     True
+16     True
+17     True
+18     True
+19     True
+20     True
+21    False
+22     True
+23     True
+24     True
+25     True
+26     True
+27     True
+28     True
+29     True
+30     True
+31     True
+32     True
+33     True
+35     True
+38     True
+39     True
+40    False
+41     True
+44     True
+48     True
+49     True
+Name: belongs_to_frontier, dtype: bool
+quote_price_regular: 0        148.67
+1          3.81
+2         -0.00
+4        203.64
+6        451.00
+7        151.98
+8         -0.00
+9        123.56
+10        79.67
+11         8.78
+13        -0.00
+14         3.46
+16         0.05
+17       147.60
+18        62.45
+19         5.17
+20       148.53
+21         0.97
+22        64.82
+23        53.33
+24         5.04
+25       240.42
+26        33.67
+27         3.22
+28         1.78
+29         1.00
+30         1.34
+31         4.20
+32        77.39
+33    278401.63
+35    307043.36
+38         1.04
+39         0.77
+40          NaN
+41         2.45
+44         1.01
+48        52.29
+49    142891.03
+dtype: float64
+quote_price_epsilon: 0     148.67
+1       3.81
+2        NaN
+4     205.39
+6     477.23
+7     151.98
+8      -0.00
+9     123.56
+10     79.67
+11     13.80
+13     -0.00
+14      3.50
+16      0.05
+17    147.60
+18     62.45
+19      5.31
+20    148.53
+21       NaN
+22     65.70
+23     53.33
+24      6.00
+25    249.75
+26     33.67
+27      3.22
+28      1.78
+29      1.00
+30      1.19
+31      4.20
+32     77.39
+33    125.31
+35     37.25
+38      1.04
+39      0.58
+40       NaN
+41      2.45
+44      1.01
+48     40.17
+49     28.11
+dtype: float64
+non-matching indices: [ 2  3  4  9 11 15 17 18 20 21 26 29 30 32 33 36 37]
+values of quote_price_regular and quote_price_epsilon at non-matching indices: 2         -0.00
+4        203.64
+6        451.00
+11         8.78
+14         3.46
+19         5.17
+21         0.97
+22        64.82
+24         5.04
+25       240.42
+30         1.34
+33    278401.63
+35    307043.36
+39         0.77
+40          NaN
+48        52.29
+49    142891.03
+dtype: float64, 2        NaN
+4     205.39
+6     477.23
+11     13.80
+14      3.50
+19      5.31
+21       NaN
+22     65.70
+24      6.00
+25    249.75
+30      1.19
+33    125.31
+35     37.25
+39      0.58
+40       NaN
+48     40.17
+49     28.11
+dtype: float64
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py(178)<module>()

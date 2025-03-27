@@ -1,0 +1,10 @@
+File not found, generating new synthetic options
+Set parameter Username
+Academic license - for non-commercial use only - expires 2025-11-08
+#0: The order is Buy combo option C(1.0GS 1.0MSFT, 270.0) at 33.67
+#1: The order is Buy combo option C(1.0GS 3.0MSFT, 462.0) at 54.83
+#2: The order is Sell combo option C(9.0GS -1.0MSFT, 1161.0) at 508.85
+#3: The order is Buy combo option C(-1.0MSFT 2.0GS, 276.0) at 10.58
+#4: The order is Sell combo option P(2.0MSFT 3.0GS, 784.0) at 8.0
+#5: The order is Sell combo option P(9.0MSFT 7.0GS, 2519.0) at 189.01
+Ctrl+C received. Terminating processes...

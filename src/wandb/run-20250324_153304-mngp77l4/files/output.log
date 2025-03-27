@@ -1,0 +1,27 @@
+
+Generating frontier for markets:   0%|                                                                                                            | 0/20 [00:00<?, ?it/s]
+There are 25 buy orders and 25 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_2_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 0
+Set parameter Username
+Academic license - for non-commercial use only - expires 2025-11-08
+checking match True 10.303087110713317
+buy_book_index: [2, 15], sell_book_index: [29, 30, 33, 34, 35, 37, 40, 44, 45, 47, 49]
+> /common/home/hg343/Research/accelerate_combo_option/src/market.py(68)remove_matched_orders()
+-> shared_index = set(buy_book_index) & set(sell_book_index)
+  /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py(159)<module>()
+-> market.remove_matched_orders()
+> /common/home/hg343/Research/accelerate_combo_option/src/market.py(68)remove_matched_orders()
+Generating frontier for markets:   0%|                                                                                                            | 0/20 [00:35<?, ?it/s]
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 159, in <module>
+    market.remove_matched_orders()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 68, in remove_matched_orders
+    shared_index = set(buy_book_index) & set(sell_book_index)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 68, in remove_matched_orders
+    shared_index = set(buy_book_index) & set(sell_book_index)
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 88, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 113, in dispatch_line
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit

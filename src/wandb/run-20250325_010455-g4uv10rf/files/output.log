@@ -1,0 +1,24 @@
+
+Generating frontier for markets:   0%|                                                                                             | 0/20 [00:00<?, ?it/s]
+There are 25 buy orders and 25 sell orders
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py(151)<module>()
+-> frontier_option_label_compared = synthetic_combo_frontier_generation(opt_buy_book, opt_sell_book, opt_l = args.offset, debug=0)
+--Call--
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(64)synthetic_combo_frontier_generation()
+-> def synthetic_combo_frontier_generation(original_opt_buy_book: pd.DataFrame, original_opt_sell_book: pd.DataFrame, s1='S1', s2='S2', opt_l = False, debug=0):
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(75)synthetic_combo_frontier_generation()
+-> original_opt_buy_book = original_opt_buy_book[['option1', 'option2', 'C=Call, P=Put','Strike Price of the Option Times 1000', 'transaction_type','B/A_price']]
+IndexError: only integers, slices (`:`), ellipsis (`...`), numpy.newaxis (`None`) and integer or boolean arrays are valid indices
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(75)synthetic_combo_frontier_generation()
+-> original_opt_buy_book = original_opt_buy_book[['option1', 'option2', 'C=Call, P=Put','Strike Price of the Option Times 1000', 'transaction_type','B/A_price']]
+ 70  	    opt_l: whether have offset or budget on liability in the optimization
+ 71  	    debug: whether to debug
+ 72  	    order book: contains coefficients up to len(stock_list); call/put; strike; buy/sell; price (bid/ask)
+ 73  	    '''
+ 74  	    #first check if is match and provide frontier if not:
+ 75  ->	    original_opt_buy_book = original_opt_buy_book[['option1', 'option2', 'C=Call, P=Put','Strike Price of the Option Times 1000', 'transaction_type','B/A_price']]
+ 76  	    original_opt_sell_book = original_opt_sell_book[['option1', 'option2', 'C=Call, P=Put','Strike Price of the Option Times 1000', 'transaction_type','B/A_price']]
+ 77  	    _, num_iter, profit , isMatch, matched_stock = synthetic_combo_match_mip(deepcopy(original_opt_buy_book), deepcopy(original_opt_sell_book), debug=0)
+ 78  	    buy_book_index = original_opt_buy_book.index
+ 79  	    sell_book_index = original_opt_sell_book.index
+ 80  	    if isMatch:

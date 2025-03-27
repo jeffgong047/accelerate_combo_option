@@ -26,10 +26,9 @@ def mechanism_solver_single(market: Market, offset : bool = True, max_strike : f
         orders['liquidity'] = orders['liquidity'].fillna(1.0)
     
     # Convert orders to numpy array for processing
-    opt_buy = orders[orders.loc[:, 'transaction_type'] == 1]
-    opt_sell = orders[orders.loc[:, 'transaction_type'] == 0]
-    opt_buy_book = opt_buy[['C=Call, P=Put', 'Strike Price of the Option Times 1000', 'B/A_price']].to_numpy()
-    opt_sell_book = opt_sell[['C=Call, P=Put', 'Strike Price of the Option Times 1000', 'B/A_price']].to_numpy()
+    buy_orders, sell_orders = orders[orders['transaction_type'] == 1], orders[orders['transaction_type'] == 0]
+    opt_buy_book = buy_orders[['C=Call, P=Put', 'Strike Price of the Option Times 1000', 'B/A_price']].to_numpy()
+    opt_sell_book = sell_orders[['C=Call, P=Put', 'Strike Price of the Option Times 1000', 'B/A_price']].to_numpy()
     
     if len(opt_buy_book) == 0 or len(opt_sell_book) == 0:
         return None, None
@@ -63,8 +62,8 @@ def mechanism_solver_single(market: Market, offset : bool = True, max_strike : f
     
     # Set upper bounds based on liquidity with better error handling
     for i in range(len(opt_buy_book)):
-        assert 'liquidity' in opt_buy.columns, "liquidity column not found in opt_buy"
-        liquidity = opt_buy.iloc[i]['liquidity']
+        assert 'liquidity' in buy_orders.columns, "liquidity column not found in opt_buy"
+        liquidity = buy_orders.iloc[i]['liquidity']
         liquidity_list.append(liquidity)
         
         # Handle different liquidity cases
@@ -81,8 +80,8 @@ def mechanism_solver_single(market: Market, offset : bool = True, max_strike : f
                 gamma[0, i].ub = 1.0
     
     for i in range(len(opt_sell_book)):
-        assert 'liquidity' in opt_sell.columns, "liquidity column not found in opt_sell"
-        liquidity = opt_sell.iloc[i]['liquidity']
+        assert 'liquidity' in sell_orders.columns, "liquidity column not found in opt_sell"
+        liquidity = sell_orders.iloc[i]['liquidity']
         liquidity_list.append(liquidity)
         
         # Handle different liquidity cases
@@ -174,34 +173,45 @@ def mechanism_solver_single(market: Market, offset : bool = True, max_strike : f
         print('Model status is not optimal:', model.status)
         return None, None
 
-def mechanism_solver_combo(opt_buy_book : pd.DataFrame, opt_sell_book : pd.DataFrame, s1='S1', s2='S2', offset : bool = True, debug=0):
+def mechanism_solver_combo(orders : pd.DataFrame, offset : bool = True, debug=0):
     '''
-    opt_buy_book: pandas dataframe contains bid orders; specify whether code requires standarizing this variable
-    opt_sell_book: pandas dataframe contains ask orders;
-    s1: stock 1 name
-    s2: stock 2 name
-    order book: contains coefficients up to len(stock_list); call/put; strike; buy/sell; price (bid/ask)
+    orders: pandas dataframe contains bid and ask orders; specify whether code requires standarizing this variable
     offset: whether to offset the price by the offset value
     debug: whether to debug
     '''
-    buy_book_index = opt_buy_book.index
-    sell_book_index = opt_sell_book.index
-    
+    buy_orders = orders.where(orders['transaction_type'] == 1).dropna()
+    sell_orders = orders.where(orders['transaction_type'] == 0).dropna()
+    buy_book_index = buy_orders.index
+    sell_book_index = sell_orders.index
+    try:
+        assert len(set(buy_book_index) & set(sell_book_index)) == 0, "buy and sell book index should not have any shared index"
+    except:
+        print(buy_book_index)
+        print(sell_book_index)
+        breakpoint()
+        raise
     # Extract liquidity values before converting to numpy arrays
     buy_liquidity = None
     sell_liquidity = None
-    if 'liquidity' in opt_buy_book.columns:
-        buy_liquidity = opt_buy_book['liquidity'].values
-    if 'liquidity' in opt_sell_book.columns:
-        sell_liquidity = opt_sell_book['liquidity'].values
-    
-    sorted_columns_order = ['option1', 'option2','C=Call, P=Put',
-                'Strike Price of the Option Times 1000',
-                'transaction_type', 'B/A_price']
-    opt_buy_book = opt_buy_book[sorted_columns_order].to_numpy()
-    opt_sell_book = opt_sell_book[sorted_columns_order].to_numpy()
+    if 'liquidity' in buy_orders.columns:
+        buy_liquidity = buy_orders['liquidity'].values
+    if 'liquidity' in sell_orders.columns:
+        sell_liquidity = sell_orders['liquidity'].values
+    #
+    option_columns = [col for col in buy_orders.columns if col.startswith('option')]
+    option_columns.sort()
+    remaining_columns = ['C=Call, P=Put',
+                    'Strike Price of the Option Times 1000',
+                    'transaction_type', 
+                    'B/A_price']
+    sorted_columns_order = option_columns + remaining_columns
+    opt_buy_book = buy_orders[sorted_columns_order].to_numpy()
+    opt_sell_book = sell_orders[sorted_columns_order].to_numpy()
     num_buy, num_sell, num_stock = len(opt_buy_book), len(opt_sell_book), len(opt_buy_book[0])-4
     
+
+        # Add numerical stability settings
+
     # Add initial constraints
     f_constraints = []
     f_constraints.append(np.maximum(opt_buy_book[:, -4]*(np.concatenate(np.matmul(opt_buy_book[:, :-4], np.zeros((num_stock, 1))))-opt_buy_book[:, -3]), 0))
@@ -219,6 +229,10 @@ def mechanism_solver_combo(opt_buy_book : pd.DataFrame, opt_sell_book : pd.DataF
         # Decision variables with liquidity-based upper bounds
         gamma = model.addVars(1, num_buy)  # sell to bid orders
         delta = model.addVars(1, num_sell)  # buy from ask orders
+        model.setParam('NumericFocus', 3)  # Maximum numeric focus
+        model.setParam('FeasibilityTol', 1e-9)  # Tighter feasibility tolerance
+        model.setParam('IntFeasTol', 1e-9)  # Integer feasibility tolerance
+        model.setParam('OptimalityTol', 1e-9)  # Optimality tolerance
         
         # Set upper bounds based on liquidity
         if buy_liquidity is not None:
@@ -365,13 +379,21 @@ def mechanism_solver_combo(opt_buy_book : pd.DataFrame, opt_sell_book : pd.DataF
     if 'model' not in locals() or model is None:
         return 0, 0, 0, False, {'buy_book_index': [], 'sell_book_index': []}
     
+    NUMERICAL_THRESHOLD = 1e-12
     # Check for matches
     isMatch = any(delta[0,i].x > 0 for i in range(len(delta))) or any(gamma[0,j].x > 0 for j in range(len(gamma)))
     matched_stock = {'buy_book_index': None, 'sell_book_index': None}
-    matched_stock['buy_book_index'] = [buy_book_index[i] for i in range(len(gamma)) if gamma[0, i].x > 0]
-    matched_stock['sell_book_index'] = [sell_book_index[i] for i in range(len(delta)) if delta[0, i].x > 0]
-    
-    return time, model.NumConstrs, model.objVal, isMatch, matched_stock
+    matched_stock['buy_book_index'] = [buy_book_index[i] for i in range(len(gamma)) if gamma[0, i].x > NUMERICAL_THRESHOLD]
+    matched_stock['sell_book_index'] = [sell_book_index[i] for i in range(len(delta)) if delta[0, i].x > NUMERICAL_THRESHOLD]
+    #print the matched options with their portion 
+    for i in range(len(gamma)):
+        if gamma[0, i].x > NUMERICAL_THRESHOLD:
+            print(f'Sell {gamma[0, i].x} to {opt_buy_book[i, -1]} at bid price {opt_buy_book[i, -1]}')
+    for i in range(len(delta)):
+        if delta[0, i].x > NUMERICAL_THRESHOLD:
+            print(f'Buy {delta[0, i].x} from {opt_sell_book[i, -1]} at ask price {opt_sell_book[i, -1]}')
+
+    return time, model.NumConstrs, np.round(model.objVal, 4), isMatch, matched_stock
 
 
 

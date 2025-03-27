@@ -1,0 +1,360 @@
+{
+    "os": "Linux-5.15.0-130-generic-x86_64-with-glibc2.35",
+    "python": "3.9.7",
+    "heartbeatAt": "2025-03-26T01:36:13.182099",
+    "startedAt": "2025-03-26T01:36:12.658724",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py",
+    "codePathLocal": "combo_stock_frontier_data_preprocessor_forked.py",
+    "codePath": "src/combo_stock_frontier_data_preprocessor_forked.py",
+    "git": {
+        "remote": "https://github.com/jeffgong047/accelerate_combo_option.git",
+        "commit": "380a4ae3c688142ca54588f31a33c6511c70cdfa"
+    },
+    "email": null,
+    "root": "/common/home/hg343/Research/accelerate_combo_option",
+    "host": "ilab1.cs.rutgers.edu",
+    "username": "hg343",
+    "executable": "/common/home/hg343/anaconda3/bin/python",
+    "cpu_count": 32,
+    "cpu_count_logical": 64,
+    "cpu_freq": {
+        "current": 1.82575,
+        "min": 1500.0,
+        "max": 3000.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3.724,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 2.979,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 3.0,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 3.0,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 2.714,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 3.155,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 3.587,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 3.631,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.499,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 3.504,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 2.979,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 2.039,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 3.0,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 3.627,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 2.2,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 2.2,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 2.346,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 2.171,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 1.5,
+            "min": 1500.0,
+            "max": 3000.0
+        },
+        {
+            "current": 3.0,
+            "min": 1500.0,
+            "max": 3000.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 146.5873565673828,
+            "used": 70.06524276733398
+        }
+    },
+    "memory": {
+        "total": 1007.5488700866699
+    }
+}

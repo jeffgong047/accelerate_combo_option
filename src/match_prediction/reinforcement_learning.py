@@ -13,10 +13,30 @@ class ReplayBuffer:
     def __init__(self, capacity):
         self.memory = deque(maxlen=capacity)
         
-    def push(self, state, action, reward, next_state, done):
-        self.memory.append((state, action, reward, next_state, done))
+    def push(self, market_data, state, action, reward, next_state, done):
+        """
+        Add a transition to the buffer
+        
+        Args:
+            market_data: Tensor containing market data
+            state: Current state (selection status of each order)
+            action: Action taken (which order's selection to flip)
+            reward: Reward received
+            next_state: Next state after taking the action
+            done: Whether the episode is done
+        """
+        self.memory.append((market_data, state, action, reward, next_state, done))
         
     def sample(self, batch_size):
+        """
+        Sample a batch of transitions from the buffer
+        
+        Args:
+            batch_size: Number of transitions to sample
+            
+        Returns:
+            batch: List of transitions
+        """
         return random.sample(self.memory, batch_size) if len(self.memory) >= batch_size else self.memory
         
     def __len__(self):
@@ -55,7 +75,10 @@ class MarketDQNAgent:
         # Action i means "flip the selection status of order i"
         self.num_actions = 1  # Will be set dynamically based on market size
         
-        # Initialize Q-network 
+        # Store market data for reference - will be populated during training
+        self.market_data_cache = {}
+        
+        # Initialize Q-network with the embedded model
         self.q_network = DQNWithEmbeddings(
             input_size=len(self.features), 
             hidden_size=hidden_size,
@@ -93,8 +116,8 @@ class MarketDQNAgent:
         Select an action using epsilon-greedy policy
         
         Args:
-            market_data: Market data tensor
-            state: Current state (binary vector of selected orders)
+            market_data: Market data tensor [num_orders, features]
+            state: Current state (binary vector of selected orders) [num_orders]
             reward_fn: Function to compute reward 
             eval_mode: Whether to evaluate (no exploration)
             
@@ -104,7 +127,43 @@ class MarketDQNAgent:
             reward: Reward for taking the action
         """
         # Dynamically update action space based on market size
-        self.num_actions = len(state)
+        num_orders = len(state)
+        self.num_actions = num_orders
+        
+        # Update Q-network's output dimension if needed
+        if self.q_network.q_network[-1].out_features != num_orders:
+            # Replace the last layer to match the new action space
+            old_layers = list(self.q_network.q_network.children())
+            input_dim = old_layers[-1].in_features
+            new_last_layer = nn.Linear(input_dim, num_orders).to(self.device)
+            
+            # Initialize weights to approximate the old layer's behavior
+            # This avoids catastrophic forgetting
+            if num_orders > old_layers[-1].out_features:
+                # If new size is larger, copy old weights and initialize new ones
+                with torch.no_grad():
+                    new_last_layer.weight.data[:old_layers[-1].out_features, :] = old_layers[-1].weight.data
+                    new_last_layer.bias.data[:old_layers[-1].out_features] = old_layers[-1].bias.data
+            else:
+                # If new size is smaller, truncate old weights
+                with torch.no_grad():
+                    new_last_layer.weight.data = old_layers[-1].weight.data[:num_orders, :]
+                    new_last_layer.bias.data = old_layers[-1].bias.data[:num_orders]
+            
+            # Replace the last layer
+            old_layers[-1] = new_last_layer
+            self.q_network.q_network = nn.Sequential(*old_layers)
+            
+            # Do the same for target network
+            old_target_layers = list(self.target_network.q_network.children())
+            old_target_layers[-1] = nn.Linear(input_dim, num_orders).to(self.device)
+            
+            # Copy weights from q_network to target_network
+            with torch.no_grad():
+                old_target_layers[-1].weight.data = new_last_layer.weight.data.clone()
+                old_target_layers[-1].bias.data = new_last_layer.bias.data.clone()
+            
+            self.target_network.q_network = nn.Sequential(*old_target_layers)
         
         # Epsilon-greedy action selection
         if not eval_mode and random.random() < self.epsilon:
@@ -112,11 +171,16 @@ class MarketDQNAgent:
         else:
             with torch.no_grad():
                 # Reshape state to match q_network input
-                state_tensor = torch.tensor(state, dtype=torch.float32).unsqueeze(0).to(self.device)
+                state_tensor = torch.tensor(state, dtype=torch.float32).to(self.device)
+                
+                # Market data needs to be unsqueezed to add batch dimension
+                market_tensor = market_data.unsqueeze(0).to(self.device)
+                
                 # Get q-values for all actions
-                q_values = self.q_network(market_data.unsqueeze(0).to(self.device), state_tensor)
+                q_values = self.q_network(market_tensor, state_tensor)
+                
                 # Select action with highest q-value
-                action = q_values.argmax(1).item()
+                action = q_values.squeeze().argmax().item()
         
         # Create next state by flipping the bit at action index
         next_state = state.copy()
@@ -193,21 +257,81 @@ class MarketDQNAgent:
         batch = self.replay_buffer.sample(batch_size)
         
         # Unpack batch
-        states, actions, rewards, next_states, dones = zip(*batch)
+        market_data, states, actions, rewards, next_states, dones = zip(*batch)
+        
+        # We need to handle possible different state sizes
+        # First, find the max state size in the batch
+        max_state_size = max(len(s) for s in states)
+        
+        # Now, pad all states to this max size
+        padded_states = []
+        padded_next_states = []
+        for state, next_state in zip(states, next_states):
+            if len(state) < max_state_size:
+                # Pad with zeros
+                padded_state = np.pad(state, (0, max_state_size - len(state)), 'constant')
+                padded_next_state = np.pad(next_state, (0, max_state_size - len(next_state)), 'constant')
+            else:
+                padded_state = state
+                padded_next_state = next_state
+            
+            padded_states.append(padded_state)
+            padded_next_states.append(padded_next_state)
         
         # Convert to tensors
-        states = torch.tensor(np.array(states), dtype=torch.float32).to(self.device)
+        market_data = torch.stack([m.to(self.device) for m in market_data])
+        states = torch.tensor(np.array(padded_states), dtype=torch.float32).to(self.device)
         actions = torch.tensor(actions, dtype=torch.long).unsqueeze(1).to(self.device)
         rewards = torch.tensor(rewards, dtype=torch.float32).unsqueeze(1).to(self.device)
-        next_states = torch.tensor(np.array(next_states), dtype=torch.float32).to(self.device)
+        next_states = torch.tensor(np.array(padded_next_states), dtype=torch.float32).to(self.device)
         dones = torch.tensor(dones, dtype=torch.float32).unsqueeze(1).to(self.device)
         
-        # Compute current Q values
-        current_q = self.q_network(states).gather(1, actions)
+        # We need to dynamically adjust the q-network output dimension if needed
+        num_actions = max_state_size
+        if self.q_network.q_network[-1].out_features != num_actions:
+            # Replace the last layer to match the new action space
+            old_layers = list(self.q_network.q_network.children())
+            input_dim = old_layers[-1].in_features
+            new_last_layer = nn.Linear(input_dim, num_actions).to(self.device)
+            
+            # Initialize weights
+            if num_actions > old_layers[-1].out_features:
+                # If new size is larger, copy old weights and initialize new ones
+                with torch.no_grad():
+                    new_last_layer.weight.data[:old_layers[-1].out_features, :] = old_layers[-1].weight.data
+                    new_last_layer.bias.data[:old_layers[-1].out_features] = old_layers[-1].bias.data
+            else:
+                # If new size is smaller, truncate old weights
+                with torch.no_grad():
+                    new_last_layer.weight.data = old_layers[-1].weight.data[:num_actions, :]
+                    new_last_layer.bias.data = old_layers[-1].bias.data[:num_actions]
+            
+            # Replace the last layer
+            old_layers[-1] = new_last_layer
+            self.q_network.q_network = nn.Sequential(*old_layers)
+            
+            # Do the same for target network
+            old_target_layers = list(self.target_network.q_network.children())
+            old_target_layers[-1] = nn.Linear(input_dim, num_actions).to(self.device)
+            
+            # Copy weights from q_network to target_network
+            with torch.no_grad():
+                old_target_layers[-1].weight.data = new_last_layer.weight.data.clone()
+                old_target_layers[-1].bias.data = new_last_layer.bias.data.clone()
+            
+            self.target_network.q_network = nn.Sequential(*old_target_layers)
+        
+        # Compute current Q values using both market data and state
+        current_q = self.q_network(market_data, states)
+        
+        # We need to handle the case where actions might be out of bounds
+        # This can happen if the state size changed between steps
+        valid_actions = torch.clamp(actions, 0, num_actions - 1)
+        current_q = current_q.gather(1, valid_actions)
         
         # Compute next Q values using target network
         with torch.no_grad():
-            next_q = self.target_network(next_states).max(1)[0].unsqueeze(1)
+            next_q = self.target_network(market_data, next_states).max(1)[0].unsqueeze(1)
             target_q = rewards + (1 - dones) * self.gamma * next_q
         
         # Compute loss
@@ -294,6 +418,9 @@ def train_dqn_for_market_matching(model, train_loader, reward_fn,
                     # Use predicted state as initial state
                     state = predicted_state
                 
+                # Store the starting reward for this episode
+                episode_start_reward = 0
+                
                 # Run episode for this market
                 for step in range(50):  # Max 50 steps per market
                     # Select action
@@ -305,18 +432,25 @@ def train_dqn_for_market_matching(model, train_loader, reward_fn,
                     done = np.array_equal(state, next_state) or step == 49
                     
                     # Store transition in replay buffer
-                    agent.replay_buffer.push(state, action, reward, next_state, done)
+                    agent.replay_buffer.push(current_market, state, action, reward, next_state, done)
                     
                     # Update state
                     state = next_state
                     
-                    # Accumulate reward
-                    total_reward += reward
+                    # Accumulate reward (only count improvement from initial state)
+                    if step == 0:
+                        episode_start_reward = reward
+                    else:
+                        total_reward += (reward - episode_start_reward)
                     
                     # Update Q-network
                     if len(agent.replay_buffer) >= batch_size:
-                        loss = agent.update(batch_size)
-                        losses.append(loss)
+                        try:
+                            loss = agent.update(batch_size)
+                            if loss is not None:
+                                losses.append(loss)
+                        except Exception as e:
+                            print(f"Error during Q-network update: {e}")
                     
                     # Break if episode is done
                     if done:

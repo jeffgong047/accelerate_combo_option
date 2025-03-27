@@ -26,19 +26,22 @@ import wandb
 import os 
 
 
-# Add this function to parse command line arguments
-def parse_arguments():
-    parser = argparse.ArgumentParser(description='Process stock options.')
-    parser.add_argument('--num_stocks', type=int, default=2, help='Number of stocks to process (default: 3)')
-    parser.add_argument('--market_size', type=int, default=50, help='Number of orders in the market')
-    parser.add_argument('--offset', type=bool, default=False, help='Whether to allow offset for liability in the optimization')
-    parser.add_argument('--wandb_project', type=str, default='expediating_comb_financial_market_matching', help='Wandb project name')
-    parser.add_argument('--num_orders', type=int, default=5000, help='number of orders in the orderbook')
-    parser.add_argument('--noise', type=float, default=2**-6, help='noise level in the orderbook')
-    return parser.parse_args()
+# # Add this function to parse command line arguments
+# def parse_arguments():
+#     parser = argparse.ArgumentParser(description='Process stock options.')
+#     parser.add_argument('--num_stocks', type=int, default=2, help='Number of stocks to process (default: 3)')
+#     parser.add_argument('--market_size', type=int, default=50, help='Number of orders in the market')
+#     parser.add_argument('--offset', type=bool, default=False, help='Whether to allow offset for liability in the optimization')
+#     parser.add_argument('--wandb_project', type=str, default='expediating_comb_financial_market_matching', help='Wandb project name')
+#     parser.add_argument('--num_orders', type=int, default=5000, help='number of orders in the orderbook')
+#     parser.add_argument('--noise', type=float, default=2**-2, help='noise level in the orderbook')
+#     parser.add_argument('--stock_combo', type=str, default=None, help='Comma-separated list of stock symbols to use (e.g. "AAPL,MSFT")')
+#     parser.add_argument('--seed', type=int, default=1, help='Random seed for generating order books')
+#     parser.add_argument('--output_dir', type=str, default=None, help='Output directory for generated order books')
+#     return parser.parse_args()
 
-# Move the main execution code inside if __name__ == '__main__':
-args = parse_arguments()
+# # Move the main execution code inside if __name__ == '__main__':
+# args = parse_arguments()
 
 
 
@@ -61,7 +64,7 @@ def signal_handler(signum, frame):
 # Register the signal handler
 signal.signal(signal.SIGINT, signal_handler)
 
-def synthetic_combo_frontier_generation(original_opt_buy_book: pd.DataFrame, original_opt_sell_book: pd.DataFrame, s1='S1', s2='S2', opt_l = False, debug=0):
+def synthetic_combo_frontier_generation(original_orders_df: pd.DataFrame, s1='S1', s2='S2', offset = False, debug=0):
     '''
     opt_buy_book_holder: pandas dataframe contains bid orders; regardless of input; transformed to column order: ['option1', 'option2', 'C=Call, P=Put','Strike Price of the Option Times 1000', 'transaction_type','B/A_price']
     opt_sell_book_holder: pandas dataframe contains ask orders; ...
@@ -72,9 +75,13 @@ def synthetic_combo_frontier_generation(original_opt_buy_book: pd.DataFrame, ori
     order book: contains coefficients up to len(stock_list); call/put; strike; buy/sell; price (bid/ask)
     '''
     #first check if is match and provide frontier if not:
+    breakpoint()
+    original_opt_buy_book = original_orders_df.where(original_orders_df['transaction_type'] == 1).dropna()
+    original_opt_sell_book = original_orders_df.where(original_orders_df['transaction_type'] == 0).dropna()
     original_opt_buy_book = original_opt_buy_book[['option1', 'option2', 'C=Call, P=Put','Strike Price of the Option Times 1000', 'transaction_type','B/A_price']]
     original_opt_sell_book = original_opt_sell_book[['option1', 'option2', 'C=Call, P=Put','Strike Price of the Option Times 1000', 'transaction_type','B/A_price']]
-    _, num_iter, profit , isMatch, matched_stock = synthetic_combo_match_mip(deepcopy(original_opt_buy_book), deepcopy(original_opt_sell_book), debug=0)
+    _, num_iter, profit , isMatch, matched_stock = synthetic_combo_match_mip(deepcopy(original_opt_buy_book), deepcopy(original_opt_sell_book), offset= offset, debug=0)
+    quote_price = pd.Series(index=original_opt_buy_book.index)
     buy_book_index = original_opt_buy_book.index
     sell_book_index = original_opt_sell_book.index
     if isMatch: 
@@ -121,6 +128,7 @@ def synthetic_combo_frontier_generation(original_opt_buy_book: pd.DataFrame, ori
     
     # find frontier bids:
     for option_index in tqdm(range(len(opt_buy_book_holder)), desc='Checking buy side options'):
+        option_df_index = opt_buy_book_holder.index[option_index]
         sub_obj = 1
         #add N+1 option of the buy option to seller side and set ask price = 0
         opt_buy_book = deepcopy(opt_buy_book_holder).to_numpy()
@@ -146,19 +154,19 @@ def synthetic_combo_frontier_generation(original_opt_buy_book: pd.DataFrame, ori
             model.setParam('OutputFlag', False)
             gamma = model.addVars(1, num_buy, ub=1) #sell to bid orders
             delta = model.addVars(1, num_sell, ub=1) #buy from ask orders
-            if opt_l:
+            if offset:
                 L = model.addVars(1, 1, lb=-GRB.INFINITY, ub=GRB.INFINITY)
 
             # constraint of 0
             buy_sum = sum(delta[0,i]*g_constraints[0][i] for i in range(num_sell))
             sell_sum = sum(gamma[0,i]*f_constraints[0][i] for i in range(num_buy))
-            if opt_l:
+            if offset:
                 model.addLConstr(sell_sum-buy_sum-L[0,0], GRB.LESS_EQUAL, 0)
             else:
                 model.addLConstr(sell_sum-buy_sum, GRB.LESS_EQUAL, 0)
             expense = sum(delta[0,i]*opt_sell_book[i, -1] for i in range(num_sell))
             gain = sum(gamma[0,i]*opt_buy_book[i, -1] for i in range(num_buy))
-            if opt_l:
+            if offset:
                 model.setObjective(gain-expense-L[0,0], GRB.MAXIMIZE)
             else:
                 model.setObjective(gain-expense, GRB.MAXIMIZE)
@@ -185,7 +193,7 @@ def synthetic_combo_frontier_generation(original_opt_buy_book: pd.DataFrame, ori
                 # add newly generated constraint
                 buy_sum_new = sum(delta[0,i]*g_constraints[-1][i] for i in range(num_sell))
                 sell_sum_new = sum(gamma[0,i]*f_constraints[-1][i] for i in range(num_buy))
-                if opt_l:
+                if offset:
                     model.addLConstr(sell_sum_new-buy_sum_new-L[0,0], GRB.LESS_EQUAL, 0)
                 else:
                     model.addLConstr(sell_sum_new-buy_sum_new, GRB.LESS_EQUAL, 0)
@@ -195,7 +203,7 @@ def synthetic_combo_frontier_generation(original_opt_buy_book: pd.DataFrame, ori
                 # save decision variables from prime problem
                 gamma_val = np.array([max(gamma[0, i].x, 0) for i in range(num_buy)])
                 delta_val = np.array([max(delta[0, i].x, 0) for i in range(num_sell)])
-                if opt_l:
+                if offset:
                     L_val = L[0,0].x
                 if debug == 2:
                     print(gamma_val)
@@ -203,7 +211,7 @@ def synthetic_combo_frontier_generation(original_opt_buy_book: pd.DataFrame, ori
                     print(L_val)
 
                 # define sub obj
-                if opt_l:
+                if offset:
                     sub_model.setObjective(sum(gamma_val[i]*f[0, i] for i in range(num_buy))-sum(delta_val[i]*g[0, i] for i in range(num_sell))-L_val, GRB.MAXIMIZE)
                 else:
                     sub_model.setObjective(sum(gamma_val[i]*f[0, i] for i in range(num_buy))-sum(delta_val[i]*g[0, i] for i in range(num_sell)), GRB.MAXIMIZE)
@@ -246,19 +254,24 @@ def synthetic_combo_frontier_generation(original_opt_buy_book: pd.DataFrame, ori
             print('Error code ' + str(e.errno) + ": " + str(e))
         except AttributeError:
             print('Encountered an attribute error')
+
+
         if model.objVal <= bid:
-            #add it to frontiers
+            #add it to frontier s
+            print(f'original bid: {bid},quoted bid: {model.objVal}')
             opt_buy_book_frontier_labels[option_index] = 1
         else:
             assert opt_buy_book_frontier_labels[option_index] == 0
-
+        quote_price[option_df_index] = model.objVal
     for option_index in tqdm(range(len(opt_sell_book_holder)), desc='Checking sell side options'):
+        option_df_index = opt_sell_book_holder.index[option_index]
         sub_obj = 1
         #add sell option to buy side of the market and set b_(M+1) price  = 10^6
         opt_sell_book = deepcopy(opt_sell_book_holder).to_numpy()
         opt_buy_book = deepcopy(opt_buy_book_holder).to_numpy()
         ask = opt_sell_book[option_index][5]
         copied_opt_buy = deepcopy(opt_sell_book[option_index])
+        opt_sell_book = np.delete(opt_sell_book, option_index, axis=0)
         #lets assume we are only handling two option case
         copied_opt_buy[5] = 1e6
         opt_buy_book = np.concatenate([opt_buy_book, np.expand_dims(copied_opt_buy, axis = 0)] ,axis=0)
@@ -277,19 +290,19 @@ def synthetic_combo_frontier_generation(original_opt_buy_book: pd.DataFrame, ori
             model.setParam('OutputFlag', False)
             gamma = model.addVars(1, num_buy, ub=1) #sell to bid orders
             delta = model.addVars(1, num_sell, ub=1) #buy from ask orders
-            if opt_l:
+            if offset:
                 L = model.addVars(1, 1, lb=-GRB.INFINITY, ub=GRB.INFINITY)
             # constraint of 0
             buy_sum = sum(delta[0,i]*g_constraints[0][i] for i in range(num_sell))
             sell_sum = sum(gamma[0,i]*f_constraints[0][i] for i in range(num_buy))
-            if opt_l:
+            if offset:
                 model.addLConstr(sell_sum-buy_sum-L[0,0], GRB.LESS_EQUAL, 0)
             else:
                 model.addLConstr(sell_sum-buy_sum, GRB.LESS_EQUAL, 0)
             # define obj
             expense = sum(delta[0,i]*opt_sell_book[i, -1] for i in range(num_sell))
             gain = sum(gamma[0,i]*opt_buy_book[i, -1] for i in range(num_buy))
-            if opt_l:
+            if offset:
                 model.setObjective(gain-expense-L[0,0], GRB.MAXIMIZE)
             else:
                 model.setObjective(gain-expense, GRB.MAXIMIZE)
@@ -316,7 +329,7 @@ def synthetic_combo_frontier_generation(original_opt_buy_book: pd.DataFrame, ori
                 # add newly generated constraint
                 buy_sum_new = sum(delta[0,i]*g_constraints[-1][i] for i in range(num_sell))
                 sell_sum_new = sum(gamma[0,i]*f_constraints[-1][i] for i in range(num_buy))
-                if opt_l:   
+                if offset:   
                     model.addLConstr(sell_sum_new-buy_sum_new-L[0,0], GRB.LESS_EQUAL, 0)
                 else:
                     model.addLConstr(sell_sum_new-buy_sum_new, GRB.LESS_EQUAL, 0)
@@ -326,7 +339,7 @@ def synthetic_combo_frontier_generation(original_opt_buy_book: pd.DataFrame, ori
                 # save decision variables from prime problem
                 gamma_val = np.array([max(gamma[0, i].x, 0) for i in range(num_buy)])
                 delta_val = np.array([max(delta[0, i].x, 0) for i in range(num_sell)])
-                if opt_l:
+                if offset:
                     L_val = L[0,0].x
                 if debug == 2:
                     print(gamma_val)
@@ -334,7 +347,7 @@ def synthetic_combo_frontier_generation(original_opt_buy_book: pd.DataFrame, ori
                     print(L_val)
 
                 # define sub obj
-                if opt_l:
+                if offset:
                     sub_model.setObjective(sum(gamma_val[i]*f[0, i] for i in range(num_buy))-sum(delta_val[i]*g[0, i] for i in range(num_sell))-L_val, GRB.MAXIMIZE)
                 else:
                     sub_model.setObjective(sum(gamma_val[i]*f[0, i] for i in range(num_buy))-sum(delta_val[i]*g[0, i] for i in range(num_sell)), GRB.MAXIMIZE)
@@ -385,8 +398,23 @@ def synthetic_combo_frontier_generation(original_opt_buy_book: pd.DataFrame, ori
             # print('current index: {}'.format(option_index))
             # print('sold to {} and bought from {}'.format(gamma_index, delta_index))
             opt_sell_book_frontier_labels[option_index] = 1
+
         else:
+            print(f'finally original ask: {ask},quoted ask: {1e6-model.objVal}')
+            #print the buy from and sell to with gamma and delta
             assert opt_sell_book_frontier_labels[option_index] == 0
+        quote_price[option_df_index] = 1e6 - model.objVal
+        for i in range(num_buy):
+            if gamma[0,i].x > 0:
+                print(f'buy {gamma[0,i].x} from {opt_buy_book[i,0]}({opt_buy_book[i,1]}+{opt_buy_book[i,2]},{opt_buy_book[i,3]}) at {opt_buy_book[i,-1]}')
+        for i in range(num_sell):
+            if delta[0,i].x > 0:
+                print(f'sell {delta[0,i].x} to {opt_sell_book[i,0]}({opt_sell_book[i,1]}+{opt_sell_book[i,2]},{opt_sell_book[i,3]}) at {opt_sell_book[i,-1]}')
+
+        # print(f'order to quote: {opt_sell_book_holder.iloc[option_index]}')
+        # print(f'quote_price: {quote_price[option_df_index]}')
+        print(f'\noriginal ask: {ask},\nquoted ask: {1e6-model.objVal}')
+        breakpoint()
 
     # Fix the DataFrame creation by adding the new column name
     columns = list(opt_buy_book_holder.columns) + ['belongs_to_frontier']
@@ -456,13 +484,44 @@ if __name__ == '__main__':
     MARKET_SIZE = args.market_size
     NOISE = args.noise
     BOOK_SIZE = args.market_size
-    NOISE = args.noise
-# Create a new pool for each iteration
+    SEED = args.seed
+    WANDB_ENABLED = True
+    
+    # Create output directory if specified
+    if args.output_dir:
+        os.makedirs(args.output_dir, exist_ok=True)
+        WANDB_ENABLED = False  # Disable wandb when saving to output_dir
+    
+    # Parse stock combination if provided
+    stock_list = None
+    if args.stock_combo:
+        stock_list = args.stock_combo.split(',')
+        print(f"Using specified stock combination: {stock_list}")
+    
+    # Create a new pool for each iteration
     tasks = {}
-    # directory_path = f'/common/home/hg343/Research/accelerate_combo_option/data/combo_{NUM_STOCK}_frontier_no_offset'
-    directory_path = f'/common/home/hg343/Research/accelerate_combo_option/data/combo_2_test'
+    directory_path = args.output_dir or f'/common/home/hg343/Research/accelerate_combo_option/data/combo_2_test'
+    
     with pool_context(processes=20) as pool:
         try:
+            # Initialize wandb only if enabled
+            if WANDB_ENABLED:
+                wandb_run = wandb.init(
+                    project=args.wandb_project,
+                    name=f"combo_frontier_num_stock_{NUM_STOCK}_noise_{NOISE}_market_size_{MARKET_SIZE}",
+                )
+            
+            # Define stock selection based on arguments
+            selection = ['AAPL', 'AXP', 'BA', 'DIS', 'GS', 'HD', 'IBM', 'JNJ', 'JPM', 'KO', 'MCD', 'MMM', 'MSFT', 'NKE', 'PG', 'RTX', 'VZ', 'WBA', 'WMT', 'XOM']
+            
+            if not stock_list:
+                # Use random selection if stock_combo not provided
+                combinations = list(itertools.combinations(selection, NUM_STOCK))
+                random_select_combination = list(random.choice(combinations))
+                stock_list = random_select_combination
+                stock_list  = ['BA', 'HD']
+            combinations_string = '_'.join(stock_list)
+            
             with wandb.init(
                 project=args.wandb_project,
                 name = f"combo_frontier_num_stock_{NUM_STOCK}_noise_{NOISE}_market_size_{MARKET_SIZE}",
@@ -472,8 +531,8 @@ if __name__ == '__main__':
                 # combinations = list(itertools.combinations(selection,NUM_STOCK))
                 #combination not seen ['MSFT', 'AXP'] , ['MSFT', 'GS'], ['JPM', 'IBM'], ['MSFT', 'BA'], ['NKE', 'IBM']]
                 # combinations = [['MSFT', 'GS'] ]
-                stock_list = ['AAPL','MSFT']
-                combinations = [['AAPL','MSFT']]
+                stock_list = ['GS', 'MSFT']
+                combinations = [['GS', 'MSFT']]
                 random_select_combination = list(random.choice(combinations))
                 combinations_string = '_'.join(random_select_combination)
                 for i in range(2,14):
@@ -498,17 +557,16 @@ if __name__ == '__main__':
                             'total_markets': num_books  # Add total number of markets
                         }
                     )
-                    for market_index in tqdm(range(0,num_books), desc=f'Generating frontier for markets'):
+                    for market_index in tqdm(range(3,num_books), desc=f'Generating frontier for markets'):
                         stock_name = '_'.join(stock_list)
                         opt_book_1 = opt_book[market_index*MARKET_SIZE:(market_index+1)*MARKET_SIZE]
                         opt_buy_book, opt_sell_book = add_noise_orderbook(opt_book_1, NOISE)
                         print('#####Generating {} with size {} and noise {}#####'.format(filename, BOOK_SIZE, NOISE))
                                 # Add debug print before async
                         print(f"Starting async computation for iteration {market_index}")
-                        filename = f'corrected_testing_combo_frontier_market_index_{market_index}_book_size_{BOOK_SIZE}_{stock_name}_NOISE_{NOISE}'
+                        filename = f'combo_frontier_market_index_{market_index}_book_size_{BOOK_SIZE}_{stock_name}_NOISE_{NOISE}_offset_{args.offset}'
                         column_names = ['option1', 'option2', 'C=Call, P=Put','Strike Price of the Option Times 1000', 'transaction_type','B/A_price']
-                        opt_buy_book = pd.DataFrame(opt_buy_book, columns = column_names)
-                        opt_sell_book = pd.DataFrame(opt_sell_book, columns = column_names)
+                        opt_orders_df = pd.DataFrame(np.concatenate([opt_buy_book, opt_sell_book], axis=0), columns=column_names)
                         # testing whether the generated frontiers themselves matches
                         # frontier_option_label_attempt_1 = synthetic_combo_frontier_generation(opt_buy_book, opt_sell_book, opt_l = args.offset, debug=0)
                         # frontier_option_label_attempt_1_copy = deepcopy(frontier_option_label_attempt_1)
@@ -518,7 +576,11 @@ if __name__ == '__main__':
                         # frontier_option_label_attempt_2 = synthetic_combo_frontier_generation(opt_buy_book_new, opt_sell_book_new, opt_l = False, debug=0)
                         # assert frontier_option_label_attempt_2.equals(frontier_option_label_attempt_1_copy)
                         # frontier_option_label = deepcopy(frontier_option_label_attempt_1)
-                        async_result = pool.apply_async(run_with_timeout, (opt_buy_book, opt_sell_book, args.offset))
+                        breakpoint()
+                        result = synthetic_combo_frontier_generation(opt_orders_df, offset = args.offset)
+                        print(result.iloc[:,4:])
+                        breakpoint()
+                        async_result = pool.apply_async(run_with_timeout, (opt_orders_df, args.offset))
                         # # frontier_option_label = async_result.get(timeout=600)
                         # df = pd.DataFrame(frontier_option_label, columns=['option1', 'option2','C=Call, P=Put',
                         # 'Strike Price of the Option Times 1000',
@@ -532,6 +594,7 @@ if __name__ == '__main__':
                         # with open('here.pkl', 'wb') as f:
                         #             pickle.dump(frontier_option_label, f)
                         # breakpoint()
+                        breakpoint()
                         tasks.update({filename :[market_index, async_result]})
                     print(tasks)
                     for filename, solving_result in tasks.values():
@@ -539,6 +602,7 @@ if __name__ == '__main__':
                         try:
                             print(f"Waiting for result in iteration {market_index}")
                             frontier_option_label = async_result.get(timeout=600)
+                            print(frontier_option_label)
                             print(f"Result type for iteration {market_index}: {type(frontier_option_label)}")
                             if frontier_option_label is not None:
                                 print(f"Successfully completed iteration {market_index}")

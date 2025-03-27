@@ -192,7 +192,7 @@ def finetune_policy_head(model, train_loader, optimizer, reward_fn, epochs=4, fe
                     # Count number of selected orders
                     num_selected = selected.sum().item()
                     num_selected_list.append(num_selected)
-                    
+                    print(f'num_selected {num_selected}')
                     # Skip if no orders are selected
                     if num_selected == 0:
                         profits_list.append(torch.tensor(0.0, device=device, requires_grad=False))
@@ -251,8 +251,11 @@ def finetune_policy_head(model, train_loader, optimizer, reward_fn, epochs=4, fe
             total_profits = torch.tensor(total_profit_list, device=device, requires_grad=False)
             total_profit_values = total_profits.detach().cpu().numpy()
             
-            # Calculate reward loss (negative because we want to maximize profit)
-            reward_loss = -reward_weight * profits.mean()
+            # Convert num_selected_list to a tensor on the same device as profits before division
+            num_selected_tensor = torch.tensor(num_selected_list, device=device, dtype=torch.float)
+
+            # Now perform the division with the tensor
+            reward_loss = ((total_profits - reward_weight * profits)/num_selected_tensor).mean()
             
             # Calculate policy loss (cross entropy between predicted and actual labels)
             self_distillation_loss = nn.CrossEntropyLoss()(

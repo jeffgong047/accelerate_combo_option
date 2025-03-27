@@ -1,0 +1,21 @@
+2025-03-26 23:08:50,533 INFO    MainThread:1044798 [wandb_setup.py:_flush():76] Current SDK version is 0.17.0
+2025-03-26 23:08:50,534 INFO    MainThread:1044798 [wandb_setup.py:_flush():76] Configure stats pid to 1044798
+2025-03-26 23:08:50,534 INFO    MainThread:1044798 [wandb_setup.py:_flush():76] Loading settings from /common/home/hg343/.config/wandb/settings
+2025-03-26 23:08:50,535 INFO    MainThread:1044798 [wandb_setup.py:_flush():76] Loading settings from /common/home/hg343/Research/accelerate_combo_option/src/wandb/settings
+2025-03-26 23:08:50,536 INFO    MainThread:1044798 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'api_key': '***REDACTED***'}
+2025-03-26 23:08:50,536 INFO    MainThread:1044798 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'src/combo_stock_frontier_data_preprocessor.py', 'program_abspath': '/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py', 'program': '/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py'}
+2025-03-26 23:08:50,537 INFO    MainThread:1044798 [wandb_setup.py:_flush():76] Applying login settings: {}
+2025-03-26 23:08:50,537 INFO    MainThread:1044798 [wandb_setup.py:_flush():76] Applying login settings: {}
+2025-03-26 23:08:50,538 INFO    MainThread:1044798 [wandb_init.py:_log_setup():520] Logging user logs to /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250326_230850-8d7hc4xh/logs/debug.log
+2025-03-26 23:08:50,538 INFO    MainThread:1044798 [wandb_init.py:_log_setup():521] Logging internal logs to /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250326_230850-8d7hc4xh/logs/debug-internal.log
+2025-03-26 23:08:50,539 INFO    MainThread:1044798 [wandb_init.py:init():560] calling init triggers
+2025-03-26 23:08:50,540 INFO    MainThread:1044798 [wandb_init.py:init():567] wandb.init called with sweep_config: {}
+config: {}
+2025-03-26 23:08:50,540 INFO    MainThread:1044798 [wandb_init.py:init():605] wandb.init() called when a run is still active
+2025-03-26 23:12:25,583 INFO    MainThread:1044798 [wandb_run.py:_finish():2103] finishing run jglppk/expediating_comb_financial_market_matching/tsaqzg7i
+2025-03-26 23:12:25,584 INFO    MainThread:1044798 [wandb_run.py:_atexit_cleanup():2343] got exitcode: 1
+2025-03-26 23:12:25,584 INFO    MainThread:1044798 [wandb_run.py:_restore():2326] restore
+2025-03-26 23:12:25,584 INFO    MainThread:1044798 [wandb_run.py:_restore():2332] restore done
+2025-03-26 23:12:30,025 INFO    MainThread:1044798 [wandb_run.py:_footer_history_summary_info():3994] rendering history
+2025-03-26 23:12:30,025 INFO    MainThread:1044798 [wandb_run.py:_footer_history_summary_info():4026] rendering summary
+2025-03-26 23:12:30,035 INFO    MainThread:1044798 [wandb_run.py:_footer_sync_info():3953] logging synced files

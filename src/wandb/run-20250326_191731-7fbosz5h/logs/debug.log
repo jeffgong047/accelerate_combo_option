@@ -1,0 +1,49 @@
+2025-03-26 19:17:31,138 INFO    MainThread:454654 [wandb_setup.py:_flush():76] Current SDK version is 0.17.0
+2025-03-26 19:17:31,139 INFO    MainThread:454654 [wandb_setup.py:_flush():76] Configure stats pid to 454654
+2025-03-26 19:17:31,139 INFO    MainThread:454654 [wandb_setup.py:_flush():76] Loading settings from /common/home/hg343/.config/wandb/settings
+2025-03-26 19:17:31,139 INFO    MainThread:454654 [wandb_setup.py:_flush():76] Loading settings from /common/home/hg343/Research/accelerate_combo_option/src/wandb/settings
+2025-03-26 19:17:31,140 INFO    MainThread:454654 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'api_key': '***REDACTED***'}
+2025-03-26 19:17:31,140 INFO    MainThread:454654 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'src/combo_stock_frontier_data_preprocessor.py', 'program_abspath': '/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py', 'program': '/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py'}
+2025-03-26 19:17:31,140 INFO    MainThread:454654 [wandb_setup.py:_flush():76] Applying login settings: {}
+2025-03-26 19:17:31,141 INFO    MainThread:454654 [wandb_setup.py:_flush():76] Applying login settings: {}
+2025-03-26 19:17:31,141 INFO    MainThread:454654 [wandb_init.py:_log_setup():520] Logging user logs to /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250326_191731-7fbosz5h/logs/debug.log
+2025-03-26 19:17:31,141 INFO    MainThread:454654 [wandb_init.py:_log_setup():521] Logging internal logs to /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250326_191731-7fbosz5h/logs/debug-internal.log
+2025-03-26 19:17:31,142 INFO    MainThread:454654 [wandb_init.py:init():560] calling init triggers
+2025-03-26 19:17:31,146 INFO    MainThread:454654 [wandb_init.py:init():567] wandb.init called with sweep_config: {}
+config: {}
+2025-03-26 19:17:31,147 INFO    MainThread:454654 [wandb_init.py:init():610] starting backend
+2025-03-26 19:17:31,147 INFO    MainThread:454654 [wandb_init.py:init():614] setting up manager
+2025-03-26 19:17:31,150 INFO    MainThread:454654 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2025-03-26 19:17:31,159 INFO    MainThread:454654 [wandb_init.py:init():622] backend started and connected
+2025-03-26 19:17:31,170 INFO    MainThread:454654 [wandb_init.py:init():711] updated telemetry
+2025-03-26 19:17:31,204 INFO    MainThread:454654 [wandb_init.py:init():744] communicating run to backend with 90.0 second timeout
+2025-03-26 19:17:31,406 INFO    MainThread:454654 [wandb_run.py:_on_init():2396] communicating current version
+2025-03-26 19:17:31,466 INFO    MainThread:454654 [wandb_run.py:_on_init():2405] got version response upgrade_message: "wandb version 0.19.8 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2025-03-26 19:17:31,468 INFO    MainThread:454654 [wandb_init.py:init():795] starting run threads in backend
+2025-03-26 19:17:47,242 INFO    MainThread:454654 [wandb_run.py:_console_start():2374] atexit reg
+2025-03-26 19:17:47,243 INFO    MainThread:454654 [wandb_run.py:_redirect():2229] redirect: wrap_raw
+2025-03-26 19:17:47,244 INFO    MainThread:454654 [wandb_run.py:_redirect():2294] Wrapping output streams.
+2025-03-26 19:17:47,244 INFO    MainThread:454654 [wandb_run.py:_redirect():2319] Redirects installed.
+2025-03-26 19:17:47,255 INFO    MainThread:454654 [wandb_init.py:init():838] run started, returning control to user process
+2025-03-26 19:17:48,070 INFO    MainThread:454654 [wandb_setup.py:_flush():76] Current SDK version is 0.17.0
+2025-03-26 19:17:48,073 INFO    MainThread:454654 [wandb_setup.py:_flush():76] Configure stats pid to 454654
+2025-03-26 19:17:48,074 INFO    MainThread:454654 [wandb_setup.py:_flush():76] Loading settings from /common/home/hg343/.config/wandb/settings
+2025-03-26 19:17:48,075 INFO    MainThread:454654 [wandb_setup.py:_flush():76] Loading settings from /common/home/hg343/Research/accelerate_combo_option/src/wandb/settings
+2025-03-26 19:17:48,076 INFO    MainThread:454654 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'api_key': '***REDACTED***'}
+2025-03-26 19:17:48,076 INFO    MainThread:454654 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'src/combo_stock_frontier_data_preprocessor.py', 'program_abspath': '/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py', 'program': '/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py'}
+2025-03-26 19:17:48,077 INFO    MainThread:454654 [wandb_setup.py:_flush():76] Applying login settings: {}
+2025-03-26 19:17:48,078 INFO    MainThread:454654 [wandb_setup.py:_flush():76] Applying login settings: {}
+2025-03-26 19:17:48,086 INFO    MainThread:454654 [wandb_init.py:_log_setup():520] Logging user logs to /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250326_191748-iv6r6k11/logs/debug.log
+2025-03-26 19:17:48,087 INFO    MainThread:454654 [wandb_init.py:_log_setup():521] Logging internal logs to /common/home/hg343/Research/accelerate_combo_option/src/wandb/run-20250326_191748-iv6r6k11/logs/debug-internal.log
+2025-03-26 19:17:48,088 INFO    MainThread:454654 [wandb_init.py:init():560] calling init triggers
+2025-03-26 19:17:48,089 INFO    MainThread:454654 [wandb_init.py:init():567] wandb.init called with sweep_config: {}
+config: {}
+2025-03-26 19:17:48,090 INFO    MainThread:454654 [wandb_init.py:init():605] wandb.init() called when a run is still active
+2025-03-26 19:27:59,285 INFO    MainThread:454654 [wandb_run.py:_finish():2103] finishing run jglppk/expediating_comb_financial_market_matching/7fbosz5h
+2025-03-26 19:27:59,286 INFO    MainThread:454654 [wandb_run.py:_atexit_cleanup():2343] got exitcode: 1
+2025-03-26 19:27:59,287 INFO    MainThread:454654 [wandb_run.py:_restore():2326] restore
+2025-03-26 19:27:59,288 INFO    MainThread:454654 [wandb_run.py:_restore():2332] restore done
+2025-03-26 19:28:03,046 INFO    MainThread:454654 [wandb_run.py:_footer_history_summary_info():3994] rendering history
+2025-03-26 19:28:03,047 INFO    MainThread:454654 [wandb_run.py:_footer_history_summary_info():4026] rendering summary
+2025-03-26 19:28:03,059 INFO    MainThread:454654 [wandb_run.py:_footer_sync_info():3953] logging synced files

@@ -1,0 +1,39 @@
+
+Generating frontier for markets:   0%|                                                          | 0/20 [00:00<?, ?it/s]
+There are 25 buy orders and 25 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_2_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 0
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py(158)<module>()
+-> market = Market(pd.concat([opt_buy_book_df, opt_sell_book_df], ignore_index=False),mechanism_solver=mechanism_solver_combo)
+153  	                        filename = f'corrected_testing_combo_frontier_market_index_{market_index}_book_size_{BOOK_SIZE}_{stock_name}_NOISE_{NOISE}'
+154  	                        column_names = ['option1', 'option2', 'C=Call, P=Put','Strike Price of the Option Times 1000', 'transaction_type','B/A_price']
+155  	                        opt_buy_book_df = pd.DataFrame(opt_buy_book, columns = column_names)
+156  	                        opt_sell_book_df = pd.DataFrame(opt_sell_book, columns = column_names)
+157  	                        breakpoint()
+158  ->	                        market = Market(pd.concat([opt_buy_book_df, opt_sell_book_df], ignore_index=False),mechanism_solver=mechanism_solver_combo)
+159  	                        is_match, profit = market.check_match(opt_buy_book_df)
+160  	                        if is_match:
+161  	                            market.remove_matched_orders()
+162  	                        #handle multi-threading
+Generating frontier for markets:   0%|                                                          | 0/20 [00:08<?, ?it/s]
+Traceback (most recent call last):
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/pandas/core/indexes/base.py", line 3802, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas/_libs/index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 165, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 5745, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 5753, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'liquidity'
+The above exception was the direct cause of the following exception:
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 158, in <module>
+    market = Market(pd.concat([opt_buy_book_df, opt_sell_book_df], ignore_index=False),mechanism_solver=mechanism_solver_combo)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 72, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 81, in apply_mechanism
+    assert not orders['liquidity'].isna().any(), "liquidity should not be nan"
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/pandas/core/frame.py", line 3807, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/pandas/core/indexes/base.py", line 3804, in get_loc
+    raise KeyError(key) from err
+KeyError: 'liquidity'

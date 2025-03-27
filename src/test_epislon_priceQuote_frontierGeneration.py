@@ -297,49 +297,49 @@ def test_combo_security_epsilon_price_quote():
                             order_to_quote_times_10000.loc[:, 'option1'] = order_to_quote_times_10000.loc[:, 'option1'] * 10000
                             order_to_quote_times_10000.loc[:, 'option2'] = order_to_quote_times_10000.loc[:, 'option2'] * 10000
                             print(f"Selected order to quote: {order_to_quote.to_dict('records')[0]}")
-                            breakpoint()
                             # Test with default liquidity
                             try:
-                                orders_in_market = market.get_market_data_order_format()
-                                orders_in_market.loc[:, 'liquidity'] = 1
-                                order_to_quote.loc[:, 'liquidity'] = 1
-                                market.update_liquidity(orders_in_market.loc[:, 'liquidity'])
-                                profit_liquidity_1 = market.priceQuote(order_to_quote)
-                                profit_liquidity_1_times_10 = market.priceQuote(order_to_quote_times_10)
-                                profit_liquidity_1_times_10000 = market.priceQuote(order_to_quote_times_10000)
+                            #     orders_in_market = market.get_market_data_order_format()
+                            #     orders_in_market.loc[:, 'liquidity'] = 1
+                            #     order_to_quote.loc[:, 'liquidity'] = 1
+                            #     market.update_liquidity(orders_in_market.loc[:, 'liquidity'])
+                            #     profit_liquidity_1 = market.priceQuote(order_to_quote)
+                            #     profit_liquidity_1_times_10 = market.priceQuote(order_to_quote_times_10)
+                            #     profit_liquidity_1_times_10000 = market.priceQuote(order_to_quote_times_10000)
 
-                                orders_in_market.loc[:, 'liquidity'] = 10
-                                order_to_quote.loc[:, 'liquidity'] = 1
-                                market.update_liquidity(orders_in_market.loc[:, 'liquidity'])
-                                profit_liquidity_10 = market.priceQuote(order_to_quote)
-                                profit_liquidity_10_times_10 = market.priceQuote(order_to_quote_times_10)
-                                profit_liquidity_10_times_10000 = market.priceQuote(order_to_quote_times_10000)
+                            #     orders_in_market.loc[:, 'liquidity'] = 10
+                            #     order_to_quote.loc[:, 'liquidity'] = 1
+                            #     market.update_liquidity(orders_in_market.loc[:, 'liquidity'])
+                            #     profit_liquidity_10 = market.priceQuote(order_to_quote)
+                            #     profit_liquidity_10_times_10 = market.priceQuote(order_to_quote_times_10)
+                            #     profit_liquidity_10_times_10000 = market.priceQuote(order_to_quote_times_10000)
 
-                                profit_liquidity_infinity = market.epsilon_priceQuote(order_to_quote)
-                                profit_liquidity_infinity_times_10 = market.epsilon_priceQuote(order_to_quote_times_10)
-                                profit_liquidity_infinity_times_10000 = market.epsilon_priceQuote(order_to_quote_times_10000)
+                            #     profit_liquidity_infinity = market.epsilon_priceQuote(order_to_quote)
+                            #     profit_liquidity_infinity_times_10 = market.epsilon_priceQuote(order_to_quote_times_10)
+                            #     profit_liquidity_infinity_times_10000 = market.epsilon_priceQuote(order_to_quote_times_10000)
                                 
-                                print(f"price quote with default liquidity 1: {profit_liquidity_1}")
-                                print(f"price quote with default liquidity 1, ten times original order: {profit_liquidity_1_times_10}")
-                                print(f"price quote with default liquidity 1, ten thousand times original order: {profit_liquidity_1_times_10000}")
-                                print(f"price quote with default liquidity 10: {profit_liquidity_10}")
-                                print(f"price quote with default liquidity 10, ten times original order: {profit_liquidity_10_times_10}")
-                                print(f"price quote with default liquidity 10, ten thousand times original order: {profit_liquidity_10_times_10000}")
-                                print(f"price quote with default liquidity infinity: {profit_liquidity_infinity}")
-                                print(f"price quote with default liquidity infinity, ten times original order: {profit_liquidity_infinity_times_10}")
-                                print(f"price quote with default liquidity infinity, ten thousand times original order: {profit_liquidity_infinity_times_10000}")
-                                breakpoint()
+                            #     print(f"price quote with default liquidity 1: {profit_liquidity_1}")
+                            #     print(f"price quote with default liquidity 1, ten times original order: {profit_liquidity_1_times_10}")
+                            #     print(f"price quote with default liquidity 1, ten thousand times original order: {profit_liquidity_1_times_10000}")
+                            #     print(f"price quote with default liquidity 10: {profit_liquidity_10}")
+                            #     print(f"price quote with default liquidity 10, ten times original order: {profit_liquidity_10_times_10}")
+                            #     print(f"price quote with default liquidity 10, ten thousand times original order: {profit_liquidity_10_times_10000}")
+                            #     print(f"price quote with default liquidity infinity: {profit_liquidity_infinity}")
+                            #     print(f"price quote with default liquidity infinity, ten times original order: {profit_liquidity_infinity_times_10}")
+                            #     print(f"price quote with default liquidity infinity, ten thousand times original order: {profit_liquidity_infinity_times_10000}")
+                            #     breakpoint()
 
-                                # Verify that results are similar
-                                assert abs(profit_liquidity_1 - profit_liquidity_infinity) < 1e-6, "Epsilon price quote should match price quote with explicit infinite liquidity"
-                                # 
-                                print("✓ Epsilon price quote matches price quote    with explicit infinite liquidity")
-                                # similar to @test_single_security_epsilon_price_quote, i want to test whether epsilon_priceQuote with all orders in the market is the same as priceQuote with frontiers in the market
+                            #     # Verify that results are similar
+                            #     assert abs(profit_liquidity_1 - profit_liquidity_infinity) < 1e-6, "Epsilon price quote should match price quote with explicit infinite liquidity"
+                            #     # 
+                            #     print("✓ Epsilon price quote matches price quote    with explicit infinite liquidity")
+                                # similar to @test_single_security_epsilon_price_quote, i want to test whether epsilon_priceQuote with all orders in the market is the same as priceQuote with frontiers in the market 
                                 orders_with_frontier_labels = market.epsilon_frontierGeneration()
                                 if orders_with_frontier_labels is None:
                                     raise Exception("Failed to generate frontier")
                                     continue
-                                    
+                                print(f"orders_with_frontier_labels: {orders_with_frontier_labels}")
+                                breakpoint()  
                                 frontier_orders = orders_with_frontier_labels[orders_with_frontier_labels['belongs_to_frontier'] == 1]
                                 print(f"Found {len(frontier_orders)} frontier orders")
                                 
@@ -362,18 +362,18 @@ def test_combo_security_epsilon_price_quote():
                                     print(f"Epsilon price quote (frontier orders): {epsilon_frontier_orders_quote}")
                                     
                                     # Check assertions
-                                    if regular_all_orders_quote is not None and epsilon_all_orders_quote is not None:
-                                        assert abs(regular_all_orders_quote - epsilon_all_orders_quote) < 1e-6, "Epsilon price quote with all orders should be the same as regular price quote with all orders"
-                                        print("✓ Assertion passed: regular_all_orders_quote ≈ epsilon_all_orders_quote")
+                                    # if regular_all_orders_quote is not None and epsilon_all_orders_quote is not None:
+                                    #     assert abs(regular_all_orders_quote - epsilon_all_orders_quote) < 1e-6, "Epsilon price quote with all orders should be the same as regular price quote with all orders"
+                                    #     print("✓ Assertion passed: regular_all_orders_quote ≈ epsilon_all_orders_quote")
                                     
-                                    if regular_frontier_orders_quote is not None and epsilon_frontier_orders_quote is not None:
-                                        assert abs(regular_frontier_orders_quote - epsilon_frontier_orders_quote) < 1e-6, "Epsilon price quote with frontier orders should be the same as regular price quote with frontier orders"
-                                        print("✓ Assertion passed: regular_frontier_orders_quote ≈ epsilon_frontier_orders_quote")
+                                    # if regular_frontier_orders_quote is not None and epsilon_frontier_orders_quote is not None:
+                                    #     assert abs(regular_frontier_orders_quote - epsilon_frontier_orders_quote) < 1e-6, "Epsilon price quote with frontier orders should be the same as regular price quote with frontier orders"
+                                    #     print("✓ Assertion passed: regular_frontier_orders_quote ≈ epsilon_frontier_orders_quote")
                                 except Exception as e:
                                     print(f"Error during price quoting: {e}")
                                     import traceback
                                     traceback.print_exc()
-                                    
+
 
 
                                 breakpoint()

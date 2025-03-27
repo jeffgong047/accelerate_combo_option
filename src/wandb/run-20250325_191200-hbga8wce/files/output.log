@@ -1,0 +1,63 @@
+
+Generating frontier for markets:   0%|                                                                                  | 0/19 [00:00<?, ?it/s]
+There are 27 buy orders and 23 sell orders
+#####Generating market 1 with size 50 and noise 0.015625#####
+Starting computation for iteration 1
+Generating frontier for markets:   0%|                                                                                  | 0/19 [00:00<?, ?it/s]/common/home/hg343/Research/accelerate_combo_option/src/market.py:274: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+  frontier_labels = pd.Series(None, index=orders.index)
+/common/home/hg343/Research/accelerate_combo_option/src/market.py:275: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+  quote_prices = pd.Series(None, index=orders.index)  # Create a Series to store quote prices
+Processing order 1 (1/37)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      5.0      2.0           -1.0                                  890.0               1.0       0.53          1
+quote price: 0.53
+quote_price: 0.53, original_price: 0.53
+Processing order 2 (2/37)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      2.0     -1.0            1.0                                  243.0               1.0       0.03          1
+quote price: 0.03
+quote_price: 0.03, original_price: 0.03
+Processing order 3 (3/37)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      1.0      3.0            1.0                                  428.5               1.0      45.18          1
+quote price: 45.17999999999601
+quote_price: 45.17999999999601, original_price: 45.18
+investigate
+> /common/home/hg343/Research/accelerate_combo_option/src/market.py(324)frontierGeneration()
+-> if row_series['transaction_type'] == 1:  # Buy order
+3.993250174971763e-12
+Ctrl+C received. Terminating processes...
+Generating frontier for markets:   0%|                                                                                  | 0/19 [09:17<?, ?it/s]
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 163, in <module>
+    frontier_option_regular, quote_price_regular = market.frontierGeneration(offset=args.offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 324, in frontierGeneration
+    if row_series['transaction_type'] == 1:  # Buy order
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 324, in frontierGeneration
+    if row_series['transaction_type'] == 1:  # Buy order
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 88, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 112, in dispatch_line
+    self.user_line(frame)
+  File "/common/home/hg343/anaconda3/lib/python3.9/pdb.py", line 262, in user_line
+    self.interaction(frame, None)
+  File "/common/home/hg343/anaconda3/lib/python3.9/pdb.py", line 357, in interaction
+    self._cmdloop()
+  File "/common/home/hg343/anaconda3/lib/python3.9/pdb.py", line 322, in _cmdloop
+    self.cmdloop()
+  File "/common/home/hg343/anaconda3/lib/python3.9/cmd.py", line 138, in cmdloop
+    stop = self.onecmd(line)
+  File "/common/home/hg343/anaconda3/lib/python3.9/pdb.py", line 422, in onecmd
+    return cmd.Cmd.onecmd(self, line)
+  File "/common/home/hg343/anaconda3/lib/python3.9/cmd.py", line 217, in onecmd
+    return func(arg)
+  File "/common/home/hg343/anaconda3/lib/python3.9/pdb.py", line 876, in do_clear
+    reply = input('Clear all breaks? ')
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 60, in signal_handler
+    sys.exit(1)
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/wandb/sdk/lib/exit_hooks.py", line 36, in exit
+    self._orig_exit(orig_code)  # type: ignore
+SystemExit: 1

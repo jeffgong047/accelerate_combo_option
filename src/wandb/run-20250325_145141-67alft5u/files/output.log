@@ -1,0 +1,472 @@
+
+Generating frontier for markets:   0%|                                                            | 0/19 [00:00<?, ?it/s]
+There are 27 buy orders and 23 sell orders
+#####Generating market 1 with size 50 and noise 0.015625#####
+Starting computation for iteration 1
+checking match True 3.682967171065343
+matched_order_index: {'buy_book_index': [0, 11, 12], 'sell_book_index': [27, 30, 32, 34, 36, 38, 40, 41, 45, 46]}
+> /common/home/hg343/Research/accelerate_combo_option/src/market.py(69)remove_matched_orders()
+-> buy_book_index = matched_order_index['buy_book_index']
+> /common/home/hg343/Research/accelerate_combo_option/src/market.py(70)remove_matched_orders()
+-> sell_book_index = matched_order_index['sell_book_index']
+> /common/home/hg343/Research/accelerate_combo_option/src/market.py(72)remove_matched_orders()
+-> shared_index = set(buy_book_index) & set(sell_book_index)
+> /common/home/hg343/Research/accelerate_combo_option/src/market.py(73)remove_matched_orders()
+-> assert len(shared_index) == 0, "buy and sell book index should not have any shared index"
+ 68  	        breakpoint()
+ 69  	        buy_book_index = matched_order_index['buy_book_index']
+ 70  	        sell_book_index = matched_order_index['sell_book_index']
+ 71  	        #sanity check: ensure buy and sell book index are not the same.
+ 72  	        shared_index = set(buy_book_index) & set(sell_book_index)
+ 73  ->	        assert len(shared_index) == 0, "buy and sell book index should not have any shared index"
+ 74  	        orders.drop(buy_book_index, inplace=True)
+ 75  	        orders.drop(sell_book_index, inplace=True)
+ 76  	        return orders
+ 77  	
+ 78  	    def check_match(self, orders: pd.DataFrame=None, offset : bool = True):
+> /common/home/hg343/Research/accelerate_combo_option/src/market.py(74)remove_matched_orders()
+-> orders.drop(buy_book_index, inplace=True)
+> /common/home/hg343/Research/accelerate_combo_option/src/market.py(75)remove_matched_orders()
+-> orders.drop(sell_book_index, inplace=True)
+> /common/home/hg343/Research/accelerate_combo_option/src/market.py(76)remove_matched_orders()
+-> return orders
+(37, 7)
+Processing order 1 (1/37)
+Generating frontier for markets:   0%|                                                            | 0/19 [00:00<?, ?it/s]/common/home/hg343/Research/accelerate_combo_option/src/market.py:271: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+  frontier_labels = pd.Series(None, index=orders.index)
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      5.0      2.0           -1.0                                  890.0               1.0       0.53          1
+quote price: -0.0
+> /common/home/hg343/Research/accelerate_combo_option/src/market.py(215)priceQuote()
+-> return objVal
+> /common/home/hg343/Research/accelerate_combo_option/src/market.py(296)frontierGeneration()
+-> quote_price = self.priceQuote(order, temp_orders, offset=offset)
+       option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      5.0      2.0           -1.0                                  890.0               1.0       0.53          1
+    option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+2       2.0     -1.0            1.0                                  243.0               1.0       0.03          1
+3       1.0      3.0            1.0                                  428.5               1.0      45.18          1
+4       1.0      1.0           -1.0                                  283.0               1.0      20.76          1
+5       8.0     -7.0            1.0                                  610.0               1.0       0.09          1
+6      -1.0      2.0           -1.0                                   77.0               1.0      13.61          1
+7       2.0     -1.0            1.0                                  242.0               1.0       0.03          1
+8       3.0      7.0            1.0                                 1166.5               1.0      41.36          1
+9       4.0      1.0            1.0                                  665.0               1.0      58.19          1
+10      7.0      2.0            1.0                                 1145.0               1.0     147.13          1
+13      3.0     -1.0           -1.0                                  265.0               1.0       0.02          1
+14     -1.0      9.0           -1.0                                  620.0               1.0       0.06          1
+15      3.0      1.0           -1.0                                  472.5               1.0       0.04          1
+16      4.0     -5.0            1.0                                    8.0               1.0      63.68          1
+17      9.0     -2.0           -1.0                                 1312.5               1.0     141.41          1
+18      3.0      1.0            1.0                                  481.5               1.0      87.64          1
+19      5.0      4.0           -1.0                                 1085.5               1.0       0.08          1
+20      5.0      1.0            1.0                                  923.0               1.0       3.11          1
+21      5.0     -3.0           -1.0                                  668.5               1.0     218.33          1
+22      3.0     -4.0           -1.0                                   42.0               1.0       7.03          1
+23      4.0     -3.0           -1.0                                  279.5               1.0       3.78          1
+24      4.0      5.0            1.0                                  993.5               1.0     154.96          1
+25      1.0     -1.0           -1.0                                   70.0               1.0      22.04          1
+26      9.0     -2.0            1.0                                  976.0               1.0     191.55          1
+28      8.0     -3.0           -1.0                                  742.5               0.0       5.00          1
+29      9.0      2.0           -1.0                                 2030.5               0.0     433.82          1
+31      2.0      3.0            1.0                                  631.0               0.0      14.93          1
+33      2.0     -1.0            1.0                                  185.5               0.0      21.06          1
+35      3.0     -1.0           -1.0                                  297.0               0.0       2.19          1
+37      8.0      9.0           -1.0                                 1862.5               0.0       2.33          1
+39     -1.0      3.0           -1.0                                   41.5               0.0       0.15          1
+42      9.0      8.0            1.0                                 2188.0               0.0      90.03          1
+43      7.0      2.0           -1.0                                 1129.0               0.0       2.41          1
+44      9.0      7.0           -1.0                                 2140.5               0.0      62.63          1
+47      1.0      4.0            1.0                                  544.0               0.0      40.26          1
+48      5.0      8.0           -1.0                                 1477.0               0.0       6.37          1
+49      7.0     -4.0            1.0                                 1100.5               0.0       0.11          1
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py(162)<module>()
+-> market.remove_matched_orders()
+> /common/home/hg343/Research/accelerate_combo_option/src/market.py(296)frontierGeneration()
+-> quote_price = self.priceQuote(order, temp_orders, offset=offset)
+> /common/home/hg343/Research/accelerate_combo_option/src/market.py(215)priceQuote()
+-> return objVal
+210  	                try:
+211  	                    is_match, objVal = self.apply_mechanism(market_orders, offset)
+212  	                    print(f'option_to_quote: {option_to_quote}')
+213  	                    print(f'quote price: {objVal}')
+214  	                    breakpoint()
+215  ->	                    return objVal
+216  	                except TimeoutError:
+217  	                    print("Timeout in mechanism solver for buy order quote")
+218  	                    raise
+219  	                except Exception as e:
+220  	                    print(f"Error in mechanism solver for buy order quote: {e}")
+       option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      5.0      2.0           -1.0                                  890.0               1.0       0.53          1
+170  	    def priceQuote(self, option_to_quote : pd.DataFrame, orders_in_market : pd.DataFrame = None, liquidity: pd.Series = None, offset: bool = True):
+171  	        '''
+172  	        Generate the price of of given input order w.r.t orders in the market
+173  	        '''
+174  	        assert len(option_to_quote.index) == 1, "option_to_quote should have only one row"
+175  	        if orders_in_market is None:
+176  	            market_orders = self.get_market_data_order_format()
+177  	        else:
+178  	            market_orders = orders_in_market.copy()
+179  	
+180  	        try:
+181  	            # Check for infinite liquidity properly
+182  	            is_match, profit = self.check_match(market_orders, offset=offset)
+183  	            if is_match and (market_orders['liquidity'] == np.inf).any():
+184  	                print(f"The market is matched, but contains infinite liquidity, cant get price quote")
+185  	                return None
+186  	
+187  	            if option_to_quote.index[0] != 'quote':
+188  	                option_to_quote.index = ['quote']
+189  	
+190  	            # Check if the specific index value is in market_orders.index
+191  	            assert option_to_quote.index[0] not in market_orders.index, "option_to_quote is already in the market"
+192  	
+193  	            # Use iloc to access the first row regardless of index
+194  	            if option_to_quote.iloc[0]['transaction_type'] == 1:
+195  	                # quoting price for buy order, we want to quote price by adding a sell order with premium = 0 to the sell side of the market
+196  	                new_sell_order = option_to_quote.copy()
+197  	                new_sell_order.iloc[0, new_sell_order.columns.get_loc('transaction_type')] = 0
+198  	                new_sell_order.iloc[0, new_sell_order.columns.get_loc('B/A_price')] = 0
+199  	
+200  	                # Handle liquidity column
+201  	                if 'liquidity' in new_sell_order.columns:
+202  	                    if 'liquidity' in option_to_quote.columns:
+203  	                        new_sell_order.iloc[0, new_sell_order.columns.get_loc('liquidity')] = option_to_quote.iloc[0]['liquidity']
+204  	                    else:
+205  	                        new_sell_order.iloc[0, new_sell_order.columns.get_loc('liquidity')] = 1
+206  	                else:
+207  	                    new_sell_order['liquidity'] = 1
+208  	
+209  	                market_orders = pd.concat([market_orders, new_sell_order], ignore_index=False)
+210  	                try:
+211  	                    is_match, objVal = self.apply_mechanism(market_orders, offset)
+212  	                    print(f'option_to_quote: {option_to_quote}')
+213  	                    print(f'quote price: {objVal}')
+214  	                    breakpoint()
+215  ->	                    return objVal
+216  	                except TimeoutError:
+217  	                    print("Timeout in mechanism solver for buy order quote")
+218  	                    raise
+219  	                except Exception as e:
+220  	                    print(f"Error in mechanism solver for buy order quote: {e}")
+221  	                    return None
+222  	            elif option_to_quote.iloc[0]['transaction_type'] == 0:
+223  	                # quoting price for sell order, we want to quote price by adding a buy order with premium = max price to the buy side of the market
+224  	                new_buy_order = option_to_quote.copy()
+225  	                new_buy_order.iloc[0, new_buy_order.columns.get_loc('transaction_type')] = 1
+226  	                new_buy_order.iloc[0, new_buy_order.columns.get_loc('B/A_price')] = sys.maxsize
+227  	
+228  	                # Handle liquidity column
+229  	                if 'liquidity' in new_buy_order.columns:
+230  	                    if 'liquidity' in option_to_quote.columns:
+231  	                        new_buy_order.iloc[0, new_buy_order.columns.get_loc('liquidity')] = option_to_quote.iloc[0]['liquidity']
+232  	                    else:
+233  	                        new_buy_order.iloc[0, new_buy_order.columns.get_loc('liquidity')] = 1
+234  	                else:
+235  	                    new_buy_order['liquidity'] = 1
+236  	
+237  	                market_orders = pd.concat([market_orders, new_buy_order], ignore_index=False)
+238  	                try:
+239  	                    is_match, objVal = self.apply_mechanism(market_orders, offset)
+240  	                    if is_match:
+241  	                        print(f'option_to_quote: {option_to_quote}')
+242  	                        print(f'quote price: {sys.maxsize - objVal}')
+243  	                        breakpoint()
+244  	                        return sys.maxsize - objVal
+245  	                    else:
+246  	                        return None
+247  	                except TimeoutError:
+248  	                    print("Timeout in mechanism solver for sell order quote")
+249  	                    raise
+250  	                except Exception as e:
+251  	                    print(f"Error in mechanism solver for sell order quote: {e}")
+252  	                    return None
+253  	            else:
+254  	                raise ValueError("Invalid transaction type")
+255  	
+256  	        except TimeoutError:
+257  	            raise  # Re-raise timeout to be handled by caller
+258  	        except Exception as e:
+259  	            print(f"Error in price quote: {e}")
+260  	            return None
+> /common/home/hg343/Research/accelerate_combo_option/src/market.py(296)frontierGeneration()
+-> quote_price = self.priceQuote(order, temp_orders, offset=offset)
+       option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      5.0      2.0           -1.0                                  890.0               1.0       0.53          1
+> /common/home/hg343/Research/accelerate_combo_option/src/market.py(215)priceQuote()
+-> return objVal
+210  	                try:
+211  	                    is_match, objVal = self.apply_mechanism(market_orders, offset)
+212  	                    print(f'option_to_quote: {option_to_quote}')
+213  	                    print(f'quote price: {objVal}')
+214  	                    breakpoint()
+215  ->	                    return objVal
+216  	                except TimeoutError:
+217  	                    print("Timeout in mechanism solver for buy order quote")
+218  	                    raise
+219  	                except Exception as e:
+220  	                    print(f"Error in mechanism solver for buy order quote: {e}")
+170  	    def priceQuote(self, option_to_quote : pd.DataFrame, orders_in_market : pd.DataFrame = None, liquidity: pd.Series = None, offset: bool = True):
+171  	        '''
+172  	        Generate the price of of given input order w.r.t orders in the market
+173  	        '''
+174  	        assert len(option_to_quote.index) == 1, "option_to_quote should have only one row"
+175  	        if orders_in_market is None:
+176  	            market_orders = self.get_market_data_order_format()
+177  	        else:
+178  	            market_orders = orders_in_market.copy()
+179  	
+180  	        try:
+181  	            # Check for infinite liquidity properly
+182  	            is_match, profit = self.check_match(market_orders, offset=offset)
+183  	            if is_match and (market_orders['liquidity'] == np.inf).any():
+184  	                print(f"The market is matched, but contains infinite liquidity, cant get price quote")
+185  	                return None
+186  	
+187  	            if option_to_quote.index[0] != 'quote':
+188  	                option_to_quote.index = ['quote']
+189  	
+190  	            # Check if the specific index value is in market_orders.index
+191  	            assert option_to_quote.index[0] not in market_orders.index, "option_to_quote is already in the market"
+192  	
+193  	            # Use iloc to access the first row regardless of index
+194  	            if option_to_quote.iloc[0]['transaction_type'] == 1:
+195  	                # quoting price for buy order, we want to quote price by adding a sell order with premium = 0 to the sell side of the market
+196  	                new_sell_order = option_to_quote.copy()
+197  	                new_sell_order.iloc[0, new_sell_order.columns.get_loc('transaction_type')] = 0
+198  	                new_sell_order.iloc[0, new_sell_order.columns.get_loc('B/A_price')] = 0
+199  	
+200  	                # Handle liquidity column
+201  	                if 'liquidity' in new_sell_order.columns:
+202  	                    if 'liquidity' in option_to_quote.columns:
+203  	                        new_sell_order.iloc[0, new_sell_order.columns.get_loc('liquidity')] = option_to_quote.iloc[0]['liquidity']
+204  	                    else:
+205  	                        new_sell_order.iloc[0, new_sell_order.columns.get_loc('liquidity')] = 1
+206  	                else:
+207  	                    new_sell_order['liquidity'] = 1
+208  	
+209  	                market_orders = pd.concat([market_orders, new_sell_order], ignore_index=False)
+210  	                try:
+211  	                    is_match, objVal = self.apply_mechanism(market_orders, offset)
+212  	                    print(f'option_to_quote: {option_to_quote}')
+213  	                    print(f'quote price: {objVal}')
+214  	                    breakpoint()
+215  ->	                    return objVal
+216  	                except TimeoutError:
+217  	                    print("Timeout in mechanism solver for buy order quote")
+218  	                    raise
+219  	                except Exception as e:
+220  	                    print(f"Error in mechanism solver for buy order quote: {e}")
+221  	                    return None
+222  	            elif option_to_quote.iloc[0]['transaction_type'] == 0:
+223  	                # quoting price for sell order, we want to quote price by adding a buy order with premium = max price to the buy side of the market
+224  	                new_buy_order = option_to_quote.copy()
+225  	                new_buy_order.iloc[0, new_buy_order.columns.get_loc('transaction_type')] = 1
+226  	                new_buy_order.iloc[0, new_buy_order.columns.get_loc('B/A_price')] = sys.maxsize
+227  	
+228  	                # Handle liquidity column
+229  	                if 'liquidity' in new_buy_order.columns:
+230  	                    if 'liquidity' in option_to_quote.columns:
+231  	                        new_buy_order.iloc[0, new_buy_order.columns.get_loc('liquidity')] = option_to_quote.iloc[0]['liquidity']
+232  	                    else:
+233  	                        new_buy_order.iloc[0, new_buy_order.columns.get_loc('liquidity')] = 1
+234  	                else:
+235  	                    new_buy_order['liquidity'] = 1
+236  	
+237  	                market_orders = pd.concat([market_orders, new_buy_order], ignore_index=False)
+238  	                try:
+239  	                    is_match, objVal = self.apply_mechanism(market_orders, offset)
+240  	                    if is_match:
+241  	                        print(f'option_to_quote: {option_to_quote}')
+242  	                        print(f'quote price: {sys.maxsize - objVal}')
+243  	                        breakpoint()
+244  	                        return sys.maxsize - objVal
+245  	                    else:
+246  	                        return None
+247  	                except TimeoutError:
+248  	                    print("Timeout in mechanism solver for sell order quote")
+249  	                    raise
+250  	                except Exception as e:
+251  	                    print(f"Error in mechanism solver for sell order quote: {e}")
+252  	                    return None
+253  	            else:
+254  	                raise ValueError("Invalid transaction type")
+255  	
+256  	        except TimeoutError:
+257  	            raise  # Re-raise timeout to be handled by caller
+258  	        except Exception as e:
+259  	            print(f"Error in price quote: {e}")
+260  	            return None
+       option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      5.0      2.0           -1.0                                  890.0               1.0       0.53          1
+*** Newest frame
+221  	                    return None
+222  	            elif option_to_quote.iloc[0]['transaction_type'] == 0:
+223  	                # quoting price for sell order, we want to quote price by adding a buy order with premium = max price to the buy side of the market
+224  	                new_buy_order = option_to_quote.copy()
+225  	                new_buy_order.iloc[0, new_buy_order.columns.get_loc('transaction_type')] = 1
+226  	                new_buy_order.iloc[0, new_buy_order.columns.get_loc('B/A_price')] = sys.maxsize
+227  	
+228  	                # Handle liquidity column
+229  	                if 'liquidity' in new_buy_order.columns:
+230  	                    if 'liquidity' in option_to_quote.columns:
+231  	                        new_buy_order.iloc[0, new_buy_order.columns.get_loc('liquidity')] = option_to_quote.iloc[0]['liquidity']
+*** Newest frame
+170  	    def priceQuote(self, option_to_quote : pd.DataFrame, orders_in_market : pd.DataFrame = None, liquidity: pd.Series = None, offset: bool = True):
+171  	        '''
+172  	        Generate the price of of given input order w.r.t orders in the market
+173  	        '''
+174  	        assert len(option_to_quote.index) == 1, "option_to_quote should have only one row"
+175  	        if orders_in_market is None:
+176  	            market_orders = self.get_market_data_order_format()
+177  	        else:
+178  	            market_orders = orders_in_market.copy()
+179  	
+180  	        try:
+181  	            # Check for infinite liquidity properly
+182  	            is_match, profit = self.check_match(market_orders, offset=offset)
+183  	            if is_match and (market_orders['liquidity'] == np.inf).any():
+184  	                print(f"The market is matched, but contains infinite liquidity, cant get price quote")
+185  	                return None
+186  	
+187  	            if option_to_quote.index[0] != 'quote':
+188  	                option_to_quote.index = ['quote']
+189  	
+190  	            # Check if the specific index value is in market_orders.index
+191  	            assert option_to_quote.index[0] not in market_orders.index, "option_to_quote is already in the market"
+192  	
+193  	            # Use iloc to access the first row regardless of index
+194  	            if option_to_quote.iloc[0]['transaction_type'] == 1:
+195  	                # quoting price for buy order, we want to quote price by adding a sell order with premium = 0 to the sell side of the market
+196  	                new_sell_order = option_to_quote.copy()
+197  	                new_sell_order.iloc[0, new_sell_order.columns.get_loc('transaction_type')] = 0
+198  	                new_sell_order.iloc[0, new_sell_order.columns.get_loc('B/A_price')] = 0
+199  	
+200  	                # Handle liquidity column
+201  	                if 'liquidity' in new_sell_order.columns:
+202  	                    if 'liquidity' in option_to_quote.columns:
+203  	                        new_sell_order.iloc[0, new_sell_order.columns.get_loc('liquidity')] = option_to_quote.iloc[0]['liquidity']
+204  	                    else:
+205  	                        new_sell_order.iloc[0, new_sell_order.columns.get_loc('liquidity')] = 1
+206  	                else:
+207  	                    new_sell_order['liquidity'] = 1
+208  	
+209  	                market_orders = pd.concat([market_orders, new_sell_order], ignore_index=False)
+210  	                try:
+211  	                    is_match, objVal = self.apply_mechanism(market_orders, offset)
+212  	                    print(f'option_to_quote: {option_to_quote}')
+213  	                    print(f'quote price: {objVal}')
+214  	                    breakpoint()
+215  ->	                    return objVal
+216  	                except TimeoutError:
+217  	                    print("Timeout in mechanism solver for buy order quote")
+218  	                    raise
+219  	                except Exception as e:
+220  	                    print(f"Error in mechanism solver for buy order quote: {e}")
+221  	                    return None
+222  	            elif option_to_quote.iloc[0]['transaction_type'] == 0:
+223  	                # quoting price for sell order, we want to quote price by adding a buy order with premium = max price to the buy side of the market
+224  	                new_buy_order = option_to_quote.copy()
+225  	                new_buy_order.iloc[0, new_buy_order.columns.get_loc('transaction_type')] = 1
+226  	                new_buy_order.iloc[0, new_buy_order.columns.get_loc('B/A_price')] = sys.maxsize
+227  	
+228  	                # Handle liquidity column
+229  	                if 'liquidity' in new_buy_order.columns:
+230  	                    if 'liquidity' in option_to_quote.columns:
+231  	                        new_buy_order.iloc[0, new_buy_order.columns.get_loc('liquidity')] = option_to_quote.iloc[0]['liquidity']
+232  	                    else:
+233  	                        new_buy_order.iloc[0, new_buy_order.columns.get_loc('liquidity')] = 1
+234  	                else:
+235  	                    new_buy_order['liquidity'] = 1
+236  	
+237  	                market_orders = pd.concat([market_orders, new_buy_order], ignore_index=False)
+238  	                try:
+239  	                    is_match, objVal = self.apply_mechanism(market_orders, offset)
+240  	                    if is_match:
+241  	                        print(f'option_to_quote: {option_to_quote}')
+242  	                        print(f'quote price: {sys.maxsize - objVal}')
+243  	                        breakpoint()
+244  	                        return sys.maxsize - objVal
+245  	                    else:
+246  	                        return None
+247  	                except TimeoutError:
+248  	                    print("Timeout in mechanism solver for sell order quote")
+249  	                    raise
+250  	                except Exception as e:
+251  	                    print(f"Error in mechanism solver for sell order quote: {e}")
+252  	                    return None
+253  	            else:
+254  	                raise ValueError("Invalid transaction type")
+255  	
+256  	        except TimeoutError:
+257  	            raise  # Re-raise timeout to be handled by caller
+258  	        except Exception as e:
+259  	            print(f"Error in price quote: {e}")
+260  	            return None
+       option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+2          2.0     -1.0            1.0                                  243.0               1.0       0.03          1
+3          1.0      3.0            1.0                                  428.5               1.0      45.18          1
+4          1.0      1.0           -1.0                                  283.0               1.0      20.76          1
+5          8.0     -7.0            1.0                                  610.0               1.0       0.09          1
+6         -1.0      2.0           -1.0                                   77.0               1.0      13.61          1
+7          2.0     -1.0            1.0                                  242.0               1.0       0.03          1
+8          3.0      7.0            1.0                                 1166.5               1.0      41.36          1
+9          4.0      1.0            1.0                                  665.0               1.0      58.19          1
+10         7.0      2.0            1.0                                 1145.0               1.0     147.13          1
+13         3.0     -1.0           -1.0                                  265.0               1.0       0.02          1
+14        -1.0      9.0           -1.0                                  620.0               1.0       0.06          1
+15         3.0      1.0           -1.0                                  472.5               1.0       0.04          1
+16         4.0     -5.0            1.0                                    8.0               1.0      63.68          1
+17         9.0     -2.0           -1.0                                 1312.5               1.0     141.41          1
+18         3.0      1.0            1.0                                  481.5               1.0      87.64          1
+19         5.0      4.0           -1.0                                 1085.5               1.0       0.08          1
+20         5.0      1.0            1.0                                  923.0               1.0       3.11          1
+21         5.0     -3.0           -1.0                                  668.5               1.0     218.33          1
+22         3.0     -4.0           -1.0                                   42.0               1.0       7.03          1
+23         4.0     -3.0           -1.0                                  279.5               1.0       3.78          1
+24         4.0      5.0            1.0                                  993.5               1.0     154.96          1
+25         1.0     -1.0           -1.0                                   70.0               1.0      22.04          1
+26         9.0     -2.0            1.0                                  976.0               1.0     191.55          1
+28         8.0     -3.0           -1.0                                  742.5               0.0       5.00          1
+29         9.0      2.0           -1.0                                 2030.5               0.0     433.82          1
+31         2.0      3.0            1.0                                  631.0               0.0      14.93          1
+33         2.0     -1.0            1.0                                  185.5               0.0      21.06          1
+35         3.0     -1.0           -1.0                                  297.0               0.0       2.19          1
+37         8.0      9.0           -1.0                                 1862.5               0.0       2.33          1
+39        -1.0      3.0           -1.0                                   41.5               0.0       0.15          1
+42         9.0      8.0            1.0                                 2188.0               0.0      90.03          1
+43         7.0      2.0           -1.0                                 1129.0               0.0       2.41          1
+44         9.0      7.0           -1.0                                 2140.5               0.0      62.63          1
+47         1.0      4.0            1.0                                  544.0               0.0      40.26          1
+48         5.0      8.0           -1.0                                 1477.0               0.0       6.37          1
+49         7.0     -4.0            1.0                                 1100.5               0.0       0.11          1
+quote      5.0      2.0           -1.0                                  890.0               0.0       0.00          1
+Error in mechanism solver for buy order quote:
+No valid quote price for order 1
+Processing order 2 (2/37)
+Generating frontier for markets:   0%|                                                            | 0/19 [15:25<?, ?it/s]
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 162, in <module>
+    market.remove_matched_orders()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 296, in frontierGeneration
+    quote_price = self.priceQuote(order, temp_orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 211, in priceQuote
+    is_match, objVal = self.apply_mechanism(market_orders, offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 139, in apply_mechanism
+    result = async_result.get(timeout=timeout)
+  File "/common/home/hg343/anaconda3/lib/python3.9/multiprocessing/pool.py", line 765, in get
+    self.wait(timeout)
+  File "/common/home/hg343/anaconda3/lib/python3.9/multiprocessing/pool.py", line 762, in wait
+    self._event.wait(timeout)
+  File "/common/home/hg343/anaconda3/lib/python3.9/threading.py", line 574, in wait
+    signaled = self._cond.wait(timeout)
+  File "/common/home/hg343/anaconda3/lib/python3.9/threading.py", line 316, in wait
+    gotit = waiter.acquire(True, timeout)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 60, in signal_handler
+    sys.exit(1)
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/wandb/sdk/lib/exit_hooks.py", line 36, in exit
+    self._orig_exit(orig_code)  # type: ignore
+SystemExit: 1
+checking match False -0.0
+Ctrl+C received. Terminating processes...

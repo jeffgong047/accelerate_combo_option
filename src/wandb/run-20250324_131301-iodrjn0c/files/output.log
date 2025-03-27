@@ -1,0 +1,22 @@
+
+Generating frontier for markets:   0%|                                                                      | 0/20 [00:00<?, ?it/s]
+There are 25 buy orders and 25 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_2_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 0
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py(158)<module>()
+-> market = Market(pd.concat([opt_buy_book_df, opt_sell_book_df], ignore_index=False),mechanism_solver=mechanism_solver_combo)
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py(159)<module>()
+-> is_match, profit = market.check_match()
+AssertionError: buy and sell book index should not have any shared index
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py(159)<module>()
+Generating frontier for markets:   0%|                                                                      | 0/20 [01:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 159, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 79, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 93, in apply_mechanism
+    time, num_model_Constraints, profit, isMatch, matched_order_index = self.mechanism_solver(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/mechanism_solver.py", line 185, in mechanism_solver_combo
+    assert len(set(buy_book_index) & set(sell_book_index)) == 0, "buy and sell book index should not have any shared index"
+AssertionError: buy and sell book index should not have any shared index

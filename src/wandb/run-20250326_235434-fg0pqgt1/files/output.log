@@ -1,0 +1,13 @@
+
+Generating frontier for markets:   0%|                                                                                               | 0/98 [00:00<?, ?it/s]
+There are 34 buy orders and 16 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_2_book_GS_MSFT.npy with size 50 and noise 0.25#####
+Starting async computation for iteration 2
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(578)<module>()
+-> result = synthetic_combo_frontier_generation(opt_orders_df, offset = args.offset)
+Set parameter Username
+Academic license - for non-commercial use only - expires 2025-11-08
+Program interrupted. (Use 'cont' to resume).
+> /common/home/hg343/Research/accelerate_combo_option/src/combinatorial/synthetic_combo_mip_match.py(95)synthetic_combo_match_mip()
+-> gamma_val = np.array([max(gamma[0, i].x, 0) for i in range(num_buy)])
+Ctrl+C received. Terminating processes...

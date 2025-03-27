@@ -1,0 +1,153 @@
+
+Generating frontier for markets:   0%|                                                                    | 0/99 [00:00<?, ?it/s]
+There are 27 buy orders and 23 sell orders
+#####Generating market 1 with size 50 and noise 0.015625#####
+Generating frontier for markets:   0%|                                                                    | 0/99 [00:00<?, ?it/s]/common/home/hg343/Research/accelerate_combo_option/src/market.py:274: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+  frontier_labels = pd.Series(None, index=orders.index)
+/common/home/hg343/Research/accelerate_combo_option/src/market.py:275: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+  quote_prices = pd.Series(None, index=orders.index)  # Create a Series to store quote prices
+checking match True 13.2318
+checking match False -0.0
+Processing order 0 (1/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote      4.0     -3.0            1.0                                  319.0               1.0     143.92          1
+quote price: 148.67
+quote_price: 148.67, original_price: 143.92
+Processing order 1 (2/38)
+checking match False -0.0
+option_to_quote:        option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity
+quote     -1.0      2.0            1.0                                   12.0               1.0       4.41          1
+quote price: 3.81
+quote_price: 3.81, original_price: 4.41
+Processing order 2 (3/38)
+checking match False -0.0
+No valid quote price for order 2
+> /common/home/hg343/Research/accelerate_combo_option/src/market.py(315)frontierGeneration()
+-> frontier_labels[original_index] = np.nan
+310  	                        continue
+311  	
+312  	                    if quote_price is None:
+313  	                        print(f"No valid quote price for order {original_index}")
+314  	                        breakpoint()
+315  ->	                        frontier_labels[original_index] = np.nan
+316  	                        continue
+317  	
+318  	                    # Store the quote price for this order
+319  	                    quote_prices[original_index] = quote_price
+320  	
+265  	    def frontierGeneration(self, orders : pd.DataFrame = None, epsilon : bool = False, offset : bool = True):
+266  	        '''
+267  	        Generate the frontier of options with epsilon price quote and constraints
+268  	        '''
+269  	        if orders is None:
+270  	            orders = self.opt_order.copy()
+271  	        else:
+272  	            orders = orders.copy()
+273  	
+274  	        frontier_labels = pd.Series(None, index=orders.index)
+275  	        quote_prices = pd.Series(None, index=orders.index)  # Create a Series to store quote prices
+276  	
+277  	        try:
+278  	            for original_index, row_series in orders.iterrows():
+279  	                try:
+280  	                    print(f"Processing order {original_index} ({orders.index.get_loc(original_index)+1}/{len(orders)})")
+281  	
+282  	                    temp_orders = orders.copy()
+283  	                    order = row_series.to_frame().T
+284  	
+285  	                    original_price = row_series['B/A_price']
+286  	                    if original_price < 0:
+287  	                        print('Invalid original price')
+288  	                        frontier_labels[original_index] = None
+289  	                        continue
+290  	
+291  	                    order.index = ['quote']
+292  	                    order['liquidity'] = 1
+293  	
+294  	                    if epsilon:
+295  	                        temp_orders.loc[:, 'liquidity'] = np.inf
+296  	
+297  	                    temp_orders.drop(original_index, inplace=True)
+298  	
+299  	                    try:
+300  	                        quote_price = self.priceQuote(order, temp_orders, offset=offset)
+301  	                    except TimeoutError:
+302  	                        print(f"Timeout in price quote for order {original_index}")
+303  	                        breakpoint()
+304  	                        frontier_labels[original_index] = np.nan
+305  	                        continue
+306  	                    except Exception as e:
+307  	                        print(f"Error in price quote for order {original_index}: {e}")
+308  	                        breakpoint()
+309  	                        frontier_labels[original_index] = np.nan
+310  	                        continue
+311  	
+312  	                    if quote_price is None:
+313  	                        print(f"No valid quote price for order {original_index}")
+314  	                        breakpoint()
+315  ->	                        frontier_labels[original_index] = np.nan
+316  	                        continue
+317  	
+318  	                    # Store the quote price for this order
+319  	                    quote_prices[original_index] = quote_price
+320  	
+321  	                    print(f'quote_price: {quote_price}, original_price: {original_price}')
+322  	                    if original_price - quote_price < 1e-2 and original_price - quote_price > 0:
+323  	                        print('investigate')
+324  	                        breakpoint()
+325  	                    # Compare with the original price
+326  	                    if row_series['transaction_type'] == 1:  # Buy order
+327  	                        if original_price >= quote_price:
+328  	                            frontier_labels[original_index] = 1
+329  	                        else:
+330  	                            frontier_labels[original_index] = 0
+331  	                    else:  # Sell order
+332  	                        if original_price <= quote_price:
+333  	                            frontier_labels[original_index] = 1
+334  	                        else:
+335  	                            frontier_labels[original_index] = 0
+336  	
+337  	                except TimeoutError:
+338  	                    print(f"Timeout processing order {original_index}")
+339  	                    frontier_labels[original_index] = np.nan
+340  	                    breakpoint()
+341  	                except Exception as e:
+342  	                    print(f"Error processing order {original_index}: {e}")
+343  	                    frontier_labels[original_index] = np.nan
+344  	                    breakpoint()
+345  	
+346  	        except KeyboardInterrupt:
+347  	            print("\nProcess interrupted by user. Returning partial results...")
+348  	
+349  	        orders['belongs_to_frontier'] = frontier_labels
+350  	        print(orders)
+351  	        return orders, quote_prices
+Generating frontier for markets:   0%|                                                                    | 0/99 [04:11<?, ?it/s]
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 166, in <module>
+    frontier_option_label_epsilon, quote_price_epsilon = market.epsilon_frontierGeneration(offset=args.offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 364, in epsilon_frontierGeneration
+    return None
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 315, in frontierGeneration
+    print(f"No valid quote price for order {original_index}")
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 315, in frontierGeneration
+    print(f"No valid quote price for order {original_index}")
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 88, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 112, in dispatch_line
+    self.user_line(frame)
+  File "/common/home/hg343/anaconda3/lib/python3.9/pdb.py", line 262, in user_line
+    self.interaction(frame, None)
+  File "/common/home/hg343/anaconda3/lib/python3.9/pdb.py", line 357, in interaction
+    self._cmdloop()
+  File "/common/home/hg343/anaconda3/lib/python3.9/pdb.py", line 322, in _cmdloop
+    self.cmdloop()
+  File "/common/home/hg343/anaconda3/lib/python3.9/cmd.py", line 126, in cmdloop
+    line = input(self.prompt)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 60, in signal_handler
+    sys.exit(1)
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/wandb/sdk/lib/exit_hooks.py", line 36, in exit
+    self._orig_exit(orig_code)  # type: ignore
+SystemExit: 1
+Ctrl+C received. Terminating processes...

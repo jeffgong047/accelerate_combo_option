@@ -1,0 +1,243 @@
+
+Generating frontier for markets:   0%|                                                                              | 0/20 [00:00<?, ?it/s]
+There are 25 buy orders and 25 sell orders
+#####Generating market 0 with size 50 and noise 0.015625#####
+Starting computation for iteration 0
+Generating frontier for markets:   0%|                                                                              | 0/20 [00:00<?, ?it/s]/common/home/hg343/Research/accelerate_combo_option/src/market.py:264: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+  frontier_labels = pd.Series(None, index=orders.index)
+checking match False -0.0
+Processing order 0 (1/37)
+checking match False -0.0
+quote_price: 69.50942087657864, original_price: 68.04
+Processing order 1 (2/37)
+checking match False -0.0
+quote_price: 62.48707286113185, original_price: 63.33
+Processing order 3 (3/37)
+checking match False -0.0
+quote_price: 34.511693024402106, original_price: 36.19
+Processing order 4 (4/37)
+checking match False -0.0
+quote_price: 154.9203211239339, original_price: 156.18
+Processing order 5 (5/37)
+checking match False -0.0
+quote_price: 182.322830549896, original_price: 186.12
+Processing order 6 (6/37)
+checking match False -0.0
+quote_price: 18.90034230810692, original_price: 19.82
+Processing order 7 (7/37)
+checking match False -0.0
+quote_price: 180.87296302568814, original_price: 182.73
+Processing order 8 (8/37)
+checking match False -0.0
+quote_price: 105.08140564471498, original_price: 107.05
+Processing order 9 (9/37)
+checking match False -0.0
+quote_price: -0.0, original_price: 0.52
+Processing order 10 (10/37)
+checking match False -0.0
+quote_price: 15.201653626839953, original_price: 22.92
+Processing order 11 (11/37)
+checking match False -0.0
+quote_price: 104.6923329186927, original_price: 106.16
+Processing order 12 (12/37)
+checking match False -0.0
+quote_price: 51.57869766513667, original_price: 53.02
+Processing order 13 (13/37)
+checking match False -0.0
+quote_price: -0.0, original_price: 2.35
+Processing order 14 (14/37)
+checking match False -0.0
+Mechanism solver timed out after 30 seconds
+Timeout in mechanism solver for buy order quote
+Timeout in price quote for order 14
+Processing order 16 (15/37)
+checking match False -0.0
+quote_price: -0.0, original_price: 0.02
+Processing order 17 (16/37)
+checking match False -0.0
+quote_price: 222.8740224606763, original_price: 226.09
+Processing order 18 (17/37)
+checking match False -0.0
+quote_price: 55.9843771268775, original_price: 57.9
+Processing order 19 (18/37)
+checking match False -0.0
+quote_price: 169.4620698518357, original_price: 169.38
+Processing order 20 (19/37)
+checking match False -0.0
+quote_price: 32.276528696461384, original_price: 28.41
+Processing order 21 (20/37)
+checking match False -0.0
+quote_price: 77.16105947573753, original_price: 73.64
+Processing order 22 (21/37)
+checking match False -0.0
+quote_price: 155.80588433464325, original_price: 156.52
+Processing order 23 (22/37)
+checking match False -0.0
+quote_price: 89.38759856041953, original_price: 90.72
+Processing order 24 (23/37)
+checking match False -0.0
+quote_price: -0.0, original_price: 0.3
+Processing order 25 (24/37)
+checking match False -0.0
+quote_price: 0.0, original_price: 53.73
+Processing order 26 (25/37)
+checking match False -0.0
+quote_price: 0.0, original_price: 149.36
+Processing order 27 (26/37)
+checking match False -0.0
+quote_price: 0.0, original_price: 11.82
+Processing order 28 (27/37)
+checking match False -0.0
+quote_price: 0.0, original_price: 1.03
+Processing order 31 (28/37)
+checking match False -0.0
+quote_price: 0.0, original_price: 174.67
+Processing order 32 (29/37)
+checking match False -0.0
+quote_price: 0.0, original_price: 176.88
+Processing order 36 (30/37)
+checking match False -0.0
+quote_price: 0.0, original_price: 30.24
+Processing order 38 (31/37)
+checking match False -0.0
+quote_price: 0.0, original_price: 10.59
+Processing order 39 (32/37)
+checking match False -0.0
+Mechanism solver timed out after 30 seconds
+Timeout in mechanism solver for sell order quote
+Timeout in price quote for order 39
+Processing order 41 (33/37)
+checking match False -0.0
+quote_price: 0.0, original_price: 1.24
+Processing order 42 (34/37)
+checking match False -0.0
+quote_price: 0.0, original_price: 13.98
+Processing order 43 (35/37)
+checking match False -0.0
+quote_price: 0.0, original_price: 26.91
+Processing order 46 (36/37)
+checking match False -0.0
+quote_price: 0.0, original_price: 69.58
+Processing order 48 (37/37)
+checking match False -0.0
+quote_price: 0.0, original_price: 9.87
+    option1  option2  C=Call, P=Put  Strike Price of the Option Times 1000  transaction_type  B/A_price  liquidity  belongs_to_frontier
+0      -3.0      5.0           -1.0                                  150.0               1.0      68.04          1                  0.0
+1       1.0      3.0            1.0                                  411.0               1.0      63.33          1                  1.0
+3       2.0     -1.0           -1.0                                  238.0               1.0      36.19          1                  1.0
+4      -2.0      9.0            1.0                                  496.5               1.0     156.18          1                  1.0
+5       1.0      7.0            1.0                                  715.0               1.0     186.12          1                  1.0
+6       2.0     -1.0           -1.0                                  221.0               1.0      19.82          1                  1.0
+7       6.0      5.0            1.0                                 1275.0               1.0     182.73          1                  1.0
+8       3.0      1.0            1.0                                  461.0               1.0     107.05          1                  1.0
+9       1.0      1.0            1.0                                  263.0               1.0       0.52          1                  1.0
+10      4.0      1.0           -1.0                                  740.5               1.0      22.92          1                  1.0
+11      3.0      2.0            1.0                                  569.0               1.0     106.16          1                  1.0
+12      3.0      1.0           -1.0                                  622.5               1.0      53.02          1                  1.0
+13      2.0     -1.0           -1.0                                  190.5               1.0       2.35          1                  1.0
+14      1.0     -2.0           -1.0                                    6.0               1.0      65.73          1                  NaN
+16      2.0      1.0           -1.0                                  347.0               1.0       0.02          1                  1.0
+17      7.0      5.0           -1.0                                 1842.5               1.0     226.09          1                  1.0
+18      1.0      1.0           -1.0                                  319.5               1.0      57.90          1                  1.0
+19     -2.0      7.0            1.0                                  269.0               1.0     169.38          1                  0.0
+20     -5.0      7.0           -1.0                                   20.5               1.0      28.41          1                  0.0
+21      1.0      6.0           -1.0                                  878.0               1.0      73.64          1                  0.0
+22      4.0      9.0            1.0                                 1420.0               1.0     156.52          1                  1.0
+23      5.0     -3.0            1.0                                  353.0               1.0      90.72          1                  1.0
+24      8.0      5.0           -1.0                                 1597.0               1.0       0.30          1                  1.0
+25      2.0     -3.0           -1.0                                   38.5               0.0      53.73          1                  1.0
+26      3.0      2.0           -1.0                                  821.5               0.0     149.36          1                  1.0
+27      8.0     -7.0            1.0                                  612.5               0.0      11.82          1                  1.0
+28      1.0     -1.0            1.0                                   83.5               0.0       1.03          1                  1.0
+31      8.0     -5.0            1.0                                  530.0               0.0     174.67          1                  1.0
+32      3.0      8.0           -1.0                                 1484.0               0.0     176.88          1                  1.0
+36     -4.0      7.0            1.0                                  143.0               0.0      30.24          1                  1.0
+38      6.0      1.0           -1.0                                  976.5               0.0      10.59          1                  1.0
+39      5.0     -1.0            1.0                                  726.5               0.0       4.05          1                  NaN
+41      2.0      1.0           -1.0                                  371.5               0.0       1.24          1                  1.0
+42      6.0      5.0            1.0                                 1520.0               0.0      13.98          1                  1.0
+43      2.0      1.0           -1.0                                  438.0               0.0      26.91          1                  1.0
+46      4.0      7.0            1.0                                 1308.0               0.0      69.58          1                  1.0
+48      8.0     -3.0           -1.0                                  779.5               0.0       9.87          1                  1.0
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py(165)<module>()
+-> if frontier_option_label is not None and any(frontier_option_label['belongs_to_frontier']!=np.nan):
+0     True
+1     True
+3     True
+4     True
+5     True
+6     True
+7     True
+8     True
+9     True
+10    True
+11    True
+12    True
+13    True
+14    True
+16    True
+17    True
+18    True
+19    True
+20    True
+21    True
+22    True
+23    True
+24    True
+25    True
+26    True
+27    True
+28    True
+31    True
+32    True
+36    True
+38    True
+39    True
+41    True
+42    True
+43    True
+46    True
+48    True
+Name: belongs_to_frontier, dtype: bool
+0     0.0
+1     1.0
+3     1.0
+4     1.0
+5     1.0
+6     1.0
+7     1.0
+8     1.0
+9     1.0
+10    1.0
+11    1.0
+12    1.0
+13    1.0
+14    NaN
+16    1.0
+17    1.0
+18    1.0
+19    0.0
+20    0.0
+21    0.0
+22    1.0
+23    1.0
+24    1.0
+25    1.0
+26    1.0
+27    1.0
+28    1.0
+31    1.0
+32    1.0
+36    1.0
+38    1.0
+39    NaN
+41    1.0
+42    1.0
+43    1.0
+46    1.0
+48    1.0
+Name: belongs_to_frontier, dtype: float64
+nan
+*** NameError: name 'nan' is not defined
+<class 'numpy.float64'>
+True

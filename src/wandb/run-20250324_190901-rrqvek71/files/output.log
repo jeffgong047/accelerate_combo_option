@@ -1,0 +1,66 @@
+Generating frontier for markets: 100%|██████████████████████████████████████████████████████████| 20/20 [00:00<00:00, 802.65it/s]
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 538, in <module>
+    market_index, async_result = solving_result
+TypeError: cannot unpack non-iterable ApplyResult object
+There are 25 buy orders and 25 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_2_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 0
+There are 27 buy orders and 23 sell orders
+#####Generating combo_frontier_market_index_0_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False with size 50 and noise 0.015625#####
+Starting async computation for iteration 1
+There are 31 buy orders and 19 sell orders
+#####Generating combo_frontier_market_index_1_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False with size 50 and noise 0.015625#####
+Starting async computation for iteration 2
+There are 31 buy orders and 19 sell orders
+#####Generating combo_frontier_market_index_2_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False with size 50 and noise 0.015625#####
+Starting async computation for iteration 3
+There are 32 buy orders and 18 sell orders
+#####Generating combo_frontier_market_index_3_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False with size 50 and noise 0.015625#####
+Starting async computation for iteration 4
+There are 29 buy orders and 21 sell orders
+#####Generating combo_frontier_market_index_4_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False with size 50 and noise 0.015625#####
+Starting async computation for iteration 5
+There are 29 buy orders and 21 sell orders
+#####Generating combo_frontier_market_index_5_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False with size 50 and noise 0.015625#####
+Starting async computation for iteration 6
+There are 26 buy orders and 24 sell orders
+#####Generating combo_frontier_market_index_6_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False with size 50 and noise 0.015625#####
+Starting async computation for iteration 7
+There are 32 buy orders and 18 sell orders
+#####Generating combo_frontier_market_index_7_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False with size 50 and noise 0.015625#####
+Starting async computation for iteration 8
+There are 32 buy orders and 18 sell orders
+#####Generating combo_frontier_market_index_8_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False with size 50 and noise 0.015625#####
+Starting async computation for iteration 9
+There are 29 buy orders and 21 sell orders
+#####Generating combo_frontier_market_index_9_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False with size 50 and noise 0.015625#####
+Starting async computation for iteration 10
+There are 33 buy orders and 17 sell orders
+#####Generating combo_frontier_market_index_10_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False with size 50 and noise 0.015625#####
+Starting async computation for iteration 11
+There are 29 buy orders and 21 sell orders
+#####Generating combo_frontier_market_index_11_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False with size 50 and noise 0.015625#####
+Starting async computation for iteration 12
+There are 28 buy orders and 22 sell orders
+#####Generating combo_frontier_market_index_12_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False with size 50 and noise 0.015625#####
+Starting async computation for iteration 13
+There are 32 buy orders and 18 sell orders
+#####Generating combo_frontier_market_index_13_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False with size 50 and noise 0.015625#####
+Starting async computation for iteration 14
+There are 32 buy orders and 18 sell orders
+#####Generating combo_frontier_market_index_14_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False with size 50 and noise 0.015625#####
+Starting async computation for iteration 15
+There are 33 buy orders and 17 sell orders
+#####Generating combo_frontier_market_index_15_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False with size 50 and noise 0.015625#####
+Starting async computation for iteration 16
+There are 32 buy orders and 18 sell orders
+#####Generating combo_frontier_market_index_16_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False with size 50 and noise 0.015625#####
+Starting async computation for iteration 17
+There are 30 buy orders and 20 sell orders
+#####Generating combo_frontier_market_index_17_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False with size 50 and noise 0.015625#####
+Starting async computation for iteration 18
+There are 29 buy orders and 21 sell orders
+#####Generating combo_frontier_market_index_18_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False with size 50 and noise 0.015625#####
+Starting async computation for iteration 19
+{'combo_frontier_market_index_0_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False': [0, <multiprocessing.pool.ApplyResult object at 0x7f98a1dcffd0>], 'combo_frontier_market_index_1_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False': [1, <multiprocessing.pool.ApplyResult object at 0x7f98a1dcfdc0>], 'combo_frontier_market_index_2_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False': [2, <multiprocessing.pool.ApplyResult object at 0x7f98a1dcfe80>], 'combo_frontier_market_index_3_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False': [3, <multiprocessing.pool.ApplyResult object at 0x7f98a1dcfeb0>], 'combo_frontier_market_index_4_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False': [4, <multiprocessing.pool.ApplyResult object at 0x7f98a1dcffa0>], 'combo_frontier_market_index_5_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False': [5, <multiprocessing.pool.ApplyResult object at 0x7f98a1de35b0>], 'combo_frontier_market_index_6_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False': [6, <multiprocessing.pool.ApplyResult object at 0x7f98a1de3730>], 'combo_frontier_market_index_7_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False': [7, <multiprocessing.pool.ApplyResult object at 0x7f98a1e29580>], 'combo_frontier_market_index_8_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False': [8, <multiprocessing.pool.ApplyResult object at 0x7f98a1de3b80>], 'combo_frontier_market_index_9_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False': [9, <multiprocessing.pool.ApplyResult object at 0x7f98a1de3fd0>], 'combo_frontier_market_index_10_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False': [10, <multiprocessing.pool.ApplyResult object at 0x7f98a1de3550>], 'combo_frontier_market_index_11_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False': [11, <multiprocessing.pool.ApplyResult object at 0x7f98a1de3670>], 'combo_frontier_market_index_12_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False': [12, <multiprocessing.pool.ApplyResult object at 0x7f98a1de3040>], 'combo_frontier_market_index_13_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False': [13, <multiprocessing.pool.ApplyResult object at 0x7f98a1de3ee0>], 'combo_frontier_market_index_14_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False': [14, <multiprocessing.pool.ApplyResult object at 0x7f98a1de3eb0>], 'combo_frontier_market_index_15_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False': [15, <multiprocessing.pool.ApplyResult object at 0x7f98a1e298e0>], 'combo_frontier_market_index_16_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False': [16, <multiprocessing.pool.ApplyResult object at 0x7f98a1de3760>], 'combo_frontier_market_index_17_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False': [17, <multiprocessing.pool.ApplyResult object at 0x7f98a1de3790>], 'combo_frontier_market_index_18_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False': [18, <multiprocessing.pool.ApplyResult object at 0x7f98a1de3c70>], 'combo_frontier_market_index_19_book_size_50_AAPL_MSFT_NOISE_0.015625_offset_False': [19, <multiprocessing.pool.ApplyResult object at 0x7f98a1dcff70>]}

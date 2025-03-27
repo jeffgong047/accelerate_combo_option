@@ -1,0 +1,30 @@
+
+Generating frontier for markets:   0%|                                                                                        | 0/20 [00:00<?, ?it/s]
+There are 25 buy orders and 25 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_2_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 0
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py(158)<module>()
+-> market = Market(pd.concat([opt_buy_book_df, opt_sell_book_df], ignore_index=False),mechanism_solver=mechanism_solver_combo)
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py(159)<module>()
+-> _, num_iter, profit , isMatch, matched_stock = synthetic_combo_match_mip(deepcopy(opt_buy_book_df), deepcopy(opt_sell_book_df), debug=0)
+Set parameter Username
+Academic license - for non-commercial use only - expires 2025-11-08
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py(162)<module>()
+-> frontier_option_label = market.epsilon_frontierGeneration(offset = args.offset)
+checking match True 10.303087110713317
+The market is matched, cant get epsilon frontiers
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py(163)<module>()
+-> print(isMatch, profit)
+True 10.303087110713317
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py(164)<module>()
+Generating frontier for markets:   0%|                                                                                        | 0/20 [00:18<?, ?it/s]
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 164, in <module>
+    try:
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 164, in <module>
+    try:
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 88, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 113, in dispatch_line
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit

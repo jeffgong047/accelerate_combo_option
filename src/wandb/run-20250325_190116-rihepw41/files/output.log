@@ -1,0 +1,61 @@
+
+Generating frontier for markets:   0%|                                                               | 0/19 [00:00<?, ?it/s]
+There are 27 buy orders and 23 sell orders
+#####Generating market 1 with size 50 and noise 0.015625#####
+Starting computation for iteration 1
+Set parameter Username
+Academic license - for non-commercial use only - expires 2025-11-08
+> /common/home/hg343/Research/accelerate_combo_option/src/mechanism_solver.py(316)mechanism_solver_combo()
+-> NUMERICAL_THRESHOLD = 1e-8  # Values below this are considered zero
+> /common/home/hg343/Research/accelerate_combo_option/src/mechanism_solver.py(319)mechanism_solver_combo()
+-> for i in range(num_buy):
+> /common/home/hg343/Research/accelerate_combo_option/src/mechanism_solver.py(320)mechanism_solver_combo()
+-> if gamma[0, i].x <= NUMERICAL_THRESHOLD:
+> /common/home/hg343/Research/accelerate_combo_option/src/mechanism_solver.py(321)mechanism_solver_combo()
+-> gamma[0, i].x = 0.0
+AttributeError: Attribute 'x' cannot be set
+> /common/home/hg343/Research/accelerate_combo_option/src/mechanism_solver.py(321)mechanism_solver_combo()
+-> gamma[0, i].x = 0.0
+> /common/home/hg343/Research/accelerate_combo_option/src/mechanism_solver.py(367)mechanism_solver_combo()
+-> except GurobiError as e:
+362  	                            opt_sell_book[i, 0], 'S1', opt_sell_book[i, 1], 'S2', opt_sell_book[i, -3], opt_sell_book[i, -1]))
+363  	                print('Revenue at T0 is {}; L is {}; Objective is {} = {}'.format(round(revenue,2), round(L[0,0].x, 2), round(revenue-L[0,0].x, 2), round(recalculated_profit, 2)))
+364  	
+365  	            return timeit.default_timer() - start, it, recalculated_profit, isMatch, matched_stock
+366  	
+367  ->	    except GurobiError as e:
+368  	        print('Error code ' + str(e.errno) + ": " + str(e))
+369  	        return 0, 0, 0, False, {'buy_book_index': [], 'sell_book_index': []}
+370  	    except AttributeError:
+371  	        print('Encountered an attribute error')
+Generating frontier for markets:   0%|                                                               | 0/19 [00:00<?, ?it/s]Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/mechanism_solver.py", line 321, in mechanism_solver_combo
+    l_filtered = 0.0 if abs(L[0,0].x) <= NUMERICAL_THRESHOLD else L[0,0].x
+  File "src/gurobipy/var.pxi", line 131, in gurobipy.Var.__setattr__
+  File "src/gurobipy/var.pxi", line 187, in gurobipy.Var.setAttr
+  File "src/gurobipy/attrutil.pxi", line 231, in gurobipy._setattr
+AttributeError: Attribute 'x' cannot be set
+During handling of the above exception, another exception occurred:
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor_forked.py", line 160, in <module>
+    is_match, profit = market.check_match()
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 82, in check_match
+    is_match, profit = self.apply_mechanism(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/market.py", line 129, in apply_mechanism
+    return self.mechanism_solver(orders, offset=offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/mechanism_solver.py", line 367, in mechanism_solver_combo
+    if 'model' not in locals() or model is None:
+  File "/common/home/hg343/Research/accelerate_combo_option/src/mechanism_solver.py", line 367, in mechanism_solver_combo
+    if 'model' not in locals() or model is None:
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 88, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 113, in dispatch_line
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit
+Generating frontier for markets:   5%|██▊                                                   | 1/19 [01:57<35:07, 117.07s/it]
+Error processing market 1:
+There are 31 buy orders and 19 sell orders
+#####Generating market 2 with size 50 and noise 0.015625#####
+Starting computation for iteration 2
+> /common/home/hg343/Research/accelerate_combo_option/src/mechanism_solver.py(316)mechanism_solver_combo()
+-> NUMERICAL_THRESHOLD = 1e-8  # Values below this are considered zero

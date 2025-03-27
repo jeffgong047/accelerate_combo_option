@@ -36,7 +36,7 @@ def parse_arguments():
     parser.add_argument('--reward_type', type=str, default='profit_with_penalty', 
                       choices=['profit_with_penalty', 'profit_minus_liability'], 
                       help='Type of reward function to use')
-    parser.add_argument('--penalty_weight', type=float, default=0.1, help='Weight for selection penalty')
+    parser.add_argument('--penalty_weight', type=float, default=20, help='Weight for selection penalty')
     parser.add_argument('--liability_weight', type=float, default=0.1, help='Weight for liability penalty')
     args = parser.parse_args()
     print("Parsed arguments:", vars(args))
@@ -70,6 +70,7 @@ def add_noise_to_create_match(df, num_orders=5):
 
 def main():
     args = parse_arguments()
+    args.test_dqn = True
     combination = 2
     selecte_combination_name = 'corrected'
     model_path = f'/common/home/hg343/Research/accelerate_combo_option/src/combo_2_L_not_zero_model_weight.pth'
@@ -144,6 +145,7 @@ def main():
         print(f'for selected combination {combination_name} Number of asks: {sum(num_of_asks)}, Number of asks in the frontier: {sum(num_of_asks_in_the_frontier)}')
         print(f'for selected combination {combination_name} Number of bids: {sum(num_of_bids)}, Number of bids in the frontier: {sum(num_of_bids_in_the_frontier)}')
     BO_KO = DIS_XOM
+    breakpoint()
                 # mean_belongs_to_frontier = df['belongs_to_frontier'].mean()
                 # if mean_belongs_to_frontier < 0.71:
                 #     data.extend([df] * 10)
@@ -157,6 +159,7 @@ def main():
     for ba_ko_time in ba_ko_files:
         assert all(ba_ko_time > no_matched_time for no_matched_time in no_matched_files), \
             "A BA_KO file was created before a no_matched file."
+
 # #sanity check :
 # #1. Check if dominated by has elements if and only if the option does not belongs to frontier
 # #2. Check if each market has frontiers
@@ -296,59 +299,58 @@ def main():
     eval_noisy_data = list(zip(eval_noisy_features, eval_noisy_labels))
 
 
-    breakpoint()
     print(f'reward_type: {args.reward_type}, penalty_weight: {args.penalty_weight}, liability_weight: {args.liability_weight}')
     # Use the noisy_loader for finetuning instead of train_loader
-    fintuned_model = finetune_policy_head(
-        model, 
-        noisy_loader,  # Use noisy_loader instead of train_loader
-        optimizer, 
-        reward_fn=synthetic_combo_match_mip, 
-        features=features_order,  # Make sure to use features=features_order
-        **vars(args)
-    )
+#     fintuned_model = finetune_policy_head(
+#         model, 
+#         noisy_loader,  # Use noisy_loader instead of train_loader
+#         optimizer, 
+#         reward_fn=synthetic_combo_match_mip, 
+#         features=features_order,  # Make sure to use features=features_order
+#         **vars(args)
+#     )
 
-    # Use eval_noisy_data for evaluation instead of test_loader
-    evaluate_policy_head(
-        fintuned_model, 
-        eval_noisy_data,  # Use eval_noisy_data instead of test_loader
-        reward_fn=synthetic_combo_match_mip, 
-        features_order=features_order,
-        **vars(args)
-    )
-    breakpoint()
-    #evaluate the model on the eval_noisy_markets
+#     # Use eval_noisy_data for evaluation instead of test_loader
+#     evaluate_policy_head(
+#         fintuned_model, 
+#         eval_noisy_data,  # Use eval_noisy_data instead of test_loader
+#         reward_fn=synthetic_combo_match_mip, 
+#         features_order=features_order,
+#         **vars(args)
+#     )
+#     breakpoint()
+#     #evaluate the model on the eval_noisy_markets
     
-    #test_matching_profit
-    test_model(model, test_loader, task = 'matching_profit_evaluation')
-   # Finetuning phase
-    # Create a separate dataloader with only BK_X_train data
-    # finetune_loader = DataLoader(list(zip(IBM_JPM_X_train_val, IBM_JPM_y_train_val)), 
-    #                             batch_size=args.batch_size, 
-    #                             shuffle=True, 
-    #                             collate_fn=collate_fn)
+#     #test_matching_profit
+#     test_model(model, test_loader, task = 'matching_profit_evaluation')
+#    # Finetuning phase
+#     # Create a separate dataloader with only BK_X_train data
+#     # finetune_loader = DataLoader(list(zip(IBM_JPM_X_train_val, IBM_JPM_y_train_val)), 
+#     #                             batch_size=args.batch_size, 
+#     #                             shuffle=True, 
+#     #                             collate_fn=collate_fn)
     
-    # Reduce learning rate for finetuning
-    finetune_optimizer = optim.Adam(model.parameters(), lr=args.learning_rate * 0.1)
+#     # Reduce learning rate for finetuning
+#     finetune_optimizer = optim.Adam(model.parameters(), lr=args.learning_rate * 0.1)
 
-    print("Starting finetuning phase...")
-    for i in range(100):  # Fewer epochs for finetuning
-        train_model(model, finetune_loader, finetune_optimizer, frontier_loss_fn, epochs=args.epochs)
-        validate_model(model, val_loader, frontier_loss_fn)
+#     print("Starting finetuning phase...")
+#     for i in range(100):  # Fewer epochs for finetuning
+#         train_model(model, finetune_loader, finetune_optimizer, frontier_loss_fn, epochs=args.epochs)
+#         validate_model(model, val_loader, frontier_loss_fn)
 
-    # Test after finetuning
-    print("Performance after finetuning:")
-    test_model(model, test_loader)
+#     # Test after finetuning
+#     print("Performance after finetuning:")
+#     test_model(model, test_loader)
     # test_model(model, test_generalization_loader)
 
     # Save the finetuned model
-    torch.save(model.state_dict(), model_path.replace('.pt', '_finetuned.pt'))
+    # torch.save(model.state_dict(), model_path.replace('.pt', '_finetuned.pt'))
 
-    # Add this after creating the DataLoader
-    for batch_x, batch_y in train_loader:
-        print(f"Batch X shape: {batch_x.shape}")
-        print(f"Model input_size: {args.input_size}")
-        break
+    # # Add this after creating the DataLoader
+    # for batch_x, batch_y in train_loader:
+    #     print(f"Batch X shape: {batch_x.shape}")
+    #     print(f"Model input_size: {args.input_size}")
+    #     break
 
     if args.test_dqn:
         dqn_metrics, baseline_metrics, dqn_agent = test_dqn_approach(

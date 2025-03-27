@@ -109,7 +109,14 @@ class DQNWithEmbeddings(nn.Module):
         # Determine input dimension based on whether we're using a base model
         self.input_dim = hidden_size if base_model else input_size
         
-        # Q-Network layers
+        # For the combined network, we'll use a separate embedding for the state
+        # and then combine it with the order embeddings
+        self.state_embedding = nn.Linear(1, self.input_dim)
+        
+        # Attention mechanism to combine order embeddings with state
+        self.attention = nn.Linear(self.input_dim * 2, 1)
+        
+        # Q-Network layers - takes the combined embeddings after attention
         self.q_network = nn.Sequential(
             nn.Linear(self.input_dim, hidden_size),
             nn.ReLU(),
@@ -122,27 +129,104 @@ class DQNWithEmbeddings(nn.Module):
         """
         Forward pass through the network
         Args:
-            x: Input tensor representing market data
+            x: Input tensor representing market data [batch_size, num_orders, features]
             state: Current state represented as a binary vector (0/1 for each order)
-                   If None, will be derived from market data
+                   [batch_size, num_orders] or [num_orders]
         """
+        batch_size = x.size(0)
+        
         # Get embeddings from base model if available
         if self.base_model:
-            with torch.no_grad():
-                embeddings = self.base_model.get_embedding(x)
+            # Get embeddings [batch_size, num_orders, hidden_size]
+            embeddings = self.base_model.get_embedding(x)
             
-            # If we have a state vector, concatenate with embeddings
+            # If we have a state vector, use attention to combine with embeddings
             if state is not None:
-                # Reshape state to match embeddings
-                state_tensor = state.unsqueeze(-1).expand_as(embeddings)
-                # Combine state information with embeddings
-                combined = torch.cat([embeddings, state_tensor], dim=-1)
+                # Process state to proper format
+                if state.dim() == 1:
+                    # Single state vector [num_orders] -> [1, num_orders]
+                    state = state.unsqueeze(0).float()
+                else:
+                    # Batch of state vectors [batch_size, num_orders]
+                    state = state.float()
+                
+                # Make sure batch size matches
+                if state.size(0) != batch_size:
+                    state = state.repeat(batch_size, 1)
+                
+                # If state has more/fewer orders than embeddings, pad/truncate
+                num_orders_emb = embeddings.size(1)
+                num_orders_state = state.size(1)
+                
+                if num_orders_state > num_orders_emb:
+                    # Truncate state
+                    state = state[:, :num_orders_emb]
+                elif num_orders_state < num_orders_emb:
+                    # Pad state with zeros
+                    padding = torch.zeros(batch_size, num_orders_emb - num_orders_state, 
+                                         device=state.device)
+                    state = torch.cat([state, padding], dim=1)
+                
+                # Create state embeddings [batch_size, num_orders, hidden_size]
+                state = state.unsqueeze(-1)  # [batch_size, num_orders, 1]
+                state_embeddings = self.state_embedding(state)  # [batch_size, num_orders, hidden_size]
+                
+                # Concatenate order embeddings and state embeddings
+                # [batch_size, num_orders, hidden_size*2]
+                combined = torch.cat([embeddings, state_embeddings], dim=-1)
+                
+                # Compute attention scores [batch_size, num_orders, 1]
+                attention_scores = self.attention(combined)
+                attention_weights = F.softmax(attention_scores, dim=1)
+                
+                # Apply attention to get weighted embeddings
+                # [batch_size, num_orders, hidden_size] * [batch_size, num_orders, 1]
+                # -> [batch_size, num_orders, hidden_size]
+                weighted_embeddings = embeddings * attention_weights
+                
+                # Sum over orders to get a single vector per batch
+                # [batch_size, hidden_size]
+                context_vectors = weighted_embeddings.sum(dim=1)
+                
+                # Process through Q-network
+                # [batch_size, num_actions]
+                q_values = self.q_network(context_vectors)
+                
+                return q_values
+            else:
+                # Without state, just average the embeddings
+                # [batch_size, hidden_size]
+                context_vectors = embeddings.mean(dim=1)
+                
+                # Process through Q-network
+                # [batch_size, num_actions]
+                q_values = self.q_network(context_vectors)
+                
+                return q_values
+        else:
+            # Without base model, we expect x to already be a feature vector
+            # [batch_size, features]
+            if state is not None:
+                # For simplicity, just concatenate with state and process
+                # [batch_size, features + state_size]
+                # We need to ensure state is properly sized
+                if state.dim() == 1:
+                    state = state.unsqueeze(0).float()
+                
+                # Make sure batch size matches
+                if state.size(0) != batch_size:
+                    state = state.repeat(batch_size, 1)
+                
+                # Average state to a single value if needed
+                if state.size(1) != 1:
+                    state = state.mean(dim=1, keepdim=True)
+                
+                # Process combined input
+                combined = torch.cat([x, state], dim=1)
                 return self.q_network(combined)
             else:
-                return self.q_network(embeddings)
-        else:
-            # Use input directly if no base model
-            return self.q_network(x)
+                # Just process x
+                return self.q_network(x)
 
 
 

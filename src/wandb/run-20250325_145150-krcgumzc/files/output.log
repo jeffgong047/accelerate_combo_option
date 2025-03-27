@@ -1,0 +1,456 @@
+
+Generating frontier for markets:   0%|                                                            | 0/19 [00:00<?, ?it/s]
+There are 27 buy orders and 23 sell orders
+#####Generating combinatorial/book/STOCK_2_SEED_2_book_AAPL_MSFT.npy with size 50 and noise 0.015625#####
+Starting async computation for iteration 1
+Set parameter Username
+Generating frontier for markets:   0%|                                                            | 0/19 [00:00<?, ?it/s]/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py:80: FutureWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+  quote_price = pd.Series(index=original_opt_buy_book.index)
+matched_stock: {'buy_book_index': [0, 11, 12], 'sell_book_index': [27, 30, 32, 34, 36, 38, 40, 41, 45, 46]}
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(99)synthetic_combo_frontier_generation()
+-> remove_buy_book = set(matched_stock['buy_book_index'])  # Convert to set for faster lookup
+(50, 6)
+{'buy_book_index': [0, 11, 12], 'sell_book_index': [27, 30, 32, 34, 36, 38, 40, 41, 45, 46]}
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(100)synthetic_combo_frontier_generation()
+-> remove_sell_book = set(matched_stock['sell_book_index'])
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(103)synthetic_combo_frontier_generation()
+-> opt_buy_book_filtered_index = buy_book_index.difference(remove_buy_book)
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(104)synthetic_combo_frontier_generation()
+-> opt_sell_book_filtered_index = sell_book_index.difference(remove_sell_book)
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(105)synthetic_combo_frontier_generation()
+-> print(buy_book_index, remove_buy_book)
+Int64Index([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16,
+            17, 18, 19, 20, 21, 22, 23, 24, 25, 26],
+           dtype='int64') {0, 11, 12}
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(106)synthetic_combo_frontier_generation()
+-> print(sell_book_index, remove_sell_book)
+Int64Index([27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43,
+            44, 45, 46, 47, 48, 49],
+           dtype='int64') {32, 34, 36, 38, 40, 41, 45, 46, 27, 30}
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(107)synthetic_combo_frontier_generation()
+-> opt_buy_book_holder = deepcopy(original_opt_buy_book.loc[opt_buy_book_filtered_index])
+102  	            # Use pandas index operations instead
+103  	            opt_buy_book_filtered_index = buy_book_index.difference(remove_buy_book)
+104  	            opt_sell_book_filtered_index = sell_book_index.difference(remove_sell_book)
+105  	            print(buy_book_index, remove_buy_book)
+106  	            print(sell_book_index, remove_sell_book)
+107  ->	            opt_buy_book_holder = deepcopy(original_opt_buy_book.loc[opt_buy_book_filtered_index])
+108  	            opt_sell_book_holder = deepcopy(original_opt_sell_book.loc[opt_sell_book_filtered_index])
+109  	            print(len(opt_buy_book_holder))
+110  	            print(len(opt_sell_book_holder))
+111  	            if len(opt_buy_book_holder) == 0 or len(opt_sell_book_holder) == 0:
+112  	                return None
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(108)synthetic_combo_frontier_generation()
+-> opt_sell_book_holder = deepcopy(original_opt_sell_book.loc[opt_sell_book_filtered_index])
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(109)synthetic_combo_frontier_generation()
+-> print(len(opt_buy_book_holder))
+(24, 6)
+(13, 6)
+Checking buy side options:   0%|                                                                  | 0/24 [00:00<?, ?it/s]
+24
+13
+order to quote: option1                                    5.00
+option2                                    2.00
+C=Call, P=Put                             -1.00
+Strike Price of the Option Times 1000    890.00
+transaction_type                           1.00
+B/A_price                                  0.53
+Name: 1, dtype: float64
+quote_price: 0.53
+> /common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py(128)synthetic_combo_frontier_generation()
+-> for option_index in tqdm(range(len(opt_buy_book_holder)), desc='Checking buy side options'):
+123  	    # coeff up to len(stock_list); call/put; strike; buy/sell; price (bid/ask)
+124  	    opt_sell_book_frontier_labels = np.zeros(len(opt_sell_book_holder))
+125  	    opt_buy_book_frontier_labels = np.zeros(len(opt_buy_book_holder))
+126  	
+127  	    # find frontier bids:
+128  ->	    for option_index in tqdm(range(len(opt_buy_book_holder)), desc='Checking buy side options'):
+129  	        option_df_index = opt_buy_book_holder.index[option_index]
+130  	        sub_obj = 1
+131  	        #add N+1 option of the buy option to seller side and set ask price = 0
+132  	        opt_buy_book = deepcopy(opt_buy_book_holder).to_numpy()
+133  	        opt_sell_book = deepcopy(opt_sell_book_holder).to_numpy()
+ 64  	def synthetic_combo_frontier_generation(original_orders_df: pd.DataFrame, s1='S1', s2='S2', opt_l = False, debug=0):
+ 65  	    '''
+ 66  	    opt_buy_book_holder: pandas dataframe contains bid orders; regardless of input; transformed to column order: ['option1', 'option2', 'C=Call, P=Put','Strike Price of the Option Times 1000', 'transaction_type','B/A_price']
+ 67  	    opt_sell_book_holder: pandas dataframe contains ask orders; ...
+ 68  	    s1: stock 1 name
+ 69  	    s2: stock 2 name
+ 70  	    opt_l: whether have offset or budget on liability in the optimization
+ 71  	    debug: whether to debug
+ 72  	    order book: contains coefficients up to len(stock_list); call/put; strike; buy/sell; price (bid/ask)
+ 73  	    '''
+ 74  	    #first check if is match and provide frontier if not:
+ 75  	    original_opt_buy_book = original_orders_df.where(original_orders_df['transaction_type'] == 1).dropna()
+ 76  	    original_opt_sell_book = original_orders_df.where(original_orders_df['transaction_type'] == 0).dropna()
+ 77  	    original_opt_buy_book = original_opt_buy_book[['option1', 'option2', 'C=Call, P=Put','Strike Price of the Option Times 1000', 'transaction_type','B/A_price']]
+ 78  	    original_opt_sell_book = original_opt_sell_book[['option1', 'option2', 'C=Call, P=Put','Strike Price of the Option Times 1000', 'transaction_type','B/A_price']]
+ 79  	    _, num_iter, profit , isMatch, matched_stock = synthetic_combo_match_mip(deepcopy(original_opt_buy_book), deepcopy(original_opt_sell_book), debug=0)
+ 80  	    quote_price = pd.Series(index=original_opt_buy_book.index)
+ 81  	    buy_book_index = original_opt_buy_book.index
+ 82  	    sell_book_index = original_opt_sell_book.index
+ 83  	    if isMatch:
+ 84  	        #remove the matched
+ 85  	        #check no match exist after removal of matched.
+ 86  	        # if 'buy_book_index' in matched_stock and 'sell_book_index' in matched_stock:
+ 87  	        #     remove_buy_book = matched_stock['buy_book_index']
+ 88  	        #     remove_sell_book = matched_stock['sell_book_index']
+ 89  	        #     filtered_index = lambda filter_index, all_index: [idx for idx in all_index if idx not in filter_index]
+ 90  	        #     opt_buy_book_filtered_index =  filtered_index(remove_buy_book, buy_book_index)
+ 91  	        #     opt_sell_book_filtered_index = filtered_index(remove_sell_book, sell_book_index)
+ 92  	        #     opt_buy_book_holder = deepcopy(original_opt_buy_book.loc[opt_buy_book_filtered_index])
+ 93  	        #     opt_sell_book_holder = deepcopy(original_opt_sell_book.loc[opt_sell_book_filtered_index])
+ 94  	        #     _, num_iter, profit , isMatch_new, matched_stock= synthetic_combo_match_mip(opt_buy_book_holder, opt_sell_book_holder, debug=0)
+ 95  	        assert 'buy_book_index' in matched_stock and 'sell_book_index' in matched_stock
+ 96  	        if 'buy_book_index' in matched_stock and 'sell_book_index' in matched_stock:
+ 97  	            print(f'matched_stock: {matched_stock}')
+ 98  	            breakpoint()
+ 99  	            remove_buy_book = set(matched_stock['buy_book_index'])  # Convert to set for faster lookup
+100  	            remove_sell_book = set(matched_stock['sell_book_index'])
+101  	
+102  	            # Use pandas index operations instead
+103  	            opt_buy_book_filtered_index = buy_book_index.difference(remove_buy_book)
+104  	            opt_sell_book_filtered_index = sell_book_index.difference(remove_sell_book)
+105  	            print(buy_book_index, remove_buy_book)
+106  	            print(sell_book_index, remove_sell_book)
+107  	            opt_buy_book_holder = deepcopy(original_opt_buy_book.loc[opt_buy_book_filtered_index])
+108  	            opt_sell_book_holder = deepcopy(original_opt_sell_book.loc[opt_sell_book_filtered_index])
+109  	            print(len(opt_buy_book_holder))
+110  	            print(len(opt_sell_book_holder))
+111  	            if len(opt_buy_book_holder) == 0 or len(opt_sell_book_holder) == 0:
+112  	                return None
+113  	            _, num_iter, profit , isMatch_new, matched_stock= synthetic_combo_match_mip(opt_buy_book_holder.copy(), opt_sell_book_holder.copy(), debug=0)
+114  	
+115  	        if isMatch_new:
+116  	            return None
+117  	
+118  	    else:
+119  	        opt_buy_book_holder = deepcopy(original_opt_buy_book)
+120  	        opt_sell_book_holder = deepcopy(original_opt_sell_book)
+121  	
+122  	    num_buy_holder, num_sell_holder, num_stock = len(opt_buy_book_holder), len(opt_sell_book_holder), len(opt_buy_book_holder.columns)-4
+123  	    # coeff up to len(stock_list); call/put; strike; buy/sell; price (bid/ask)
+124  	    opt_sell_book_frontier_labels = np.zeros(len(opt_sell_book_holder))
+125  	    opt_buy_book_frontier_labels = np.zeros(len(opt_buy_book_holder))
+126  	
+127  	    # find frontier bids:
+128  ->	    for option_index in tqdm(range(len(opt_buy_book_holder)), desc='Checking buy side options'):
+129  	        option_df_index = opt_buy_book_holder.index[option_index]
+130  	        sub_obj = 1
+131  	        #add N+1 option of the buy option to seller side and set ask price = 0
+132  	        opt_buy_book = deepcopy(opt_buy_book_holder).to_numpy()
+133  	        opt_sell_book = deepcopy(opt_sell_book_holder).to_numpy()
+134  	        # what is inside of buy book is actually ask orders
+135  	        bid = opt_buy_book[option_index][5]
+136  	        copied_opt_sell = deepcopy(opt_buy_book[option_index])
+137  	        #lets assume we are only handling two option case
+138  	        copied_opt_sell[5] = 0
+139  	        opt_sell_book = np.concatenate([opt_sell_book, np.expand_dims(copied_opt_sell, axis= 0 )],axis=0)
+140  	        num_buy = len(opt_buy_book)
+141  	        num_sell = len(opt_sell_book)
+142  	        # add initial constraints
+143  	        f_constraints = []
+144  	        f_constraints.append(np.maximum(opt_buy_book[:, -4]*(np.concatenate(np.matmul(opt_buy_book[:, :-4], np.zeros((num_stock, 1))))-opt_buy_book[:, -3]), 0))
+145  	        f_constraints.append(np.maximum(opt_buy_book[:, -4]*(np.concatenate(np.matmul(opt_buy_book[:, :-4], sys.maxsize*np.ones((num_stock, 1))))-opt_buy_book[:, -3]), 0))
+146  	        g_constraints = []
+147  	        g_constraints.append(np.maximum(opt_sell_book[:, -4]*(np.concatenate(np.matmul(opt_sell_book[:, :-4], np.zeros((num_stock, 1))))-opt_sell_book[:, -3]), 0))
+148  	        g_constraints.append(np.maximum(opt_sell_book[:, -4]*(np.concatenate(np.matmul(opt_sell_book[:, :-4], sys.maxsize*np.ones((num_stock, 1))))-opt_sell_book[:, -3]), 0))
+149  	        try:
+150  	            # prime problem
+151  	            model = Model("match")
+152  	            model.setParam('OutputFlag', False)
+153  	            gamma = model.addVars(1, num_buy, ub=1) #sell to bid orders
+154  	            delta = model.addVars(1, num_sell, ub=1) #buy from ask orders
+155  	            if opt_l:
+156  	                L = model.addVars(1, 1, lb=-GRB.INFINITY, ub=GRB.INFINITY)
+157  	
+158  	            # constraint of 0
+159  	            buy_sum = sum(delta[0,i]*g_constraints[0][i] for i in range(num_sell))
+160  	            sell_sum = sum(gamma[0,i]*f_constraints[0][i] for i in range(num_buy))
+161  	            if opt_l:
+162  	                model.addLConstr(sell_sum-buy_sum-L[0,0], GRB.LESS_EQUAL, 0)
+163  	            else:
+164  	                model.addLConstr(sell_sum-buy_sum, GRB.LESS_EQUAL, 0)
+165  	            expense = sum(delta[0,i]*opt_sell_book[i, -1] for i in range(num_sell))
+166  	            gain = sum(gamma[0,i]*opt_buy_book[i, -1] for i in range(num_buy))
+167  	            if opt_l:
+168  	                model.setObjective(gain-expense-L[0,0], GRB.MAXIMIZE)
+169  	            else:
+170  	                model.setObjective(gain-expense, GRB.MAXIMIZE)
+171  	
+172  	            # sub problem
+173  	            sub_model = Model("sub_match")
+174  	            sub_model.setParam('OutputFlag', False)
+175  	            M = 1000000
+176  	            s = sub_model.addVars(1, num_stock)
+177  	            f = sub_model.addVars(1, num_buy, lb=-GRB.INFINITY)
+178  	            g = sub_model.addVars(1, num_sell)
+179  	            I = sub_model.addVars(1, num_buy, vtype=GRB.BINARY)
+180  	            for i in range(num_sell):
+181  	                sub_model.addLConstr(opt_sell_book[i, -4]*(sum(opt_sell_book[i, j]*s[0,j] for j in range(num_stock))-opt_sell_book[i, -3])-g[0, i], GRB.LESS_EQUAL, 0)
+182  	            for i in range(num_buy):
+183  	                sub_model.addLConstr(opt_buy_book[i, -4]*(sum(opt_buy_book[i, j]*s[0,j] for j in range(num_stock))-opt_buy_book[i, -3])+M*(1-I[0, i])-f[0, i], GRB.GREATER_EQUAL, 0)
+184  	                sub_model.addLConstr(M*I[0, i]-f[0, i], GRB.GREATER_EQUAL, 0)
+185  	                sub_model.addLConstr(opt_buy_book[i, -4]*(sum(opt_buy_book[i, j]*s[0,j] for j in range(num_stock))-opt_buy_book[i, -3])+M*(1-I[0, i]), GRB.GREATER_EQUAL, 0)
+186  	                sub_model.addLConstr(opt_buy_book[i, -4]*(sum(opt_buy_book[i, j]*s[0,j] for j in range(num_stock))-opt_buy_book[i, -3])-M*I[0, i], GRB.LESS_EQUAL, 0)
+187  	
+188  	            it = 0
+189  	            start = timeit.default_timer()
+190  	            while sub_obj > 0.0005:
+191  	                # add newly generated constraint
+192  	                buy_sum_new = sum(delta[0,i]*g_constraints[-1][i] for i in range(num_sell))
+193  	                sell_sum_new = sum(gamma[0,i]*f_constraints[-1][i] for i in range(num_buy))
+194  	                if opt_l:
+195  	                    model.addLConstr(sell_sum_new-buy_sum_new-L[0,0], GRB.LESS_EQUAL, 0)
+196  	                else:
+197  	                    model.addLConstr(sell_sum_new-buy_sum_new, GRB.LESS_EQUAL, 0)
+198  	                model.optimize()
+199  	                # for v in model.getVars():
+200  	                # 	print('%s %g' % (v.varName, v.x))
+201  	                # save decision variables from prime problem
+202  	                gamma_val = np.array([max(gamma[0, i].x, 0) for i in range(num_buy)])
+203  	                delta_val = np.array([max(delta[0, i].x, 0) for i in range(num_sell)])
+204  	                if opt_l:
+205  	                    L_val = L[0,0].x
+206  	                if debug == 2:
+207  	                    print(gamma_val)
+208  	                    print(delta_val)
+209  	                    print(L_val)
+210  	
+211  	                # define sub obj
+212  	                if opt_l:
+213  	                    sub_model.setObjective(sum(gamma_val[i]*f[0, i] for i in range(num_buy))-sum(delta_val[i]*g[0, i] for i in range(num_sell))-L_val, GRB.MAXIMIZE)
+214  	                else:
+215  	                    sub_model.setObjective(sum(gamma_val[i]*f[0, i] for i in range(num_buy))-sum(delta_val[i]*g[0, i] for i in range(num_sell)), GRB.MAXIMIZE)
+216  	                sub_model.optimize()
+217  	                # for v in sub_model.getVars():
+218  	                # 	print('%s %g' % (v.varName, v.x))
+219  	                if debug > 0:
+220  	                    if it % 100 == 0:
+221  	                        print([s[0, i].x for i in range(num_stock)])
+222  	                        print('{}: objective is {} > 0'.format(it, sub_model.objVal))
+223  	                    if debug == 2:
+224  	                        for i in range(num_buy):
+225  	                            print('I:', I[0, i].x)
+226  	                            print('f:', f[0, i].x)
+227  	                        for i in range(num_sell):
+228  	                            print('g:', g[0, i].x)
+229  	                # save decision variables from sub problem
+230  	                f_constraints.append(np.array([f[0, i].x for i in range(num_buy)]))
+231  	                g_constraints.append(np.array([g[0, i].x for i in range(num_sell)]))
+232  	                sub_obj = sub_model.objVal
+233  	                it += 1
+234  	
+235  	            stop = timeit.default_timer()
+236  	            time = stop - start
+237  	            # print matching result
+238  	            if debug == 1:
+239  	                revenue = 0
+240  	                for i in range(num_buy):
+241  	                    if gamma[0, i].x > 0:
+242  	                        revenue += gamma[0,i].x * opt_buy_book[i, -1]
+243  	                        print('Sell {} to {}({}{}+{}{},{}) at bid price {}'.format(round(gamma[0,i].x, 4), 'C' if opt_buy_book[i, -4]==1 else 'P', \
+244  	                                                                                opt_buy_book[i, 0], s1, opt_buy_book[i, 1], s2, opt_buy_book[i, -3], opt_buy_book[i, -1]))
+245  	                for i in range(num_sell):
+246  	                    if delta[0, i].x > 0:
+247  	                        revenue -= delta[0,i].x * opt_sell_book[i, -1]
+248  	                        print('Buy {} from {}({}{}+{}{},{}) at ask price {}'.format(round(delta[0,i].x, 4), 'C' if opt_sell_book[i, -4]==1 else 'P', \
+249  	                                                                                    opt_sell_book[i, 0], s1, opt_sell_book[i, 1], s2, opt_sell_book[i, -3], opt_sell_book[i, -1]))
+250  	                print('Revenue at T0 is {}; L is {}; Objective is {} = {}'.format(round(revenue,2), round(L[0,0].x, 2), round(revenue-L[0,0].x, 2), round(model.objVal, 2)))
+251  	        except GurobiError as e:
+252  	            print('Error code ' + str(e.errno) + ": " + str(e))
+253  	        except AttributeError:
+254  	            print('Encountered an attribute error')
+255  	
+256  	
+257  	        if model.objVal <= bid:
+258  	            #add it to frontier s
+259  	            opt_buy_book_frontier_labels[option_index] = 1
+260  	        else:
+261  	            assert opt_buy_book_frontier_labels[option_index] == 0
+262  	        quote_price[option_df_index] = model.objVal
+263  	        print(f'order to quote: {opt_buy_book_holder.iloc[option_index]}')
+264  	        print(f'quote_price: {quote_price[option_df_index]}')
+265  	        breakpoint()
+266  	    for option_index in tqdm(range(len(opt_sell_book_holder)), desc='Checking sell side options'):
+267  	        option_df_index = opt_sell_book_holder.index[option_index]
+268  	        sub_obj = 1
+269  	        #add sell option to buy side of the market and set b_(M+1) price  = 10^6
+270  	        opt_sell_book = deepcopy(opt_sell_book_holder).to_numpy()
+271  	        opt_buy_book = deepcopy(opt_buy_book_holder).to_numpy()
+272  	        ask = opt_sell_book[option_index][5]
+273  	        copied_opt_buy = deepcopy(opt_sell_book[option_index])
+274  	        #lets assume we are only handling two option case
+275  	        copied_opt_buy[5] = 1e6
+276  	        opt_buy_book = np.concatenate([opt_buy_book, np.expand_dims(copied_opt_buy, axis = 0)] ,axis=0)
+277  	        num_buy = len(opt_buy_book)
+278  	        num_sell = len(opt_sell_book)
+279  	        # add initial constraints
+280  	        f_constraints = []
+281  	        f_constraints.append(np.maximum(opt_buy_book[:, -4]*(np.concatenate(np.matmul(opt_buy_book[:, :-4], np.zeros((num_stock, 1))))-opt_buy_book[:, -3]), 0))
+282  	        f_constraints.append(np.maximum(opt_buy_book[:, -4]*(np.concatenate(np.matmul(opt_buy_book[:, :-4], sys.maxsize*np.ones((num_stock, 1))))-opt_buy_book[:, -3]), 0))
+283  	        g_constraints = []
+284  	        g_constraints.append(np.maximum(opt_sell_book[:, -4]*(np.concatenate(np.matmul(opt_sell_book[:, :-4], np.zeros((num_stock, 1))))-opt_sell_book[:, -3]), 0))
+285  	        g_constraints.append(np.maximum(opt_sell_book[:, -4]*(np.concatenate(np.matmul(opt_sell_book[:, :-4], sys.maxsize*np.ones((num_stock, 1))))-opt_sell_book[:, -3]), 0))
+286  	        try:
+287  	            # prime problem
+288  	            model = Model("match")
+289  	            model.setParam('OutputFlag', False)
+290  	            gamma = model.addVars(1, num_buy, ub=1) #sell to bid orders
+291  	            delta = model.addVars(1, num_sell, ub=1) #buy from ask orders
+292  	            if opt_l:
+293  	                L = model.addVars(1, 1, lb=-GRB.INFINITY, ub=GRB.INFINITY)
+294  	            # constraint of 0
+295  	            buy_sum = sum(delta[0,i]*g_constraints[0][i] for i in range(num_sell))
+296  	            sell_sum = sum(gamma[0,i]*f_constraints[0][i] for i in range(num_buy))
+297  	            if opt_l:
+298  	                model.addLConstr(sell_sum-buy_sum-L[0,0], GRB.LESS_EQUAL, 0)
+299  	            else:
+300  	                model.addLConstr(sell_sum-buy_sum, GRB.LESS_EQUAL, 0)
+301  	            # define obj
+302  	            expense = sum(delta[0,i]*opt_sell_book[i, -1] for i in range(num_sell))
+303  	            gain = sum(gamma[0,i]*opt_buy_book[i, -1] for i in range(num_buy))
+304  	            if opt_l:
+305  	                model.setObjective(gain-expense-L[0,0], GRB.MAXIMIZE)
+306  	            else:
+307  	                model.setObjective(gain-expense, GRB.MAXIMIZE)
+308  	
+309  	            # sub problem
+310  	            sub_model = Model("sub_match")
+311  	            sub_model.setParam('OutputFlag', False)
+312  	            M = 1000000
+313  	            s = sub_model.addVars(1, num_stock)
+314  	            f = sub_model.addVars(1, num_buy, lb=-GRB.INFINITY)
+315  	            g = sub_model.addVars(1, num_sell)
+316  	            I = sub_model.addVars(1, num_buy, vtype=GRB.BINARY)
+317  	            for i in range(num_sell):
+318  	                sub_model.addLConstr(opt_sell_book[i, -4]*(sum(opt_sell_book[i, j]*s[0,j] for j in range(num_stock))-opt_sell_book[i, -3])-g[0, i], GRB.LESS_EQUAL, 0)
+319  	            for i in range(num_buy):
+320  	                sub_model.addLConstr(opt_buy_book[i, -4]*(sum(opt_buy_book[i, j]*s[0,j] for j in range(num_stock))-opt_buy_book[i, -3])+M*(1-I[0, i])-f[0, i], GRB.GREATER_EQUAL, 0)
+321  	                sub_model.addLConstr(M*I[0, i]-f[0, i], GRB.GREATER_EQUAL, 0)
+322  	                sub_model.addLConstr(opt_buy_book[i, -4]*(sum(opt_buy_book[i, j]*s[0,j] for j in range(num_stock))-opt_buy_book[i, -3])+M*(1-I[0, i]), GRB.GREATER_EQUAL, 0)
+323  	                sub_model.addLConstr(opt_buy_book[i, -4]*(sum(opt_buy_book[i, j]*s[0,j] for j in range(num_stock))-opt_buy_book[i, -3])-M*I[0, i], GRB.LESS_EQUAL, 0)
+324  	
+325  	            it = 0
+326  	            start = timeit.default_timer()
+327  	            while sub_obj > 0.0005:
+328  	                # add newly generated constraint
+329  	                buy_sum_new = sum(delta[0,i]*g_constraints[-1][i] for i in range(num_sell))
+330  	                sell_sum_new = sum(gamma[0,i]*f_constraints[-1][i] for i in range(num_buy))
+331  	                if opt_l:
+332  	                    model.addLConstr(sell_sum_new-buy_sum_new-L[0,0], GRB.LESS_EQUAL, 0)
+333  	                else:
+334  	                    model.addLConstr(sell_sum_new-buy_sum_new, GRB.LESS_EQUAL, 0)
+335  	                model.optimize()
+336  	                # for v in model.getVars():
+337  	                # 	print('%s %g' % (v.varName, v.x))
+338  	                # save decision variables from prime problem
+339  	                gamma_val = np.array([max(gamma[0, i].x, 0) for i in range(num_buy)])
+340  	                delta_val = np.array([max(delta[0, i].x, 0) for i in range(num_sell)])
+341  	                if opt_l:
+342  	                    L_val = L[0,0].x
+343  	                if debug == 2:
+344  	                    print(gamma_val)
+345  	                    print(delta_val)
+346  	                    print(L_val)
+347  	
+348  	                # define sub obj
+349  	                if opt_l:
+350  	                    sub_model.setObjective(sum(gamma_val[i]*f[0, i] for i in range(num_buy))-sum(delta_val[i]*g[0, i] for i in range(num_sell))-L_val, GRB.MAXIMIZE)
+351  	                else:
+352  	                    sub_model.setObjective(sum(gamma_val[i]*f[0, i] for i in range(num_buy))-sum(delta_val[i]*g[0, i] for i in range(num_sell)), GRB.MAXIMIZE)
+353  	                sub_model.optimize()
+354  	                # for v in sub_model.getVars():
+355  	                # 	print('%s %g' % (v.varName, v.x))
+356  	                if debug > 0:
+357  	                    if it % 100 == 0:
+358  	                        print([s[0, i].x for i in range(num_stock)])
+359  	                        print('{}: objective is {} > 0'.format(it, sub_model.objVal))
+360  	                    if debug == 2:
+361  	                        for i in range(num_buy):
+362  	                            print('I:', I[0, i].x)
+363  	                            print('f:', f[0, i].x)
+364  	                        for i in range(num_sell):
+365  	                            print('g:', g[0, i].x)
+366  	                # save decision variables from sub problem
+367  	                f_constraints.append(np.array([f[0, i].x for i in range(num_buy)]))
+368  	                g_constraints.append(np.array([g[0, i].x for i in range(num_sell)]))
+369  	                sub_obj = sub_model.objVal
+370  	                it += 1
+371  	
+372  	            stop = timeit.default_timer()
+373  	            time = stop - start
+374  	            # print matching result
+375  	            if debug == 1:
+376  	                revenue = 0
+377  	                for i in range(num_buy):
+378  	                    if gamma[0, i].x > 0:
+379  	                        revenue += gamma[0,i].x * opt_buy_book[i, -1]
+380  	                        print('Sell {} to {}({}{}+{}{},{}) at bid price {}'.format(round(gamma[0,i].x, 4), 'C' if opt_buy_book[i, -4]==1 else 'P', \
+381  	                                                                                opt_buy_book[i, 0], s1, opt_buy_book[i, 1], s2, opt_buy_book[i, -3], opt_buy_book[i, -1]))
+382  	                for i in range(num_sell):
+383  	                    if delta[0, i].x > 0:
+384  	                        revenue -= delta[0,i].x * opt_sell_book[i, -1]
+385  	                        print('Buy {} from {}({}{}+{}{},{}) at ask price {}'.format(round(delta[0,i].x, 4), 'C' if opt_sell_book[i, -4]==1 else 'P', \
+386  	                                                                                    opt_sell_book[i, 0], s1, opt_sell_book[i, 1], s2, opt_sell_book[i, -3], opt_sell_book[i, -1]))
+387  	                print('Revenue at T0 is {}; L is {}; Objective is {} = {}'.format(round(revenue,2), round(L[0,0].x, 2), round(revenue-L[0,0].x, 2), round(model.objVal, 2)))
+388  	        except GurobiError as e:
+389  	            print('Error code ' + str(e.errno) + ": " + str(e))
+390  	        except AttributeError:
+391  	            print('Encountered an attribute error')
+392  	        if 1e6-model.objVal >= ask:
+393  	
+394  	            #get the index of all the non-zero in gamma and delta
+395  	            # gamma_index = np.where(gamma[0,:].x > 0)[0]
+396  	            # delta_index = np.where(delta[0,:].x > 0)[0]
+397  	            # print('current index: {}'.format(option_index))
+398  	            # print('sold to {} and bought from {}'.format(gamma_index, delta_index))
+399  	            opt_sell_book_frontier_labels[option_index] = 1
+400  	        else:
+401  	            assert opt_sell_book_frontier_labels[option_index] == 0
+402  	        quote_price[option_df_index] = 1e6 - model.objVal
+403  	        print(f'order to quote: {opt_sell_book_holder.iloc[option_index]}')
+404  	        print(f'quote_price: {quote_price[option_df_index]}')
+405  	        breakpoint()
+406  	
+407  	    # Fix the DataFrame creation by adding the new column name
+408  	    columns = list(opt_buy_book_holder.columns) + ['belongs_to_frontier']
+409  	    frontier_buy_book = pd.DataFrame(
+410  	        np.concatenate([opt_buy_book_holder, np.expand_dims(opt_buy_book_frontier_labels, axis=1)], axis=1),
+411  	        index=opt_buy_book_holder.index,
+412  	        columns=columns  # Use updated columns list
+413  	    )
+414  	
+415  	    frontier_sell_book = pd.DataFrame(
+416  	        np.concatenate([opt_sell_book_holder, np.expand_dims(opt_sell_book_frontier_labels, axis=1)], axis=1),
+417  	        index=opt_sell_book_holder.index,
+418  	        columns=columns  # Use updated columns list
+419  	    )
+420  	
+421  	    return pd.concat([frontier_buy_book, frontier_sell_book])
+0.53
+Generating frontier for markets:   0%|                                                            | 0/19 [24:57<?, ?it/s]
+Traceback (most recent call last):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 536, in <module>
+    result = synthetic_combo_frontier_generation(opt_orders_df, args.offset)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 128, in synthetic_combo_frontier_generation
+    for option_index in tqdm(range(len(opt_buy_book_holder)), desc='Checking buy side options'):
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 128, in synthetic_combo_frontier_generation
+    for option_index in tqdm(range(len(opt_buy_book_holder)), desc='Checking buy side options'):
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 88, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "/common/home/hg343/anaconda3/lib/python3.9/bdb.py", line 112, in dispatch_line
+    self.user_line(frame)
+  File "/common/home/hg343/anaconda3/lib/python3.9/pdb.py", line 262, in user_line
+    self.interaction(frame, None)
+  File "/common/home/hg343/anaconda3/lib/python3.9/pdb.py", line 357, in interaction
+    self._cmdloop()
+  File "/common/home/hg343/anaconda3/lib/python3.9/pdb.py", line 322, in _cmdloop
+    self.cmdloop()
+  File "/common/home/hg343/anaconda3/lib/python3.9/cmd.py", line 126, in cmdloop
+    line = input(self.prompt)
+  File "/common/home/hg343/Research/accelerate_combo_option/src/combo_stock_frontier_data_preprocessor.py", line 59, in signal_handler
+    sys.exit(1)
+  File "/common/home/hg343/anaconda3/lib/python3.9/site-packages/wandb/sdk/lib/exit_hooks.py", line 36, in exit
+    self._orig_exit(orig_code)  # type: ignore
+SystemExit: 1

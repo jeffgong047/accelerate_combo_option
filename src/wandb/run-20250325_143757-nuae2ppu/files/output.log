@@ -1,0 +1,9 @@
+
+Generating frontier for markets:   0%|                                                            | 0/19 [00:00<?, ?it/s]
+There are 27 buy orders and 23 sell orders
+#####Generating market 1 with size 50 and noise 0.015625#####
+Starting computation for iteration 1
+checking match True 3.682967171065343
+matched_order_index: {'buy_book_index': [0, 11, 12], 'sell_book_index': [27, 30, 32, 34, 36, 38, 40, 41, 45, 46]}
+> /common/home/hg343/Research/accelerate_combo_option/src/market.py(69)remove_matched_orders()
+-> buy_book_index = matched_order_index['buy_book_index']
